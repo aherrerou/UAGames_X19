@@ -1,0 +1,149 @@
+﻿CREATE TABLE Usuario (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  nick VARCHAR(255) NOT NULL UNIQUE,
+  nombre VARCHAR(255),
+  apellidos VARCHAR(255),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255),
+  fecha_nacimiento DATE,
+  telefono VARCHAR(15) NOT NULL UNIQUE,
+  rol VARCHAR(255)
+);
+
+CREATE TABLE Productora(
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL UNIQUE,
+  descripcion TEXT,
+  imagen VARCHAR(255),
+  web VARCHAR(255)
+);
+
+CREATE TABLE Categoria (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  nombre VARCHAR(255),
+  descripcion TEXT
+);
+
+CREATE TABLE Videojuego (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  titulo VARCHAR(255),
+  descripcion TEXT,
+  fecha_lanzamiento DATE,
+  plataforma VARCHAR(255),
+  precio DECIMAL(10,2),
+  imagen VARCHAR(255),
+  productoraID INT NOT NULL,
+  categoriaID INT NOT NULL,
+  FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (categoriaID) REFERENCES Categoria(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Noticia (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  titulo VARCHAR(255),
+  fecha_public DATE,
+  contenido TEXT,
+  productoraID INT NOT NULL,
+  FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Oferta (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  descuento DECIMAL(5,2),
+  fecha_inicio DATE,
+  fecha_fin DATE,
+  videojuegoID INT NOT NULL,
+  productoraID INT NOT NULL,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE NO ACTION,
+  FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
+CREATE TABLE Review (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  puntuacion INT,
+  comentario TEXT,
+  fecha DATE,
+  usuarioID INT NOT NULL,
+  videojuegoID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE ListaDeseos (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  nombre VARCHAR(255),
+  descripcion TEXT,
+  usuarioID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id)
+);
+
+CREATE TABLE ListaDeseosVideojuego (
+ listaDeseosID INT NOT NULL,
+ videojuegoID INT NOT NULL,
+ FOREIGN KEY (listaDeseosID) REFERENCES ListaDeseos(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ CONSTRAINT PK_ListaDeseosVideojuego PRIMARY KEY (listaDeseosID,videojuegoID)
+);
+
+CREATE TABLE CestaCompra (
+  usuarioID INT NOT NULL,
+  videojuegoID INT NOT NULL,
+  fecha DATE,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT PK_CestaCompra PRIMARY KEY (usuarioID,videojuegoID)
+);
+
+
+CREATE TABLE Reserva (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  fecha DATE,
+  fechaEntrega DATE,
+  pagado DECIMAL(10,2),
+  usuarioID INT NOT NULL,
+  videojuegoID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Compra (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  fecha DATE,
+  usuarioID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE LineasCompra (
+ id INT IDENTITY(1,1) NOT NULL,
+ importe DECIMAL(10,2),
+ videojuegoID INT NOT NULL,
+ cantidad INT,
+ compraID INT NOT NULL,
+ FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY (compraID) REFERENCES Compra(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ CONSTRAINT PK_LineasCompra PRIMARY KEY (id,compraID)
+);
+
+
+CREATE TABLE Foro (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Tema (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  foroID INT NOT NULL,
+  FOREIGN KEY (foroID) REFERENCES Foro(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Publicacion(
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  text TEXT NOT NULL,
+  temaID INT NOT NULL,
+  usuarioID INT NOT NULL,
+  FOREIGN KEY (temaID) REFERENCES Tema(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
