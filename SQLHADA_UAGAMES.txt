@@ -1,0 +1,149 @@
+CREATE TABLE Usuario (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nick VARCHAR(255) NOT NULL UNIQUE,
+  nombre VARCHAR(255),
+  apellidos VARCHAR(255),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255),
+  fecha_nacimiento DATE,
+  telefono VARCHAR(15) NOT NULL UNIQUE,
+  rol enum('administrador', 'usuario', 'empresa')
+);
+
+CREATE TABLE Productora(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL UNIQUE,
+  descripcion MEDIUMTEXT,
+  imagen LONGBLOB,
+  web VARCHAR(255)
+);
+
+CREATE TABLE Categoria (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(255),
+  descripcion TEXT
+);
+
+CREATE TABLE Videojuego (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255),
+  descripcion TEXT,
+  fecha_lanzamiento DATE,
+  plataforma enum('pc','playstation','xbox','nintendo'),
+  precio DECIMAL(10,2),
+  imagen LONGBLOB,
+  productoraID INT NOT NULL,
+  categoriaID INT,
+  FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (categoriaID) REFERENCES Categoria(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Noticia (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255),
+  fecha_public DATE,
+  contenido TEXT,
+  productoraID INT NOT NULL,
+  FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Oferta (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  descuento DECIMAL(5,2),
+  fecha_inicio DATE,
+  fecha_fin DATE,
+  videojuegoID INT NOT NULL,
+  productoraID INT NOT NULL,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Review (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  puntuacion INT,
+  comentario TEXT,
+  fecha DATE,
+  usuarioID INT NOT NULL,
+  videojuegoID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE ListaDeseos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(255),
+  descripcion TEXT,
+  usuarioID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id)
+);
+
+CREATE TABLE ListaDeseosVideojuego (
+ listaDeseosID INT NOT NULL,
+ videojuegoID INT NOT NULL,
+ FOREIGN KEY (listaDeseosID) REFERENCES ListaDeseos(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ CONSTRAINT PK_ListaDeseosVideojuego PRIMARY KEY (listaDeseosID,videojuegoID)
+);
+
+CREATE TABLE CestaCompra (
+  usuarioID INT NOT NULL,
+  videojuegoID INT NOT NULL,
+  fecha DATE,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT PK_CestaCompra PRIMARY KEY (usuarioID,videojuegoID)
+);
+
+
+CREATE TABLE Reserva (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  fecha DATE,
+  fechaEntrega DATE,
+  pagado DECIMAL(10,2),
+  usuarioID INT NOT NULL,
+  videojuegoID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Compra (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  fecha DATE,
+  usuarioID INT NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE LineasCompra (
+ id INT AUTO_INCREMENT NOT NULL,
+ importe DECIMAL(10,2),
+ videojuegoID INT NOT NULL,
+ cantidad INT,
+ compraID INT NOT NULL,
+ FOREIGN KEY (videojuegoID) REFERENCES Videojuego(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY (compraID) REFERENCES Compra(id) ON DELETE CASCADE ON UPDATE CASCADE,
+ CONSTRAINT PK_LineasCompra PRIMARY KEY (id,compraID)
+);
+
+
+CREATE TABLE Foro (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Tema (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  foroID INT NOT NULL,
+  FOREIGN KEY (foroID) REFERENCES Foro(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Publicacion(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  text TEXT NOT NULL,
+  temaID INT NOT NULL,
+  usuarioID INT NOT NULL,
+  FOREIGN KEY (temaID) REFERENCES Tema(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (usuarioID) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
