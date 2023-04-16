@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    class ENVideojuego
+    public class ENVideojuego
     {
         //Identificador del videojuego
         private int _Id;
@@ -75,17 +75,17 @@ namespace library
         }
 
 //Constructor por defecto
-public ENVideojuego()
+        public ENVideojuego()
         {
-            Id = 0;
-            Titulo = "";
-            Descripcion = "";
-            FechaLanzamiento = new DateTime();
-            Plataforma = "";
-            Imagen = "";
-            Precio = 0.0;
-            Productora = new ENProductora();
-            Categoria = new ENCategoria();
+                Id = 0;
+                Titulo = "";
+                Descripcion = "";
+                FechaLanzamiento = new DateTime();
+                Plataforma = "";
+                Imagen = "";
+                Precio = 0.0;
+                Productora = new ENProductora();
+                Categoria = new ENCategoria();
         }
 
         //Constructor con parametros

@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace library
 {
-    class CADVideojuego
+    public class CADVideojuego
     {
         private String constring;
 
