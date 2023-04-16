@@ -156,6 +156,8 @@ namespace library
             SqlConnection connection = null;
             DataSet videojuegos = null;
             ENVideojuego videojuego = null;
+            SqlDataReader dr = null;
+            SqlCommand com = null;
 
             try
             {
@@ -182,8 +184,18 @@ namespace library
                     ENProductora productora = new ENProductora();
                     productora.id = Int32.Parse(rowsVideojuegos[i]["productoraID"].ToString());
 
-                    //Se lee la productora a partir de su ID
-                    productora.readProductora();
+                    sentence = "SELECT * FROM [Productora] WHERE id = " + productora.id + ";";
+                    com = new SqlCommand(sentence, connection);
+                    dr = com.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        productora.Nombre = dr["nombre"].ToString(); ;
+                        productora.Descripcion = dr["descripcion"].ToString();
+                        productora.imagen = dr["imagen"].ToString();
+                        productora.web = dr["web"].ToString();
+                    }
+
                     videojuego.Productora = productora;
 
                     //Lectura de la categoria
@@ -191,7 +203,17 @@ namespace library
                     cat.id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
 
                     //Se lee la categoria a partir de su ID
-                    cat.readCategoria();
+                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.id + ";";
+                    //Se obtiene id de la productora
+                    com = new SqlCommand(sentence, connection);
+                    dr = com.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        cat.Nombre = dr["nombre"].ToString(); ;
+                        cat.Descripcion = dr["descripcion"].ToString();
+                    }
+
                     videojuego.Categoria = cat;
 
                 }
@@ -294,12 +316,12 @@ namespace library
             catch (SqlException sqlex)
             {
                 leidos = false;
-                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", sqlex.Message);
+                Console.WriteLine("Reading videojuegos and productora operation has failed.Error: {0}", sqlex.Message);
             }
             catch (Exception ex)
             {
                 leidos = false;
-                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", ex.Message);
+                Console.WriteLine("Reading videojuegos and productora operation has failed.Error: {0}", ex.Message);
             }
             finally
             {
@@ -385,12 +407,12 @@ namespace library
             catch (SqlException sqlex)
             {
                 leidos = false;
-                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", sqlex.Message);
+                Console.WriteLine("Reading videojuegos and categoria operation has failed.Error: {0}", sqlex.Message);
             }
             catch (Exception ex)
             {
                 leidos = false;
-                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", ex.Message);
+                Console.WriteLine("Reading videojuegos and categoria operation has failed.Error: {0}", ex.Message);
             }
             finally
             {
