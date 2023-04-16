@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="CADOferta.cs" />
     <Compile Include="CADVideojuego.cs" />
+    <Compile Include="ENCategoria.cs" />
     <Compile Include="ENOferta.cs" />
+    <Compile Include="ENProductora.cs" />
     <Compile Include="ENVideojuego.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
