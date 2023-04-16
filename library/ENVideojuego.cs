@@ -74,7 +74,7 @@ namespace library
             set { _Categoria = value; }
         }
 
-//Constructor por defecto
+        //Constructor por defecto
         public ENVideojuego()
         {
                 Id = 0;
