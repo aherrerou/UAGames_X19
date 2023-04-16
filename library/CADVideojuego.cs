@@ -331,7 +331,7 @@ namespace library
             return leidos;
         }
 
-        //Leer videojuegos especificos de una productora
+        //Leer videojuegos especificos de una categoria
         public bool readVideojuegosCategoria(List<ENVideojuego> listaVideojuegos, string cat)
         {
             bool leidos = false;
@@ -429,7 +429,7 @@ namespace library
         {
             bool actualizado = false;
             SqlConnection connection = null;
-            String sentence = "UPDATE [Videojuegos] SET " +
+            String sentence = "UPDATE [Videojuego] SET " +
                 "titulo = @titulo, descripcion = @descripcion, fecha_lanzamiento = @fecha_lanzamiento," +
                 "plataforma = @plataforma, precio = @precio, imagen = @imagen, productoraID = @productoraID, categoriaID = @categoriaID) " +
                 "WHERE id = @id;";
@@ -489,7 +489,7 @@ namespace library
                 connection.Open();
 
                 string sentence = "DELETE FROM [Videojuego] " +
-                    "where id = @Id;";
+                    "where id = @id;";
                 SqlCommand com = new SqlCommand(sentence, connection);
                 com.Parameters.AddWithValue("@id", en.Id);
                 com.ExecuteNonQuery();
