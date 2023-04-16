@@ -29,11 +29,11 @@ CREATE TABLE Videojuego (
   titulo VARCHAR(255),
   descripcion TEXT,
   fecha_lanzamiento DATE,
-  plataforma enum('pc','playstation','xbox','nintendo'),
+  plataforma VARCHAR(255),
   precio DECIMAL(10,2),
   imagen LONGBLOB,
   productoraID INT NOT NULL,
-  categoriaID INT,
+  categoriaID INT NOT NULL,
   FOREIGN KEY (productoraID) REFERENCES Productora(id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (categoriaID) REFERENCES Categoria(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
