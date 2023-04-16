@@ -11,6 +11,9 @@ namespace library
         //Identificador del oferta
         private int _Id;
 
+        //Nombre del oferta
+        private string _Nombre;
+
         //Descuento del oferta
         private double _Descuento;
 
@@ -30,7 +33,13 @@ namespace library
             get { return _Id; }
             set { _Id = value; }
         }
-       
+
+        public String Nombre
+        {
+            get { return _Nombre; }
+            set { _Nombre = value; }
+        }
+
         public DateTime FechaInicio
         {
             get { return _FechaInicio; }

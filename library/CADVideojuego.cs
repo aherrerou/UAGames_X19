@@ -20,9 +20,9 @@ namespace library
         {
             bool creado = false;
             SqlConnection connection = null;
-            String sentence = "INSERT INTO [Videojuegos] " +
-                "(titulo, descripcion, fecha_lanzamiento, plataforma, precio, Imagen, productoraID, categoriaID) " +
-                "VALUES (@titulo, @descripcion, @fecha_lanzamiento, @plataforma, @precio, @Imagen, @productoraID, @categoriaID);";
+            String sentence = "INSERT INTO [Videojuego] " +
+                "(titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
+                "VALUES (@titulo, @descripcion, @fecha_lanzamiento, @plataforma, @precio, @imagen, @productoraID, @categoriaID);";
 
 
             try
@@ -37,7 +37,7 @@ namespace library
                 com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
                 com.Parameters.AddWithValue("@precio", en.Precio);
-                com.Parameters.AddWithValue("@Imagen", en.Imagen);
+                com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
                 com.Parameters.AddWithValue("@categoriaID", en.Categoria);
 
@@ -84,18 +84,18 @@ namespace library
                 //Se lee primer elemento
                 if (dr.Read())
                 {
-                    en.Id = Int32.Parse(dr["Id"].ToString());
+                    en.Id = Int32.Parse(dr["id"].ToString());
                     en.Descripcion = dr["descipcion"].ToString();
                     en.FechaLanzamiento = DateTime.Parse(dr["fecha_lanzamiento"].ToString());
                     en.Plataforma = dr["plataforma"].ToString();
-                    en.Imagen = dr["Imagen"].ToString();
+                    en.Imagen = dr["imagen"].ToString();
                     en.Precio = Double.Parse(dr["precio"].ToString());
 
                     //Lectura de la productora
                     ENProductora productora = new ENProductora();
                     productora.Id = Int32.Parse(dr["productoraID"].ToString());
 
-                    sentence = "SELECT * FROM [Productora] WHERE Id = " + productora.Id + ";";
+                    sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
 
@@ -103,8 +103,8 @@ namespace library
                     {
                         productora.Nombre = dr["nombre"].ToString(); ;
                         productora.Descripcion = dr["descripcion"].ToString();
-                        productora.Imagen = dr["Imagen"].ToString();
-                        productora.Web = dr["Web"].ToString();
+                        productora.Imagen = dr["imagen"].ToString();
+                        productora.Web = dr["web"].ToString();
                     }
 
                     en.Productora = productora;
@@ -114,7 +114,7 @@ namespace library
                     cat.Id = Int32.Parse(dr["categoriaID"].ToString());
 
                     //Se lee la categoria a partir de su ID
-                    sentence = "SELECT * FROM [Categoria] WHERE Id = " + cat.Id + ";";
+                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
                     //Se obtiene Id de la productora
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
@@ -173,18 +173,18 @@ namespace library
                 for(int i = 0; i < rowsVideojuegos.Length; i++)
                 {
                     videojuego = new ENVideojuego();
-                    videojuego.Id = Int32.Parse(rowsVideojuegos[i]["Id"].ToString());
+                    videojuego.Id = Int32.Parse(rowsVideojuegos[i]["id"].ToString());
                     videojuego.Descripcion = rowsVideojuegos[i]["descipcion"].ToString();
                     videojuego.FechaLanzamiento = DateTime.Parse(rowsVideojuegos[i]["fecha_lanzamiento"].ToString());
                     videojuego.Plataforma = rowsVideojuegos[i]["plataforma"].ToString();
-                    videojuego.Imagen = rowsVideojuegos[i]["Imagen"].ToString();
+                    videojuego.Imagen = rowsVideojuegos[i]["imagen"].ToString();
                     videojuego.Precio = Double.Parse(rowsVideojuegos[i]["precio"].ToString());
 
                     //Lectura de la productora
                     ENProductora productora = new ENProductora();
                     productora.Id = Int32.Parse(rowsVideojuegos[i]["productoraID"].ToString());
 
-                    sentence = "SELECT * FROM [Productora] WHERE Id = " + productora.Id + ";";
+                    sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
 
@@ -192,7 +192,7 @@ namespace library
                     {
                         productora.Nombre = dr["nombre"].ToString(); ;
                         productora.Descripcion = dr["descripcion"].ToString();
-                        productora.Imagen = dr["Imagen"].ToString();
+                        productora.Imagen = dr["imagen"].ToString();
                         productora.Web = dr["Web"].ToString();
                     }
 
@@ -203,7 +203,7 @@ namespace library
                     cat.Id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
 
                     //Se lee la categoria a partir de su ID
-                    sentence = "SELECT * FROM [Categoria] WHERE Id = " + cat.Id + ";";
+                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
                     //Se obtiene Id de la productora
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
@@ -252,7 +252,7 @@ namespace library
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "SELECT Id FROM [Productora] WHERE nombre = " + prod + ";";
+                string sentence = "SELECT id FROM [Productora] WHERE nombre = " + prod + ";";
                 //Se obtiene Id de la productora
                 SqlCommand com = new SqlCommand(sentence, connection);
                 dr = com.ExecuteReader();
@@ -261,11 +261,11 @@ namespace library
                 if (dr.Read())
                 {
                     ENProductora productora = new ENProductora();
-                    productora.Id = Int32.Parse(dr["Id"].ToString());
+                    productora.Id = Int32.Parse(dr["id"].ToString());
                     productora.Nombre = prod;
                     productora.Descripcion = dr["descripcion"].ToString();
-                    productora.Imagen = dr["Imagen"].ToString();
-                    productora.Web = dr["Web"].ToString();
+                    productora.Imagen = dr["imagen"].ToString();
+                    productora.Web = dr["web"].ToString();
 
 
                     //Lectura de los videojuegos
@@ -279,11 +279,11 @@ namespace library
                     for (int i = 0; i < rowsVideojuegos.Length; i++)
                     {
                         videojuego = new ENVideojuego();
-                        videojuego.Id = Int32.Parse(rowsVideojuegos[i]["Id"].ToString());
+                        videojuego.Id = Int32.Parse(rowsVideojuegos[i]["id"].ToString());
                         videojuego.Descripcion = rowsVideojuegos[i]["descipcion"].ToString();
                         videojuego.FechaLanzamiento = DateTime.Parse(rowsVideojuegos[i]["fecha_lanzamiento"].ToString());
                         videojuego.Plataforma = rowsVideojuegos[i]["plataforma"].ToString();
-                        videojuego.Imagen = rowsVideojuegos[i]["Imagen"].ToString();
+                        videojuego.Imagen = rowsVideojuegos[i]["imagen"].ToString();
                         videojuego.Precio = Double.Parse(rowsVideojuegos[i]["precio"].ToString());
 
                         videojuego.Productora = productora;
@@ -293,7 +293,7 @@ namespace library
                         cat.Id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
 
                         //Se lee la categoria a partir de su ID
-                        sentence = "SELECT * FROM [Categoria] WHERE Id = " + cat.Id + ";";
+                        sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
                         //Se obtiene Id de la productora
                         com = new SqlCommand(sentence, connection);
                         dr = com.ExecuteReader();
@@ -345,7 +345,7 @@ namespace library
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "SELECT Id FROM [Categoria] WHERE nombre = " + cat + ";";
+                string sentence = "SELECT id FROM [Categoria] WHERE nombre = " + cat + ";";
                 //Se obtiene Id de la productora
                 SqlCommand com = new SqlCommand(sentence, connection);
                 dr = com.ExecuteReader();
@@ -354,7 +354,7 @@ namespace library
                 if (dr.Read())
                 {
                     ENCategoria categoria = new ENCategoria();
-                    categoria.Id = Int32.Parse(dr["Id"].ToString());
+                    categoria.Id = Int32.Parse(dr["id"].ToString());
                     categoria.Nombre = cat;
                     categoria.Descripcion = dr["descripcion"].ToString();
 
@@ -369,11 +369,11 @@ namespace library
                     for (int i = 0; i < rowsVideojuegos.Length; i++)
                     {
                         videojuego = new ENVideojuego();
-                        videojuego.Id = Int32.Parse(rowsVideojuegos[i]["Id"].ToString());
+                        videojuego.Id = Int32.Parse(rowsVideojuegos[i]["id"].ToString());
                         videojuego.Descripcion = rowsVideojuegos[i]["descipcion"].ToString();
                         videojuego.FechaLanzamiento = DateTime.Parse(rowsVideojuegos[i]["fecha_lanzamiento"].ToString());
                         videojuego.Plataforma = rowsVideojuegos[i]["plataforma"].ToString();
-                        videojuego.Imagen = rowsVideojuegos[i]["Imagen"].ToString();
+                        videojuego.Imagen = rowsVideojuegos[i]["imagen"].ToString();
                         videojuego.Precio = Double.Parse(rowsVideojuegos[i]["precio"].ToString());
 
                         videojuego.Categoria = categoria;
@@ -382,7 +382,7 @@ namespace library
                         ENProductora productora = new ENProductora();
                         productora.Id = Int32.Parse(rowsVideojuegos[i]["productoraID"].ToString());
 
-                        sentence = "SELECT * FROM [Productora] WHERE Id = " + productora.Id + ";";
+                        sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
                         //Se obtiene Id de la productora
                         com = new SqlCommand(sentence, connection);
                         dr = com.ExecuteReader();
@@ -391,8 +391,8 @@ namespace library
                         {
                             productora.Nombre = dr["nombre"].ToString(); ;
                             productora.Descripcion = dr["descripcion"].ToString();
-                            productora.Imagen = dr["Imagen"].ToString();
-                            productora.Web = dr["Web"].ToString();
+                            productora.Imagen = dr["imagen"].ToString();
+                            productora.Web = dr["web"].ToString();
                         }
 
                         videojuego.Productora = productora;
@@ -431,8 +431,8 @@ namespace library
             SqlConnection connection = null;
             String sentence = "UPDATE [Videojuegos] SET " +
                 "titulo = @titulo, descripcion = @descripcion, fecha_lanzamiento = @fecha_lanzamiento," +
-                "plataforma = @plataforma, precio = @precio, Imagen = @Imagen, productoraID = @productoraID, categoriaID = @categoriaID) " +
-                "WHERE Id = @Id;";
+                "plataforma = @plataforma, precio = @precio, imagen = @imagen, productoraID = @productoraID, categoriaID = @categoriaID) " +
+                "WHERE id = @id;";
 
 
             try
@@ -447,10 +447,10 @@ namespace library
                 com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
                 com.Parameters.AddWithValue("@precio", en.Precio);
-                com.Parameters.AddWithValue("@Imagen", en.Imagen);
+                com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
                 com.Parameters.AddWithValue("@categoriaID", en.Categoria);
-                com.Parameters.AddWithValue("@Id", en.Id);
+                com.Parameters.AddWithValue("@id", en.Id);
 
                 com.ExecuteNonQuery();
 
@@ -489,9 +489,9 @@ namespace library
                 connection.Open();
 
                 string sentence = "DELETE FROM [Videojuego] " +
-                    "where Id = @Id;";
+                    "where id = @Id;";
                 SqlCommand com = new SqlCommand(sentence, connection);
-                com.Parameters.AddWithValue("@Id", en.Id);
+                com.Parameters.AddWithValue("@id", en.Id);
                 com.ExecuteNonQuery();
 
                 eliminado = true;
