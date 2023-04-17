@@ -7,16 +7,6 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    public class ENUsuario
-    {
-        public int id;
-        public String nombre;
-        public ENUsuario()
-        {
-            this.id = 1;
-            this.nombre = "Adrian Herrero";
-        }
-    }
     public class ENCabecera_Compra 
     {
         public ENUsuario usuario { get; set; }
@@ -37,24 +27,14 @@ namespace library
         }
         public bool deleteCabecera_Compra()
         {
-            //Para prueba
-            //this.id = 4;
-            //
             return this.cabecera.deleteCabecera(this);
         }
         public bool updateCabecera_Compra()
         {
-            //Para prueba
-            this.id = 4;
-            this.totalCompra = 10;
-            //
             return this.cabecera.updateCabecera(this);
         }
         public bool readCabecera_Compra()
         {
-            //Para prueba
-            this.id = 4;
-            //
             return this.cabecera.readCabecera(this);
         }
     }
