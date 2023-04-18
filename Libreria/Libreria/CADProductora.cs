@@ -13,11 +13,44 @@ namespace Libreria
 {
     class CADProductora
     {
-       
+        private String datos;
+        private SqlConnection con;
         public CADProductora()
         {
-            constring = ConfigurationManager.ConnectionStrings["Database"].ToString();
+            datos = ConfigurationManager.ConnectionStrings["Database"].ToString();
+            con = null;
         }
+        public bool readProductora(ENProductora en)
+        {
+            bool leida = false;
+            try
+            {
+                con = new SqlConnection(datos);
+                con.Open();
 
             }
+            return leida;
+        }
+        public bool readFirstProductora(ENProductora en)
+        {
+
+        }
+        public bool readNextProductora(ENProductora en)
+        {
+
+        }
+        public bool readPrevProductora(ENProductora en)
+        {
+
+        }
+        public bool updateProductora(ENProductora en)
+        {
+            
+        }
+        public bool deleteProductora(ENProductora en)
+        {
+
+        }
+
+    }
 }
