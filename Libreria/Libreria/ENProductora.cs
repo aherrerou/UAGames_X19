@@ -31,10 +31,33 @@ namespace Libreria
         }
         public bool createProductora()
         {
-            bool creada = false;
+           
             CADProductora nuevaProductora = new CADProductora();
-
+            bool creada = nuevaProductora.readProductora(this);
             return creada;
         }
+        public bool readFirstUsuario()
+        {
+            CADProductora user = new CADProductora();
+            bool read = user.readFirstProductora(this);
+            return read;
+        }
+
+        public bool readNextUsuario()
+        {
+            CADProductora user = new CADProductora();
+            bool read = false;
+            if (user.readProductora(this))
+                read = user.readNextProductora(this);
+            return read;
+        }
+
+        public bool readPrevUsuario()
+        {
+            CADProductora user = new CADProductora();
+            bool read = user.readPrevProductora(this);
+            return read;
+        }
+
     }
 }
