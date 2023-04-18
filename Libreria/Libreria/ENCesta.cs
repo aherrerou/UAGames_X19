@@ -10,7 +10,7 @@ namespace Libreria
     {
         public ENUsuario usuario { get; set; }
         public ENVideojuego videojuego { get; set; }
-        public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; } 
         private CADCesta ces { get; set; }
 
         // Constructor
