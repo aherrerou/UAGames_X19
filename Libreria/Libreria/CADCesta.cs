@@ -42,7 +42,7 @@ namespace Libreria
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
                 return false;
             }
-
+            
             finally
             {
                 this.conect.Close();
