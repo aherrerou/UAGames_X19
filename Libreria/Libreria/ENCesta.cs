@@ -8,9 +8,9 @@ namespace Libreria
 {
     class ENCesta
     {
-        public int UsuarioID { get; set; } 
-        public int VideojuegoID { get; set; }
-        public DateTime Fecha { get; set; }
+        private int UsuarioID;
+        private int VideojuegoID;
+        private DateTime Fecha;
 
         // Constructor
         public ENCesta(int usuarioID, int videojuegoID, DateTime fecha)
@@ -23,19 +23,60 @@ namespace Libreria
         }
 
         // Métodos
-        public void AgregarVideojuego(int videojuegoID)
+        public bool createCesta()
         {
-            // Lógica para agregar un videojuego a la cesta
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.createCesta(this);
+            return res;
         }
 
-        public void RemoverVideojuego(int videojuegoID)
+        public bool readForo()
         {
-            // Lógica para remover un videojuego de la cesta
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.readCesta(this);
+            return res;
         }
 
-        public void VaciarCesta()
+        public bool readFirstCesta()
         {
-            // Lógica para vaciar la cesta
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.readFirstCesta(this);
+            return res;
+        }
+
+        public bool readNextCesta()
+        {
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.readNextCesta(this);
+            return res;
+        }
+
+        public bool readPrevCesta()
+        {
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.readPrevCesta(this);
+            return res;
+        }
+
+        public bool updateCesta()
+        {
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.updateCesta(this);
+            return res;
+        }
+
+        public bool deleteCesta()
+        {
+            bool res = true;
+            CADCesta ces = new CADCesta();
+            res = ces.deleteCesta(this);
+            return res;
         }
     }
 }
