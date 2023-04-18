@@ -8,33 +8,33 @@ namespace Libreria
 {
     class ENCesta
     {
-        private int UsuarioID;
-        private int VideojuegoID;
-        private DateTime Fecha;
+        public ENUsuario usuario { get; set; }
+        public ENVideojuego videojuego { get; set; }
+        private DateTime Fecha { get; set; }
+        private CADCesta ces { get; set; }
 
         // Constructor
-        public ENCesta(int usuarioID, int videojuegoID, DateTime fecha)
+        public ENCesta()
         {
             DateTime fechaActual = DateTime.Now;
 
-            UsuarioID = -1;
-            VideojuegoID = -1;
+            this.videojuego = new ENVideojuego();
+            this.usuario= new ENUsuario();
             Fecha = fechaActual;
+            this.ces = new CADCesta(); 
         }
 
         // Métodos
         public bool createCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.createCesta(this);
             return res;
         }
 
-        public bool readForo()
+        public bool readCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.readCesta(this);
             return res;
         }
@@ -42,7 +42,6 @@ namespace Libreria
         public bool readFirstCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.readFirstCesta(this);
             return res;
         }
@@ -50,7 +49,6 @@ namespace Libreria
         public bool readNextCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.readNextCesta(this);
             return res;
         }
@@ -58,7 +56,6 @@ namespace Libreria
         public bool readPrevCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.readPrevCesta(this);
             return res;
         }
@@ -66,7 +63,6 @@ namespace Libreria
         public bool updateCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.updateCesta(this);
             return res;
         }
@@ -74,7 +70,6 @@ namespace Libreria
         public bool deleteCesta()
         {
             bool res = true;
-            CADCesta ces = new CADCesta();
             res = ces.deleteCesta(this);
             return res;
         }
