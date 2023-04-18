@@ -52,12 +52,23 @@ namespace Libreria
             return read;
         }
 
-        public bool readPrevUsuario()
+        public bool readPrevProductora()
         {
             CADProductora user = new CADProductora();
             bool read = user.readPrevProductora(this);
             return read;
         }
-
+        public bool updateProductora()
+        {
+            CADProductora prod = new CADProductora();
+            bool updated = prod.updateProductora(this);
+            return updated;
+        }
+        public bool deleteProductora()
+        {
+            CADProductora prod = new CADProductora();
+            bool deleted = prod.deleteProductora(this);
+            return deleted;
+        }
     }
 }
