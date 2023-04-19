@@ -91,5 +91,67 @@ namespace Libreria
 
             return true;
         }
+
+        public bool updateCategoria(ENCategoria categoria)
+        {
+            try
+            {
+                this.conect.Open();
+                string query = "update Categoria set nombre = '" + categoria.id + "', descripcion = '"+ categoria.descripcion  + "'where id = '" + categoria.id + "';";
+                SqlCommand com = new SqlCommand(query, conect);
+                com.ExecuteReader();
+
+            }
+
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                this.conect.Close();
+            }
+
+            return true;
+        }
+
+        public bool deleteCesta(ENCategoria categoria)
+        {
+            try
+            {
+                this.conect.Open();
+                string query = "delete from Categoria where id = '" + categoria.id + "';";
+                SqlCommand com = new SqlCommand(query, conect);
+                com.ExecuteReader();
+
+            }
+
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                this.conect.Close();
+            }
+
+            return true;
+        }
     }
 }
