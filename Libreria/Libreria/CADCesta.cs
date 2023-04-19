@@ -26,7 +26,7 @@ namespace Libreria
                 this.conect.Open();
                 string date = ces.Fecha.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string query = "Insert into Cesta (usuarioID,VideojuegoID,fecha) values " + "('" + usuario.id + "','" + videojuego.id + "','" + date + "')";
+                string query = "Insert into Cesta (usuarioID,VideojuegoID,fecha) values " + "('" + usuario.id + "','" + videojuego.id + "','" + date + "');";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteNonQuery();
             }
@@ -57,7 +57,7 @@ namespace Libreria
             try
             {
                 this.conect.Open();
-                string query = "select * from Cesta where usuarioID = " + usuario.id + ";";
+                string query = "select * from Cesta where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 SqlDataReader dataread = com.ExecuteReader();
 
@@ -98,7 +98,7 @@ namespace Libreria
             try
             {
                 this.conect.Open();
-                string query = "update Cesta set" + "videojuegoID = " + videojuego.id + " where usuarioID =" + usuario.id + ";";
+                string query = "update Cesta set" + "videojuegoID = '" + videojuego.id + "' where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
 
@@ -129,7 +129,7 @@ namespace Libreria
             try
             {
                 this.conect.Open();
-                string query = "delete from Cesta where usuarioID =" + usuario.id + ";";
+                string query = "delete from Cesta where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
 

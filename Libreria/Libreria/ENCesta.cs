@@ -42,14 +42,14 @@ namespace Libreria
         public bool updateCesta()
         {
             bool res = true;
-            res = ces.updateCesta(this);
+            res = ces.updateCesta(this,usuario,videojuego);
             return res;
         }
 
         public bool deleteCesta()
         {
             bool res = true;
-            res = ces.deleteCesta(this);
+            res = ces.deleteCesta(this,usuario);
             return res;
         }
     }
