@@ -8,20 +8,52 @@ namespace Libreria
 {
     class ENProductora
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public string Imagen { get; set; }
-        public string Web { get; set; }
+
+        private int id;
+        private string nombre;
+        private string descripcion;
+        private string imagen;
+        private string web;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public string Descripcion
+        {
+            get { return descripcion; }
+            set { descripcion = value; }
+        }
+
+        public string Imagen
+        {
+            get { return imagen; }
+            set { imagen = value; }
+        }
+
+        public string Web
+        {
+            get { return web; }
+            set { web = value; }
+        }
+
         public ENProductora()
         {
-            Id = -1;
-            Nombre = "";
-            Descripcion = "";
-            Imagen = "";
-            Web = "";
+            id = -1;
+            nombre = "";
+            descripcion = "";
+            imagen = "";
+            web = "";
         }
-        public ENProductora(int id,string nombre , string descripcion,string imagen ,string web)
+        public ENProductora(int id, string nombre, string descripcion, string imagen, string web)
         {
             Id = id;
             Nombre = nombre;
@@ -31,7 +63,7 @@ namespace Libreria
         }
         public bool createProductora()
         {
-           
+
             CADProductora nuevaProductora = new CADProductora();
             bool creada = nuevaProductora.readProductora(this);
             return creada;
@@ -43,7 +75,7 @@ namespace Libreria
             return read;
         }
 
-        public bool readNextUsuario()
+        public bool readNextProductora()
         {
             CADProductora user = new CADProductora();
             bool read = false;
@@ -72,3 +104,4 @@ namespace Libreria
         }
     }
 }
+
