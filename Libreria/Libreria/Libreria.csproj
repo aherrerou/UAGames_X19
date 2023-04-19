@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CADNoticia.cs" />
     <Compile Include="CADProductora.cs" />
+    <Compile Include="ENNoticia.cs" />
     <Compile Include="ENProductora.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
