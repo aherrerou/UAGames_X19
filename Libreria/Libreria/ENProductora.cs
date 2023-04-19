@@ -68,7 +68,7 @@ namespace Libreria
             bool creada = nuevaProductora.readProductora(this);
             return creada;
         }
-        public bool readFirstUsuario()
+        public bool readFirstProductora()
         {
             CADProductora user = new CADProductora();
             bool read = user.readFirstProductora(this);

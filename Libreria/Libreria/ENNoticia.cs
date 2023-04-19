@@ -50,12 +50,50 @@ namespace Libreria
             this.contenido = contenido;
             this.productoraID = productora;
         }
-        public override string ToString()
+        public bool createNoticia()
         {
-            return string.Format("Noticia {0}: {1}\nFecha de publicación: {2}\nContenido: {3}\nProductora: {4}",
-                id, titulo, fecha_public.ToString("dd/MM/yyyy"), contenido, productoraID);
+
+            CADNoticia nuevaNoticia = new CADNoticia();
+            bool creada = nuevaNoticia.readNoticia(this);
+            return creada;
+        }
+        public bool readFirstNoticia()
+        {
+            CADNoticia user = new CADNoticia();
+            bool read = user.readFirstNoticia(this);
+            return read;
+        }
+        public bool readNextNoticia()
+        {
+            CADNoticia user = new CADNoticia();
+            bool read = false;
+            if (user.readNoticia(this))
+                read = user.readNextNoticia(this);
+            return read;
         }
 
+        public bool readPrevNoticia()
+        {
+            CADNoticia user = new CADNoticia();
+            bool read = user.readPrevNoticia(this);
+            return read;
+        }
+        public bool updateNoticia()
+        {
+            CADNoticia prod = new CADNoticia();
+            bool updated = prod.updateNoticia(this);
+            return updated;
+        }
+        public bool deleteNoticia()
+        {
+            CADNoticia prod = new CADNoticia();
+            bool deleted = prod.deleteNoticia(this);
+            return deleted;
+        }
     }
 }
+
+
+    
+
 
