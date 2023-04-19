@@ -12,7 +12,7 @@ namespace Libreria
         public string nombre { get; set; }
         public string descripcion{ get; set; }
 
-        private ENCategoria categoria;
+        private CADCategoria categoria;
 
         // Constructor
         public ENCategoria()
@@ -22,7 +22,7 @@ namespace Libreria
             this.nombre = "";
             this.descripcion = "";
 
-            this.categoria = new ENCategoria();
+            this.categoria = new CADCategoria();
         }
 
         // Métodos

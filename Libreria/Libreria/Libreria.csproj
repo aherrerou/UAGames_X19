@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CADCesta.cs" />
+    <Compile Include="CADCategoria.cs" />
     <Compile Include="ENCategoria.cs" />
     <Compile Include="ENCesta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -63,7 +63,7 @@ namespace Libreria
 
                 if (dataread.Read())
                 {
-                    usuario.id = Double.Parse(dataread["usuarioID"].ToString());
+                    usuario.id = usuario.Parse(dataread["usuarioID"].ToString());
                 }
                 else
                 {
