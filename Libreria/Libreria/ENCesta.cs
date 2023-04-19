@@ -28,35 +28,14 @@ namespace Libreria
         public bool createCesta()
         {
             bool res = true;
-            res = ces.createCesta(this);
+            res = ces.createCesta(this,usuario,videojuego);
             return res;
         }
 
         public bool readCesta()
         {
             bool res = true;
-            res = ces.readCesta(this);
-            return res;
-        }
-
-        public bool readFirstCesta()
-        {
-            bool res = true;
-            res = ces.readFirstCesta(this);
-            return res;
-        }
-
-        public bool readNextCesta()
-        {
-            bool res = true;
-            res = ces.readNextCesta(this);
-            return res;
-        }
-
-        public bool readPrevCesta()
-        {
-            bool res = true;
-            res = ces.readPrevCesta(this);
+            res = ces.readCesta(this,usuario);
             return res;
         }
 
