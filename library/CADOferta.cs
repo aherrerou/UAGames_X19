@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace library
 {
@@ -13,7 +12,7 @@ namespace library
 
         public CADOferta()
         {
-            constring = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
+            constring = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
         }
 
         //Crear oferta
@@ -92,6 +91,7 @@ namespace library
                     ENProductora productora = new ENProductora();
                     productora.Id = Int32.Parse(dr["productoraID"].ToString());
 
+                    /*
                     sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
@@ -102,7 +102,7 @@ namespace library
                         productora.Descripcion = dr["descripcion"].ToString();
                         productora.Imagen = dr["Imagen"].ToString();
                         productora.Web = dr["Web"].ToString();
-                    }
+                    }*/
 
                     en.Productora = productora;
 
@@ -110,6 +110,7 @@ namespace library
                     ENVideojuego videojuego = new ENVideojuego();
                     videojuego.Id = Int32.Parse(dr["videojuegoID"].ToString());
 
+                    /*
                     //Se lee la videojuego a partir de su ID
                     sentence = "SELECT * FROM [Videojuego] WHERE id = " + videojuego.Id + ";";
                     //Se obtiene Id de la productora
@@ -144,7 +145,7 @@ namespace library
 
                         videojuego.Categoria = cat;
 
-                    }
+                    }*/
 
                     en.Videojuego = videojuego;
 

@@ -72,8 +72,8 @@ namespace library
         public ENOferta()
         {
             Id = 0;
-            FechaInicio = new DateTime();
-            FechaFin = new DateTime();
+            FechaInicio = DateTime.UtcNow;
+            FechaFin = DateTime.UtcNow;
             Descuento = 0.0;
             Productora = new ENProductora();
             Videojuego = new ENVideojuego();
