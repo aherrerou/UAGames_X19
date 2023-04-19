@@ -80,7 +80,7 @@ namespace library
                 Id = 0;
                 Titulo = "";
                 Descripcion = "";
-                FechaLanzamiento = new DateTime();
+                FechaLanzamiento = DateTime.UtcNow;
                 Plataforma = "";
                 Imagen = "";
                 Precio = 0.0;
@@ -133,7 +133,7 @@ namespace library
             return cad.readVideojuegosCategoria(listaVideojuegos, categoria);
         }
 
-        public bool actualizarVideojuego()
+        public bool updateVideojuego()
         {
             bool actualizado = false;
             CADVideojuego cad = new CADVideojuego();
@@ -165,7 +165,7 @@ namespace library
             return actualizado;
         }
 
-        public bool eliminarVideojuego()
+        public bool deleteVideojuego()
         {
             bool eliminado = false;
             CADVideojuego cad = new CADVideojuego();

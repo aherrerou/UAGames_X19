@@ -12,7 +12,7 @@ namespace library
 
         public CADVideojuego()
         {
-            constring = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
+            constring = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
         }
 
         //Crear videojuego
@@ -39,7 +39,7 @@ namespace library
                 com.Parameters.AddWithValue("@precio", en.Precio);
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
-                com.Parameters.AddWithValue("@categoriaID", en.Categoria);
+                com.Parameters.AddWithValue("@categoriaID", en.Categoria.Id);
 
                 com.ExecuteNonQuery();
                 creado = true;
@@ -85,7 +85,7 @@ namespace library
                 if (dr.Read())
                 {
                     en.Id = Int32.Parse(dr["id"].ToString());
-                    en.Descripcion = dr["descipcion"].ToString();
+                    en.Descripcion = dr["descripcion"].ToString();
                     en.FechaLanzamiento = DateTime.Parse(dr["fecha_lanzamiento"].ToString());
                     en.Plataforma = dr["plataforma"].ToString();
                     en.Imagen = dr["imagen"].ToString();
@@ -95,6 +95,7 @@ namespace library
                     ENProductora productora = new ENProductora();
                     productora.Id = Int32.Parse(dr["productoraID"].ToString());
 
+                    /*
                     sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
@@ -105,7 +106,7 @@ namespace library
                         productora.Descripcion = dr["descripcion"].ToString();
                         productora.Imagen = dr["imagen"].ToString();
                         productora.Web = dr["web"].ToString();
-                    }
+                    }*/
 
                     en.Productora = productora;
 
@@ -113,17 +114,18 @@ namespace library
                     ENCategoria cat = new ENCategoria();
                     cat.Id = Int32.Parse(dr["categoriaID"].ToString());
 
+                    /*
                     //Se lee la categoria a partir de su ID
                     sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
                     //Se obtiene Id de la productora
                     com = new SqlCommand(sentence, connection);
-                    dr = com.ExecuteReader();
+                    SqlDataReader dr2 = com.ExecuteReader();
 
                     if (dr.Read())
                     {
-                        cat.Nombre = dr["nombre"].ToString(); ;
-                        cat.Descripcion = dr["descripcion"].ToString();
-                    }
+                        cat.Nombre = dr2["nombre"].ToString(); ;
+                        cat.Descripcion = dr2["descripcion"].ToString();
+                    }*/
 
                     en.Categoria = cat;
 
@@ -174,7 +176,7 @@ namespace library
                 {
                     videojuego = new ENVideojuego();
                     videojuego.Id = Int32.Parse(rowsVideojuegos[i]["id"].ToString());
-                    videojuego.Descripcion = rowsVideojuegos[i]["descipcion"].ToString();
+                    videojuego.Descripcion = rowsVideojuegos[i]["descripcion"].ToString();
                     videojuego.FechaLanzamiento = DateTime.Parse(rowsVideojuegos[i]["fecha_lanzamiento"].ToString());
                     videojuego.Plataforma = rowsVideojuegos[i]["plataforma"].ToString();
                     videojuego.Imagen = rowsVideojuegos[i]["imagen"].ToString();
@@ -233,6 +235,7 @@ namespace library
             }
             finally
             {
+                if (dr != null) dr.Close();
                 if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
             }
             return leidos;
@@ -280,7 +283,7 @@ namespace library
                     {
                         videojuego = new ENVideojuego();
                         videojuego.Id = Int32.Parse(rowsVideojuegos[i]["id"].ToString());
-                        videojuego.Descripcion = rowsVideojuegos[i]["descipcion"].ToString();
+                        videojuego.Descripcion = rowsVideojuegos[i]["descripcion"].ToString();
                         videojuego.FechaLanzamiento = DateTime.Parse(rowsVideojuegos[i]["fecha_lanzamiento"].ToString());
                         videojuego.Plataforma = rowsVideojuegos[i]["plataforma"].ToString();
                         videojuego.Imagen = rowsVideojuegos[i]["imagen"].ToString();
@@ -370,7 +373,7 @@ namespace library
                     {
                         videojuego = new ENVideojuego();
                         videojuego.Id = Int32.Parse(rowsVideojuegos[i]["id"].ToString());
-                        videojuego.Descripcion = rowsVideojuegos[i]["descipcion"].ToString();
+                        videojuego.Descripcion = rowsVideojuegos[i]["descripcion"].ToString();
                         videojuego.FechaLanzamiento = DateTime.Parse(rowsVideojuegos[i]["fecha_lanzamiento"].ToString());
                         videojuego.Plataforma = rowsVideojuegos[i]["plataforma"].ToString();
                         videojuego.Imagen = rowsVideojuegos[i]["imagen"].ToString();
