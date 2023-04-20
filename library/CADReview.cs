@@ -116,7 +116,6 @@ namespace library
                 if (reader.Read())
                 {
                     review.totalCompra = Double.Parse(reader["total"].ToString());
-                    // Si queremos saber el cliente y la fecha del pedido añadir aqui
                 }
                 else
                 {

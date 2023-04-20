@@ -7,28 +7,6 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    public class ENUsuario
-    {
-        public int id;
-        public String nombre;
-        public ENUsuario()
-        {
-            this.id = 5;
-            this.nombre = "Omar Bouaouda Ruiz";
-        }
-    }
-
-    public class ENVideoJuego
-    {
-        public int id;
-        public String nombre;
-        public ENVideojuego()
-        {
-            this.id = 5;
-            this.nombre = "God Of War";
-        }
-    }
-
     //Codigo Omar
 
     public class ENReserva
@@ -64,17 +42,10 @@ namespace library
         }
         public bool updateReserva()
         {
-            //Para prueba
-            this.id = 4;
-            this.totalCompra = 10;
-            //
             return this.Reserva.updateReserva(this);
         }
         public bool readReserva()
         {
-            //Para prueba
-            this.id = 4;
-            //
             return this.Reserva.readReserva(this);
         }
     }

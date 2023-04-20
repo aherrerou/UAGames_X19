@@ -116,7 +116,6 @@ namespace library
                 if (reader.Read())
                 {
                     Reserva.pagado = Double.Parse(reader["pagado"].ToString());
-                    // Si queremos saber el cliente y la fecha del pedido añadir aqui
                 }
                 else
                 {
