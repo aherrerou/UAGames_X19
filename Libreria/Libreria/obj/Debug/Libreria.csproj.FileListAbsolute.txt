@@ -1,2 +1,0 @@
-C:\Users\lolst\source\repos\UAGames_X19\Libreria\Libreria\obj\Debug\Libreria.csproj.AssemblyReference.cache
-C:\Users\lolst\source\repos\UAGames_X19\Libreria\Libreria\obj\Debug\Libreria.csproj.CoreCompileInputs.cache
