@@ -44,14 +44,12 @@
   <ItemGroup>
     <Compile Include="CADOferta.cs" />
     <Compile Include="CADVideojuego.cs" />
-    <Compile Include="ENCategoria.cs" />
     <Compile Include="ENOferta.cs" />
-    <Compile Include="ENProductora.cs" />
     <Compile Include="ENVideojuego.cs" />
-	<Compile Include="CADCabecera_Compra.cs" />
-	<Compile Include="CADLinea_Compra.cs" />
-	<Compile Include="ENCabecera_Compra.cs" />
-	<Compile Include="ENLinea_Compra.cs" />
+    <Compile Include="CADCabecera_Compra.cs" />
+    <Compile Include="CADLinea_Compra.cs" />
+    <Compile Include="ENCabecera_Compra.cs" />
+    <Compile Include="ENLinea_Compra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
