@@ -242,18 +242,18 @@ namespace library
 
                         //Lectura de la categoria
                         ENCategoria cat = new ENCategoria();
-                        cat.Id = Int32.Parse(dr["categoriaID"].ToString());
+                        cat.id = Int32.Parse(dr["categoriaID"].ToString());
 
                         //Se lee la categoria a partir de su ID
-                        sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
+                        sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.id + ";";
                         //Se obtiene Id de la productora
                         com = new SqlCommand(sentence, connection);
                         dr = com.ExecuteReader();
 
                         if (dr.Read())
                         {
-                            cat.Nombre = dr["nombre"].ToString(); ;
-                            cat.Descripcion = dr["descripcion"].ToString();
+                            cat.nombre = dr["nombre"].ToString(); ;
+                            cat.descripcion = dr["descripcion"].ToString();
                         }
 
                         videojuego.Categoria = cat;
@@ -355,18 +355,18 @@ namespace library
 
                             //Lectura de la categoria
                             ENCategoria cat = new ENCategoria();
-                            cat.Id = Int32.Parse(dr["categoriaID"].ToString());
+                            cat.id = Int32.Parse(dr["categoriaID"].ToString());
 
                             //Se lee la categoria a partir de su ID
-                            sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
+                            sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.id + ";";
                             //Se obtiene Id de la productora
                             com = new SqlCommand(sentence, connection);
                             dr = com.ExecuteReader();
 
                             if (dr.Read())
                             {
-                                cat.Nombre = dr["nombre"].ToString(); ;
-                                cat.Descripcion = dr["descripcion"].ToString();
+                                cat.nombre = dr["nombre"].ToString(); ;
+                                cat.descripcion = dr["descripcion"].ToString();
                             }
 
                             videojuego.Categoria = cat;

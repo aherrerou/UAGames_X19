@@ -20,14 +20,14 @@ namespace library
             c = new SqlConnection(conexionBBDD);
         }
 
-        public bool createReview(ENReview review, ENUsuario usuario , ENVideoJuego videojuego)
+        public bool createReview(ENReview review, ENUsuario usuario , ENVideojuego videojuego)
         {
             bool result = true;
             try
             {
                 this.c.Open();
                 string fechaFormatoCorrecto = review.fecha.ToString("yyyy-MM-dd HH:mm:ss");
-                string query = "INSERT INTO Review (puntuacion,comentario,fecha,usuarioID,videojuegoID) VALUES (" + review.puntuacion + ", " + review.comentario + ", " + "CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120)," + usuario.id + ", " + videojuego.id  ");";
+                string query = "INSERT INTO Review (puntuacion,comentario,fecha,usuarioID,videojuegoID) VALUES (" + review.puntuacion + ", " + review.comentario + ", " + "CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120)," + usuario.id + ", " + videojuego.Id + ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -115,7 +115,14 @@ namespace library
                 SqlDataReader reader = com.ExecuteReader();
                 if (reader.Read())
                 {
-                    review.totalCompra = Double.Parse(reader["total"].ToString());
+                    review.puntuacion = int.Parse(reader["puntuacion"].ToString());
+                    ENVideojuego vj = new ENVideojuego();
+                    vj.Id = int.Parse(reader["videojuegoID"].ToString());
+                    review.videoJuego = vj;
+                    ENUsuario u = new ENUsuario();
+                    u.id = int.Parse(reader["usuarioID"].ToString());
+                    review.usuario = u;
+
                 }
                 else
                 {

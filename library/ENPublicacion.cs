@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    class ENPublicacion
+    public class ENPublicacion
     {
         private string text_interno;
         private int temaID_interno, usuarioID_interno;

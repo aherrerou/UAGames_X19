@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libreria
+namespace library
 {
-    class ENCesta
+    public class ENCesta
     {
         public ENUsuario usuario { get; set; }
         public ENVideojuego videojuego { get; set; }
@@ -28,7 +28,7 @@ namespace Libreria
         public bool createCesta()
         {
             bool res = true;
-            res = ces.createCesta(this,usuario,videojuego);
+            res = ces.createCesta(this,videojuego,usuario);
             return res;
         }
 

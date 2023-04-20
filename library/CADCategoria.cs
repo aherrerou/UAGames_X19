@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libreria
+namespace library
 {
     class CADCategoria
     {
@@ -123,7 +123,7 @@ namespace Libreria
             return true;
         }
 
-        public bool deleteCesta(ENCategoria categoria)
+        public bool deleteCategoria(ENCategoria categoria)
         {
             try
             {
