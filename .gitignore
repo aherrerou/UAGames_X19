@@ -87,6 +87,9 @@ dlldata.c
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 
+#WebForms para probar los EN/CADS
+web/WebForm1.*
+
 # .NET Core
 project.lock.json
 project.fragment.lock.json
