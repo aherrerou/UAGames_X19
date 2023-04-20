@@ -42,6 +42,15 @@ namespace Libreria
             get { return productoraID; }
             set { productoraID = value; }
         }
+        public ENNoticia()
+        {
+            id = -1;
+            titulo = "";
+            fecha_public = DateTime.Now;
+            contenido = "";
+            productoraID = -1;
+
+        }
         public ENNoticia(int id, string titulo, DateTime fecha_public, string contenido, int productora)
         {
             this.id = id;
