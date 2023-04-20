@@ -27,7 +27,7 @@ namespace library
             {
                 this.c.Open();
                 Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss");
-                string query = "INSERT INTO Reserva(fecha , fechaEntrega , pagado , usuarioID , videojuegoID) VALUES ( CONVERT(datetime, '" + Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 120)," + "CONVERT(datetime, '" + Reserva.fechaEntrega.ToString("yyyy-MM-dd HH:mm:ss") + "', 120)," + usuario.id + ", " + videojuego.id  ");";
+                string query = "INSERT INTO Reserva(fecha , fechaEntrega , pagado , usuarioID , videojuegoID) VALUES ( CONVERT(datetime, '" + Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 120)," + "CONVERT(datetime, '" + Reserva.fechaEntrega.ToString("yyyy-MM-dd HH:mm:ss") + "', 120),"+ Reserva.pagado + "," + usuario.id + ", " + videojuego.id  ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
