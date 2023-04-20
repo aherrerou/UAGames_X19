@@ -78,7 +78,7 @@ namespace library
             {
                 c.Open();
                 string query = "UPDATE LineasCompra SET " +
-                    "videojuegoID=" + videojuego.id + " WHERE id = " + linea.id + ";";
+                    "videojuegoID=" + videojuego.Id + " WHERE id = " + linea.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
