@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CADReserva.cs" />
+    <Compile Include="CADReview.cs" />
+    <Compile Include="ENReview.cs" />
+    <Compile Include="ENReserva.cs" />
     <Compile Include="CADForo.cs" />
     <Compile Include="CADLista_Deseos.cs" />
     <Compile Include="CADPublicacion.cs" />
