@@ -9,7 +9,7 @@ using System.Data.Common;
 using System.Data;
 using System.Configuration;
 
-namespace Libreria
+namespace Library
 {
     class CADProductora
     {
