@@ -1,0 +1,6 @@
+C:\Uagames\Libreria\Libreria\bin\Debug\Libreria.dll
+C:\Uagames\Libreria\Libreria\bin\Debug\Libreria.pdb
+C:\Uagames\Libreria\Libreria\obj\Debug\Library.csproj.AssemblyReference.cache
+C:\Uagames\Libreria\Libreria\obj\Debug\Library.csproj.CoreCompileInputs.cache
+C:\Uagames\Libreria\Libreria\obj\Debug\Libreria.dll
+C:\Uagames\Libreria\Libreria\obj\Debug\Libreria.pdb
