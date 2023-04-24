@@ -8,8 +8,14 @@ namespace library
 {
     public class ENLista_Deseos
     {
+        private int id_interno;
         private string nombre_interno, descripcion_interno;
-        private int usuarioID_interno;
+        private ENUsuario usuario_interno;
+        public int id
+        {
+            get { return id_interno; }
+            set { id_interno = value; }
+        }
         public string nombre
         {
             get { return nombre_interno; }
@@ -20,16 +26,17 @@ namespace library
             get { return descripcion_interno; }
             set { descripcion_interno = value; }
         }
-        public int usuarioID
+        public ENUsuario usuario
         {
-            get { return usuarioID_interno; }
-            set { usuarioID_interno = value; }
+            get { return usuario_interno; }
+            set { usuario_interno = value; }
         }
         public ENLista_Deseos()
         {
+            this.id = 0;
             this.nombre = "blank";
-            this.descripcion = "blnak";
-            this.usuarioID = 0;
+            this.descripcion = "blank";
+            this.usuario = new ENUsuario();
         }
         public bool createLista()
         {

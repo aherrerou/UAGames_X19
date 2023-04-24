@@ -42,8 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CADCategoria.cs" />
+    <Compile Include="CADCesta.cs" />
+    <Compile Include="CADNoticia.cs" />
+    <Compile Include="CADProductora.cs" />
     <Compile Include="CADReserva.cs" />
     <Compile Include="CADReview.cs" />
+    <Compile Include="ENCategoria.cs" />
+    <Compile Include="ENCesta.cs" />
+    <Compile Include="ENNoticia.cs" />
+    <Compile Include="ENProductora.cs" />
     <Compile Include="ENReview.cs" />
     <Compile Include="ENReserva.cs" />
     <Compile Include="CADForo.cs" />

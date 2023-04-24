@@ -1,67 +1,77 @@
 # UAGames
 
-
-● Descripción: Se desea implementar una aplicación web de venta de videojuegos, es decir, una tienda online de videojuegos de diferentes plataformas.
-
-CLASES:
-- Usuario
-- Videojuego
-- Empresa/productora
-- Reserva
-- Pedido
-- Cesta compra
-- Review
-- Noticias
-- Ofertas
-- Lista de deseos
-- Puntos de descuento
-
-● Parte pública: sección de la web que será visible para cualquier usuario sin necesidad de estar registrado.
-- Visita de la web de forma general
-- Acceder al catálogo de videojuegos disponible, consultar sus características y precio. Posibilidad de aplicar filtros de búsqueda en videojuegos, ordenar por categoría, precio, mejor valorado, puntos de descuento obtenidos por compra.
-- Página de contacto de la plataforma, enlaces a redes sociales
-- Información sobre política de cookies y requisitos legales
-- Acceso a formulario de inicio de sesión y registro.
-
-Listado EN Pública: 
-- Usuario
-- Videojuego
-- Review
-- Noticia
-- Oferta
-- Categoría
-
-● Parte privada: sección accesible a los usuarios que se han registrado y tienen la sesión iniciada. Se diferencian dos tipos de usuario con funcionalidades diferentes:
-- Administrador:
-	· Acceso a panel general y visualización de estadísticas:
-			- Número de usuarios registrados, videojuegos disponibles, noticias, reviews, ofertas, reservas, compras.
-			- Agregar, modificar y eliminar usuarios
-			- Agregar, modificar y eliminar videojuegos
-			- Agregar, modificar y eliminar categorías
-			- Agregar, modificar y eliminar empresas
-			- Agregar, modificar y eliminar ofertas
-			- Agregar, modificar y eliminar reviews
-			- Agregar, modificar y eliminar reservas
-			- Agregar, modificar y eliminar compras
-
-- Usuario:
-	· Editar sus datos de usuario
-	· Realizar compras y reservas
-	· Añadir elementos a su carrito de la compra
-	· Crear reviews, editar y eliminar reviews previamente realizadas.
-	· Crear listas de deseos con los videojuegos que el usuario quiere.
-	· Visualizar puntos de descuento acumulados por las compras
-
-
-● Listado EN Privada: 
-- Reserva
-- Pedido
-- Puntos
-- Cesta compra
-- Review
-- Lista de deseos
+<h2>Componentes del equipo</h2>
+<ul>
+<li>Adrián Herrero Bernabéu (aherrerou 48686160J) -> Coordinador</li>
+<li>Clara González Sánchez (CGonzo94UA 74386643C)</li>
+<li>Aitor López Romero (alr135 51773071W)</li>
+<li>Omar Bouaouda Ruiz (obr6-ua 48736098H)</li>
+<li>Raúl Lujan (rld8 50590584Z)</li>
+<li>Iker Sánchez Zaragoza (iszs1-ua 48825725Z)</li>
+</ul>
 
 
 
-● Posibles mejoras: 
+<h2>Descripción</h2>
+Es una plataforma de venta online de videojuegos de diferentes plataformas. La plataforma está diseñada para ofrecer a los usuarios una experiencia de compra fácil y agradable. Los usuarios pueden navegar por el catálogo de videojuegos, buscar por diferentes categorías, como género, precio, mejor valorado, entre otros.
+<br>
+<h2>Parte pública</h2> 
+Sección de la web que será visible para cualquier usuario sin necesidad de estar registrado.
+<br></br>
+<li>Acceder al catálogo de videojuegos disponible, consultar sus características y precio. Posibilidad de aplicar filtros de búsqueda en videojuegos, ordenar por categoría, precio, mejor valorado, puntos de descuento obtenidos por compra.</li>
+<li>Página de contacto de la plataforma, enlaces a redes sociales</li>
+<li>Información sobre política de cookies y requisitos legales</li>
+<li>Acceso a formulario de inicio de sesión y registro.</li>
+<li>Crear carrito de la compra.</li>
+<li>Consultar las noticias y reviews de los videojuegos.</li>
 
+<h3>Listado EN Pública</h3> 
+<li>Usuario</li>
+<li>Videojuego</li>
+<li>Review</li>
+<li>Noticia</li>
+<li>Oferta</li>
+<li>Categoría</li>
+<li>Cesta compra</li>
+
+<h2>Parte privada</h2> 
+Sección accesible a los usuarios que se han registrado y tienen la sesión iniciada. Se diferencian dos tipos de usuario con funcionalidades diferentes:
+<br></br>
+<ul>
+	<li>Administrador: Acceso a panel general y visualización de estadísticas</li>
+	<ul>
+			<li>Número de usuarios registrados, videojuegos disponibles, noticias, reviews, ofertas, reservas, compras.</li>
+			<li>Agregar, modificar y eliminar usuarios</li>
+			<li>Agregar, modificar y eliminar videojuegos</li>
+			<li>Agregar, modificar y eliminar categorías</li>
+			<li>Agregar, modificar y eliminar empresas</li>
+			<li>Agregar, modificar y eliminar ofertas</li>
+			<li>Agregar, modificar y eliminar reviews</li>
+			<li>Agregar, modificar y eliminar reservas</li>
+			<li>Agregar, modificar y eliminar compras</li>
+	</ul>
+	<br>
+	<li>Usuario: Acceso a su perfil, compras, listas de deseos,etc</li>
+	<ul>
+	<li>Editar sus datos de usuario</li>
+	<li>Realizar compras y reservas</li>
+	<li>Añadir/Editar/Eliminar/Consultar elementos de su carrito de la compra</li>
+	<li>Crear reviews, editar y eliminar reviews previamente realizadas.</li>
+	<li>Crear listas de deseos con los videojuegos que el usuario quiere.</li>
+	<li>Visualizar puntos de descuento acumulados por las compras</li>
+	</ul>
+</ul>
+
+<h3>Listado EN Privada</h3> 
+<li>Reserva</li>
+<li>Compra</li>
+<li>Puntos de descuento</li>
+<li>Review</li>
+<li>Lista de deseos</li>
+
+
+<h2>Posibles mejoras</h2> 
+
+- Dar la posibilidad de que las empresas puedan darse de alta como usuario "empresa" y publicar sus propios videojuegos, ofertas y pre-ventas. 
+
+- Mejorar la interfaz de usuario: la interfaz de usuario debe ser intuitiva y fácil de usar para que los usuarios puedan navegar por la tienda sin problemas. Esto incluye mejorar la navegación, agregar un buscador de videojuegos, optimizar la velocidad de carga de la página, etc.

@@ -6,30 +6,38 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    class ENPublicacion
+    public class ENPublicacion
     {
+        private int id_interno;
         private string text_interno;
-        private int temaID_interno, usuarioID_interno;
+        private ENTema tema_interno;
+        private ENUsuario usuario_interno;
+        public int id
+        {
+            get { return id_interno; }
+            set { id_interno = value; }
+        }
         public string text
         {
             get { return text_interno; }
             set { text_interno = value; }
         }
-        public int temaID
+        public ENTema tema
         {
-            get { return temaID_interno; }
-            set { temaID_interno = value; }
+            get { return tema_interno; }
+            set { tema_interno = value; }
         }
-        public int usuarioID
+        public ENUsuario usuario
         {
-            get { return usuarioID_interno; }
-            set { usuarioID_interno = value; }
+            get { return usuario_interno; }
+            set { usuario_interno = value; }
         }
         public ENPublicacion()
         {
+            this.id = 0;
             this.text = "blank";
-            this.temaID = 0;
-            this.usuarioID = 0;
+            this.tema = new ENTema();
+            this.usuario = new ENUsuario();
         }
         public bool createPublicacion()
         {

@@ -22,7 +22,7 @@ namespace library
 
         public bool createLista(ENLista_Deseos lista)
         {
-            string query = "Insert into ListaDeseos (nombre, descripcion, usuarioID) values " + "('" + lista.nombre + "','" + lista.descripcion + "'," + lista.usuarioID + ")";
+            string query = "Insert into ListaDeseos (nombre, descripcion, usuarioID) values " + "('" + lista.nombre + "','" + lista.descripcion + "'," + lista.usuario.id + ")";
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -51,7 +51,7 @@ namespace library
         public bool readLista(ENLista_Deseos lista) //selecciona la lista de un usuario indicado por su id
         {
             bool sigue_while = true;
-            string query = "Select * from ListaDeseos where usuarioID = " + lista.usuarioID;
+            string query = "Select * from ListaDeseos where usuarioID = " + lista.usuario.id;
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -60,7 +60,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == lista.usuarioID)
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
                     {
                         sigue_while = false;
                         lista.nombre = dr["nombre"].ToString();
@@ -101,7 +101,7 @@ namespace library
                 dr.Read();
                 lista.nombre = dr["nombre"].ToString();
                 lista.descripcion = dr["descripcion"].ToString();
-                lista.usuarioID = (int)dr["usuarioID"];
+                lista.usuario.id = (int)dr["usuarioID"];
                 dr.Close();
             }
             catch (SqlException sqlex)
@@ -134,7 +134,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == lista.usuarioID)
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
                     {
                         sigue_while = false;
                         bool siguiente = dr.Read(); //pasa al siguiente campo
@@ -142,7 +142,7 @@ namespace library
                         {
                             lista.nombre = dr["nombre"].ToString();
                             lista.descripcion = dr["decripcion"].ToString();
-                            lista.usuarioID = (int)dr["usuarioID"];
+                            lista.usuario.id = (int)dr["usuarioID"];
                         }
                         else
                             throw new Exception("No hay siguiente lista");
@@ -185,14 +185,14 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == lista.usuarioID)
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
                     {
                         if (nom == "blank")
                             throw new Exception("No se ha encontrado una lista anterior");
                         sigue_while = false;
                         lista.nombre = nom;
                         lista.descripcion = desc;
-                        lista.usuarioID = id;
+                        lista.usuario.id = id;
                     }
                     else
                     {
@@ -224,7 +224,7 @@ namespace library
         public bool updateLista(ENLista_Deseos lista) //actualiza los datos de una lista según su id de usuario
         {
             string query_comprueba = "Select * from ListaDeseos";
-            string query = "Update ListaDeseos set nombre = '" + lista.nombre + "', descripcion = '" + lista.descripcion + "' where usuarioID = " + lista.usuarioID;
+            string query = "Update ListaDeseos set nombre = '" + lista.nombre + "', descripcion = '" + lista.descripcion + "' where usuarioID = " + lista.usuario.id;
             bool sigue_while = true;
             try
             {
@@ -234,7 +234,7 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == lista.usuarioID)
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
                     {
                         sigue_while = false;
                     }
@@ -267,7 +267,7 @@ namespace library
         public bool deleteLista(ENLista_Deseos lista) //elimina la lista con la id de usuario indicada
         {
             string query_comprueba = "Select * from ListaDeseos";
-            string query = "Delete from ListaDeseos where usuarioID = " + lista.usuarioID;
+            string query = "Delete from ListaDeseos where usuarioID = " + lista.usuario.id;
             bool sigue_while = true;
             try
             {
@@ -277,7 +277,7 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == lista.usuarioID)
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
                     {
                         sigue_while = false;
                     }

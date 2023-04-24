@@ -12,7 +12,7 @@ namespace library
     public class ENReserva
     {
         public ENUsuario usuario { get; set; }
-        public ENVideoJuego videoJuego { get; set; }
+        public ENVideojuego videoJuego { get; set; }
         public int id { get; set; }
         public DateTime fecha { get; set; }
         public DateTime fechaEntrega { get; set; }
@@ -21,11 +21,12 @@ namespace library
 
         public ENReserva()
         {
+            this.id = 0;
             this.usuario = new ENUsuario();
-            this.videoJuego = new ENVideoJuego();
+            this.videoJuego = new ENVideojuego();
             this.fecha = DateTime.Now;
-            this.puntuacion = 0;
-            this.comentario = "";
+            this.fechaEntrega = DateTime.Now;
+            this.pagado = 0;
             this.Reserva = new CADReserva();
         }
 

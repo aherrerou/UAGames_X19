@@ -23,7 +23,7 @@ namespace library
         public bool createPublicacion(ENPublicacion publicacion)
         {
             string query = "Insert into Publicacion (text, temaID, usuarioID) values "
-                + "('" + publicacion.text + "','" + publicacion.temaID + "','" + publicacion.usuarioID + "')";
+                + "('" + publicacion.text + "','" + publicacion.tema.id + "','" + publicacion.usuario.id + "')";
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -52,7 +52,7 @@ namespace library
         public bool readPublicacion(ENPublicacion publicacion) //selecciona una publicacion por su id de usuario
         {
             bool sigue_while = true;
-            string query = "Select * from Publicacion where usuarioID = " + publicacion.usuarioID;
+            string query = "Select * from Publicacion where usuarioID = " + publicacion.usuario.id;
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -61,12 +61,12 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuarioID)
+                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
                     {
                         sigue_while = false;
                         publicacion.text = dr["text"].ToString();
-                        publicacion.temaID = (int)dr["temaID"];
-                        publicacion.usuarioID = (int)dr["usuarioID"];
+                        publicacion.tema.id = (int)dr["temaID"];
+                        publicacion.usuario.id = (int)dr["usuarioID"];
                     }
                 }
                 if (sigue_while == true)
@@ -102,8 +102,8 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 dr.Read();
                 publicacion.text = dr["text"].ToString();
-                publicacion.temaID = (int)dr["temaID"];
-                publicacion.usuarioID = (int)dr["usuarioID"];
+                publicacion.tema.id = (int)dr["temaID"];
+                publicacion.usuario.id = (int)dr["usuarioID"];
                 dr.Close();
             }
             catch (SqlException sqlex)
@@ -136,15 +136,15 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuarioID)
+                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
                     {
                         sigue_while = false;
                         bool siguiente = dr.Read(); //pasa al siguiente campo
                         if (siguiente == true)
                         {
                             publicacion.text = dr["text"].ToString();
-                            publicacion.temaID = (int)dr["temaID"];
-                            publicacion.usuarioID = (int)dr["usuarioID"];
+                            publicacion.tema.id = (int)dr["temaID"];
+                            publicacion.usuario.id = (int)dr["usuarioID"];
                         }
                         else
                             throw new Exception("No hay siguiente publicación");
@@ -186,14 +186,14 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuarioID)
+                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
                     {
                         if (text == "blank")
                             throw new Exception("No se ha encontrado una publicación anterior");
                         sigue_while = false;
                         publicacion.text = text;
-                        publicacion.temaID = tid;
-                        publicacion.usuarioID = uid;
+                        publicacion.tema.id = tid;
+                        publicacion.usuario.id = uid;
                     }
                     else
                     {
@@ -225,7 +225,7 @@ namespace library
         public bool updatePublicacion(ENPublicacion publicacion) //actualiza los datos de una publicación según su id de usuario
         {
             string query_comprueba = "Select * from Publicacion";
-            string query = "Update Publicacion set text = '" + publicacion.text + "' where usuarioID = " + publicacion.usuarioID;
+            string query = "Update Publicacion set text = '" + publicacion.text + "' where usuarioID = " + publicacion.usuario.id;
             bool sigue_while = true;
             try
             {
@@ -235,7 +235,7 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuarioID)
+                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
                     {
                         sigue_while = false;
                     }
@@ -268,7 +268,7 @@ namespace library
         public bool deletePublicacion(ENPublicacion publicacion) //elimina la publicación con la id de usuario indicada
         {
             string query_comprueba = "Select * from Publicacion";
-            string query = "Delete from Publicacion where usuarioID = " + publicacion.usuarioID;
+            string query = "Delete from Publicacion where usuarioID = " + publicacion.usuario.id;
             bool sigue_while = true;
             try
             {
@@ -278,7 +278,7 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuarioID)
+                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
                     {
                         sigue_while = false;
                     }
