@@ -34,10 +34,17 @@ namespace library
         }
         public ENPublicacion()
         {
-            this.id = 0;
-            this.text = "blank";
-            this.tema = new ENTema();
-            this.usuario = new ENUsuario();
+            id = 0;
+            text = "blank";
+            tema = new ENTema();
+            usuario = new ENUsuario();
+        }
+        public ENPublicacion(int id, string text, ENTema tema, ENUsuario usuario)
+        {
+            this.id = id;
+            this.text = text;
+            this.tema = tema;
+            this.usuario = usuario;
         }
         public bool createPublicacion()
         {

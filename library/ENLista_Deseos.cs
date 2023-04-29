@@ -33,10 +33,17 @@ namespace library
         }
         public ENLista_Deseos()
         {
-            this.id = 0;
-            this.nombre = "blank";
-            this.descripcion = "blank";
-            this.usuario = new ENUsuario();
+            id = 0;
+            nombre = "blank";
+            descripcion = "blank";
+            usuario = new ENUsuario();
+        }
+        public ENLista_Deseos(int id, string nombre, string descripcion, ENUsuario usuario)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.usuario = usuario;
         }
         public bool createLista()
         {

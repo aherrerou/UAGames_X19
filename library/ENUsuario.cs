@@ -60,7 +60,7 @@ namespace library
         }
         public ENUsuario()
         {
-            id = 1;
+            id = 0;
             nick = "blank";
             nombre = "blank";
             apellidos = "blank";
@@ -70,16 +70,16 @@ namespace library
             telef = "blank";
             rol = "blank";
         }
-        public ENUsuario(int id,string nick, string nom, string apell, string email, string pass, DateTime fecha, string tel, string rol)
+        public ENUsuario(int id,string nick, string nombre, string apellidos, string email, string password, DateTime fecha_nac, string telef, string rol)
         {
             this.id = id;
             this.nick = nick;
-            this.nombre = nom;
-            this.apellidos = apell;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
             this.email = email;
-            this.password = pass;
-            this.fecha_nac = fecha;
-            this.telef = tel;
+            this.password = password;
+            this.fecha_nac = fecha_nac;
+            this.telef = telef;
             this.rol = rol;
         }
 

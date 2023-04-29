@@ -28,9 +28,15 @@ namespace library
         }
         public ENTema()
         {
-            this.id = 0;
-            this.titulo = "blank";
-            this.foro = new ENForo();
+            id = 0;
+            titulo = "blank";
+            foro = new ENForo();
+        }
+        public ENTema(int id, string titulo, ENForo foro)
+        {
+            this.id = id;
+            this.titulo = titulo;
+            this.foro = foro;
         }
         public bool createTema()
         {
