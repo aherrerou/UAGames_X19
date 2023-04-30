@@ -1,30 +1,33 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace library
 {
-    class CADLinea_Compra
+    class CADReview
     {
         private string conexionBBDD;
         private SqlConnection c;
 
-        public CADLinea_Compra()
+        public CADReview()
         {
             conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
             c = new SqlConnection(conexionBBDD);
         }
 
-        public bool createLinea(ENLinea_Compra linea)
+        public bool createReview(ENReview review, ENUsuario usuario , ENVideojuego videojuego)
         {
             bool result = true;
             try
             {
                 this.c.Open();
-                string query = "INSERT INTO LineasCompra (importe, videojuegoID, cantidad, compraID) VALUES (" + linea.importe + ","+ linea.videojuego.Id + ","+linea.cantidad+"," + linea.cabecera.id+ ");";
+                string fechaFormatoCorrecto = review.fecha.ToString("yyyy-MM-dd HH:mm:ss");
+                string query = "INSERT INTO Review (puntuacion,comentario,fecha,usuarioID,videojuegoID) VALUES (" + review.puntuacion + ", " + review.comentario + ", " + "CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120)," + usuario.id + ", " + videojuego.Id + ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -45,13 +48,14 @@ namespace library
 
             return result;
         }
-        public bool deleteLinea(ENLinea_Compra linea)
+
+        public bool deleteReview(ENReview review)
         {
             bool result = true;
             try
             {
                 c.Open();
-                string query = "DELETE FROM LineasCompra WHERE id LIKE '" + linea.id + "';";
+                string query = "DELETE FROM Review WHERE id=" + review.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -71,14 +75,15 @@ namespace library
             }
             return result;
         }
-        public bool updateLinea(ENLinea_Compra linea, ENVideojuego videojuego)
+
+        public bool updateReview(ENReview review)
         {
             bool result = true;
             try
             {
                 c.Open();
-                string query = "UPDATE LineasCompra SET " +
-                    "videojuegoID=" + videojuego.Id + " WHERE id = " + linea.id + ";";
+                string query = "UPDATE Review SET " +
+                    "puntuacion=" + review.puntuacion + ",comentario=" + review.comentario + ",fecha=" + review.fecha + " WHERE id=" + review.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -98,20 +103,26 @@ namespace library
             }
             return result;
         }
-        public bool readLinea(ENLinea_Compra linea, ENVideojuego videojuego)
+
+        public bool readReview(ENReview review)
         {
             bool result = true;
             try
             {
                 this.c.Open();
-                string query = "SELECT * FROM LineasCompra WHERE id = " + linea.id + ";";
+                string query = "SELECT * FROM Review WHERE id = " + review.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 SqlDataReader reader = com.ExecuteReader();
                 if (reader.Read())
                 {
-                    linea.cantidad = int.Parse(reader["cantidad"].ToString());
-                    linea.importe = Double.Parse(reader["importe"].ToString());
-                    // Si queremos saber el videojuego y cabecera del pedido añadir aquí
+                    review.puntuacion = int.Parse(reader["puntuacion"].ToString());
+                    ENVideojuego vj = new ENVideojuego();
+                    vj.Id = int.Parse(reader["videojuegoID"].ToString());
+                    review.videoJuego = vj;
+                    ENUsuario u = new ENUsuario();
+                    u.id = int.Parse(reader["usuarioID"].ToString());
+                    review.usuario = u;
+
                 }
                 else
                 {

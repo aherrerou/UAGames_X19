@@ -1,30 +1,33 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace library
 {
-    class CADLinea_Compra
+    class CADReserva
     {
         private string conexionBBDD;
         private SqlConnection c;
 
-        public CADLinea_Compra()
+        public CADReserva()
         {
             conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
             c = new SqlConnection(conexionBBDD);
         }
 
-        public bool createLinea(ENLinea_Compra linea)
+        public bool createReserva(ENReserva Reserva, ENUsuario usuario, ENVideojuego videojuego)
         {
             bool result = true;
             try
             {
                 this.c.Open();
-                string query = "INSERT INTO LineasCompra (importe, videojuegoID, cantidad, compraID) VALUES (" + linea.importe + ","+ linea.videojuego.Id + ","+linea.cantidad+"," + linea.cabecera.id+ ");";
+                Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss");
+                string query = "INSERT INTO Reserva(fecha , fechaEntrega , pagado , usuarioID , videojuegoID) VALUES ( CONVERT(datetime, '" + Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 120)," + "CONVERT(datetime, '" + Reserva.fechaEntrega.ToString("yyyy-MM-dd HH:mm:ss") + "', 120),"+ Reserva.pagado + "," + usuario.id + ", " + videojuego.Id + ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -45,13 +48,14 @@ namespace library
 
             return result;
         }
-        public bool deleteLinea(ENLinea_Compra linea)
+
+        public bool deleteReserva(ENReserva Reserva)
         {
             bool result = true;
             try
             {
                 c.Open();
-                string query = "DELETE FROM LineasCompra WHERE id LIKE '" + linea.id + "';";
+                string query = "DELETE FROM Reserva WHERE id=" + Reserva.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -71,14 +75,15 @@ namespace library
             }
             return result;
         }
-        public bool updateLinea(ENLinea_Compra linea, ENVideojuego videojuego)
+
+        public bool updateReserva(ENReserva Reserva)
         {
             bool result = true;
             try
             {
                 c.Open();
-                string query = "UPDATE LineasCompra SET " +
-                    "videojuegoID=" + videojuego.Id + " WHERE id = " + linea.id + ";";
+                string query = "UPDATE Reserva SET " +
+                    "fechaEntrega=" + Reserva.fechaEntrega + ", fechaReserva=" + Reserva.fecha + ", pagado=" + Reserva.pagado + " WHERE id=" + Reserva.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -98,20 +103,19 @@ namespace library
             }
             return result;
         }
-        public bool readLinea(ENLinea_Compra linea, ENVideojuego videojuego)
+
+        public bool readReserva(ENReserva Reserva)
         {
             bool result = true;
             try
             {
                 this.c.Open();
-                string query = "SELECT * FROM LineasCompra WHERE id = " + linea.id + ";";
+                string query = "SELECT * FROM Reserva WHERE id = " + Reserva.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 SqlDataReader reader = com.ExecuteReader();
                 if (reader.Read())
                 {
-                    linea.cantidad = int.Parse(reader["cantidad"].ToString());
-                    linea.importe = Double.Parse(reader["importe"].ToString());
-                    // Si queremos saber el videojuego y cabecera del pedido añadir aquí
+                    Reserva.pagado = Double.Parse(reader["pagado"].ToString());
                 }
                 else
                 {
