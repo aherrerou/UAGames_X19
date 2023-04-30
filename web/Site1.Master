@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="web.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>UAGames</title>
+    <link rel="stylesheet" type="text/css" href="~/assets/css/StyleSheet1.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <header>
+    <div class="header">
+      <a href="#" class="logo">UA Games</a>
+      <div class="header-menu">
+        <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
+            <StaticMenuItemStyle CssClass="menu-item" />
+            <Items>
+              <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
+              <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
+              <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
+              <asp:MenuItem Text="Noticias" NavigateUrl="/" />
+              <asp:MenuItem Text="Foro" NavigateUrl="/" />
+            </Items>
+        </asp:Menu>   
+      </div>
+      <div class="header-right">
+      <div class="button">
+          <a href="#">Iniciar sesion</a>
+          <a href="#">Registrarse</a>
+      </div>
+      </div>
+    </div>
+</header>
+</form>
+
+    <div>
+        <asp:ContentPlaceHolder ID="main" runat="server">
+
+        </asp:ContentPlaceHolder>
+    </div>
+
+    
+     <footer>
+    <div class="content">
+      <div class="link-boxes">
+      <a href="#" class="logo">UA Games</a>
+        <ul class="box">
+          <li class="link_name">Compañia</li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Sobre nosotros</a></li>
+        </ul>
+        <ul class="box">
+          <li class="link_name">Servicios</li>
+          <li><a href="#">Comprar videojuegos</a></li>
+          <li><a href="#">Acceder al foro</a></li>
+        </ul>
+        <ul class="box">
+          <li class="link_name">Cuenta</li>
+          <li><a href="#">Perfil</a></li>
+          <li><a href="#">Mi cuenta</a></li>
+          <li><a href="#">Preferencias</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom-details">
+      <div class="bottom_text">
+        <span class="copyright_text">Copyright © 2023 <a href="#">UAGames.</a>All rights reserved</span>
+        <span class="policy_terms">
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms & condition</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
