@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library
+namespace library
 {
-    class ENProductora
+    public class ENProductora
     {
 
         private int id;

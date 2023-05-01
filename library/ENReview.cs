@@ -12,7 +12,7 @@ namespace library
     public class ENReview
     {
         public ENUsuario usuario { get; set; }
-        public ENVideoJuego videoJuego { get; set; }
+        public ENVideojuego videoJuego { get; set; }
         public int id { get; set; }
         public DateTime fecha { get; set; }
         public string comentario { get; set; }
@@ -22,7 +22,7 @@ namespace library
         public ENReview()
         {
             this.usuario = new ENUsuario();
-            this.videoJuego = new ENVideoJuego();
+            this.videoJuego = new ENVideojuego();
             this.fecha = DateTime.Now;
             this.puntuacion = 0;
             this.comentario = "";

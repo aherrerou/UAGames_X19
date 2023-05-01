@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libreria
+namespace library
 {
-    class ENCategoria
+    public class ENCategoria
     {
         public int id { get; set; }
         public string nombre { get; set; }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libreria
+namespace library
 {
     class CADCesta
     {
@@ -19,14 +19,14 @@ namespace Libreria
             conect = new SqlConnection(conexionBBDD);
         }
 
-        public bool createCesta(ENCesta ces, ENVidejuego videojuego, ENUsuario usuario) {
+        public bool createCesta(ENCesta ces, ENVideojuego videojuego, ENUsuario usuario) {
 
             try
             {
                 this.conect.Open();
                 string date = ces.Fecha.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string query = "Insert into Cesta (usuarioID,VideojuegoID,fecha) values " + "('" + usuario.id + "','" + videojuego.id + "','" + date + "');";
+                string query = "Insert into Cesta (usuarioID,VideojuegoID,fecha) values " + "('" + usuario.id + "','" + videojuego.Id + "','" + date + "');";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteNonQuery();
             }
@@ -63,7 +63,7 @@ namespace Libreria
 
                 if (dataread.Read())
                 {
-                    usuario.id = usuario.Parse(dataread["usuarioID"].ToString());
+                    usuario.id = int.Parse(dataread["usuarioID"].ToString());
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace Libreria
             try
             {
                 this.conect.Open();
-                string query = "update Cesta set" + "videojuegoID = '" + videojuego.id + "' where usuarioID = '" + usuario.id + "';";
+                string query = "update Cesta set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
 

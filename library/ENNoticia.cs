@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library
+namespace library
 {
-    class ENNoticia
+    public class ENNoticia
     {
         private int id;
         private string titulo;

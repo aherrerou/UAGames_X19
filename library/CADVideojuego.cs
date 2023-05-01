@@ -39,7 +39,7 @@ namespace library
                 com.Parameters.AddWithValue("@precio", en.Precio);
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
-                com.Parameters.AddWithValue("@categoriaID", en.Categoria.Id);
+                com.Parameters.AddWithValue("@categoriaID", en.Categoria.id);
 
                 com.ExecuteNonQuery();
                 creado = true;
@@ -112,7 +112,7 @@ namespace library
 
                     //Lectura de la categoria
                     ENCategoria cat = new ENCategoria();
-                    cat.Id = Int32.Parse(dr["categoriaID"].ToString());
+                    cat.id = Int32.Parse(dr["categoriaID"].ToString());
 
                     /*
                     //Se lee la categoria a partir de su ID
@@ -202,18 +202,18 @@ namespace library
 
                     //Lectura de la categoria
                     ENCategoria cat = new ENCategoria();
-                    cat.Id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
+                    cat.id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
 
                     //Se lee la categoria a partir de su ID
-                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
+                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.id + ";";
                     //Se obtiene Id de la productora
                     com = new SqlCommand(sentence, connection);
                     dr = com.ExecuteReader();
 
                     if (dr.Read())
                     {
-                        cat.Nombre = dr["nombre"].ToString(); ;
-                        cat.Descripcion = dr["descripcion"].ToString();
+                        cat.nombre = dr["nombre"].ToString(); ;
+                        cat.descripcion = dr["descripcion"].ToString();
                     }
 
                     videojuego.Categoria = cat;
@@ -293,18 +293,18 @@ namespace library
 
                         //Lectura de la categoria
                         ENCategoria cat = new ENCategoria();
-                        cat.Id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
+                        cat.id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
 
                         //Se lee la categoria a partir de su ID
-                        sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
+                        sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.id + ";";
                         //Se obtiene Id de la productora
                         com = new SqlCommand(sentence, connection);
                         dr = com.ExecuteReader();
 
                         if (dr.Read())
                         {
-                            cat.Nombre = dr["nombre"].ToString(); ;
-                            cat.Descripcion = dr["descripcion"].ToString();
+                            cat.nombre = dr["nombre"].ToString(); ;
+                            cat.descripcion = dr["descripcion"].ToString();
                         }
 
                         videojuego.Categoria = cat;
@@ -357,12 +357,12 @@ namespace library
                 if (dr.Read())
                 {
                     ENCategoria categoria = new ENCategoria();
-                    categoria.Id = Int32.Parse(dr["id"].ToString());
-                    categoria.Nombre = cat;
-                    categoria.Descripcion = dr["descripcion"].ToString();
+                    categoria.id = Int32.Parse(dr["id"].ToString());
+                    categoria.nombre = cat;
+                    categoria.descripcion = dr["descripcion"].ToString();
 
                     //Lectura de los videojuegos
-                    sentence = "SELECT * FROM [Videojuego] WHERE productoraID = " + categoria.Id + ";";
+                    sentence = "SELECT * FROM [Videojuego] WHERE productoraID = " + categoria.id + ";";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                     adapter.Fill(videojuegos, "Videojuego");

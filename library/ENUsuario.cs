@@ -8,8 +8,15 @@ namespace library
 {
     public class ENUsuario
     {
+        private int id_interno;
         private string nick_interno, nombre_interno, apell_interno, email_interno, passw_interno, telef_interno, rol_interno;
         private DateTime fecha_interno;
+
+        public int id
+        {
+            get { return id_interno; }
+            set { id_interno = value; }
+        }
 
         public string nick
         {
@@ -53,6 +60,7 @@ namespace library
         }
         public ENUsuario()
         {
+            id = 1;
             nick = "blank";
             nombre = "blank";
             apellidos = "blank";
@@ -62,8 +70,9 @@ namespace library
             telef = "blank";
             rol = "blank";
         }
-        public ENUsuario(string nick, string nom, string apell, string email, string pass, DateTime fecha, string tel, string rol)
+        public ENUsuario(int id,string nick, string nom, string apell, string email, string pass, DateTime fecha, string tel, string rol)
         {
+            this.id = id;
             this.nick = nick;
             this.nombre = nom;
             this.apellidos = apell;
