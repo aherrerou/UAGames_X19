@@ -68,10 +68,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\StyleSheet1.css" />
+    <Content Include="CategoriaWebForm.aspx" />
+    <Content Include="CestaWebForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaWebForm.aspx.cs">
+      <DependentUpon>CategoriaWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaWebForm.aspx.designer.cs">
+      <DependentUpon>CategoriaWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CestaWebForm.aspx.cs">
+      <DependentUpon>CestaWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CestaWebForm.aspx.designer.cs">
+      <DependentUpon>CestaWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
