@@ -46,84 +46,69 @@ header {
     background: #0A2558;
 }
 
-    header .header {
-        max-width: 1250px;
-        margin: auto;
-        padding: 10px 20px 10px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+header .header {
+    max-width: 1250px;
+    margin: auto;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .header-menu {
+    color: #fff;
+    font-size: 20px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .header-menu .menu {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo {
+    color: #fff;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+
+header .header-menu #menu a {
+    color: #fff !important;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.4s ease
+}
+
+    header .header-menu #menu a:hover {
+        opacity: 1;
+        text-decoration: underline;
     }
-
-    header .header-menu {
-        color: #fff;
-        font-size: 20px;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-    }
-
-        header .header-menu .menu {
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-            header .header-menu .menu .menu-item {
-                padding: 1.5rem;
-                cursor: pointer;
-                text-decoration: none;
-            }
-
-    header .logo {
-        color: #fff;
-        font-size: 30px;
-        text-decoration: none;
-    }
-
-    header .header-menu .menu li {
-        margin: 6px 0;
-        list-style: none;
-    }
-
-        header .header-menu .menu li .menu-item {
-            color: #fff;
-            font-size: 18px;
-            font-weight: 400;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.4s ease
-        }
-
-            header .header-menu .menu li .menu-item:hover {
-                opacity: 1;
-                text-decoration: underline;
-            }
 
     header .header-right .button {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
+        color: #0A2558;
+        background: #fff;
+        padding: 4px 12px;
+        margin-right: 3px;
+        margin-left: 3px;
+        font-size: 15px;
+        font-weight: 400;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s ease;
     }
 
-        header .header-right .button a {
-            color: #0A2558;
-            background: #fff;
-            padding: 4px 12px;
-            margin-right: 3px;
-            margin-left: 3px;
-            font-size: 15px;
-            font-weight: 400;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-            header .header-right .button a:hover {
-                background: #0d3073;
-                color: #fff;
-            }
+header .header-right .button:hover {
+    background: #0d3073;
+    color: #fff;
+}
 
 footer {
     position: fixed;
