@@ -20,14 +20,14 @@ namespace library
             c = new SqlConnection(conexionBBDD);
         }
 
-        public bool createReserva(ENReserva Reserva, ENUsuario usuario, ENVideoJuego videojuego)
+        public bool createReserva(ENReserva Reserva, ENUsuario usuario, ENVideojuego videojuego)
         {
             bool result = true;
             try
             {
                 this.c.Open();
                 Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss");
-                string query = "INSERT INTO Reserva(fecha , fechaEntrega , pagado , usuarioID , videojuegoID) VALUES ( CONVERT(datetime, '" + Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 120)," + "CONVERT(datetime, '" + Reserva.fechaEntrega.ToString("yyyy-MM-dd HH:mm:ss") + "', 120),"+ Reserva.pagado + "," + usuario.id + ", " + videojuego.id  ");";
+                string query = "INSERT INTO Reserva(fecha , fechaEntrega , pagado , usuarioID , videojuegoID) VALUES ( CONVERT(datetime, '" + Reserva.fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 120)," + "CONVERT(datetime, '" + Reserva.fechaEntrega.ToString("yyyy-MM-dd HH:mm:ss") + "', 120),"+ Reserva.pagado + "," + usuario.id + ", " + videojuego.Id + ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -83,7 +83,7 @@ namespace library
             {
                 c.Open();
                 string query = "UPDATE Reserva SET " +
-                    "fechaEntrega=" + Reserva.fechaEntrega + ", fechaReserva=" + fechaReserva + ", pagado=" + Reserva.pagado " WHERE id=" + Reserva.id + ";";
+                    "fechaEntrega=" + Reserva.fechaEntrega + ", fechaReserva=" + Reserva.fecha + ", pagado=" + Reserva.pagado + " WHERE id=" + Reserva.id + ";";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
