@@ -68,10 +68,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\StyleSheet1.css" />
+    <Content Include="NoticiaWebForm.aspx" />
+    <Content Include="ProductoraWebForm.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoticiaWebForm.aspx.cs">
+      <DependentUpon>NoticiaWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticiaWebForm.aspx.designer.cs">
+      <DependentUpon>NoticiaWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoraWebForm.aspx.cs">
+      <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductoraWebForm.aspx.designer.cs">
+      <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
