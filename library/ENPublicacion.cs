@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,6 +94,13 @@ namespace library
             bool result = true;
             CADPublicacion c = new CADPublicacion();
             result = c.readFirstPublicacion(this);
+            return result;
+        }
+        public DataSet listarClientesD()
+        {
+            DataSet result = new DataSet();
+            CADPublicacion c = new CADPublicacion();
+            result = c.listarClientesD();
             return result;
         }
     }

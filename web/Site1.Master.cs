@@ -13,5 +13,15 @@ namespace web
         {
 
         }
+
+        protected void BtnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicia_Sesion.aspx");
+        }
+
+        protected void BtnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registrar.aspx");
+        }
     }
 }

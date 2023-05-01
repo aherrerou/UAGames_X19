@@ -23,16 +23,21 @@
               <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
               <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
               <asp:MenuItem Text="Noticias" NavigateUrl="/" />
-              <asp:MenuItem Text="Foro" NavigateUrl="/" />
+              <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
             </Items>
         </asp:Menu>   
       </div>
       <div class="header-right">
-          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server"/>
-          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server"/>
+          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server" OnClick="BtnIniciarSesion_Click"/>
+          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server" OnClick="BtnRegistrarse_Click"/>
       </div>
     </div>
 </header>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+        </asp:ContentPlaceHolder>
+    </div>
 </form>
 
     <div>
