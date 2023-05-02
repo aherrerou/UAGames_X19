@@ -70,11 +70,17 @@ namespace library
         {
             bool leido = false;
             SqlConnection connection = null;
+            SqlConnection conProductora = null;
+            SqlConnection conCategoria = null;
             SqlDataReader dr = null;
             try
             {
                 connection = new SqlConnection(constring);
+                conProductora = new SqlConnection(constring);
+                conCategoria = new SqlConnection(constring);
                 connection.Open();
+                conProductora.Open();
+                conCategoria.Open();
                 string sentence = "SELECT * FROM [Videojuego] WHERE titulo = @titulo";
                 SqlCommand com = new SqlCommand(sentence, connection);
                 com.Parameters.AddWithValue("@titulo", en.Titulo);
@@ -94,19 +100,19 @@ namespace library
                     //Lectura de la productora
                     ENProductora productora = new ENProductora();
                     productora.Id = Int32.Parse(dr["productoraID"].ToString());
+                    string sentenceProductora = "SELECT * FROM [Productora] WHERE Id = @Id";
+                    SqlCommand comProductora = new SqlCommand(sentenceProductora, conProductora);
+                    comProductora.Parameters.AddWithValue("@Id", productora.Id);
 
-                    /*
-                    sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
-                    com = new SqlCommand(sentence, connection);
-                    dr = com.ExecuteReader();
+                    SqlDataReader drProductora = comProductora.ExecuteReader();
 
-                    if (dr.Read())
+                    if (drProductora.Read())
                     {
-                        productora.Nombre = dr["nombre"].ToString(); ;
-                        productora.Descripcion = dr["descripcion"].ToString();
-                        productora.Imagen = dr["imagen"].ToString();
-                        productora.Web = dr["web"].ToString();
-                    }*/
+                        productora.Nombre = drProductora["nombre"].ToString(); ;
+                        productora.Descripcion = drProductora["descripcion"].ToString();
+                        productora.Imagen = drProductora["imagen"].ToString();
+                        productora.Web = drProductora["web"].ToString();
+                    }
 
                     en.Productora = productora;
 
@@ -114,18 +120,114 @@ namespace library
                     ENCategoria cat = new ENCategoria();
                     cat.id = Int32.Parse(dr["categoriaID"].ToString());
 
-                    /*
-                    //Se lee la categoria a partir de su ID
-                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
-                    //Se obtiene Id de la productora
-                    com = new SqlCommand(sentence, connection);
-                    SqlDataReader dr2 = com.ExecuteReader();
+                    string sentenceCat = "SELECT * FROM [Categoria] WHERE Id = @Id";
+                    SqlCommand comCategoria = new SqlCommand(sentenceCat, conCategoria);
+                    comCategoria.Parameters.AddWithValue("@Id", cat.id);
 
-                    if (dr.Read())
+                    SqlDataReader drCategoria = comCategoria.ExecuteReader();
+
+                    if (drCategoria.Read())
                     {
-                        cat.Nombre = dr2["nombre"].ToString(); ;
-                        cat.Descripcion = dr2["descripcion"].ToString();
+                        cat.nombre = drCategoria["nombre"].ToString(); ;
+                        cat.descripcion = drCategoria["descripcion"].ToString();
+                    }
+
+                    en.Categoria = cat;
+
+                    leido = true;
+                }
+
+            }
+            catch (SqlException sqlex)
+            {
+                leido = false;
+                Console.WriteLine("Reading videojuego operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                leido = false;
+                Console.WriteLine("Reading videojuego operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (dr != null) dr.Close();
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return leido;
+        }
+
+
+        public bool readVideojuegoId(ENVideojuego en)
+        {
+            bool leido = false;
+            SqlConnection connection = null;
+            //SqlConnection conProductora = null;
+            //SqlConnection conCategoria = null;
+            SqlDataReader dr = null;
+            try
+            {
+                connection = new SqlConnection(constring);
+                //conProductora = new SqlConnection(constring);
+                //conCategoria = new SqlConnection(constring);
+                connection.Open();
+                //conProductora.Open();
+                //conCategoria.Open();
+                string sentence = "SELECT * FROM [Videojuego] WHERE Id = @Id";
+                SqlCommand com = new SqlCommand(sentence, connection);
+                com.Parameters.AddWithValue("@Id", en.Id);
+                //Se obtiene cursor
+                dr = com.ExecuteReader();
+
+                //Se lee primer elemento
+                if (dr.Read())
+                {
+                    en.Titulo = dr["titulo"].ToString();
+                    en.Descripcion = dr["descripcion"].ToString();
+                    en.FechaLanzamiento = DateTime.Parse(dr["fecha_lanzamiento"].ToString());
+                    en.Plataforma = dr["plataforma"].ToString();
+                    en.Imagen = dr["imagen"].ToString();
+                    en.Precio = Double.Parse(dr["precio"].ToString());
+
+                    //Lectura de la productora
+                    ENProductora productora = new ENProductora();
+                    productora.Id = Int32.Parse(dr["productoraID"].ToString());
+                    /*
+                    string sentenceProductora = "SELECT * FROM [Productora] WHERE Id = @Id";
+                    SqlCommand comProductora = new SqlCommand(sentenceProductora, conProductora);
+                    comProductora.Parameters.AddWithValue("@Id", productora.Id);
+
+                    SqlDataReader drProductora = comProductora.ExecuteReader();
+
+                    if (drProductora.Read())
+                    {
+                        productora.Nombre = drProductora["nombre"].ToString(); ;
+                        productora.Descripcion = drProductora["descripcion"].ToString();
+                        productora.Imagen = drProductora["imagen"].ToString();
+                        productora.Web = drProductora["web"].ToString();
                     }*/
+
+                    CADProductora prod = new CADProductora();
+                    prod.readProductora(productora);
+
+                    en.Productora = productora;
+
+                    //Lectura de la categoria
+                    ENCategoria cat = new ENCategoria();
+                    cat.id = Int32.Parse(dr["categoriaID"].ToString());
+
+                    /*string sentenceCat = "SELECT * FROM [Categoria] WHERE Id = @Id";
+                    SqlCommand comCategoria = new SqlCommand(sentenceCat, conCategoria);
+                    comCategoria.Parameters.AddWithValue("@Id", cat.id);
+
+                    SqlDataReader drCategoria = comCategoria.ExecuteReader();
+
+                    if (drCategoria.Read())
+                    {
+                        cat.nombre = drCategoria["nombre"].ToString(); ;
+                        cat.descripcion = drCategoria["descripcion"].ToString();
+                    }*/
+                    CADCategoria categoria = new CADCategoria();
+                    categoria.readCategoria(cat);
 
                     en.Categoria = cat;
 
@@ -159,7 +261,6 @@ namespace library
             DataSet videojuegos = null;
             ENVideojuego videojuego = null;
             SqlDataReader dr = null;
-            SqlCommand com = null;
 
             try
             {
@@ -184,37 +285,19 @@ namespace library
 
                     //Lectura de la productora
                     ENProductora productora = new ENProductora();
-                    productora.Id = Int32.Parse(rowsVideojuegos[i]["productoraID"].ToString());
+                    productora.Id = Int32.Parse(dr["productoraID"].ToString());
 
-                    sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
-                    com = new SqlCommand(sentence, connection);
-                    dr = com.ExecuteReader();
-
-                    if (dr.Read())
-                    {
-                        productora.Nombre = dr["nombre"].ToString(); ;
-                        productora.Descripcion = dr["descripcion"].ToString();
-                        productora.Imagen = dr["imagen"].ToString();
-                        productora.Web = dr["Web"].ToString();
-                    }
+                    CADProductora prod = new CADProductora();
+                    prod.readProductora(productora);
 
                     videojuego.Productora = productora;
 
                     //Lectura de la categoria
                     ENCategoria cat = new ENCategoria();
-                    cat.id = Int32.Parse(rowsVideojuegos[i]["categoriaID"].ToString());
+                    cat.id = Int32.Parse(dr["categoriaID"].ToString());
 
-                    //Se lee la categoria a partir de su ID
-                    sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.id + ";";
-                    //Se obtiene Id de la productora
-                    com = new SqlCommand(sentence, connection);
-                    dr = com.ExecuteReader();
-
-                    if (dr.Read())
-                    {
-                        cat.nombre = dr["nombre"].ToString(); ;
-                        cat.descripcion = dr["descripcion"].ToString();
-                    }
+                    CADCategoria categoria = new CADCategoria();
+                    categoria.readCategoria(cat);
 
                     videojuego.Categoria = cat;
 
@@ -362,7 +445,7 @@ namespace library
                     categoria.descripcion = dr["descripcion"].ToString();
 
                     //Lectura de los videojuegos
-                    sentence = "SELECT * FROM [Videojuego] WHERE productoraID = " + categoria.id + ";";
+                    sentence = "SELECT * FROM [Videojuego] WHERE categoriaID = " + categoria.id + ";";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                     adapter.Fill(videojuegos, "Videojuego");
