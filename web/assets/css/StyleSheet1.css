@@ -8,7 +8,6 @@
 }
 
 body {
-    min-height: 100vh;
     width: 100%;
     background: #EEECEB;
 }
@@ -24,17 +23,36 @@ main {
     color: #0A2558;
 }
 
-    main .aboutUs .title {
-        text-align: center;
-    }
 
-    main .aboutUs .join {
+.sobreNosotros {
+    margin: 100px 200px;
+    color: #0A2558;
+    font-size: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.sobreNosotros h1 {
+    text-align: center;
+}
+
+    .sobreNosotros .cierre {
         text-align: center;
         background: #0A2558;
         color: #fff;
         font-size: 20px;
         border-radius: 10px;
+        width: fit-content;
+        padding: 10px 10px;
+        margin: auto;
     }
+
+.contacto {
+    margin: 150px 200px;
+    text-align: center;
+    color: #0A2558;
+    font-size: 20px;
+}
 
 
 

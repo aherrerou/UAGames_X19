@@ -48,9 +48,9 @@
       <a href="#" class="logo">UA Games</a>
         <ul class="box">
           <li class="link_name">Compañia</li>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Sobre nosotros</a></li>
-            <li><a href="#">Preguntas frecuentes</a></li>
+          <li><a href="Contacto.aspx">Contacto</a></li>
+          <li><a href="SobreNosotros.aspx">Sobre nosotros</a></li>
+            <li><a href="PreguntasFrec">Preguntas frecuentes</a></li>
         </ul>
         <ul class="box">
           <li class="link_name">Servicios</li>
@@ -62,7 +62,6 @@
             <li class="link_name">Más servicios</li>
             <li><a href="#">Noticias</a></li>
             <li><a href="#">Foro</a></li>
-            <li><a href="#">:)</a></li>
         </ul>
       </div>
     </div>
