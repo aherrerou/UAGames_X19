@@ -24,9 +24,9 @@
                 <asp:BoundField DataField="precio" HeaderText="Precio" />
                 <asp:BoundField DataField="plataforma" HeaderText="Plataforma" />
                 <asp:BoundField DataField="image" HeaderText="Image URL" />
-                <asp:CommandField ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/cancel.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
+                <asp:CommandField ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/eraser.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
                     ShowEditButton="True" ShowDeleteButton="True" UpdateImageUrl="~/assets/imagenes/iconos/save.png"
-                    DeleteImageUrl="~/assets/imagenes/iconos/erase.png">
+                    DeleteImageUrl="~/assets/imagenes/iconos/trash.png">
                     <ControlStyle Height="20px" Width="20px" />
                 </asp:CommandField>
 
