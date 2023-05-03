@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class ProductoraWebForm
+    public partial class NoticiaWebForm
     {
 
         /// <summary>
