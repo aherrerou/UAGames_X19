@@ -22,7 +22,7 @@
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
               <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
-              <asp:MenuItem Text="Ofertas" NavigateUrl="Catalogo2.aspx" />
+              <asp:MenuItem Text="Ofertas" NavigateUrl="#" />
               <asp:MenuItem Text="Noticias" NavigateUrl="/" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
@@ -70,8 +70,8 @@
       <div class="bottom_text">
         <span class="copyright_text">Copyright © 2023 <a href="#">UAGames.</a>Todos los derechos reservados</span>
         <span class="policy_terms">
-          <a href="#">Política de privacidad</a>
-          <a href="#">Términos y condiciones</a>
+          <a href="Privacidad.aspx">Política de privacidad</a>
+          <a href="Terminos.aspx">Términos y condiciones</a>
         </span>
       </div>
     </div>
