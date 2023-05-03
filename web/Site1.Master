@@ -22,7 +22,7 @@
               <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
               <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
               <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
-              <asp:MenuItem Text="Noticias" NavigateUrl="ProductoraWebForm.aspx" />
+              <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWebForm.aspx" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
         </asp:Menu>   
@@ -33,7 +33,6 @@
       </div>
     </div>
 </header>
-</form>
 
     <div>
         <asp:ContentPlaceHolder ID="main" runat="server">
@@ -41,6 +40,7 @@
         </asp:ContentPlaceHolder>
     </div>
 
+</form>
     
      <footer>
     <div class="content">

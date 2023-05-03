@@ -13,5 +13,9 @@ namespace web
         {
 
         }
+        public void MostrarNoticias()
+        {
+
+        }
     }
 }
