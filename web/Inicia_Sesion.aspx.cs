@@ -22,7 +22,10 @@ namespace web
                 LResultado.Text = "Error en la lectura del usuario";
             else
             {
-                LResultado.Text = "Proceso de lectura realizado con éxito";
+                if(TPassword.Text != en.password)
+                    LResultado.Text = "Usuario o contraseña incorrectos";
+                else
+                    LResultado.Text = "Se ha leído correctamente el usuario";
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,14 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                ENLista_Deseos en = new ENLista_Deseos();
+                DataSet d = new DataSet();
+                d = en.listarClientesD();
+                GridView1.DataSource = d;
+                GridView1.DataBind();
+            }
         }
         protected void Leer(object sender, EventArgs e)
         {

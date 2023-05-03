@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -92,6 +93,13 @@ namespace library
             bool result = true;
             CADLista_Deseos c = new CADLista_Deseos();
             result = c.deleteLista(this);
+            return result;
+        }
+        public DataSet listarClientesD()
+        {
+            DataSet result = new DataSet();
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.listarClientesD();
             return result;
         }
     }

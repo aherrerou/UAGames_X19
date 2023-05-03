@@ -14,14 +14,14 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 ENPublicacion en = new ENPublicacion();
                 DataSet d = new DataSet();
                 d = en.listarClientesD();
                 GridView1.DataSource = d;
                 GridView1.DataBind();
-            }*/
+            }
 
         }
         protected void Leer(object sender, EventArgs e)
@@ -124,6 +124,7 @@ namespace web
                 LResultado_T.Text = "Error en la lectura del primer tema";
             else
             {
+                TId_T.Text = en.id.ToString();
                 TTitulo.Text = en.titulo;
                 LResultado_T.Text = "Proceso de lectura de primer tema realizado con éxito";
             }

@@ -30,6 +30,8 @@
     <br />
     <br />
     <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
+    <h2>Listado de listas de deseos</h2>
+    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
 </asp:Content>

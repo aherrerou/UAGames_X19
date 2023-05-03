@@ -312,7 +312,7 @@ namespace library
             }
             return true;
         }
-        /*public DataSet listarClientesD()
+        public DataSet listarClientesD()
         {
             DataSet bdvirtual = new DataSet();
 
@@ -320,6 +320,6 @@ namespace library
             SqlDataAdapter da = new SqlDataAdapter("select * from Publicacion", c);
             da.Fill(bdvirtual, "Publicacion");
             return bdvirtual;
-        }*/
+        }
     }
 }

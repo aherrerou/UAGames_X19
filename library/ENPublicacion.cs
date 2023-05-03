@@ -58,7 +58,7 @@ namespace library
         {
             bool result = true;
             CADPublicacion c = new CADPublicacion();
-            result = c.createPublicacion(this);
+            result = c.readPublicacion(this);
             return result;
         }
         public bool readFirstPublicacion()
@@ -72,36 +72,36 @@ namespace library
         {
             bool result = true;
             CADPublicacion c = new CADPublicacion();
-            result = c.readFirstPublicacion(this);
+            result = c.readNextPublicacion(this);
             return result;
         }
         public bool readPrevPublicacion()
         {
             bool result = true;
             CADPublicacion c = new CADPublicacion();
-            result = c.readFirstPublicacion(this);
+            result = c.readPrevPublicacion(this);
             return result;
         }
         public bool updatePublicacion()
         {
             bool result = true;
             CADPublicacion c = new CADPublicacion();
-            result = c.readFirstPublicacion(this);
+            result = c.updatePublicacion(this);
             return result;
         }
         public bool deletePublicacion()
         {
             bool result = true;
             CADPublicacion c = new CADPublicacion();
-            result = c.readFirstPublicacion(this);
+            result = c.deletePublicacion(this);
             return result;
         }
-        /*public DataSet listarClientesD()
+        public DataSet listarClientesD()
         {
             DataSet result = new DataSet();
             CADPublicacion c = new CADPublicacion();
             result = c.listarClientesD();
             return result;
-        }*/
+        }
     }
 }

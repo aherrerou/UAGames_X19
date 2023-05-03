@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
 
 namespace library
 {
@@ -305,6 +306,15 @@ namespace library
                     c.Close();
             }
             return true;
+        }
+        public DataSet listarClientesD()
+        {
+            DataSet bdvirtual = new DataSet();
+
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            SqlDataAdapter da = new SqlDataAdapter("select * from ListaDeseos", c);
+            da.Fill(bdvirtual, "ListaDeseos");
+            return bdvirtual;
         }
     }
 }
