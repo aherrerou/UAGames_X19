@@ -10,6 +10,8 @@
 body {
     width: 100%;
     background: #EEECEB;
+    position: relative;
+    min-height: 100vh;
 }
 
 main {
@@ -21,7 +23,7 @@ main {
     text-justify: inter-word;
     display: flex;
     color: #0A2558;
-    margin-bottom: 120px;
+    padding-bottom: 15rem;
 }
 
     main .listaVideojuegos {
@@ -167,11 +169,10 @@ header .header-right .button:hover {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     background: #0A2558;
     width: 100%;
     bottom: 0;
-    left: 0;
 }
 
     footer .content {
