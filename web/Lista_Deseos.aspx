@@ -20,13 +20,13 @@
     <asp:TextBox ID="TUsuario" runat="server"></asp:TextBox>
     <br />
     <br />
-    <asp:Button ID="BLeer_F" runat="server" Text="Leer"/>
-    <asp:Button ID="BLeerP_F" runat="server" Text="Leer Primero"/>
-    <asp:Button ID="BLeerA_F" runat="server" Text="Leer Anterior"/>
-    <asp:Button ID="BLeerS_F" runat="server" Text="Leer Siguiente"/>
-    <asp:Button ID="BCrear_F" runat="server" Text="Crear"/>
-    <asp:Button ID="BActualizar_F" runat="server" Text="Actualizar"/>
-    <asp:Button ID="BBorrar_F" runat="server" Text="Borrar"/>
+    <asp:Button ID="BLeer_F" runat="server" Text="Leer" OnClick="Leer"/>
+    <asp:Button ID="BLeerP_F" runat="server" Text="Leer Primero" OnClick="LeerPrimero"/>
+    <asp:Button ID="BLeerA_F" runat="server" Text="Leer Anterior" OnClick="LeerAnterior"/>
+    <asp:Button ID="BLeerS_F" runat="server" Text="Leer Siguiente" OnClick="LeerSiguiente"/>
+    <asp:Button ID="BCrear_F" runat="server" Text="Crear" OnClick="Crear"/>
+    <asp:Button ID="BActualizar_F" runat="server" Text="Actualizar" OnClick="Actualizar"/>
+    <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar"/>
     <br />
     <br />
     <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;

@@ -22,11 +22,14 @@
     Password&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
     <br />
+    Fecha de nacimiento&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="TFecha" runat="server"></asp:TextBox>
+    <br />
     Teléfono&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TTelefono" runat="server"></asp:TextBox>
     <br />
     <br />
-    <asp:Button ID="BCrear" runat="server" Text="Crear"/>
+    <asp:Button ID="BCrear" runat="server" Text="Crear" OnClick="Crear"/>
     <br />
     <br />
     <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;

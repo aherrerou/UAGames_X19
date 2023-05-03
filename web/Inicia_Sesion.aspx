@@ -14,7 +14,7 @@
     <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
     <br />
     <br />
-    <asp:Button ID="BBuscar" runat="server" Text="Entrar"/>
+    <asp:Button ID="BBuscar" runat="server" Text="Entrar" OnClick="Leer"/>
     <br />
     <br />
     <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;

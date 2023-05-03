@@ -213,6 +213,15 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox TTexto;
 
         /// <summary>
+        /// Control TUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TUsuario;
+
+        /// <summary>
         /// Control BLeer_P.
         /// </summary>
         /// <remarks>
@@ -276,13 +285,13 @@ namespace web
         protected global::System.Web.UI.WebControls.Button BBorrar_P;
 
         /// <summary>
-        /// Control Label1.
+        /// Control LResultado_P.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LResultado_P;
 
         /// <summary>
         /// Control GridView1.

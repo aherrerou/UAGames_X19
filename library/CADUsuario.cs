@@ -16,7 +16,7 @@ namespace library
 
         public CADUsuario()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
+            conexionBBDD = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
             c = null;
         }
 

@@ -17,7 +17,7 @@ namespace library
 
         public CADPublicacion()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
+            conexionBBDD = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
             c = null;
         }
 
@@ -50,10 +50,10 @@ namespace library
             }
             return true;
         }
-        public bool readPublicacion(ENPublicacion publicacion) //selecciona una publicacion por su id de usuario
+        public bool readPublicacion(ENPublicacion publicacion) //selecciona una publicacion por su id
         {
             bool sigue_while = true;
-            string query = "Select * from Publicacion where usuarioID = " + publicacion.usuario.id;
+            string query = "Select * from Publicacion where id = " + publicacion.id;
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -62,7 +62,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
+                    if ((int)dr["id"] == publicacion.id)
                     {
                         sigue_while = false;
                         publicacion.text = dr["text"].ToString();
@@ -72,7 +72,7 @@ namespace library
                 }
                 if (sigue_while == true)
                 {
-                    throw new Exception("No se ha encontrado la publicación con la ID de usuario indicada");
+                    throw new Exception("No se ha encontrado la publicación con la ID indicada");
                 }
             }
             catch (SqlException sqlex)
@@ -102,6 +102,7 @@ namespace library
                 SqlCommand com = new SqlCommand(query, c);
                 SqlDataReader dr = com.ExecuteReader();
                 dr.Read();
+                publicacion.id = (int)dr["id"];
                 publicacion.text = dr["text"].ToString();
                 publicacion.tema.id = (int)dr["temaID"];
                 publicacion.usuario.id = (int)dr["usuarioID"];
@@ -137,12 +138,13 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
+                    if ((int)dr["id"] == publicacion.id)
                     {
                         sigue_while = false;
                         bool siguiente = dr.Read(); //pasa al siguiente campo
                         if (siguiente == true)
                         {
+                            publicacion.id = (int)dr["id"];
                             publicacion.text = dr["text"].ToString();
                             publicacion.tema.id = (int)dr["temaID"];
                             publicacion.usuario.id = (int)dr["usuarioID"];
@@ -177,7 +179,7 @@ namespace library
             string query = "Select * from Publicacion";
 
             string text = "blank";
-            int tid = 0, uid = 0;
+            int id = 0, tid = 0, uid = 0;
 
             try
             {
@@ -187,17 +189,19 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
+                    if ((int)dr["id"] == publicacion.id)
                     {
                         if (text == "blank")
                             throw new Exception("No se ha encontrado una publicación anterior");
                         sigue_while = false;
+                        publicacion.id = id;
                         publicacion.text = text;
                         publicacion.tema.id = tid;
                         publicacion.usuario.id = uid;
                     }
                     else
                     {
+                        id = (int)dr["id"];
                         text = dr["text"].ToString();
                         tid = (int)dr["temaID"];
                         uid = (int)dr["usuarioID"];
@@ -223,10 +227,10 @@ namespace library
             return true;
         }
 
-        public bool updatePublicacion(ENPublicacion publicacion) //actualiza los datos de una publicación según su id de usuario
+        public bool updatePublicacion(ENPublicacion publicacion) //actualiza los datos de una publicación según su id
         {
             string query_comprueba = "Select * from Publicacion";
-            string query = "Update Publicacion set text = '" + publicacion.text + "' where usuarioID = " + publicacion.usuario.id;
+            string query = "Update Publicacion set text = '" + publicacion.text + "' where id = " + publicacion.id;
             bool sigue_while = true;
             try
             {
@@ -236,13 +240,13 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
+                    if ((int)dr["id"] == publicacion.id)
                     {
                         sigue_while = false;
                     }
                 }
                 if (sigue_while == true)
-                    throw new Exception("No se ha encontrado una publicación con la id de usuario indicada");
+                    throw new Exception("No se ha encontrado una publicación con la id indicada");
                 dr.Close();
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
@@ -266,10 +270,10 @@ namespace library
             return true;
         }
 
-        public bool deletePublicacion(ENPublicacion publicacion) //elimina la publicación con la id de usuario indicada
+        public bool deletePublicacion(ENPublicacion publicacion) //elimina la publicación con la id indicada
         {
             string query_comprueba = "Select * from Publicacion";
-            string query = "Delete from Publicacion where usuarioID = " + publicacion.usuario.id;
+            string query = "Delete from Publicacion where id = " + publicacion.id;
             bool sigue_while = true;
             try
             {
@@ -279,13 +283,13 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == publicacion.usuario.id)
+                    if ((int)dr["id"] == publicacion.id)
                     {
                         sigue_while = false;
                     }
                 }
                 if (sigue_while == true)
-                    throw new Exception("No se ha encontrado una publicación con la id de usuario indicada");
+                    throw new Exception("No se ha encontrado una publicación con la id indicada");
                 dr.Close();
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
@@ -308,7 +312,7 @@ namespace library
             }
             return true;
         }
-        public DataSet listarClientesD()
+        /*public DataSet listarClientesD()
         {
             DataSet bdvirtual = new DataSet();
 
@@ -316,6 +320,6 @@ namespace library
             SqlDataAdapter da = new SqlDataAdapter("select * from Publicacion", c);
             da.Fill(bdvirtual, "Publicacion");
             return bdvirtual;
-        }
+        }*/
     }
 }

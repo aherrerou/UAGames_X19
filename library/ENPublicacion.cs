@@ -96,12 +96,12 @@ namespace library
             result = c.readFirstPublicacion(this);
             return result;
         }
-        public DataSet listarClientesD()
+        /*public DataSet listarClientesD()
         {
             DataSet result = new DataSet();
             CADPublicacion c = new CADPublicacion();
             result = c.listarClientesD();
             return result;
-        }
+        }*/
     }
 }
