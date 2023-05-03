@@ -22,7 +22,7 @@
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
               <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
-              <asp:MenuItem Text="Ofertas" NavigateUrl="#" />
+              <asp:MenuItem Text="Ofertas" NavigateUrl="CatalogoPrueba.aspx" />
               <asp:MenuItem Text="Noticias" NavigateUrl="AdminVideojuegos.aspx" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
@@ -37,7 +37,6 @@
 
 
         <asp:ContentPlaceHolder ID="main" runat="server">
-
         </asp:ContentPlaceHolder>
 
     

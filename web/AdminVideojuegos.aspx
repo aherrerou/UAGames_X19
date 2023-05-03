@@ -20,10 +20,10 @@
                 <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
                 <asp:BoundField DataField="productora" HeaderText="Productora" />
                 <asp:BoundField DataField="categoria" HeaderText="Categoria" />
-                <asp:BoundField DataField="fechaLanzamiento" HeaderText="Fecha Lanzamiento" />
+                <asp:BoundField DataField="fecha_lanzamiento" HeaderText="Fecha Lanzamiento" />
                 <asp:BoundField DataField="precio" HeaderText="Precio" />
                 <asp:BoundField DataField="plataforma" HeaderText="Plataforma" />
-                <asp:BoundField DataField="image" HeaderText="Image URL" />
+                <asp:BoundField DataField="imagen" HeaderText="Imagen" />
                 <asp:CommandField ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/eraser.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
                     ShowEditButton="True" ShowDeleteButton="True" UpdateImageUrl="~/assets/imagenes/iconos/save.png"
                     DeleteImageUrl="~/assets/imagenes/iconos/trash.png">

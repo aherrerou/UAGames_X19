@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class WebForm1
+    public partial class Compras
     {
 
         /// <summary>
