@@ -264,7 +264,7 @@ namespace library
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "SELECT v.titulo, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
+                string sentence = "SELECT v.titulo, v.id v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
                     "p.nombre AS productora, c.nombre AS categoria FROM [Videojuego] v " +
                     "JOIN [Productora] p ON v.productoraID = p.id " +
                     "JOIN [Categoria] c ON v.categoriaID = c.id;";

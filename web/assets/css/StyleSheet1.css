@@ -64,6 +64,10 @@ main .tableVideojuegos{
             object-fit: cover;
         }
 
+        main .videojuegosGrid{
+            display:flex;
+            flex-direction: column;
+        }
 
 main .sobreNosotros {
     color: #0A2558;

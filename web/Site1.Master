@@ -23,7 +23,7 @@
             <Items>
               <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
               <asp:MenuItem Text="Ofertas" NavigateUrl="#" />
-              <asp:MenuItem Text="Noticias" NavigateUrl="/" />
+              <asp:MenuItem Text="Noticias" NavigateUrl="AdminVideojuegos.aspx" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
         </asp:Menu>   

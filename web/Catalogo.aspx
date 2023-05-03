@@ -46,6 +46,13 @@
                     </div>
                 </td>
             </ItemTemplate>
+            <EmptyDataTemplate>
+                <table runat="server" style="">
+                    <tr>
+                        <td>Ups, no se han encontrado videojuegos.</td>
+                    </tr>
+                </table>
+            </EmptyDataTemplate>
         </asp:ListView>
 
     </main>
