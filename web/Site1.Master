@@ -14,14 +14,14 @@
     <form id="form1" runat="server">
     <header>
     <div class="header">
-      <a href="#" class="logo">UA Games</a>
+      <a href="/" class="logo">UA Games</a>
       <div class="header-menu">
         <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
               <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
               <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
-              <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
+              <asp:MenuItem Text="Reseñas" NavigateUrl="/Reseña.aspx" />
               <asp:MenuItem Text="Noticias" NavigateUrl="/" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
