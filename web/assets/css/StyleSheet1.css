@@ -17,13 +17,13 @@ body {
 main {
     max-width: 1250px;
     margin: auto;
-    margin-top: 100px;
-    padding: 20px 40px;
+    padding: 20px;
     text-align: justify;
     text-justify: inter-word;
     display: flex;
     color: #0A2558;
     padding-bottom: 15rem;
+    padding-top: 8rem;
 }
 
     main .listaVideojuegos {
@@ -121,6 +121,7 @@ header {
     left: 0;
     width: 100%;
     background: #0A2558;
+    z-index: 9999;
 }
 
 header .header {
@@ -130,6 +131,7 @@ header .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 70px;
 }
 
 header .header-menu {
