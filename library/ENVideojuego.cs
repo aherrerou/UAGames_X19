@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -115,22 +116,22 @@ namespace library
             return cad.readVideojuego(this);
         }
 
-        public bool readVideojuegos(List<ENVideojuego> listaVideojuegos)
+        public DataTable readVideojuegos()
         {
             CADVideojuego cad = new CADVideojuego();
-            return cad.readVideojuegos(listaVideojuegos);
+            return cad.readVideojuegos();
         }
 
-        public bool readVideojuegosProductora(List<ENVideojuego> listaVideojuegos, string productora)
+        public DataSet readVideojuegosProductora(string productora)
         {
             CADVideojuego cad = new CADVideojuego();
-            return cad.readVideojuegosProductora(listaVideojuegos, productora);
+            return cad.readVideojuegosProductora(productora);
         }
 
-        public bool readVideojuegosCategoria(List<ENVideojuego> listaVideojuegos, string categoria)
+        public DataSet readVideojuegosCategoria(string categoria)
         {
             CADVideojuego cad = new CADVideojuego();
-            return cad.readVideojuegosCategoria(listaVideojuegos, categoria);
+            return cad.readVideojuegosCategoria(categoria);
         }
 
         public bool updateVideojuego()
@@ -177,9 +178,6 @@ namespace library
 
             return eliminado;
         }
-
-
-
 
     }
 }

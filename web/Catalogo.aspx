@@ -20,7 +20,7 @@
                         <td runat="server" style="">
           <asp:DataPager runat="server" ID="CatalogoDataPager" PageSize="10">
             <Fields>
-                <asp:NumericPagerField ButtonCount="3" />
+                <asp:NumericPagerField />
               <asp:NextPreviousPagerField ShowFirstPageButton="true" ShowLastPageButton="true"
                 FirstPageText="|<< " LastPageText=" >>|"
                 NextPageText=" > " PreviousPageText=" < " />
@@ -32,10 +32,10 @@
         </LayoutTemplate>
         <ItemTemplate>
           <td runat="server" style="display: flex; margin-bottom: 50px">
-            <asp:HyperLink ID="videojuegoImageLink" runat="server" ImageUrl='<%# Eval("imagen") %>' ImageHeight="200" NavigateUrl='<%#$"Videojuego.aspx?id={Eval("id")}" %>' Style="height: 200px; margin-right: 20px; object-fit: cover; object-position: left;" />
+            <asp:HyperLink ID="videojuegoImageLink" runat="server" ImageUrl='<%# Eval("imagen") %>' ImageHeight="200" NavigateUrl='<%#$"Videojuego.aspx?titulo={Eval("titulo")}" %>' Style="height: 200px; margin-right: 20px; object-fit: cover; object-position: left;" />
 
             <div id="videojuegoInfo" style="min-width: 700px">
-                <asp:HyperLink ID="videojuegoLink" runat="server" Text='<%# Eval("titulo") %>' NavigateUrl='<%#$"Videojuego.aspx?id={Eval("id")}" %>' Font-Underline="false" Style="font-size: 20px; font-weight: bold; margin-right: 10%;" />
+                <asp:HyperLink ID="videojuegoLink" runat="server" Text='<%# Eval("titulo") %>' NavigateUrl='<%#$"Videojuego.aspx?titulo={Eval("titulo")}" %>' Font-Underline="false" Style="font-size: 20px; font-weight: bold; margin-right: 10%;" />
                 <hr />
                 <div class="detallesVideojuego">
                     <asp:Label ID="ProductoraLabel" runat="server" Text="Productora: " />
@@ -51,8 +51,8 @@
                 </div>
                 <br />
                 <div class="compraVideojuego">
-                    <asp:Button ID="ListaDeseosButton" CssClass="button" runat="server" Text="🔖 Lista de Deseos" CommandArgument='<%# Eval("id") %>' OnClientClick="clickAddToListaDeseos" OnClick="clickAddToListaDeseos" />
-                    <asp:Button ID="ReviewButton" CssClass="button" runat="server" Text="🖊️ Ver reviews" CommandArgument='<%# Eval("id") %>' OnClientClick="clickSeeReviews" OnClick="clickSeeReviews" />
+                    <asp:Button ID="ListaDeseosButton" CssClass="button" runat="server" Text="🔖 Lista de Deseos" CommandArgument='<%# Eval("titulo") %>' OnClientClick="clickAddToListaDeseos" OnClick="clickAddToListaDeseos" />
+                    <asp:Button ID="ReviewButton" CssClass="button" runat="server" Text="🖊️ Ver reviews" CommandArgument='<%# Eval("titulo") %>' OnClientClick="clickSeeReviews" OnClick="clickSeeReviews" />
                 </div>
             </div>
             </td>
@@ -80,7 +80,7 @@
                 </td>
         </EditItemTemplate>
         <EmptyDataTemplate>
-                <table runat="server" style="">
+                <table runat="server">
                     <tr>
                         <td>No se han encontrado videojuegos.</td>
                     </tr>
@@ -118,4 +118,5 @@
             </InsertItemTemplate>
       </asp:ListView>
         </main>
+
 </asp:Content>

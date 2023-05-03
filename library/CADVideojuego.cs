@@ -12,7 +12,7 @@ namespace library
 
         public CADVideojuego()
         {
-            constring = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
+            constring = ConfigurationManager.ConnectionStrings["Database"].ToString();
         }
 
         //Crear videojuego
@@ -254,10 +254,10 @@ namespace library
         }
 
         //Leer todos los videojuegos
-        public DataSet readVideojuegos()
+        public DataTable readVideojuegos()
         {
             SqlConnection connection = null;
-            DataSet videojuegos = null;
+            DataTable videojuegos = new DataTable();
 
             try
             {
@@ -269,7 +269,7 @@ namespace library
                     "JOIN [Productora] p ON v.productoraID = p.id " +
                     "JOIN [Categoria] c ON v.categoriaID = c.id;";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
-                adapter.Fill(videojuegos, "videojuego");
+                adapter.Fill(videojuegos);
                
             }
             catch (SqlException sqlex)

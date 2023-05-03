@@ -21,7 +21,46 @@ main {
     text-justify: inter-word;
     display: flex;
     color: #0A2558;
+    margin-bottom: 120px;
 }
+
+    main .listaVideojuegos {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+main .tableVideojuegos{
+    border: none;
+
+}
+
+    main .tableVideojuegos tr {
+        height: 50px;
+        display:flex;
+        flex-direction:row;
+    }
+
+.tableVideojuegos th, td {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 25%;
+    height: 100%;
+}
+
+    main .card {
+        width: 12rem !important;
+        background: #0A2558;
+        color: #fff;
+        text-align: center;
+    }
+
+        main .card .card-img-top {
+            width: 100%;
+            height: 15rem;
+            object-fit: cover;
+        }
 
 
 main .sobreNosotros {
