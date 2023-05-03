@@ -24,10 +24,9 @@ main {
 }
 
 
-.sobreNosotros {
-    margin: 100px 200px;
+main .sobreNosotros {
     color: #0A2558;
-    font-size: 20px;
+    font-size: 18px;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -36,7 +35,7 @@ main {
     text-align: center;
 }
 
-    .sobreNosotros .cierre {
+    main .sobreNosotros .cierre {
         text-align: center;
         background: #0A2558;
         color: #fff;
@@ -47,11 +46,11 @@ main {
         margin: auto;
     }
 
-.contacto {
-    margin: 150px 200px;
+main .contacto {
     text-align: center;
     color: #0A2558;
     font-size: 20px;
+    width: 100%;
 }
 
 

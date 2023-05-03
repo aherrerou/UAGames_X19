@@ -14,14 +14,13 @@
     <form id="form1" runat="server">
     <header>
     <div class="header">
-      <a href="#" class="logo">UA Games</a>
+      <a href="Inicio.aspx" class="logo">UA Games</a>
       <div class="header-menu">
         <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
-              <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
+              <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
               <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
-              <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
               <asp:MenuItem Text="Noticias" NavigateUrl="/" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
@@ -45,24 +44,26 @@
      <footer>
     <div class="content">
       <div class="link-boxes">
-      <a href="#" class="logo">UA Games</a>
-        <ul class="box">
-          <li class="link_name">Compañia</li>
-          <li><a href="Contacto.aspx">Contacto</a></li>
-          <li><a href="SobreNosotros.aspx">Sobre nosotros</a></li>
-            <li><a href="PreguntasFrec">Preguntas frecuentes</a></li>
-        </ul>
-        <ul class="box">
+      <a href="Inicio.aspx" class="logo">UA Games</a>
+           <ul class="box">
           <li class="link_name">Servicios</li>
-          <li><a href="#">Comprar videojuegos</a></li>
+          <li><a href="Catalogo.aspx">Catálogo</a></li>
             <li><a href="#">Ofertas</a></li>
-          <li><a href="#">Lista más vendidos</a></li>
+          <li><a href="#">Noticias</a></li>
         </ul>
         <ul class="box">
             <li class="link_name">Más servicios</li>
-            <li><a href="#">Noticias</a></li>
             <li><a href="#">Foro</a></li>
+            <li><a href="PreguntasFrec.aspx">Preguntas frecuentes</a></li>
+           
         </ul>
+        <ul class="box">
+          <li class="link_name">Compañía</li>
+          <li><a href="Contacto.aspx">Contacto</a></li>
+          <li><a href="SobreNosotros.aspx">Sobre nosotros</a></li>
+          <li><a href="#">Redes Sociales</a></li>
+        </ul>
+       
       </div>
     </div>
     <div class="bottom-details">
