@@ -4,18 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+using library;
 namespace web
 {
-    public partial class ProductoraWebForm : System.Web.UI.Page
+    public partial class NoticiaWF : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        protected void btnCrearProductora_Click()
+        protected void Leer(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

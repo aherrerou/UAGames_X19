@@ -67,19 +67,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
     <Content Include="assets\css\StyleSheet1.css" />
-    <Content Include="NoticiaWebForm.aspx" />
+    <Content Include="NoticiaWF.aspx" />
     <Content Include="ProductoraWebForm.aspx" />
+    <Content Include="SQLUAGames.sql" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoticiaWebForm.aspx.cs">
-      <DependentUpon>NoticiaWebForm.aspx</DependentUpon>
+    <Compile Include="NoticiaWF.aspx.cs">
+      <DependentUpon>NoticiaWF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NoticiaWebForm.aspx.designer.cs">
-      <DependentUpon>NoticiaWebForm.aspx</DependentUpon>
+    <Compile Include="NoticiaWF.aspx.designer.cs">
+      <DependentUpon>NoticiaWF.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductoraWebForm.aspx.cs">
       <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
