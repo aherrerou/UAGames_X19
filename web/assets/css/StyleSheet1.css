@@ -64,10 +64,64 @@ main .tableVideojuegos{
             object-fit: cover;
         }
 
-        main .videojuegosGrid{
-            display:flex;
-            flex-direction: column;
-        }
+main .videojuegosGrid {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+}
+
+.grid {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    border-collapse: collapse;
+}
+
+    .grid th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        color: #0A2558;
+    }
+
+    .grid td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        color: #0A2558;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: break-word;
+    }
+
+    .grid table {
+        margin: auto;
+    }
+
+.grid tr:nth-child(even) {
+    background-color: #dae7f5;
+}
+
+    .grid tr:hover {
+        background-color: #ddd;
+    }
+
+    .grid th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #0A2558;
+        color: white;
+        text-align: center;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .grid input {
+        background-color: #fff;
+        align-items: center;
+    }
 
 main .sobreNosotros {
     color: #0A2558;

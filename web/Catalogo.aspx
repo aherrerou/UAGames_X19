@@ -35,10 +35,17 @@
             <ItemTemplate>
                 <td>
                     <div class="card">
-                        <img src='<%# Eval("imagen") %>' class="card-img-top" alt="Card image cap">
+                        <a href='<%#$"Videojuego.aspx?id={Eval("id")}" %>'
+                            <img src='<%# Eval("imagen") %>' class="card-img-top" alt="Card image cap">
+                        </a>
+                        
                         <div class="card-body">
+                            <a href="#">
                             <h6><%# Eval("productora") %></h6>
+                            </a>
+                            <a href="#">
                             <h6><%# Eval("categoria") %></h6>
+                            </a>
                             <h6><%# Eval("plataforma") %></h6>
                             <h6><%# Eval("precio") %> €</h6>
                             <a href="#" class="btn btn-primary">Comprar</a>

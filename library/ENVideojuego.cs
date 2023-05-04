@@ -116,6 +116,12 @@ namespace library
             return cad.readVideojuego(this);
         }
 
+        public bool readVideojuegoId()
+        {
+            CADVideojuego cad = new CADVideojuego();
+            return cad.readVideojuegoId(this);
+        }
+
         public DataTable readVideojuegos()
         {
             CADVideojuego cad = new CADVideojuego();

@@ -51,5 +51,25 @@ namespace web
         {
 
         }
+
+        protected void clickOnInsertVideojuego(object sender, EventArgs e)
+        {
+
+        }
+
+        protected string Crop(string text, int maxLength)
+        {
+            if (text == null)
+            {
+                return string.Empty;
+            }
+
+            if (text.Length < maxLength)
+            {
+                return text;
+            }
+
+            return text.Substring(0, maxLength);
+        }
     }
 }
