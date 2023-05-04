@@ -66,7 +66,7 @@ namespace web
             ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
             bool result = en.readPrevUsuario();
             if (result == false)
-                LResultado.Text = "Error en la lectura de la anterior lista";
+                LResultado.Text = "Error en la lectura del anterior usuario";
             else
             {
                 TId.Text = en.id.ToString();

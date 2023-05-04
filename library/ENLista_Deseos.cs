@@ -78,7 +78,7 @@ namespace library
         {
             bool result = true;
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.readNextLista(this);
+            result = c.readPrevLista(this);
             return result;
         }
         public bool updateLista()

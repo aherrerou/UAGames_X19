@@ -67,6 +67,7 @@ namespace library
                     if (dr["nick"].ToString() == usuario.nick)
                     {
                         sigue_while = false;
+                        usuario.id = (int)dr["id"];
                         usuario.nombre = dr["nombre"].ToString();
                         usuario.apellidos = dr["apellidos"].ToString();
                         usuario.email = dr["email"].ToString();
@@ -108,6 +109,7 @@ namespace library
                 SqlCommand com = new SqlCommand(query, c);
                 SqlDataReader dr = com.ExecuteReader();
                 dr.Read();
+                usuario.id = (int)dr["id"];
                 usuario.nick = dr["nick"].ToString();
                 usuario.nombre = dr["nombre"].ToString();
                 usuario.apellidos = dr["apellidos"].ToString();

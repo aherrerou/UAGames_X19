@@ -24,8 +24,8 @@ namespace web
         }
         protected void Leer(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario(int.Parse(TUsuario.Text), "blank", "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
-            ENLista_Deseos en = new ENLista_Deseos(0, "blank", "blank", usu);
+            ENUsuario usu = new ENUsuario();
+            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
             bool result = en.readLista();
             if (result == false)
                 LResultado.Text = "Error en la lectura de la lista";
@@ -34,6 +34,7 @@ namespace web
                 TId.Text = en.id.ToString();
                 TNombre.Text = en.nombre;
                 TDescripcion.Text = en.descripcion;
+                TUsuario.Text = en.usuario.id.ToString();
                 LResultado.Text = "Proceso de lectura realizado con éxito";
             }
         }
@@ -55,8 +56,8 @@ namespace web
         }
         protected void LeerAnterior(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario(int.Parse(TUsuario.Text), "blank", "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
-            ENLista_Deseos en = new ENLista_Deseos(0, "blank", "blank", usu);
+            ENUsuario usu = new ENUsuario();
+            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
             bool result = en.readPrevLista();
             if (result == false)
                 LResultado.Text = "Error en la lectura de la anterior lista";
@@ -71,8 +72,8 @@ namespace web
         }
         protected void LeerSiguiente(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario(int.Parse(TUsuario.Text), "blank", "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
-            ENLista_Deseos en = new ENLista_Deseos(0, "blank", "blank", usu);
+            ENUsuario usu = new ENUsuario();
+            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
             bool result = en.readNextLista();
             if (result == false)
                 LResultado.Text = "Error en la lectura de la siguiente lista";
@@ -81,6 +82,7 @@ namespace web
                 TId.Text = en.id.ToString();
                 TNombre.Text = en.nombre;
                 TDescripcion.Text = en.descripcion;
+                TUsuario.Text = en.usuario.id.ToString();
                 LResultado.Text = "Proceso de lectura de siguiente lista realizado con éxito";
             }
         }

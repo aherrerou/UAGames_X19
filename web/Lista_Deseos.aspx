@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Lista_Deseos.aspx.cs" Inherits="web.Lista_Deseos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <br />
     <br />
     <br />
@@ -16,7 +16,7 @@
     Descripción&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TDescripcion" runat="server"></asp:TextBox>
     <br />
-    Id de usuario (WIP - usar usuario de la sesión actual)&nbsp;&nbsp;&nbsp;&nbsp;
+    Id de usuario&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TUsuario" runat="server"></asp:TextBox>
     <br />
     <br />
@@ -32,6 +32,4 @@
     <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
     <h2>Listado de listas de deseos</h2>
     <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
 </asp:Content>

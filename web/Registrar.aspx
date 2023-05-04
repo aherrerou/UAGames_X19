@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Registrar.aspx.cs" Inherits="web.Registrar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <br />
     <br />
     <br />
@@ -29,13 +29,11 @@
     <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
     <br />
     Repite Password&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:TextBox ID="TRepitePassword" runat="server"></asp:TextBox>
     <br />
     <br />
     <asp:Button ID="BCrear" runat="server" Text="Crear" OnClick="Crear"/>
     <br />
     <br />
     <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
 </asp:Content>

@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="web.Usuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <br />
     <br />
     <br />
     <br />
-    <h1>Página de Lista de Deseos</h1>
+    <h1>Página de Usuarios</h1>
     Id&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TId" runat="server"></asp:TextBox>
     <br />
@@ -30,7 +30,6 @@
     <br />
     Rol&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TRol" runat="server"></asp:TextBox>
-    <br />
     <br />
     Password&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
