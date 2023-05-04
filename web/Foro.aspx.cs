@@ -138,6 +138,7 @@ namespace web
                 LResultado_T.Text = "Error en la lectura del anterior tema";
             else
             {
+                TId_T.Text = en.id.ToString();
                 TTitulo.Text = en.titulo;
                 LResultado_T.Text = "Proceso de lectura de anterior tema realizado con éxito";
             }
@@ -151,6 +152,7 @@ namespace web
                 LResultado_T.Text = "Error en la lectura del siguiente tema";
             else
             {
+                TId_T.Text = en.id.ToString();
                 TTitulo.Text = en.titulo;
                 LResultado_T.Text = "Proceso de lectura de siguiente tema realizado con éxito";
             }

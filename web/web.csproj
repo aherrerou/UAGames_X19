@@ -76,6 +76,7 @@
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
     <Content Include="Registrar.aspx" />
+    <Content Include="Usuario.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
   </ItemGroup>
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -19,14 +19,17 @@
     Email&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TEmail" runat="server"></asp:TextBox>
     <br />
-    Password&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
-    <br />
-    Fecha de nacimiento&nbsp;&nbsp;&nbsp;&nbsp;
+    Fecha de nacimiento (yyyy-MM-dd)&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TFecha" runat="server"></asp:TextBox>
     <br />
     Teléfono&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TTelefono" runat="server"></asp:TextBox>
+    <br />
+    Password&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
+    <br />
+    Repite Password&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <br />
     <br />
     <asp:Button ID="BCrear" runat="server" Text="Crear" OnClick="Crear"/>

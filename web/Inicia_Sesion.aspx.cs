@@ -19,7 +19,7 @@ namespace web
             ENUsuario en = new ENUsuario(0, TNick.Text, "blank", "blank", "blank", TPassword.Text, System.DateTime.Now, "blank", "blank");
             bool result = en.readUsuario();
             if (result == false)
-                LResultado.Text = "Error en la lectura del usuario";
+                LResultado.Text = "Usuario o contraseña incorrectos";
             else
             {
                 if(TPassword.Text != en.password)

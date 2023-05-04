@@ -317,7 +317,8 @@ namespace library
             DataSet bdvirtual = new DataSet();
 
             SqlConnection c = new SqlConnection(conexionBBDD);
-            SqlDataAdapter da = new SqlDataAdapter("select * from Publicacion", c);
+            string query = "select p.id as ID_Publicación, p.text as Texto, p.usuarioID as ID_Usuario, t.id as ID_Tema, t.titulo as Título_Tema, f.id as ID_Foro, f.nombre as Nombre_Foro from Publicacion as p join Tema as t on temaID = t.id join Foro as f on foroID = f.id";
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
             da.Fill(bdvirtual, "Publicacion");
             return bdvirtual;
         }

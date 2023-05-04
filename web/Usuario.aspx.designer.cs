@@ -11,8 +11,17 @@ namespace web
 {
 
 
-    public partial class Registrar
+    public partial class Usuario
     {
+
+        /// <summary>
+        /// Control TId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TId;
 
         /// <summary>
         /// Control TNick.
@@ -51,6 +60,15 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox TEmail;
 
         /// <summary>
+        /// Control TTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TTelefono;
+
+        /// <summary>
         /// Control TFecha.
         /// </summary>
         /// <remarks>
@@ -60,13 +78,13 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox TFecha;
 
         /// <summary>
-        /// Control TTelefono.
+        /// Control TRol.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TTelefono;
+        protected global::System.Web.UI.WebControls.TextBox TRol;
 
         /// <summary>
         /// Control TPassword.
@@ -78,22 +96,67 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox TPassword;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control BLeer_F.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Button BLeer_F;
 
         /// <summary>
-        /// Control BCrear.
+        /// Control BLeerP_F.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BCrear;
+        protected global::System.Web.UI.WebControls.Button BLeerP_F;
+
+        /// <summary>
+        /// Control BLeerA_F.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BLeerA_F;
+
+        /// <summary>
+        /// Control BLeerS_F.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BLeerS_F;
+
+        /// <summary>
+        /// Control BCrear_F.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BCrear_F;
+
+        /// <summary>
+        /// Control BActualizar_F.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BActualizar_F;
+
+        /// <summary>
+        /// Control BBorrar_F.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BBorrar_F;
 
         /// <summary>
         /// Control LResultado.
@@ -103,5 +166,14 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LResultado;
+
+        /// <summary>
+        /// Control GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

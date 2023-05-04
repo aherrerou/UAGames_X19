@@ -49,7 +49,7 @@ namespace library
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.createTema(this);
+            result = c.readTema(this);
             return result;
         }
         public bool readFirstTema()
@@ -63,28 +63,28 @@ namespace library
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.readNextTema(this);
             return result;
         }
         public bool readPrevTema()
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.readPrevTema(this);
             return result;
         }
         public bool updateTema()
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.updateTema(this);
             return result;
         }
         public bool deleteTema()
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.deleteTema(this);
             return result;
         }
     }

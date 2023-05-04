@@ -184,7 +184,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["foroID"] == tema.foro.id)
+                    if ((int)dr["id"] == tema.id)
                     {
                         if (titulo == "blank")
                             throw new Exception("No se ha encontrado un tema anterior");
