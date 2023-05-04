@@ -3,22 +3,76 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
 
-    <div>
-        <p>
-            id: &nbsp;<asp:TextBox ID="text_id" runat="server" Height="20px" style="margin-top: 5px; margin-left: 25px;" Width="200px"></asp:TextBox>
-        </p>
+ 
+<!DOCTYPE html>
 
-        <p>
-            Nombre: &nbsp;<asp:TextBox ID="text_nombre" runat="server" Height="20px" style="margin-top: 5px; margin-left: 25px;" Width="200px"></asp:TextBox>
-        </p>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-        <p>
-            Descripción: &nbsp;<asp:TextBox ID="text_descripcion" runat="server" Height="20px" style="margin-top: 5px; margin-left: 25px;" Width="200px"></asp:TextBox>
-        </p>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Crear Categoría</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        input[type=text], textarea {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 3px;
+            background-color: #eaeaea;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+<main>
 
-        <asp:Button text="Crear Categoría" ID="buttom_Crear" runat="server" />
-        <asp:Button text="Mostrar Categorías" ID="buttom_cat" runat="server" />
+    <form id="form1">
+        <div class="form-container">
+            <h2>Crear Categoría</h2>
+            <div>
+                <label for="txtId">ID:</label>
+                <asp:TextBox ID="txtId" runat="server"></asp:TextBox>
+            </div>
+            <div>
+                <label for="txtNombre">Nombre:</label>
+                <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+            </div>
+            <div>
+                <label for="txtDescripcion">Descripción:</label>
+                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
+            </div>
+            <div>
+                <asp:Button ID="btnCrearCategoria" runat="server" Text="Crear Categoría" OnClick="btnCrearCategoria_Click" />
+            </div>
+        </div>
+    </form>
 
-    </div>
+</main>
+</html>
 
 </asp:Content>
+
+

@@ -33,14 +33,14 @@
       </div>
     </div>
 </header>
-</form>
+
 
     <div>
         <asp:ContentPlaceHolder ID="main" runat="server">
 
         </asp:ContentPlaceHolder>
     </div>
-
+</form>
     
      <footer>
     <div class="content">
