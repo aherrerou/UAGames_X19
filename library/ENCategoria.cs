@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,12 @@ namespace library
             bool res = true;
             res = categoria.deleteCategoria(this);
             return res;
+        }
+
+        public DataTable readCategoriasNombre()
+        {
+            CADCategoria categoria = new CADCategoria();
+            return categoria.readCategoriasNombre();
         }
     }
 }

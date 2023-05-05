@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,8 @@ namespace web
             if (!Page.IsPostBack)
             {
                 FillVideojuegosTable();
+                FillProductorasDropdown();
+                FillCategoriasDropdown();
             }
         }
 
@@ -29,6 +32,30 @@ namespace web
             ENVideojuego videojuego = new ENVideojuego();
             videojuegoTable.DataSource = videojuego.readVideojuegos();
             videojuegoTable.DataBind();
+        }
+
+        protected void FillProductorasDropdown()
+        {
+            ENProductora productora = new ENProductora();
+            DataTable dt = productora.readProductorasNombre();
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
+                productorasList.Items.Add(i);
+            }
+        }
+
+        protected void FillCategoriasDropdown()
+        {
+            ENCategoria categoria = new ENCategoria();
+            DataTable dt = categoria.readCategoriasNombre();
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
+                categoriasList.Items.Add(i);
+            }
         }
 
         protected void clickRowEditVideojuego(object sender, GridViewEditEventArgs e)
@@ -86,10 +113,22 @@ namespace web
             }
         }
 
-        protected void clickOnInsertVideojuego(object sender, EventArgs e)
+        protected void ProductoraSelectionChange(object sender, EventArgs e)
         {
 
         }
+
+        protected void CategoriaSelectionChange(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void crearVideojuegoClick(object sender, EventArgs e)
+        {
+
+        }
+
+
 
     }
 }

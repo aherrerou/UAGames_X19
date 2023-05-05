@@ -90,6 +90,49 @@ main .showGrid {
     overflow-x: auto;
 }
 
+    main .showGrid .crearFlex {
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        
+    }
+
+        main .showGrid .crearFlex input {
+            background-color: #fff !important;
+            color: #0A2558 !important;
+            font-weight: 500 !important;
+            font-size: 18px !important;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: break-word;
+        }
+
+        main .showGrid .crearFlex input:hover {
+            background-color: #fff !important;
+            color: #0A2558 !important;
+            font-weight: 500 !important;
+            font-size: 18px !important;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: break-word;
+        }
+
+        main .showGrid .crearFlex .flexIzq {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            padding-right: 5%;
+        }
+
+        main .showGrid .crearFlex .flexDer {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            padding-left: 5%;
+        }
+
 .grid {
     width: 100%;
     text-align: center;

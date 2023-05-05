@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -152,6 +153,36 @@ namespace library
             }
 
             return true;
+        }
+
+        public DataTable readCategoriasNombre()
+        {
+            SqlConnection connection = null;
+            DataTable categorias = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(conexionBBDD);
+                connection.Open();
+
+                string sentence = "SELECT nombre, id FROM [Categoria];";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(categorias);
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading categorias operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading categorias operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return categorias;
         }
     }
 }
