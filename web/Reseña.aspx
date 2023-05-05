@@ -48,13 +48,11 @@
             padding: 0;
             background-color: #f8f8f8;
         }
-
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-
         h1 {
             font-size: 3rem;
             margin: 0 0 30px;
@@ -62,28 +60,19 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-
         ul#reseñas {
             list-style: none;
             margin: 0;
             padding: 0;
         }
-
         .reseña-contenido {
             width: 80%;
         }
-
-        .reseña-foto {
-            width: 50%;
-            text-align: right;
-        }
-
        .img-reseña{
             height:150px;
             width: 150px;
             
         }
-
         .reseña {
             display: flex;
             padding: 20px;
@@ -94,40 +83,27 @@
             border-radius: 5px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
-
         .reseña-titulo {
             font-size: 25px;
             font-weight: bold;
             margin: 20px 0 10px;
         }
-
         .reseña-descripcion {
             flex-grow: 1;
             margin: 5px;
             font-size: 18px;
             color: #666;
         }
-
         .reseña-datosgen {
             margin-top: 10px;
             font-size: 14px;
             color: #999;
         }
-
-        .reseña-enlace {
-            color: #0080FF;
-            font-weight: bold;
-            text-decoration: none;
-            margin-top: 10px;
-            align-self: flex-end;
-        }
-
         h2 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-
         h3 {
               font-size: 14px;
               font-weight:bold;
@@ -138,7 +114,6 @@
             margin-top: 10px;
             flex-grow: 1;
         }
-
         a {
             color: #0080FF;
             font-weight: bold;
