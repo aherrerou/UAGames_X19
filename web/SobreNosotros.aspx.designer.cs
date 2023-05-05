@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class Inicio
+    public partial class SobreNosotros
     {
     }
 }
