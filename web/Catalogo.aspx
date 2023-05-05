@@ -40,15 +40,18 @@
                         </asp:hyperlink>
                         
                         <div class="card-body">
-                            <a href="#">
-                            <h6><%# Eval("productora") %></h6>
-                            </a>
+                            <asp:Hyperlink id="linkProductora" runat="server" Text='<%# Eval("productora") %>' NavigateUrl='<%#$"Productora.aspx?id={Eval("id")}" %>'/>
                             <a href="#">
                             <h6><%# Eval("categoria") %></h6>
                             </a>
                             <h6><%# Eval("plataforma") %></h6>
                             <h6><%# Eval("precio") %> €</h6>
-                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <div class="botones">
+                                <asp:ImageButton id="addCart" runat="server" AlternateText="Add Cart" ImageAlign="middle"
+                                ImageUrl="assets/imagenes/iconos/cartAdd.png"/>
+                                <asp:ImageButton id="addList" runat="server" AlternateText="Add List" ImageAlign="middle"
+                                ImageUrl="assets/imagenes/iconos/addList.png"/>
+                            </div>
                         </div>
                     </div>
                 </td>
