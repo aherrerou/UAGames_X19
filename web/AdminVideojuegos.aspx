@@ -44,7 +44,7 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-
+            <br />
             <h2>Crear videojuego</h2>
             <div class="crearFlex">
                 <div class="flexIzq">
