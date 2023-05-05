@@ -89,8 +89,10 @@
     <Content Include="assets\imagenes\videojuegos\GTAV.jpg" />
     <Content Include="Catalogo.aspx" />
     <Content Include="Compras.aspx" />
+    <Content Include="NoticiaWF.aspx" />
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />
+    <Content Include="ProductoraWebForm.aspx" />
     <Content Include="SobreNosotros.aspx" />
     <Content Include="CatalogoPrueba.aspx" />
     <Content Include="Terminos.aspx" />
@@ -128,6 +130,13 @@
     <Compile Include="Compras.aspx.designer.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
     </Compile>
+    <Compile Include="NoticiaWF.aspx.cs">
+      <DependentUpon>NoticiaWF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticiaWF.aspx.designer.cs">
+      <DependentUpon>NoticiaWF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PreguntasFrec.aspx.cs">
       <DependentUpon>PreguntasFrec.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -141,6 +150,13 @@
     </Compile>
     <Compile Include="Privacidad.aspx.designer.cs">
       <DependentUpon>Privacidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoraWebForm.aspx.cs">
+      <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductoraWebForm.aspx.designer.cs">
+      <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">

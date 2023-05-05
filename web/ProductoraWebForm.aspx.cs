@@ -13,7 +13,7 @@ namespace web
         {
 
         }
-        protected void btnCrearProductora_Click()
+        protected void btnCrearProductora_Click(object sender, EventArgs e)
         {
 
         }

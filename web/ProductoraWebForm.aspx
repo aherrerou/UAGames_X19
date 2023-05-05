@@ -68,7 +68,7 @@
                 <asp:TextBox ID="TxtWeb" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
             <div>
-                <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Categoría" OnClick="btnCrearProductora_Click" />
+              <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="btnCrearProductora_Click" />
             </div>
         </div>
     </form>
