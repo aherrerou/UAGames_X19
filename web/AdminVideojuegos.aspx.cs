@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,8 @@ namespace web
             if (!Page.IsPostBack)
             {
                 FillVideojuegosTable();
+                FillProductorasDropdown();
+                FillCategoriasDropdown();
             }
         }
 
@@ -29,6 +32,30 @@ namespace web
             ENVideojuego videojuego = new ENVideojuego();
             videojuegoTable.DataSource = videojuego.readVideojuegos();
             videojuegoTable.DataBind();
+        }
+
+        protected void FillProductorasDropdown()
+        {
+            ENProductora productora = new ENProductora();
+            DataTable dt = productora.readProductorasNombre();
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
+                productorasList.Items.Add(i);
+            }
+        }
+
+        protected void FillCategoriasDropdown()
+        {
+            ENCategoria categoria = new ENCategoria();
+            DataTable dt = categoria.readCategoriasNombre();
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
+                categoriasList.Items.Add(i);
+            }
         }
 
         protected void clickRowEditVideojuego(object sender, GridViewEditEventArgs e)
@@ -48,7 +75,26 @@ namespace web
 
         protected void clickRowUpdateVideojuego(object sender, GridViewUpdateEventArgs e)
         {
+            ENVideojuego videojuego = new ENVideojuego();
+            videojuego.Id = Int32.Parse(videojuegoTable.Rows[e.RowIndex].Cells[0].Text);
+            videojuego.Titulo = videojuegoTable.Rows[e.RowIndex].Cells[1].Text;
+            //ToDo resolver actualizar productora  y categoria en videojuego
+            ENProductora productora = new ENProductora();
+            productora.Nombre = videojuegoTable.Rows[e.RowIndex].Cells[2].Text;
+            videojuego.Productora = productora;
 
+            ENCategoria categoria = new ENCategoria();
+            categoria.nombre = videojuegoTable.Rows[e.RowIndex].Cells[3].Text;
+            videojuego.Categoria = categoria;
+
+            videojuego.FechaLanzamiento = DateTime.Parse(videojuegoTable.Rows[e.RowIndex].Cells[4].Text);
+            videojuego.Precio = Double.Parse(videojuegoTable.Rows[e.RowIndex].Cells[5].Text);
+            videojuego.Plataforma = videojuegoTable.Rows[e.RowIndex].Cells[6].Text;
+            videojuego.Imagen = videojuegoTable.Rows[e.RowIndex].Cells[7].Text;
+            videojuego.Descripcion = videojuegoTable.Rows[e.RowIndex].Cells[8].Text;
+
+            videojuegoTable.DataSource = videojuego.updateVideojuego(videojuegoTable.SelectedIndex);
+            videojuegoTable.DataBind();
         }
 
         protected void clickRowDeleteVideojuego(object sender, GridViewDeleteEventArgs e)
@@ -67,24 +113,22 @@ namespace web
             }
         }
 
-        protected void clickOnInsertVideojuego(object sender, EventArgs e)
+        protected void ProductoraSelectionChange(object sender, EventArgs e)
         {
 
         }
 
-        protected string Crop(string text, int maxLength)
+        protected void CategoriaSelectionChange(object sender, EventArgs e)
         {
-            if (text == null)
-            {
-                return string.Empty;
-            }
 
-            if (text.Length < maxLength)
-            {
-                return text;
-            }
-
-            return text.Substring(0, maxLength);
         }
+
+        protected void crearVideojuegoClick(object sender, EventArgs e)
+        {
+
+        }
+
+
+
     }
 }

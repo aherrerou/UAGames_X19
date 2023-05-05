@@ -60,7 +60,6 @@ CREATE TABLE [dbo].[Noticia] (
   [titulo] VARCHAR(255),
   [fecha_public] DATE,
   [contenido] TEXT,
-  [imagen] VARCHAR(255),
   [productoraID] INT NOT NULL,
   FOREIGN KEY ([productoraID]) REFERENCES Productora([id]) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -68,7 +67,7 @@ CREATE TABLE [dbo].[Noticia] (
 CREATE TABLE [dbo].[Oferta] (
   [id] INT IDENTITY(1,1) PRIMARY KEY,
   [nombre] VARCHAR(255) UNIQUE NOT NULL,
-  [descuento] INT,
+  [descuento] DECIMAL(5,2),
   [fecha_inicio] DATE,
   [fecha_fin] DATE,
   [videojuegoID] INT NOT NULL,

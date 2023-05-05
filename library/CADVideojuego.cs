@@ -367,6 +367,100 @@ namespace library
 
         }
 
+        //Actualizar videojuego en modo desconectado
+        public DataTable updateVideojuego(ENVideojuego en, int i)
+        {
+            SqlConnection connection = null;
+            DataTable videojuegos = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(constring);
+                connection.Open();
+
+                string sentence = " ";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(videojuegos);
+
+                videojuegos.Rows[i]["titulo"] = en.Titulo;
+                videojuegos.Rows[i]["descripcion"] = en.Descripcion;
+                videojuegos.Rows[i]["plataforma"] = en.Plataforma;
+                videojuegos.Rows[i]["precio"] = en.Precio;
+                videojuegos.Rows[i]["imagen"] = en.Imagen;
+                videojuegos.Rows[i]["fecha_lazamiento"] = en.FechaLanzamiento.ToString("yyyy-MM-dd");
+                videojuegos.Rows[i]["titulo"] = en.Titulo;
+
+
+                SqlCommandBuilder cbuilder = new SqlCommandBuilder(adapter);
+                adapter.Update(videojuegos);
+
+                return videojuegos;
+
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Updating videojuego operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Updating videojuego operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return videojuegos;
+        }
+
+
+        //Eliminar videojuego en modo desconectado
+        public DataTable deleteVideojuego(ENVideojuego en, int i)
+        {
+            SqlConnection connection = null;
+            DataTable videojuegos = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(constring);
+                connection.Open();
+
+                string sentence = " ";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(videojuegos);
+
+                videojuegos.Rows[i]["titulo"] = en.Titulo;
+                videojuegos.Rows[i]["descripcion"] = en.Descripcion;
+                videojuegos.Rows[i]["plataforma"] = en.Plataforma;
+                videojuegos.Rows[i]["precio"] = en.Precio;
+                videojuegos.Rows[i]["imagen"] = en.Imagen;
+                videojuegos.Rows[i]["fecha_lazamiento"] = en.FechaLanzamiento.ToString("yyyy-MM-dd");
+                videojuegos.Rows[i]["titulo"] = en.Titulo;
+
+
+                SqlCommandBuilder cbuilder = new SqlCommandBuilder(adapter);
+                adapter.Update(videojuegos);
+
+                return videojuegos;
+
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Updating videojuego operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Updating videojuego operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return videojuegos;
+        }
+
+
         //Eliminar videojuego
         public bool deleteVideojuego(ENVideojuego en)
         {

@@ -23,15 +23,15 @@
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
               <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
-              <asp:MenuItem Text="Ofertas" NavigateUrl="#" />
-              <asp:MenuItem Text="Noticias" NavigateUrl="AdminVideojuegos.aspx" />
-              <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
+              <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
+              <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
+              <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
         </asp:Menu>   
       </div>
       <div class="header-right">
-          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server" OnClick="BtnIniciarSesion_Click"/>
-          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server" OnClick="BtnRegistrarse_Click"/>
+          <asp:Hyperlink id="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" NavigateUrl="Inicia_Sesion.aspx" runat="server"/>
+          <asp:Hyperlink id="BtnRegistrarse" CssClass="button" Text="Registrarse" NavigateUrl="Registrar.aspx" runat="server"/>
       </div>
     </div>
 </header>
@@ -49,7 +49,7 @@
            <ul class="box">
           <li class="link_name">Servicios</li>
           <li><a href="Catalogo.aspx">Catálogo</a></li>
-            <li><a href="#">Ofertas</a></li>
+            <li><a href="AdminOfertas.aspx">Ofertas</a></li>
           <li><a href="#">Noticias</a></li>
         </ul>
         <ul class="box">

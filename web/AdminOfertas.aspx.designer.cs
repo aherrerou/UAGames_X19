@@ -11,35 +11,53 @@ namespace web
 {
 
 
-    public partial class AdminVideojuegos
+    public partial class AdminOfertas
     {
 
         /// <summary>
-        /// Control videojuegoTable.
+        /// Control ofertasTable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView videojuegoTable;
+        protected global::System.Web.UI.WebControls.GridView ofertasTable;
 
         /// <summary>
-        /// Control nuevoTitulo.
+        /// Control nuevoNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevoTitulo;
+        protected global::System.Web.UI.WebControls.TextBox nuevoNombre;
 
         /// <summary>
-        /// Control nuevaFechaLanzamiento.
+        /// Control nuevaFechaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevaFechaLanzamiento;
+        protected global::System.Web.UI.WebControls.TextBox nuevaFechaInicio;
+
+        /// <summary>
+        /// Control nuevaFechaFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox nuevaFechaFin;
+
+        /// <summary>
+        /// Control nuevaProductora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox nuevaProductora;
 
         /// <summary>
         /// Control productorasList.
@@ -51,48 +69,39 @@ namespace web
         protected global::System.Web.UI.WebControls.DropDownList productorasList;
 
         /// <summary>
-        /// Control categoriasList.
+        /// Control nuevoVideojuego.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList categoriasList;
+        protected global::System.Web.UI.WebControls.TextBox nuevoVideojuego;
 
         /// <summary>
-        /// Control nuevoPrecio.
+        /// Control nuevoDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevoPrecio;
+        protected global::System.Web.UI.WebControls.TextBox nuevoDescuento;
 
         /// <summary>
-        /// Control nuevoPlataforma.
+        /// Control videojuegosList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevoPlataforma;
+        protected global::System.Web.UI.WebControls.DropDownList videojuegosList;
 
         /// <summary>
-        /// Control nuevaDescripcion.
+        /// Control crearOferta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevaDescripcion;
-
-        /// <summary>
-        /// Control crearVideojuego.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button crearVideojuego;
+        protected global::System.Web.UI.WebControls.Button crearOferta;
     }
 }
