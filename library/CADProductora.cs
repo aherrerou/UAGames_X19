@@ -17,7 +17,7 @@ namespace library
         private SqlConnection con;
         public CADProductora()
         {
-            datos = ConfigurationManager.ConnectionStrings["Database"].ToString();
+            datos = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
             con = null;
         }
         public bool readProductora(ENProductora en)
@@ -248,6 +248,35 @@ namespace library
             return del;
         }
 
+        public DataTable readProductorasNombre()
+        {
+            SqlConnection connection = null;
+            DataTable productoras = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(datos);
+                connection.Open();
+
+                string sentence = "SELECT nombre, id FROM [Productora];";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(productoras);
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return productoras;
+        }
 
     }
 }

@@ -8,22 +8,35 @@ namespace library
 {
     public class ENTema
     {
+        private int id_interno;
         private string titulo_interno;
-        private int foroID_interno;
+        private ENForo foro_interno;
+        public int id
+        {
+            get { return id_interno; }
+            set { id_interno = value; }
+        }
         public string titulo
         {
             get { return titulo_interno; }
             set { titulo_interno = value; }
         }
-        public int foroID
+        public ENForo foro
         {
-            get { return foroID_interno; }
-            set { foroID_interno = value; }
+            get { return foro_interno; }
+            set { foro_interno = value; }
         }
         public ENTema()
         {
-            this.titulo = "blank";
-            this.foroID = 0;
+            id = 0;
+            titulo = "blank";
+            foro = new ENForo();
+        }
+        public ENTema(int id, string titulo, ENForo foro)
+        {
+            this.id = id;
+            this.titulo = titulo;
+            this.foro = foro;
         }
         public bool createTema()
         {
@@ -36,7 +49,7 @@ namespace library
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.createTema(this);
+            result = c.readTema(this);
             return result;
         }
         public bool readFirstTema()
@@ -50,28 +63,28 @@ namespace library
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.readNextTema(this);
             return result;
         }
         public bool readPrevTema()
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.readPrevTema(this);
             return result;
         }
         public bool updateTema()
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.updateTema(this);
             return result;
         }
         public bool deleteTema()
         {
             bool result = true;
             CADTema c = new CADTema();
-            result = c.readFirstTema(this);
+            result = c.deleteTema(this);
             return result;
         }
     }

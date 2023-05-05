@@ -16,7 +16,7 @@ namespace library
 
         public CADForo()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
+            conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
             c = null;
         }
 

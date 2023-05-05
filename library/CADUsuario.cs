@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
 
 namespace library
 {
@@ -16,7 +17,7 @@ namespace library
 
         public CADUsuario()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
+            conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
             c = null;
         }
 
@@ -54,7 +55,7 @@ namespace library
         public bool readUsuario(ENUsuario usuario) //busca un usuario por su nick, que es único
         {
             bool sigue_while = true;
-            string query = "Select * from Usuario where nick = " + usuario.nick;
+            string query = "Select * from Usuario where nick = '" + usuario.nick + "'";
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -66,6 +67,7 @@ namespace library
                     if (dr["nick"].ToString() == usuario.nick)
                     {
                         sigue_while = false;
+                        usuario.id = (int)dr["id"];
                         usuario.nombre = dr["nombre"].ToString();
                         usuario.apellidos = dr["apellidos"].ToString();
                         usuario.email = dr["email"].ToString();
@@ -107,6 +109,7 @@ namespace library
                 SqlCommand com = new SqlCommand(query, c);
                 SqlDataReader dr = com.ExecuteReader();
                 dr.Read();
+                usuario.id = (int)dr["id"];
                 usuario.nick = dr["nick"].ToString();
                 usuario.nombre = dr["nombre"].ToString();
                 usuario.apellidos = dr["apellidos"].ToString();
@@ -153,6 +156,7 @@ namespace library
                         bool siguiente = dr.Read(); //pasa al siguiente campo
                         if (siguiente == true)
                         {
+                            usuario.id = (int)dr["id"];
                             usuario.nick = dr["nick"].ToString();
                             usuario.nombre = dr["nombre"].ToString();
                             usuario.apellidos = dr["apellidos"].ToString();
@@ -191,6 +195,7 @@ namespace library
             bool sigue_while = true;
             string query = "Select * from Usuario";
 
+            int id = 0;
             string nick = "blank";
             string nom = "blank";
             string apellidos = "blank";
@@ -213,6 +218,7 @@ namespace library
                         if (nick == "blank")
                             throw new Exception("No se ha encontrado un usuario anterior");
                         sigue_while = false;
+                        usuario.id = id;
                         usuario.nick = nick;
                         usuario.nombre = nom;
                         usuario.apellidos = apellidos;
@@ -224,6 +230,7 @@ namespace library
                     }
                     else
                     {
+                        id = (int)dr["id"];
                         nick = dr["nick"].ToString();
                         nom = dr["nombre"].ToString();
                         apellidos = dr["apellidos"].ToString();
@@ -254,12 +261,12 @@ namespace library
             return true;
         }
 
-        public bool updateUsuario(ENUsuario usuario) //actualiza los datos de un usuario según su email, ya que el nick puede cambiar
+        public bool updateUsuario(ENUsuario usuario) //actualiza los datos de un usuario según su nick
         {
             string fechaFormatoCorrecto = usuario.fecha_nac.ToString("yyyy-MM-dd");
             string query_comprueba = "Select * from Usuario";
-            string query = "Update Usuario set nick = '" + usuario.nick + "', nombre = '" + usuario.nombre + "', apellidos = '" + usuario.apellidos + "', password = '" + usuario.password
-                 + "', fecha_nacimiento = '" + fechaFormatoCorrecto + "', telefono = '" + usuario.telef + "', rol = '" + usuario.rol + "' where email = '" + usuario.email + "'";
+            string query = "Update Usuario set nombre = '" + usuario.nombre + "', apellidos = '" + usuario.apellidos + "', email = '" + usuario.email + "', password = '" + usuario.password
+                 + "', fecha_nacimiento = '" + fechaFormatoCorrecto + "', telefono = '" + usuario.telef + "', rol = '" + usuario.rol + "' where nick = '" + usuario.nick + "'";
             bool sigue_while = true;
             try
             {
@@ -269,13 +276,13 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if (dr["email"].ToString() == usuario.email)
+                    if (dr["nick"].ToString() == usuario.nick)
                     {
                         sigue_while = false;
                     }
                 }
                 if (sigue_while == true)
-                    throw new Exception("No se ha encontrado un usuario con el mismo email");
+                    throw new Exception("No se ha encontrado un usuario con el mismo nick");
                 dr.Close();
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
@@ -340,6 +347,15 @@ namespace library
                     c.Close();
             }
             return true;
+        }
+        public DataSet listarClientesD()
+        {
+            DataSet bdvirtual = new DataSet();
+
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            SqlDataAdapter da = new SqlDataAdapter("select * from Usuario", c);
+            da.Fill(bdvirtual, "Usuario");
+            return bdvirtual;
         }
     }
 }
