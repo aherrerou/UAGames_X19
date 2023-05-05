@@ -5,7 +5,10 @@
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>UAGames</title>
+    <link rel="icon" type="image/png" sizes="24x24" href="~/assets/imagenes/iconos/game.png">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="~/assets/css/StyleSheet1.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -14,67 +17,71 @@
     <form id="form1" runat="server">
     <header>
     <div class="header">
-      <a href="#" class="logo">UA Games</a>
+      <a href="Inicio.aspx" class="logo">UA Games</a>
       <div class="header-menu">
         <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
-              <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
-              <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
-              <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
-              <asp:MenuItem Text="Noticias" NavigateUrl="/" />
-              <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
+              <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
+              <asp:MenuItem Text="Ofertas" NavigateUrl="#" />
+              <asp:MenuItem Text="Noticias" NavigateUrl="AdminVideojuegos.aspx" />
+              <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
         </asp:Menu>   
       </div>
       <div class="header-right">
-          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server" OnClick="BtnIniciarSesion_Click"/>
-          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server" OnClick="BtnRegistrarse_Click"/>
+          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server"/>
+          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server"/>
       </div>
     </div>
 </header>
-    <div>
+
+
         <asp:ContentPlaceHolder ID="main" runat="server">
 
         </asp:ContentPlaceHolder>
-    </div>
-</form>
-
 
     
      <footer>
     <div class="content">
       <div class="link-boxes">
-      <a href="#" class="logo">UA Games</a>
-        <ul class="box">
-          <li class="link_name">Compañia</li>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Sobre nosotros</a></li>
-            <li><a href="#">Preguntas frecuentes</a></li>
-        </ul>
-        <ul class="box">
+      <a href="Inicio.aspx" class="logo">UA Games</a>
+           <ul class="box">
           <li class="link_name">Servicios</li>
-          <li><a href="#">Comprar videojuegos</a></li>
+          <li><a href="Catalogo.aspx">Catálogo</a></li>
             <li><a href="#">Ofertas</a></li>
-          <li><a href="#">Lista más vendidos</a></li>
+          <li><a href="#">Noticias</a></li>
         </ul>
         <ul class="box">
             <li class="link_name">Más servicios</li>
-            <li><a href="#">Noticias</a></li>
             <li><a href="#">Foro</a></li>
-            <li><a href="#">:)</a></li>
+            <li><a href="PreguntasFrec.aspx">Preguntas frecuentes</a></li>
+           
         </ul>
+        <ul class="box">
+          <li class="link_name">Compañía</li>
+          <li><a href="Contacto.aspx">Contacto</a></li>
+          <li><a href="SobreNosotros.aspx">Sobre nosotros</a></li>
+          <li><a href="#">Redes Sociales</a></li>
+        </ul>
+       
       </div>
     </div>
     <div class="bottom-details">
       <div class="bottom_text">
         <span class="copyright_text">Copyright © 2023 <a href="#">UAGames.</a>Todos los derechos reservados</span>
         <span class="policy_terms">
-          <a href="#">Política de privacidad</a>
-          <a href="#">Términos y condiciones</a>
+          <a href="Privacidad.aspx">Política de privacidad</a>
+          <a href="Terminos.aspx">Términos y condiciones</a>
         </span>
       </div>
     </div>
   </footer>
-</body>
+        </form>
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </html>

@@ -12,7 +12,7 @@ namespace library
 
         public CADOferta()
         {
-            constring = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
+            constring = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
 
         //Crear oferta
@@ -69,10 +69,19 @@ namespace library
             bool leido = false;
             SqlConnection connection = null;
             SqlDataReader dr = null;
+
+            SqlConnection connectionProductora = null;
+            SqlDataReader drProductora = null;
+
             try
             {
                 connection = new SqlConnection(constring);
                 connection.Open();
+
+                connectionProductora = new SqlConnection(constring);
+                connectionProductora.Open();
+
+
                 string sentence = "SELECT * FROM [Oferta] WHERE nombre = @nombre";
                 SqlCommand com = new SqlCommand(sentence, connection);
                 com.Parameters.AddWithValue("@nombre", en.Nombre);
@@ -91,18 +100,18 @@ namespace library
                     ENProductora productora = new ENProductora();
                     productora.Id = Int32.Parse(dr["productoraID"].ToString());
 
-                    /*
+                    
                     sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
-                    com = new SqlCommand(sentence, connection);
-                    dr = com.ExecuteReader();
+                    SqlCommand comProd = new SqlCommand(sentence, connectionProductora);
+                    drProductora = comProd.ExecuteReader();
 
-                    if (dr.Read())
+                    if (drProductora.Read())
                     {
                         productora.Nombre = dr["nombre"].ToString(); ;
                         productora.Descripcion = dr["descripcion"].ToString();
                         productora.Imagen = dr["Imagen"].ToString();
                         productora.Web = dr["Web"].ToString();
-                    }*/
+                    }
 
                     en.Productora = productora;
 
@@ -110,42 +119,10 @@ namespace library
                     ENVideojuego videojuego = new ENVideojuego();
                     videojuego.Id = Int32.Parse(dr["videojuegoID"].ToString());
 
-                    /*
-                    //Se lee la videojuego a partir de su ID
-                    sentence = "SELECT * FROM [Videojuego] WHERE id = " + videojuego.Id + ";";
-                    //Se obtiene Id de la productora
-                    com = new SqlCommand(sentence, connection);
-                    dr = com.ExecuteReader();
 
-                    if (dr.Read())
-                    {
-                        videojuego.Titulo = dr["titulo"].ToString();
-                        videojuego.Descripcion = dr["descripcion"].ToString();
-                        videojuego.FechaLanzamiento = DateTime.Parse(dr["fecha_lanzamiento"].ToString());
-                        videojuego.Plataforma = dr["plataforma"].ToString();
-                        videojuego.Precio = Double.Parse(dr["precio"].ToString());
-                        videojuego.Imagen = dr["imagen"].ToString();
-                        videojuego.Productora = productora;
-
-                        //Lectura de la categoria
-                        ENCategoria cat = new ENCategoria();
-                        cat.Id = Int32.Parse(dr["categoriaID"].ToString());
-
-                        //Se lee la categoria a partir de su ID
-                        sentence = "SELECT * FROM [Categoria] WHERE id = " + cat.Id + ";";
-                        //Se obtiene Id de la productora
-                        com = new SqlCommand(sentence, connection);
-                        dr = com.ExecuteReader();
-
-                        if (dr.Read())
-                        {
-                            cat.Nombre = dr["nombre"].ToString(); ;
-                            cat.Descripcion = dr["descripcion"].ToString();
-                        }
-
-                        videojuego.Categoria = cat;
-
-                    }*/
+                    //Se lee el videojuego a partir de su ID
+                    CADVideojuego cad = new CADVideojuego();
+                    cad.readVideojuegoId(videojuego);
 
                     en.Videojuego = videojuego;
 
