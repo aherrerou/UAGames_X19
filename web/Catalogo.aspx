@@ -35,9 +35,9 @@
             <ItemTemplate>
                 <td>
                     <div class="card">
-                        <a href='<%#$"Videojuego.aspx?id={Eval("id")}" %>'
-                            <img src='<%# Eval("imagen") %>' class="card-img-top" alt="Card image cap">
-                        </a>
+                        <asp:hyperlink id="link" runat="server" href='<%#$"Videojuego.aspx?id={Eval("id")}" %>'
+			    <asp:image id="imagenCard" runat="server" imageurl='<%# Eval("imagen") %>' alt="Card image cap" CssClass="card-img-top"/>
+                        </asp:hyperlink>
                         
                         <div class="card-body">
                             <a href="#">

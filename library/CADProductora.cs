@@ -17,7 +17,7 @@ namespace library
         private SqlConnection con;
         public CADProductora()
         {
-            datos = ConfigurationManager.ConnectionStrings["Database"].ToString();
+            datos = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
             con = null;
         }
         public bool readProductora(ENProductora en)

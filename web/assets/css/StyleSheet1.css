@@ -64,7 +64,7 @@ main .tableVideojuegos{
             object-fit: cover;
         }
 
-main .videojuegosGrid {
+main .showGrid {
     display: flex;
     flex-direction: column;
     overflow-x: auto;

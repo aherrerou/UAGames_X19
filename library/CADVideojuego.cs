@@ -12,7 +12,7 @@ namespace library
 
         public CADVideojuego()
         {
-            constring = ConfigurationManager.ConnectionStrings["database"].ToString();
+            constring = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
 
         //Crear videojuego
@@ -34,7 +34,7 @@ namespace library
 
                 com.Parameters.AddWithValue("@titulo", en.Titulo);
                 com.Parameters.AddWithValue("@descripcion", en.Descripcion);
-                com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
+                com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
                 com.Parameters.AddWithValue("@precio", en.Precio);
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
@@ -334,7 +334,7 @@ namespace library
 
                 com.Parameters.AddWithValue("@titulo", en.Titulo);
                 com.Parameters.AddWithValue("@descripcion", en.Descripcion);
-                com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
+                com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
                 com.Parameters.AddWithValue("@precio", en.Precio);
                 com.Parameters.AddWithValue("@imagen", en.Imagen);

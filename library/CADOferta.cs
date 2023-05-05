@@ -12,7 +12,7 @@ namespace library
 
         public CADOferta()
         {
-            constring = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
+            constring = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
 
         //Crear oferta
