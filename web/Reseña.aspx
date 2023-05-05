@@ -1,94 +1,150 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Reseña.aspx.cs" Inherits="web.Reseña" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-        <style>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #f8f8f8;
-        font-family: Arial, sans-serif;
-    }
+    <main>
+        <div class="showGrid">
+            <div class="reseña">
+                <div class="reseña-contenido">
+                    <h2 class="reseña-titulo">Battlefield 4 </h2>
+                    <p class="reseña-descripcion">Comentario de la reseña</p>
+                    <h3 class="reseña-descripcion">user </h3>
+                    <span class="reseña-datosgen">Calificación: 8/10</span>
+                    <span class="reseña-datosgen">Fecha: 03/05/2023</span>
+                </div>
+                <div class="reseña-foto">
+                    <img class="img-reseña" />
+                </div>
+            </div>
+            <div class="reseña">
+                <div class="reseña-contenido">
+                    <h2 class="reseña-titulo">Fifa 2023 </h2>
+                    <p class="reseña-descripcion">Comentario de la reseña</p>
+                    <h3 class="reseña-descripcion">user </h3>
+                    <span class="reseña-datosgen">Calificación: 7/10</span>
+                    <span class="reseña-datosgen">Fecha: 05/05/2023</span>
+                </div>
+                <div class="reseña-foto">
+                    <img class="img-reseña" />
+                </div>
+            </div>
+            <div class="reseña">
+                <div class="reseña-contenido">
+                    <h2 class="reseña-titulo">Call of Duty: Modern Warfare 3</h2>
+                    <p class="reseña-descripcion">Comentario de la reseña</p>
+                    <h3 class="reseña-descripcion">user </h3>
+                    <span class="reseña-datosgen">Calificación: 10/10</span>
+                    <span class="reseña-datosgen">Fecha: 07/05/2023</span>
+                </div>
+                <div class="reseña-foto">
+                    <img class="img-reseña" />
+                </div>
+            </div>
+         </div>
+    </main>
 
-    main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
 
-    h1 {
-        font-size: 3rem;
-        margin: 0 0 30px;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    th {
-        text-align: left;
-        padding: 10px;
-        background-color: #f2f2f2;
-        color: #333;
-        font-weight: bold;
-        border-bottom: 2px solid #ddd;
-    }
+        ul#reseñas {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
-    td {
-        text-align: left;
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-    }
+        .reseña-contenido {
+            width: 80%;
+        }
 
-    tr:hover {
-        background-color: #f5f5f5;
-    }
+        .reseña-foto {
+            width: 50%;
+            text-align: right;
+        }
 
-    #tablaReseñas tr:first-child:hover {
-        background-color: #fff;
-    }
+       .img-reseña{
+            height:150px;
+            width: 150px;
+            
+        }
 
-    #tablaReseñas tr:last-child td {
-        border-bottom: 0;
-    }
-</style>
+        .reseña {
+            display: flex;
+            padding: 20px;
+            width: 100%;
+            margin: 20px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-<main>
-    <table CssClass="tablaReseñas" runat="server">
-         <tr>
-            <th colspan="3" class="title">Listado de Reseñas</th>
-        </tr>
-        <tr>
-            <th>Producto</th>
-            <th>Comentario</th>
-            <th>Autor</th>
-        </tr>
-        <tr>
-            <td>Producto A</td>
-            <td>Muy bueno</td>
-            <td>Juan Pérez</td>
-        </tr>
-        <tr>
-            <td>Producto B</td>
-            <td>Regular</td>
-            <td>Ana Gómez</td>
-        </tr>
-        <tr>
-            <td>Producto C</td>
-            <td>Excelente</td>
-            <td>Pedro García</td>
-        </tr>
-    </table>
-</main>
+        .reseña-titulo {
+            font-size: 25px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+        }
 
-    </asp:Content>
+        .reseña-descripcion {
+            flex-grow: 1;
+            margin: 5px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .reseña-datosgen {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .reseña-enlace {
+            color: #0080FF;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+              font-size: 14px;
+              font-weight:bold;
+              margin-bottom: 10px;
+            }
+        p {
+            font-size: 18px;
+            margin-top: 10px;
+            flex-grow: 1;
+        }
+
+        a {
+            color: #0080FF;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+    </style>
+</asp:Content>
