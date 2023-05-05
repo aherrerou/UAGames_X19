@@ -152,6 +152,16 @@ main .contacto {
     width: 100%;
 }
 
+main .registro_inicio {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #0A2558;
+    font-size: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 input {
     text-align:center; 
     font-size:20px; 
