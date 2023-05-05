@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,23 +91,23 @@ namespace library
             Videojuego = videojuego;
         }
 
-        public bool addoferta()
+        public bool addOferta()
         {
             CADOferta cad = new CADOferta();
             return cad.addOferta(this);
 
         }
 
-        public bool readoferta()
+        public bool readOferta()
         {
             CADOferta cad = new CADOferta();
             return cad.readOferta(this);
         }
 
-        public bool readofertas(List<ENOferta> listaofertas)
+        public DataTable readOfertas()
         {
             CADOferta cad = new CADOferta();
-            return cad.readOfertas(listaofertas);
+            return cad.readOfertas();
         }
 
         public bool readofertasProductora(List<ENOferta> listaofertas, string productora)
