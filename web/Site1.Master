@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
     <header>
     <div class="header">
-      <a href="/" class="logo">UA Games</a>
+      <a href="#" class="logo">UA Games</a>
       <div class="header-menu">
         <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
             <staticmenuitemstyle horizontalpadding="20"/>
@@ -23,23 +23,23 @@
               <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
               <asp:MenuItem Text="Reseñas" NavigateUrl="/Reseña.aspx" />
               <asp:MenuItem Text="Noticias" NavigateUrl="/" />
-              <asp:MenuItem Text="Foro" NavigateUrl="/" />
+              <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
             </Items>
         </asp:Menu>   
       </div>
       <div class="header-right">
-          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server"/>
-          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server"/>
+          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server" OnClick="BtnIniciarSesion_Click"/>
+          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server" OnClick="BtnRegistrarse_Click"/>
       </div>
     </div>
 </header>
-</form>
-
     <div>
         <asp:ContentPlaceHolder ID="main" runat="server">
 
         </asp:ContentPlaceHolder>
     </div>
+</form>
+
 
     
      <footer>

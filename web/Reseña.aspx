@@ -1,119 +1,94 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reseña.aspx.cs" Inherits="web.Reseña" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Reseña.aspx.cs" Inherits="web.Reseña" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>UAGames</title>
-    <link rel="stylesheet" type="text/css" href="~/assets/css/StyleSheet1.css" />
-</head>
-<body>
-    <form id="form1" runat="server">
-        <header>
-            <div class="header">
-                <a href="../Inicio.aspx" class="logo">UA Games</a>
-                <div class="header-menu">
-                    <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
-                        <StaticMenuItemStyle HorizontalPadding="20" />
-                        <Items>
-                            <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
-                            <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
-                            <asp:MenuItem Text="Reseñas" NavigateUrl="/Reseña.aspx" />
-                            <asp:MenuItem Text="Noticias" NavigateUrl="/" />
-                            <asp:MenuItem Text="Foro" NavigateUrl="/" />
-                        </Items>
-                    </asp:Menu>
-                </div>
-                <div class="header-right">
-                    <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server" />
-                    <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server" />
-                </div>
-            </div>
-        </header>
-        <div class="main container">
-            <h2 class="title">Reseñas de videojuegos</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Reseña de juego 1</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae velit eleifend, dignissim tortor ut, vehicula quam. Nullam faucibus tristique dolor, eget feugiat quam. </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Leer más</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
-                                </div>
-                                <small class="text-muted">Valoración: 8/10</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Reseña de juego 2</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae velit eleifend, dignissim tortor ut, vehicula quam. Nullam faucibus tristique dolor, eget feugiat quam. </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Leer más</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
-                                </div>
-                                <small class="text-muted">Valoración: 9/10</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Reseña de juego 3</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae velit eleifend, dignissim tortor ut, vehicula quam. Nullam faucibus tristique dolor, eget feugiat quam. </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Leer más</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <footer>
-        <div class="content">
-            <div class="link-boxes">
-                <a href="#" class="logo">UA Games</a>
-                <ul class="box">
-                    <li class="link_name">Compañia</li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Preguntas frecuentes</a></li>
-                </ul>
-                <ul class="box">
-                    <li class="link_name">Servicios</li>
-                    <li><a href="#">Comprar videojuegos</a></li>
-                    <li><a href="#">Ofertas</a></li>
-                    <li><a href="#">Lista más vendidos</a></li>
-                </ul>
-                <ul class="box">
-                    <li class="link_name">Más servicios</li>
-                    <li><a href="#">Noticias</a></li>
-                    <li><a href="#">Foro</a></li>
-                    <li><a href="#">:)</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bottom-details">
-            <div class="bottom_text">
-                <span class="copyright_text">Copyright © 2023 <a href="#">UAGames.</a>Todos los derechos reservados</span>
-                <span class="policy_terms">
-                    <a href="#">Política de privacidad</a>
-                    <a href="#">Términos y condiciones</a>
-                </span>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+<asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+        <style>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin: 0 0 30px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    th {
+        text-align: left;
+        padding: 10px;
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        border-bottom: 2px solid #ddd;
+    }
+
+    td {
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    #tablaReseñas tr:first-child:hover {
+        background-color: #fff;
+    }
+
+    #tablaReseñas tr:last-child td {
+        border-bottom: 0;
+    }
+</style>
+
+<main>
+    <table CssClass="tablaReseñas" runat="server">
+         <tr>
+            <th colspan="3" class="title">Listado de Reseñas</th>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <th>Comentario</th>
+            <th>Autor</th>
+        </tr>
+        <tr>
+            <td>Producto A</td>
+            <td>Muy bueno</td>
+            <td>Juan Pérez</td>
+        </tr>
+        <tr>
+            <td>Producto B</td>
+            <td>Regular</td>
+            <td>Ana Gómez</td>
+        </tr>
+        <tr>
+            <td>Producto C</td>
+            <td>Excelente</td>
+            <td>Pedro García</td>
+        </tr>
+    </table>
+</main>
+
+    </asp:Content>
