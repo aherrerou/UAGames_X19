@@ -60,7 +60,7 @@ CREATE TABLE [dbo].[Noticia] (
   [titulo] VARCHAR(255),
   [fecha_public] DATE,
   [contenido] TEXT,
-  [imagen] VARCHAR(255)
+  [imagen] VARCHAR(255),
   [productoraID] INT NOT NULL,
   FOREIGN KEY ([productoraID]) REFERENCES Productora([id]) ON DELETE CASCADE ON UPDATE CASCADE
 );

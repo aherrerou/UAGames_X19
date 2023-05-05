@@ -77,6 +77,7 @@
     <Content Include="assets\imagenes\iconos\cartAdd.png" />
     <Content Include="assets\imagenes\iconos\edit.png" />
     <Content Include="assets\imagenes\iconos\eraser.png" />
+    <Content Include="assets\imagenes\iconos\game.png" />
     <Content Include="assets\imagenes\iconos\trash.png" />
     <Content Include="assets\imagenes\videojuegos\ApexLegends.jpg" />
     <Content Include="assets\imagenes\videojuegos\AssassinsCreedValhalla.jpg" />

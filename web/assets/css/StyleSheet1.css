@@ -15,15 +15,16 @@ body {
 }
 
 main {
-    max-width: 1250px;
-    margin: auto;
     padding: 20px;
     text-align: justify;
     text-justify: inter-word;
     display: flex;
     color: #0A2558;
-    padding-bottom: 15rem;
-    padding-top: 8rem;
+    padding-bottom: 15%;
+    margin-top: 5%;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    justify-content: center;
 }
 
     main .listaVideojuegos {
@@ -112,7 +113,7 @@ main .showGrid {
         padding-top: 12px;
         padding-bottom: 12px;
         background-color: #0A2558;
-        color: white;
+        color: #fff;
         text-align: center;
         align-items: center;
         justify-content: space-between;
@@ -121,6 +122,9 @@ main .showGrid {
     .grid input {
         background-color: #fff;
         align-items: center;
+        color: #0A2558 !important;
+        font-weight: 500;
+        font-size: ;
     }
 
 main .sobreNosotros {

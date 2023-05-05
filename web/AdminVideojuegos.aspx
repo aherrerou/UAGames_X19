@@ -27,7 +27,7 @@
                 </asp:ImageField>
                 <asp:BoundField DataField="descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                 <asp:CommandField HeaderText="Acciones" ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/eraser.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
-                    ShowEditButton="True" ShowDeleteButton="True" ShowCancelButton="True" UpdateImageUrl="~/assets/imagenes/iconos/save.png"
+                    ShowEditButton="True" ShowDeleteButton="True" ShowCancelButton="True" UpdateImageUrl="~/assets/imagenes/iconos/check.png"
                     DeleteImageUrl="~/assets/imagenes/iconos/trash.png">
                     <ControlStyle Height="20px" Width="20px" />
                 </asp:CommandField>
