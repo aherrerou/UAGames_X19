@@ -24,7 +24,7 @@
             <Items>
               <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
               <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
-              <asp:MenuItem Text="Reseñas" NavigateUrl="/" />
+              <asp:MenuItem Text="Reseñas" NavigateUrl="/Reseña.aspx" />
               <asp:MenuItem Text="Noticias" NavigateUrl="/" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
