@@ -64,7 +64,7 @@
                     Descuento:
                     <asp:TextBox ID="nuevoDescuento" runat="server"></asp:TextBox>
             <!--<asp:DropDownList ID="videojuegosList" AutoPostBack="True" OnSelectedIndexChanged="VideojuegoSelectionChange" runat="server" />-->
-                
+                <br />
                 <asp:Button id="crearOferta" Text="Crear" runat="server" OnClick="crearOfertaClick"/>
                 </div>
 
