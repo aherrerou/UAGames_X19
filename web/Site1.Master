@@ -22,23 +22,24 @@
         <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
             <staticmenuitemstyle horizontalpadding="20"/>
             <Items>
-              <asp:MenuItem Text="Videojuegos" NavigateUrl="/" />
-              <asp:MenuItem Text="Ofertas" NavigateUrl="/" />
-              <asp:MenuItem Text="Reseñas" NavigateUrl="/Reseña.aspx" />
-              <asp:MenuItem Text="Noticias" NavigateUrl="/" />
+              <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
+              <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
+              <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
               <asp:MenuItem Text="Foro" NavigateUrl="/" />
             </Items>
         </asp:Menu>   
       </div>
+      <div class="header-right">
+          <asp:Hyperlink id="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" NavigateUrl="Inicia_Sesion.aspx" runat="server"/>
+          <asp:Hyperlink id="BtnRegistrarse" CssClass="button" Text="Registrarse" NavigateUrl="Registrar.aspx" runat="server"/>
+      </div>
     </div>
 </header>
-</form>
 
-    <div>
+
         <asp:ContentPlaceHolder ID="main" runat="server">
 
         </asp:ContentPlaceHolder>
-    </div>
 
     
      <footer>
