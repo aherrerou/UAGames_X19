@@ -30,8 +30,8 @@
         </asp:Menu>   
       </div>
       <div class="header-right">
-          <asp:Button ID="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" runat="server"/>
-          <asp:Button ID="BtnRegistrarse" CssClass="button" Text="Registrarse" runat="server"/>
+          <asp:Hyperlink id="BtnIniciarSesion" CssClass="button" Text="Iniciar sesion" NavigateUrl="Inicia_Sesion.aspx" runat="server"/>
+          <asp:Hyperlink id="BtnRegistrarse" CssClass="button" Text="Registrarse" NavigateUrl="Registrar.aspx" runat="server"/>
       </div>
     </div>
 </header>
