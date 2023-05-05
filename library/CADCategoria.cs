@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,61 +17,78 @@ namespace library
 
         public CADCategoria()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
-            conect = new SqlConnection(conexionBBDD);
+            conexionBBDD = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
+            conect = null;
         }
 
         public bool createCategoria(ENCategoria categoria)
         {
 
+            bool crear = false;
+            string query = "INSERT INTO [Categoria]" + "(nombre,descripcion)" + "VALUES (@nombre, @descripcion);";
             try
             {
-                this.conect.Open();
-                string query = "Insert into Categoria (id,nombre,descripcion) values " + "('" + categoria.id + "','" + categoria.nombre + "','" + categoria.descripcion + "');";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
                 SqlCommand com = new SqlCommand(query, conect);
+
+                com.Parameters.AddWithValue("@nombre", categoria.nombre);
+                com.Parameters.AddWithValue("@descripcion", categoria.descripcion);
+
                 com.ExecuteNonQuery();
+                crear = true;
+                
             }
             catch (SqlException sqlex)
             {
 
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+                crear = false;
 
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                crear = false;
             }
 
             finally
             {
-                this.conect.Close();
+                if (conect != null)
+                {
+                    conect.Close();
+                }
             }
 
-            return true;
+            return crear;
         }
 
         public bool readCategoria(ENCategoria categoria)
         {
+            string query = "select * from Categoria where id = " + categoria.id + ";";
+            bool controlador = true;
             try
             {
-                this.conect.Open();
-                string query = "select * from Categoria where id = '" + categoria.id + "';";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
                 SqlCommand com = new SqlCommand(query, conect);
                 SqlDataReader dataread = com.ExecuteReader();
 
-                if (dataread.Read())
+                while (dataread.Read() && controlador == true)
                 {
-                    categoria.id = int.Parse(dataread["id"].ToString());
+                    if ((int)dataread["id"] == categoria.id)
+                    {
+                        controlador = false;
+                        categoria.nombre = dataread["nombre"].ToString();
+                        categoria.descripcion = dataread["descripcion"].ToString();
+                    }
                 }
-                else
-                {
-                    return false;
-                }
-                dataread.Close();
 
+                if (controlador == true)
+                {
+                    throw new Exception("No se ha encontrado un foro con la id indicada");
+                }
             }
 
             catch (SqlException sqlex)
@@ -87,7 +105,10 @@ namespace library
 
             finally
             {
-                this.conect.Close();
+                if (conect != null)
+                {
+                    conect.Close();
+                }
             }
 
             return true;
@@ -98,7 +119,7 @@ namespace library
             try
             {
                 this.conect.Open();
-                string query = "update Categoria set nombre = '" + categoria.id + "', descripcion = '"+ categoria.descripcion  + "'where id = '" + categoria.id + "';";
+                string query = "update Categoria set nombre = " + categoria.id + ", descripcion = '"+ categoria.descripcion  + "'where id = '" + categoria.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
 
@@ -129,7 +150,7 @@ namespace library
             try
             {
                 this.conect.Open();
-                string query = "delete from Categoria where id = '" + categoria.id + "';";
+                string query = "delete from Categoria where id = " + categoria.id + ";";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
 
@@ -155,34 +176,14 @@ namespace library
             return true;
         }
 
-        public DataTable readCategoriasNombre()
+        /*public DataSet listas()
         {
-            SqlConnection connection = null;
-            DataTable categorias = new DataTable();
+            DataSet bdvirtual = new DataSet();
 
-            try
-            {
-                connection = new SqlConnection(conexionBBDD);
-                connection.Open();
-
-                string sentence = "SELECT nombre, id FROM [Categoria];";
-                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
-                adapter.Fill(categorias);
-
-            }
-            catch (SqlException sqlex)
-            {
-                Console.WriteLine("Reading categorias operation has failed.Error: {0}", sqlex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Reading categorias operation has failed.Error: {0}", ex.Message);
-            }
-            finally
-            {
-                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
-            }
-            return categorias;
-        }
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            SqlDataAdapter Database = new SqlDataAdapter("select * from Categoria", c);
+            database.Fill(bdvirtual, "Categoria");
+            return bdvirtual;
+        }*/
     }
 }

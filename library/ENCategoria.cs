@@ -9,11 +9,24 @@ namespace library
 {
     public class ENCategoria
     {
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion{ get; set; }
+        private string descripcion_interno;
+        private string nombre_interno;
+        private int id_interno;
 
-        private CADCategoria categoria;
+        public int id {
+
+            get { return id_interno; }
+            set { id_interno = value; }
+        }
+
+        public string nombre {
+            get { return nombre_interno; }
+            set { nombre_interno = value; }
+        }
+        public string descripcion{
+            get { return descripcion_interno; }
+            set { descripcion_interno = value; }
+        }        
 
         // Constructor
         public ENCategoria()
@@ -23,19 +36,30 @@ namespace library
             this.nombre = "";
             this.descripcion = "";
 
-            this.categoria = new CADCategoria();
+            
+        }
+
+        public ENCategoria(int id, string nombre, string descripcion)
+        {
+
+            this.id = id;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
         }
 
         // Métodos
         public bool createCategoria()
         {
+            
             bool res = true;
+            CADCategoria categoria = new CADCategoria();
             res = categoria.createCategoria(this);
             return res;
         }
 
         public bool readCategoria()
         {
+            CADCategoria categoria = new CADCategoria();
             bool res = true;
             res = categoria.readCategoria(this);
             return res;
@@ -43,6 +67,7 @@ namespace library
 
         public bool updateCategoria()
         {
+            CADCategoria categoria = new CADCategoria();
             bool res = true;
             res = categoria.updateCategoria(this);
             return res;
@@ -50,15 +75,18 @@ namespace library
 
         public bool deleteCategoria()
         {
+            CADCategoria categoria = new CADCategoria();
             bool res = true;
             res = categoria.deleteCategoria(this);
             return res;
         }
 
-        public DataTable readCategoriasNombre()
+        /*public DataSet listas()
         {
-            CADCategoria categoria = new CADCategoria();
-            return categoria.readCategoriasNombre();
-        }
+            DataSet result = new DataSet();
+            CADCategoria c = new CADCategoria();
+            result = c.listas();
+            return result;
+        }*/
     }
 }
