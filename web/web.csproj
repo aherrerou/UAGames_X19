@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminOfertas.aspx" />
     <Content Include="AdminVideojuegos.aspx" />
     <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database_log.ldf">
@@ -87,6 +88,7 @@
     <Content Include="assets\imagenes\videojuegos\Fortnite.jpg" />
     <Content Include="assets\imagenes\videojuegos\GTAV.jpg" />
     <Content Include="Catalogo.aspx" />
+    <Content Include="Compras.aspx" />
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />
     <Content Include="SobreNosotros.aspx" />
@@ -98,6 +100,13 @@
     <Content Include="Contacto.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminOfertas.aspx.cs">
+      <DependentUpon>AdminOfertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminOfertas.aspx.designer.cs">
+      <DependentUpon>AdminOfertas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminVideojuegos.aspx.cs">
       <DependentUpon>AdminVideojuegos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -111,6 +120,13 @@
     </Compile>
     <Compile Include="Catalogo.aspx.designer.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compras.aspx.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compras.aspx.designer.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
     </Compile>
     <Compile Include="PreguntasFrec.aspx.cs">
       <DependentUpon>PreguntasFrec.aspx</DependentUpon>
