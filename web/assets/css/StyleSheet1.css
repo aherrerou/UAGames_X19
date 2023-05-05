@@ -52,18 +52,37 @@ main .tableVideojuegos{
     height: 100%;
 }
 
-    main .card {
-        width: 12rem !important;
-        background: #0A2558;
-        color: #fff;
-        text-align: center;
+main .card {
+    width: 12rem !important;
+    background: #0A2558;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+    main .card .card-img-top {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        border-radius: 10px;
     }
 
-        main .card .card-img-top {
-            width: 100%;
-            height: 15rem;
-            object-fit: cover;
+        main .card .card-body {
+            flex: 1 1 auto;
+            padding: 1rem;
         }
+
+    main .card .botones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+            main .card .botones input {
+                background: #fff !important;
+                border-radius: 10px;
+                height: 3rem;
+            }
 
 main .showGrid {
     display: flex;
@@ -76,6 +95,7 @@ main .showGrid {
     text-align: center;
     vertical-align: middle;
     border-collapse: collapse;
+    white-space: nowrap;
 }
 
     .grid th {
@@ -95,6 +115,7 @@ main .showGrid {
         text-overflow: ellipsis;
         white-space: nowrap;
         word-wrap: break-word;
+        width: fit-content;
     }
 
     .grid table {
@@ -119,12 +140,36 @@ main .showGrid {
         justify-content: space-between;
     }
 
-    .grid input {
+    .grid .botones {
         background-color: #fff;
         align-items: center;
         color: #0A2558 !important;
         font-weight: 500;
-        font-size: ;
+        font-size: 18px;
+    }
+
+    .grid img{
+        width: 50px;
+    }
+
+    .grid input {
+        background-color: #fff !important;
+        color: #0A2558 !important;
+        font-weight: 500 !important;
+        font-size: 18px !important;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: break-word;
+    }
+
+    .grid input:hover {
+        background-color: #fff;
+        align-items: center;
+        color: #0A2558 !important;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
     }
 
 main .sobreNosotros {

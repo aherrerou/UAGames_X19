@@ -25,3 +25,14 @@ INSERT INTO videojuego (titulo, productoraId, categoriaId, fecha_lanzamiento, pr
 ('Assassin''s Creed Valhalla', 4, 5, '2020-11-10', 59.99, 'assets/imagenes/videojuegos/AssassinsCreedValhalla.jpg', 'Modo historia', 'pc'),
 ('Call of Duty: Modern Warfare', 5, 1, '2019-10-25', 59.99, 'assets/imagenes/videojuegos/CODModernWarfare.jpg', 'Modo historia', 'Ps5'),
 ('Grand Theft Auto V', 6, 1, '2013-09-17', 29.99, 'assets/imagenes/videojuegos/GTAV.jpg', 'No recomendado para menores de 13', 'pc');
+
+
+-- Insertar ofertas
+INSERT INTO oferta (nombre, descuento, fecha_inicio, fecha_fin, videojuegoID, productoraID) VALUES
+('Oferta de lanzamiento FIFA 23', 10, '2023-09-28', '2023-10-05', 1, 1),
+('Oferta especial Battlefield 2042', 20, '2022-01-01', '2022-01-07', 2, 1),
+('Oferta fin de año Apex Legends', 50, '2023-12-01', '2023-12-31', 3, 2),
+('Oferta de verano Fortnite', 30, '2023-06-01', '2023-06-30', 4, 3),
+('Oferta Black Friday Assassin''s Creed Valhalla', 40, '2023-11-24', '2023-11-26', 5, 4),
+('Oferta Halloween Call of Duty: Modern Warfare', 25, '2023-10-27', '2023-10-31', 6, 5),
+('Oferta de Navidad Grand Theft Auto V', 15, '2023-12-24', '2023-12-26', 7, 6);

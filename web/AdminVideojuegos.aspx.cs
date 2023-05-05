@@ -48,7 +48,26 @@ namespace web
 
         protected void clickRowUpdateVideojuego(object sender, GridViewUpdateEventArgs e)
         {
+            ENVideojuego videojuego = new ENVideojuego();
+            videojuego.Id = Int32.Parse(videojuegoTable.Rows[e.RowIndex].Cells[0].Text);
+            videojuego.Titulo = videojuegoTable.Rows[e.RowIndex].Cells[1].Text;
+            //ToDo resolver actualizar productora  y categoria en videojuego
+            ENProductora productora = new ENProductora();
+            productora.Nombre = videojuegoTable.Rows[e.RowIndex].Cells[2].Text;
+            videojuego.Productora = productora;
 
+            ENCategoria categoria = new ENCategoria();
+            categoria.nombre = videojuegoTable.Rows[e.RowIndex].Cells[3].Text;
+            videojuego.Categoria = categoria;
+
+            videojuego.FechaLanzamiento = DateTime.Parse(videojuegoTable.Rows[e.RowIndex].Cells[4].Text);
+            videojuego.Precio = Double.Parse(videojuegoTable.Rows[e.RowIndex].Cells[5].Text);
+            videojuego.Plataforma = videojuegoTable.Rows[e.RowIndex].Cells[6].Text;
+            videojuego.Imagen = videojuegoTable.Rows[e.RowIndex].Cells[7].Text;
+            videojuego.Descripcion = videojuegoTable.Rows[e.RowIndex].Cells[8].Text;
+
+            videojuegoTable.DataSource = videojuego.updateVideojuego(videojuegoTable.SelectedIndex);
+            videojuegoTable.DataBind();
         }
 
         protected void clickRowDeleteVideojuego(object sender, GridViewDeleteEventArgs e)
@@ -72,19 +91,5 @@ namespace web
 
         }
 
-        protected string Crop(string text, int maxLength)
-        {
-            if (text == null)
-            {
-                return string.Empty;
-            }
-
-            if (text.Length < maxLength)
-            {
-                return text;
-            }
-
-            return text.Substring(0, maxLength);
-        }
     }
 }

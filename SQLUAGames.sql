@@ -68,7 +68,7 @@ CREATE TABLE [dbo].[Noticia] (
 CREATE TABLE [dbo].[Oferta] (
   [id] INT IDENTITY(1,1) PRIMARY KEY,
   [nombre] VARCHAR(255) UNIQUE NOT NULL,
-  [descuento] DECIMAL(5,2),
+  [descuento] INT,
   [fecha_inicio] DATE,
   [fecha_fin] DATE,
   [videojuegoID] INT NOT NULL,

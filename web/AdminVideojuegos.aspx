@@ -23,13 +23,12 @@
                 <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="Precio" />
                 <asp:BoundField DataField="plataforma" HeaderText="Plataforma" SortExpression="Platafoma" />
                 <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen" NullDisplayText="X">
-                    <ControlStyle Width="50px"/>
                 </asp:ImageField>
                 <asp:BoundField DataField="descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                <asp:CommandField HeaderText="Acciones" ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/eraser.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
+                <asp:CommandField HeaderText="Acciones" ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/cancel.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
                     ShowEditButton="True" ShowDeleteButton="True" ShowCancelButton="True" UpdateImageUrl="~/assets/imagenes/iconos/check.png"
                     DeleteImageUrl="~/assets/imagenes/iconos/trash.png">
-                    <ControlStyle Height="20px" Width="20px" />
+                    <ControlStyle Height="20px" Width="20px" CssClass="botones" />
                 </asp:CommandField>
 
             </Columns>

@@ -172,6 +172,12 @@ namespace library
             return actualizado;
         }
 
+        public DataTable updateVideojuego(int i)
+        {
+            CADVideojuego cad = new CADVideojuego();
+            return cad.updateVideojuego(this, i);
+        }
+
         public bool deleteVideojuego()
         {
             bool eliminado = false;
