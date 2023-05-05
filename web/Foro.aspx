@@ -1,7 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Foro.aspx.cs" Inherits="web.Foro" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        /* Agregar barra de desplazamiento vertical */
+        body {
+            overflow-y: scroll;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
+        
         <br />
         <br />
         <br />
@@ -51,6 +58,7 @@
         <br />
         Texto&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TTexto" runat="server"></asp:TextBox>
+        <br />
         Id de usuario&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TUsuario" runat="server"></asp:TextBox>
         <br />
@@ -71,4 +79,8 @@
         <br />
         <h2>Listado de publicaciones</h2>
         <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+        <br />
+        <br />
+        <br />
+        <br />
 </asp:Content>

@@ -17,7 +17,7 @@ namespace library
 
         public CADUsuario()
         {
-            conexionBBDD = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
+            conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
             c = null;
         }
 
