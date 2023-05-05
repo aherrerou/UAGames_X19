@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,6 +102,12 @@ namespace library
             CADProductora prod = new CADProductora();
             bool deleted = prod.deleteProductora(this);
             return deleted;
+        }
+
+        public DataTable readProductorasNombre()
+        {
+            CADProductora productora = new CADProductora();
+            return productora.readProductorasNombre();
         }
     }
 }
