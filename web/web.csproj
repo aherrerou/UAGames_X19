@@ -95,6 +95,7 @@
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />
     <Content Include="ProductoraWebForm.aspx" />
+    <Content Include="Reseña.aspx" />
     <Content Include="SobreNosotros.aspx" />
     <Content Include="CatalogoPrueba.aspx" />
     <Content Include="Terminos.aspx" />
@@ -175,6 +176,13 @@
       <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reseña.aspx.cs">
+      <DependentUpon>Reseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reseña.aspx.designer.cs">
+      <DependentUpon>Reseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

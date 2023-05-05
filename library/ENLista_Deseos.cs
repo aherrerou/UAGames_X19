@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,14 @@ namespace library
 {
     public class ENLista_Deseos
     {
+        private int id_interno;
         private string nombre_interno, descripcion_interno;
-        private int usuarioID_interno;
+        private ENUsuario usuario_interno;
+        public int id
+        {
+            get { return id_interno; }
+            set { id_interno = value; }
+        }
         public string nombre
         {
             get { return nombre_interno; }
@@ -20,16 +27,24 @@ namespace library
             get { return descripcion_interno; }
             set { descripcion_interno = value; }
         }
-        public int usuarioID
+        public ENUsuario usuario
         {
-            get { return usuarioID_interno; }
-            set { usuarioID_interno = value; }
+            get { return usuario_interno; }
+            set { usuario_interno = value; }
         }
         public ENLista_Deseos()
         {
-            this.nombre = "blank";
-            this.descripcion = "blnak";
-            this.usuarioID = 0;
+            id = 0;
+            nombre = "blank";
+            descripcion = "blank";
+            usuario = new ENUsuario();
+        }
+        public ENLista_Deseos(int id, string nombre, string descripcion, ENUsuario usuario)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.usuario = usuario;
         }
         public bool createLista()
         {
@@ -63,7 +78,7 @@ namespace library
         {
             bool result = true;
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.readNextLista(this);
+            result = c.readPrevLista(this);
             return result;
         }
         public bool updateLista()
@@ -78,6 +93,13 @@ namespace library
             bool result = true;
             CADLista_Deseos c = new CADLista_Deseos();
             result = c.deleteLista(this);
+            return result;
+        }
+        public DataSet listarClientesD()
+        {
+            DataSet result = new DataSet();
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.listarClientesD();
             return result;
         }
     }
