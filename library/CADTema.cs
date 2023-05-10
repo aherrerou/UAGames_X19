@@ -16,13 +16,13 @@ namespace library
 
         public CADTema()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
+            conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
             c = null;
         }
 
         public bool createTema(ENTema tema)
         {
-            string query = "Insert into Tema (titulo, foroID) values " + "('" + tema.titulo + "'," + tema.foroID + ")";
+            string query = "Insert into Tema (titulo, foroID) values " + "('" + tema.titulo + "'," + tema.foro.id + ")";
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -48,10 +48,10 @@ namespace library
             }
             return true;
         }
-        public bool readTema(ENTema tema) //selecciona un tema indicado por su id de foro
+        public bool readTema(ENTema tema) //selecciona un tema indicado por su id
         {
             bool sigue_while = true;
-            string query = "Select * from Tema where foroID = " + tema.foroID;
+            string query = "Select * from Tema where id = " + tema.id;
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -60,16 +60,16 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["foroID"] == tema.foroID)
+                    if ((int)dr["id"] == tema.id)
                     {
                         sigue_while = false;
                         tema.titulo = dr["titulo"].ToString();
-                        tema.foroID = (int)dr["foroID"];
+                        tema.foro.id = (int)dr["foroID"];
                     }
                 }
                 if (sigue_while == true)
                 {
-                    throw new Exception("No se ha encontrado el tema con la ID de foro indicada");
+                    throw new Exception("No se ha encontrado el tema con la ID indicada");
                 }
             }
             catch (SqlException sqlex)
@@ -99,8 +99,9 @@ namespace library
                 SqlCommand com = new SqlCommand(query, c);
                 SqlDataReader dr = com.ExecuteReader();
                 dr.Read();
+                tema.id = (int)dr["id"];
                 tema.titulo = dr["titulo"].ToString();
-                tema.foroID = (int)dr["foroID"];
+                tema.foro.id = (int)dr["foroID"];
                 dr.Close();
             }
             catch (SqlException sqlex)
@@ -133,14 +134,15 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["foroID"] == tema.foroID)
+                    if ((int)dr["id"] == tema.id)
                     {
                         sigue_while = false;
                         bool siguiente = dr.Read(); //pasa al siguiente campo
                         if (siguiente == true)
                         {
+                            tema.id = (int)dr["id"];
                             tema.titulo = dr["titulo"].ToString();
-                            tema.foroID = (int)dr["foroID"];
+                            tema.foro.id = (int)dr["foroID"];
                         }
                         else
                             throw new Exception("No hay siguiente tema");
@@ -172,7 +174,7 @@ namespace library
             string query = "Select * from Tema";
 
             string titulo = "blank";
-            int id = 0;
+            int id = 0, fid = 0;
 
             try
             {
@@ -182,18 +184,20 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["foroID"] == tema.foroID)
+                    if ((int)dr["id"] == tema.id)
                     {
                         if (titulo == "blank")
                             throw new Exception("No se ha encontrado un tema anterior");
                         sigue_while = false;
                         tema.titulo = titulo;
-                        tema.foroID = id;
+                        tema.id = id;
+                        tema.foro.id = fid;
                     }
                     else
                     {
+                        id = (int)dr["id"];
                         titulo = dr["titulo"].ToString();
-                        id = (int)dr["foroID"];
+                        fid = (int)dr["foroID"];
                     }
                 }
                 dr.Close();
@@ -216,10 +220,10 @@ namespace library
             return true;
         }
 
-        public bool updateTema(ENTema tema) //actualiza los datos de un tema según su id de foro
+        public bool updateTema(ENTema tema) //actualiza los datos de un tema según su id
         {
             string query_comprueba = "Select * from Tema";
-            string query = "Update Tema set titulo = '" + tema.titulo + "' where foroID = " + tema.foroID;
+            string query = "Update Tema set titulo = '" + tema.titulo + "' where id = " + tema.id;
             bool sigue_while = true;
             try
             {
@@ -229,13 +233,13 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["foroID"] == tema.foroID)
+                    if ((int)dr["id"] == tema.id)
                     {
                         sigue_while = false;
                     }
                 }
                 if (sigue_while == true)
-                    throw new Exception("No se ha encontrado un tema con la id de foro indicada");
+                    throw new Exception("No se ha encontrado un tema con la id indicada");
                 dr.Close();
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
@@ -259,10 +263,10 @@ namespace library
             return true;
         }
 
-        public bool deleteTema(ENTema tema) //elimina el tema con la id de foro indicada
+        public bool deleteTema(ENTema tema) //elimina el tema con la id indicada
         {
             string query_comprueba = "Select * from Tema";
-            string query = "Delete from Tema where foroID = " + tema.foroID;
+            string query = "Delete from Tema where id = " + tema.id;
             bool sigue_while = true;
             try
             {
@@ -272,13 +276,13 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["foroID"] == tema.foroID)
+                    if ((int)dr["id"] == tema.id)
                     {
                         sigue_while = false;
                     }
                 }
                 if (sigue_while == true)
-                    throw new Exception("No se ha encontrado un tema con la id de foro indicada");
+                    throw new Exception("No se ha encontrado un tema con la id indicada");
                 dr.Close();
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();

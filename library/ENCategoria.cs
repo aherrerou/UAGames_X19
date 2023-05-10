@@ -81,6 +81,12 @@ namespace library
             return res;
         }
 
+        public DataTable readCategoriasNombre()
+        {
+            CADCategoria categoria = new CADCategoria();
+            return categoria.readCategoriasNombre();
+        }
+
         /*public DataSet listas()
         {
             DataSet result = new DataSet();

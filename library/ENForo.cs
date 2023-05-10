@@ -22,7 +22,13 @@ namespace library
         }
         public ENForo()
         {
-            this.nombre = "blank";
+            id = 0;
+            nombre = "blank";
+        }
+        public ENForo(int id, string nombre)
+        {
+            this.id = id;
+            this.nombre = nombre;
         }
         public bool createForo()
         {
