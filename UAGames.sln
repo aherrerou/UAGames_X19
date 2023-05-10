@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library", "library\library.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{8EB5BAE2-CEB3-48E8-9C34-835269A905B8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8AF6FECB-5308-438F-A001-3528810152ED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F0329F2-98A5-4959-B441-D245156F6A91}"
 	ProjectSection(SolutionItems) = preProject
 		SQLUAGames.sql = SQLUAGames.sql
 	EndProjectSection
