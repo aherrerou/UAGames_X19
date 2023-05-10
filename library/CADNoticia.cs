@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace library
 
             cadenaConexion = "Data Source=SERVIDOR;Initial Catalog=BASEDEDATOS;Integrated Security=True";
         }
+       
         public bool createNoticia(ENNoticia noticia)
         {
             bool creada = false;

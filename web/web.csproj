@@ -88,12 +88,22 @@
     <Content Include="assets\imagenes\videojuegos\Fortnite.jpg" />
     <Content Include="assets\imagenes\videojuegos\GTAV.jpg" />
     <Content Include="Catalogo.aspx" />
+    <Content Include="CategoriaWebForm.aspx" />
+    <Content Include="CestaWebForm.aspx" />
     <Content Include="Compras.aspx" />
+    <Content Include="Foro.aspx" />
+    <Content Include="Inicia_Sesion.aspx" />
+    <Content Include="Lista_Deseos.aspx" />
+    <Content Include="NoticiaWF.aspx" />
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />
+    <Content Include="ProductoraWebForm.aspx" />
+    <Content Include="Registrar.aspx" />
+    <Content Include="Reseña.aspx" />
     <Content Include="SobreNosotros.aspx" />
     <Content Include="CatalogoPrueba.aspx" />
     <Content Include="Terminos.aspx" />
+    <Content Include="Usuario.aspx" />
     <Content Include="Videojuego.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
@@ -121,12 +131,54 @@
     <Compile Include="Catalogo.aspx.designer.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CategoriaWebForm.aspx.cs">
+      <DependentUpon>CategoriaWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaWebForm.aspx.designer.cs">
+      <DependentUpon>CategoriaWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CestaWebForm.aspx.cs">
+      <DependentUpon>CestaWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CestaWebForm.aspx.designer.cs">
+      <DependentUpon>CestaWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Compras.aspx.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Compras.aspx.designer.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Foro.aspx.cs">
+      <DependentUpon>Foro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro.aspx.designer.cs">
+      <DependentUpon>Foro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicia_Sesion.aspx.cs">
+      <DependentUpon>Inicia_Sesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicia_Sesion.aspx.designer.cs">
+      <DependentUpon>Inicia_Sesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_Deseos.aspx.cs">
+      <DependentUpon>Lista_Deseos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lista_Deseos.aspx.designer.cs">
+      <DependentUpon>Lista_Deseos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticiaWF.aspx.cs">
+      <DependentUpon>NoticiaWF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticiaWF.aspx.designer.cs">
+      <DependentUpon>NoticiaWF.aspx</DependentUpon>
     </Compile>
     <Compile Include="PreguntasFrec.aspx.cs">
       <DependentUpon>PreguntasFrec.aspx</DependentUpon>
@@ -142,7 +194,28 @@
     <Compile Include="Privacidad.aspx.designer.cs">
       <DependentUpon>Privacidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProductoraWebForm.aspx.cs">
+      <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductoraWebForm.aspx.designer.cs">
+      <DependentUpon>ProductoraWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registrar.aspx.cs">
+      <DependentUpon>Registrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registrar.aspx.designer.cs">
+      <DependentUpon>Registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reseña.aspx.cs">
+      <DependentUpon>Reseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reseña.aspx.designer.cs">
+      <DependentUpon>Reseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +257,13 @@
     </Compile>
     <Compile Include="Terminos.aspx.designer.cs">
       <DependentUpon>Terminos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Videojuego.aspx.cs">
       <DependentUpon>Videojuego.aspx</DependentUpon>

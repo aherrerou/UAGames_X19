@@ -116,6 +116,7 @@ namespace library
                 if (reader.Read())
                 {
                     Reserva.pagado = Double.Parse(reader["pagado"].ToString());
+                    //fecha , fechaEntrega , pagado , usuarioID , videojuegoID
                 }
                 else
                 {
