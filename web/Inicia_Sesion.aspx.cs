@@ -22,10 +22,15 @@ namespace web
                 LResultado.Text = "Usuario o contraseña incorrectos";
             else
             {
-                if(TPassword.Text != en.password)
+                if (TPassword.Text != en.password)
                     LResultado.Text = "Usuario o contraseña incorrectos";
                 else
+                {
                     LResultado.Text = "Se ha leído correctamente el usuario";
+                    Session["login_nick"] = TNick.Text;
+                    //Response.Redirect("Compras.aspx");
+                    Response.Redirect("Usuario.aspx");
+                }
             }
         }
     }
