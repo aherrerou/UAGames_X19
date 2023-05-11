@@ -11,20 +11,48 @@ namespace web
 {
     public partial class Lista_Deseos : System.Web.UI.Page
     {
+        private ENUsuario usu = new ENUsuario();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["login_nick"] != null)
+            {
+                usu.nick = Session["login_nick"].ToString();
+                usu.readUsuario();
+                if(usu.rol != "admin")
+                {
+                    LTitulo.Text = "Lista de Deseos de " + Session["login_nick"].ToString();
+                    LListado.Text = "(Ahora mismo se muestra la lista en sí, no los contenidos)";
+                    TId.Visible = false;
+                    LId.Visible = false;
+                    TNombre.Visible = false;
+                    LNombre.Visible = false;
+                    TUsuario.Visible = false;
+                    LUsuario.Visible = false;
+                    TDescripcion.Visible = false;
+                    LDescripcion.Visible = false;
+                    BLeer_F.Visible = false;
+                    BLeerA_F.Visible = false;
+                    BLeerS_F.Visible = false;
+                    BLeerP_F.Visible = false;
+                    BCrear_F.Visible = false;
+                    BActualizar_F.Visible = false;
+                    BBorrar_F.Visible = false;
+                }
+            }
             if (!Page.IsPostBack)
             {
                 ENLista_Deseos en = new ENLista_Deseos();
                 DataSet d = new DataSet();
-                d = en.listarClientesD();
+                if (usu.rol != "admin")
+                    d = en.listarClientesDAdmin();
+                else
+                    d = en.listarClientesDUsu();
                 GridView1.DataSource = d;
                 GridView1.DataBind();
             }
         }
         protected void Leer(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario();
             ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
             bool result = en.readLista();
             if (result == false)
@@ -40,7 +68,6 @@ namespace web
         }
         protected void LeerPrimero(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario();
             ENLista_Deseos en = new ENLista_Deseos(0, "blank", "blank", usu);
             bool result = en.readFirstLista();
             if (result == false)
@@ -56,7 +83,6 @@ namespace web
         }
         protected void LeerAnterior(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario();
             ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
             bool result = en.readPrevLista();
             if (result == false)
@@ -72,7 +98,6 @@ namespace web
         }
         protected void LeerSiguiente(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario();
             ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
             bool result = en.readNextLista();
             if (result == false)
@@ -88,7 +113,7 @@ namespace web
         }
         protected void Crear(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario(int.Parse(TUsuario.Text), "blank", "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+            usu.id = int.Parse(TUsuario.Text);
             ENLista_Deseos en = new ENLista_Deseos(0, TNombre.Text, TDescripcion.Text, usu);
             bool result = en.createLista();
             if (result == false)
@@ -98,7 +123,7 @@ namespace web
         }
         protected void Actualizar(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario(int.Parse(TUsuario.Text), "blank", "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+            usu.id = int.Parse(TUsuario.Text);
             ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), TNombre.Text, TDescripcion.Text, usu);
             bool result = en.updateLista();
             if (result == false)
@@ -108,7 +133,7 @@ namespace web
         }
         protected void Borrar(object sender, EventArgs e)
         {
-            ENUsuario usu = new ENUsuario(int.Parse(TUsuario.Text), "blank", "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+            usu.id = int.Parse(TUsuario.Text);
             ENLista_Deseos en = new ENLista_Deseos();
             bool result = en.deleteLista();
             if (result == false)

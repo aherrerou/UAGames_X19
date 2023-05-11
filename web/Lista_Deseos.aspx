@@ -4,17 +4,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <main>
         <div class="showGrid">
-            <h1>Página de Lista de Deseos</h1>
-            Id&nbsp;&nbsp;&nbsp;&nbsp;
+            <h1><asp:Label ID="LTitulo" runat="server" Text ="Administrar Listas de Deseos" /></h1>
+            <asp:Label ID="LId" runat="server" Text ="Id" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId" runat="server"></asp:TextBox>
             <br />
-            Nombre&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="LNombre" runat="server" Text ="Nombre" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TNombre" runat="server"></asp:TextBox>
             <br />
-            Descripción&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="LDescripcion" runat="server" Text ="Descripción" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TDescripcion" runat="server"></asp:TextBox>
             <br />
-            Id de usuario&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="LUsuario" runat="server" Text ="Id de usuario" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TUsuario" runat="server"></asp:TextBox>
             <br />
             <br />
@@ -28,7 +28,7 @@
             <br />
             <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
             <br />
-            <h2>Listado de listas de deseos</h2>
+            <h2><asp:Label ID="LListado" runat="server" Text ="Listado de listas de deseos" /></h2>
             <asp:GridView ID="GridView1" runat="server" CssClass="grid"></asp:GridView>
         </div>
     </main>

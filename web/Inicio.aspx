@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <main>
-        <h1 style="color:black;">Escribe aqui! :) </h1>
+        <h1 style="color:black;"><asp:Label ID="Label1" runat="server" Text ="Escribe aqui! :) " /></h1>
     </main>
     
 </asp:Content>

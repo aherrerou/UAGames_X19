@@ -26,10 +26,8 @@ namespace web
                     LResultado.Text = "Usuario o contraseña incorrectos";
                 else
                 {
-                    LResultado.Text = "Se ha leído correctamente el usuario";
                     Session["login_nick"] = TNick.Text;
-                    //Response.Redirect("Compras.aspx");
-                    Response.Redirect("Usuario.aspx");
+                    Response.Redirect("Inicio.aspx");
                 }
             }
         }
