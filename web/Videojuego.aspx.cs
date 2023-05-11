@@ -18,7 +18,7 @@ namespace web
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 ENVideojuego videojuego = new ENVideojuego();
                 videojuego.Id = id;
-                if (videojuego.readVideojuego())
+                if (videojuego.readVideojuegoId())
                 {
                     //Display data
                     videojuegoImagen.ImageUrl = videojuego.Imagen;

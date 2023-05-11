@@ -34,11 +34,11 @@ namespace library
 
                 if (search.Read())
                 {
-                    en.Id = (int)search["Id"];
-                    en.Nombre = (string)search["Nombre"];
-                    en.Descripcion = (string)search["Descripcion"];
-                    en.Imagen = (string)search["Imagen"];
-                    en.Web = (string)search["Web"];
+                    en.Id = Int32.Parse(search["Id"].ToString());
+                    en.Nombre = search["Nombre"].ToString();
+                    en.Descripcion = search["Descripcion"].ToString();
+                    en.Imagen = search["Imagen"].ToString();
+                    en.Web = search["Web"].ToString();
                     leida = true;
                 }
                 search.Close();
