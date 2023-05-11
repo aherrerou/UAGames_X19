@@ -11,17 +11,26 @@
                     <span class="reseña-datosgen">Calificación: 8/10</span>
                     <span class="reseña-datosgen">Fecha: 03/05/2023</span>
                 </div>
-                <div class="reseña-foto">
-                    <img class="img-reseña" />
-                </div>
+
             </div>
+            <asp:Button ID="CrearReseña" runat="server" OnClick="CrearReseña_Click" Text="Crear" />
             <div class="reseña">
+                <asp:TextBox ID="Puntuacion" runat="server" OnTextChanged="Puntuacion_TextChanged"></asp:TextBox>
                 <div class="reseña-contenido">
-                    <h2 class="reseña-titulo">Fifa 2023 </h2>
+                    <h2 class="reseña-titulo">Fifa 2023 
+                        
+                    </h2>
+                    <asp:TextBox ID="VideojuegoID" runat="server" OnTextChanged="VideojuegoID_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="UsuarioID" runat="server" OnTextChanged="UsuarioID_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="Comentario" runat="server" OnTextChanged="Comentario_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="Fecha" runat="server" OnTextChanged="Fecha_TextChanged" ></asp:TextBox>
                     <p class="reseña-descripcion">Comentario de la reseña</p>
                     <h3 class="reseña-descripcion">user </h3>
                     <span class="reseña-datosgen">Calificación: 7/10</span>
                     <span class="reseña-datosgen">Fecha: 05/05/2023</span>
+                </div>
+                <div>
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </div>
                 <div class="reseña-foto">
                     <img class="img-reseña" />
@@ -38,7 +47,11 @@
                 <div class="reseña-foto">
                     <img class="img-reseña" />
                 </div>
+
+                
+                    
             </div>
+             <asp:GridView ID="GridView1" runat="server" CssClass="grid"></asp:GridView>
          </div>
     </main>
 

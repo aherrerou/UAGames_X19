@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
 
 namespace library
 {
@@ -16,7 +17,7 @@ namespace library
 
         public CADReview()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
+            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True;";
             c = new SqlConnection(conexionBBDD);
         }
 
@@ -26,8 +27,8 @@ namespace library
             try
             {
                 this.c.Open();
-                string fechaFormatoCorrecto = review.fecha.ToString("yyyy-MM-dd HH:mm:ss");
-                string query = "INSERT INTO Review (puntuacion,comentario,fecha,usuarioID,videojuegoID) VALUES (" + review.puntuacion + ", " + review.comentario + ", " + "CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120)," + usuario.id + ", " + videojuego.Id + ");";
+                string fechaFormatoCorrecto = review.fecha.ToString("yyyy-MM-dd");
+                string query = "INSERT INTO Review (puntuacion,comentario,fecha,usuarioID,videojuegoID) VALUES (" + review.puntuacion + ", '" + review.comentario + "', '" + fechaFormatoCorrecto + "'," + usuario.id + ", " + videojuego.Id + ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
@@ -145,6 +146,18 @@ namespace library
                 this.c.Close();
             }
             return result;
+        }
+
+        public DataSet listarReviews()
+        {
+            DataSet d = new DataSet();
+
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            string query = "SELECT * FROM REVIEW;";
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
+            da.Fill(d, "Publicacion");
+
+            return d;
         }
     }
 }

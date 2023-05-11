@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace library
@@ -29,6 +30,16 @@ namespace library
             this.review = new CADReview();
         }
 
+        public ENReview(DateTime fecha , int puntuacion , string comentario , ENVideojuego videojuego , ENUsuario usuario)
+        {
+            this.usuario = usuario;
+            this.videoJuego = videojuego;
+            this.fecha = fecha;
+            this.puntuacion = puntuacion;
+            this.comentario = comentario;
+            this.review = new CADReview();
+        }
+
         public bool createReview()
         {
             return this.review.createReview(this, usuario , videoJuego);
@@ -44,6 +55,14 @@ namespace library
         public bool readReview()
         {
             return this.review.readReview(this);
+        }
+
+        public DataSet listarReviews()
+        {
+            DataSet result = new DataSet();
+            CADReview c = new CADReview();
+            result = c.listarReviews();
+            return result;
         }
     }
 

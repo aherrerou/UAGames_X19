@@ -26,6 +26,7 @@
               <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
               <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
               <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
+              <asp:MenuItem Text="Reseñas" NavigateUrl="Reseña.aspx" />
             </Items>
         </asp:Menu>   
       </div>
