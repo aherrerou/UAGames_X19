@@ -20,26 +20,38 @@ namespace library
         {
             bool creado = false;
             SqlConnection connection = null;
-            String sentence = "INSERT INTO [Videojuego] " +
+            /*String sentence = "INSERT INTO [Videojuego] " +
                 "(titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
-                "VALUES (@titulo, @descripcion, @fecha_lanzamiento, @plataforma, @precio, @imagen, @productoraID, @categoriaID);";
+                "VALUES (@titulo, @descripcion, @fecha_lanzamiento, @plataforma, @precio, @imagen, @productoraID, @categoriaID);";*/
 
 
             try
             {
+                CADProductora productora = new CADProductora();
+                productora.readProductora(en.Productora);
+
+                CADCategoria categoria = new CADCategoria();
+                categoria.readCategoria(en.Categoria);
+
+
+                String sentence = "INSERT INTO [Videojuego] (titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
+                    "VALUES ('" + en.Titulo + "', '" + en.Descripcion  + "', '" + en.FechaLanzamiento + "', '" + en.Plataforma
+                + "', '" + en.Precio + "', '" + en.Imagen + "', '" + en.Productora.Id + "', '" + en.Categoria.id
+                + "' );";
+
                 connection = new SqlConnection(constring);
                 connection.Open();
 
                 SqlCommand com = new SqlCommand(sentence, connection);
 
-                com.Parameters.AddWithValue("@titulo", en.Titulo);
+                /*com.Parameters.AddWithValue("@titulo", en.Titulo);
                 com.Parameters.AddWithValue("@descripcion", en.Descripcion);
                 com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
                 com.Parameters.AddWithValue("@precio", en.Precio);
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
-                com.Parameters.AddWithValue("@categoriaID", en.Categoria.id);
+                com.Parameters.AddWithValue("@categoriaID", en.Categoria.id);*/
 
                 com.ExecuteNonQuery();
                 creado = true;

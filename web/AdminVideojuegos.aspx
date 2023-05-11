@@ -54,23 +54,26 @@
                 <EditRowStyle CssClass="gridViewEditRow" />
             </asp:GridView>
             <br />
-            <h2>Crear videojuego</h2>
+            <div>
+                <h2>Crear videojuego</h2>
+                <asp:Label ID="msgSalidaCrear" runat="server" Text=""></asp:Label>
+            </div>
             <div class="crearFlex">
                 <div class="flexIzq">
                     Titulo:
             <asp:TextBox ID="nuevoTitulo" runat="server"></asp:TextBox>
                     Fecha lanzamiento:
-            <asp:TextBox ID="nuevaFechaLanzamiento" runat="server"></asp:TextBox>
+            <asp:TextBox ID="nuevaFechaLanzamiento" runat="server" type="date"></asp:TextBox>
                     Productora:
-            <asp:DropDownList ID="productorasList" AutoPostBack="True" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server" />
+            <asp:DropDownList ID="productorasList" AutoPostBack="True" runat="server" />
                     Categoria:
-                    <asp:DropDownList ID="categoriasList" AutoPostBack="True" OnSelectedIndexChanged="CategoriaSelectionChange" runat="server" />
+                    <asp:DropDownList ID="categoriasList" AutoPostBack="True" runat="server" />
                 </div>
                 <div class="flexDer">
                     Precio:
                     <asp:TextBox ID="nuevoPrecio" runat="server"></asp:TextBox>
                     Plataforma:
-                    <asp:TextBox ID="nuevoPlataforma" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="nuevaPlataforma" runat="server"></asp:TextBox>
                     Descripcion:
                     <asp:TextBox ID="nuevaDescripcion" runat="server"></asp:TextBox>
 

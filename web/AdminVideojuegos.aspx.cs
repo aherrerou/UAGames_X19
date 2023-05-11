@@ -127,19 +127,40 @@ namespace web
             }
         }
 
-        protected void ProductoraSelectionChange(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void CategoriaSelectionChange(object sender, EventArgs e)
-        {
-
-        }
-
         protected void crearVideojuegoClick(object sender, EventArgs e)
         {
+            
+            if(nuevoTitulo.Text == "" || nuevoPrecio.Text == "")
+            {
+                msgSalidaCrear.Text = "Por favor, introduce el titulo y el precio del videojuego.";
+                msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                ENVideojuego en = new ENVideojuego();
+                en.Titulo = nuevoTitulo.Text.ToString();
+                en.Plataforma = nuevaPlataforma.Text.ToString();
+                en.Descripcion = nuevaDescripcion.Text.ToString();
+                en.FechaLanzamiento = DateTime.Parse(nuevaFechaLanzamiento.Text.ToString());
+                en.Precio = Double.Parse(nuevoPrecio.Text.ToString());
+                en.Productora.Id = Int32.Parse(productorasList.SelectedValue);
+                en.Categoria.id = Int32.Parse(categoriasList.SelectedValue);
 
+                if (en.addVideojuego())
+                {
+                    msgSalidaCrear.Text = "Videojuego creado correctamente.";
+                    msgSalidaCrear.BackColor = System.Drawing.Color.Green;
+                    FillVideojuegosTable();
+                }
+                else
+                {
+                    msgSalidaCrear.Text = "ERROR al crear el videojuego.";
+                    msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+                }
+
+            }
+
+            
         }
 
         private void mostrarError(string error)
@@ -152,6 +173,8 @@ namespace web
         {
             msgSalida.Text = "";
             msgSalida.BackColor = System.Drawing.Color.White;
+            msgSalidaCrear.Text = "";
+            msgSalidaCrear.BackColor = System.Drawing.Color.White;
         }
 
         private void mostrarResultado(string resultado)

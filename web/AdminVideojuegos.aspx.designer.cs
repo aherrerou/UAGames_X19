@@ -33,6 +33,15 @@ namespace web
         protected global::System.Web.UI.WebControls.GridView videojuegoTable;
 
         /// <summary>
+        /// Control msgSalidaCrear.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msgSalidaCrear;
+
+        /// <summary>
         /// Control nuevoTitulo.
         /// </summary>
         /// <remarks>
@@ -78,13 +87,13 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox nuevoPrecio;
 
         /// <summary>
-        /// Control nuevoPlataforma.
+        /// Control nuevaPlataforma.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevoPlataforma;
+        protected global::System.Web.UI.WebControls.TextBox nuevaPlataforma;
 
         /// <summary>
         /// Control nuevaDescripcion.
