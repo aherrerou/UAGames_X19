@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminOfertas.aspx" />
     <Content Include="AdminVideojuegos.aspx" />
     <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database_log.ldf">
@@ -98,6 +99,13 @@
     <Content Include="Contacto.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminOfertas.aspx.cs">
+      <DependentUpon>AdminOfertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminOfertas.aspx.designer.cs">
+      <DependentUpon>AdminOfertas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminVideojuegos.aspx.cs">
       <DependentUpon>AdminVideojuegos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

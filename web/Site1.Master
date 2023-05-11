@@ -17,7 +17,7 @@
     <form id="form1" runat="server">
     <header>
     <div class="header">
-      <a href="Inicio.aspx" class="logo">UA Games</a>
+      <asp:Hyperlink NavigateUrl="Inicio.aspx" class="logo" Text="UA Games" runat="server"/>
       <div class="header-menu">
         <asp:Menu ID="menu" runat="server" Orientation="Horizontal" CssClass="menu">
             <staticmenuitemstyle horizontalpadding="20"/>
@@ -45,7 +45,7 @@
      <footer>
     <div class="content">
       <div class="link-boxes">
-      <a href="Inicio.aspx" class="logo">UA Games</a>
+      <asp:Hyperlink NavigateUrl="Inicio.aspx" class="logo" Text="UA Games" runat="server"/>
            <ul class="box">
           <li class="link_name">Servicios</li>
           <li><a href="Catalogo.aspx">Catálogo</a></li>
