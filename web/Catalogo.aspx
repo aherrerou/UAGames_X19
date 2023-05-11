@@ -46,11 +46,15 @@
                             </a>
                             <h6><%# Eval("plataforma") %></h6>
                             <h6><%# Eval("precio") %> €</h6>
-                            <div class="botones">
-                                <asp:ImageButton id="addCart" runat="server" AlternateText="Add Cart" ImageAlign="middle"
+                            <div class="botones text-center justify-content-between">
+                                     <asp:ImageButton id="addCart" runat="server" AlternateText="Add Cart" ImageAlign="middle"
                                 ImageUrl="assets/imagenes/iconos/cartAdd.png"/>
                                 <asp:ImageButton id="addList" runat="server" AlternateText="Add List" ImageAlign="middle"
                                 ImageUrl="assets/imagenes/iconos/addList.png"/>
+                                
+                                     <asp:ImageButton id="share" runat="server" AlternateText="Share" ImageAlign="middle"
+                                ImageUrl="assets/imagenes/iconos/share.png"/>
+                               
                             </div>
                         </div>
                     </div>

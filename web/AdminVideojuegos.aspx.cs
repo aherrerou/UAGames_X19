@@ -18,6 +18,7 @@ namespace web
                 FillVideojuegosTable();
                 FillProductorasDropdown();
                 FillCategoriasDropdown();
+                cleanMsg();
             }
         }
 
@@ -77,39 +78,52 @@ namespace web
         {
             ENVideojuego videojuego = new ENVideojuego();
             videojuego.Id = Int32.Parse(videojuegoTable.Rows[e.RowIndex].Cells[0].Text);
-            videojuego.Titulo = videojuegoTable.Rows[e.RowIndex].Cells[1].Text;
+            videojuego.Titulo = ((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
             //ToDo resolver actualizar productora  y categoria en videojuego
-            ENProductora productora = new ENProductora();
-            productora.Nombre = videojuegoTable.Rows[e.RowIndex].Cells[2].Text;
-            videojuego.Productora = productora;
+            videojuego.Productora.Nombre = ((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[2].Controls[0]).Text;
 
-            ENCategoria categoria = new ENCategoria();
-            categoria.nombre = videojuegoTable.Rows[e.RowIndex].Cells[3].Text;
-            videojuego.Categoria = categoria;
+            videojuego.Categoria.nombre = ((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
 
-            videojuego.FechaLanzamiento = DateTime.Parse(videojuegoTable.Rows[e.RowIndex].Cells[4].Text);
-            videojuego.Precio = Double.Parse(videojuegoTable.Rows[e.RowIndex].Cells[5].Text);
-            videojuego.Plataforma = videojuegoTable.Rows[e.RowIndex].Cells[6].Text;
-            videojuego.Imagen = videojuegoTable.Rows[e.RowIndex].Cells[7].Text;
-            videojuego.Descripcion = videojuegoTable.Rows[e.RowIndex].Cells[8].Text;
+            videojuego.FechaLanzamiento = DateTime.Parse(((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[4].Controls[0]).Text);
+            videojuego.Precio = Double.Parse(((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[5].Controls[0]).Text);
+            videojuego.Plataforma = ((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[6].Controls[0]).Text;
+            videojuego.Imagen = ((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[7].Controls[0]).Text;
+            videojuego.Descripcion = ((TextBox)videojuegoTable.Rows[e.RowIndex].Cells[8].Controls[0]).Text;
 
-            videojuegoTable.DataSource = videojuego.updateVideojuego(videojuegoTable.SelectedIndex);
-            videojuegoTable.DataBind();
+            //videojuegoTable.DataSource = videojuego.updateVideojuego(videojuegoTable.SelectedIndex);
+            //videojuegoTable.DataBind();
+
+            if (videojuego.updateVideojuego())
+            {
+                videojuegoTable.EditIndex = -1;
+                FillVideojuegosTable();
+                //Mensaje mostrando exito
+                mostrarResultado("Videojuego actualizado correctamente.");
+            }
+            else
+            {
+                //Mensaje mostrando error
+                mostrarError("Error al actualizar el videojuego.");
+            }
+
         }
 
         protected void clickRowDeleteVideojuego(object sender, GridViewDeleteEventArgs e)
         {
             ENVideojuego videojuego = new ENVideojuego();
             videojuego.Id = Int32.Parse(videojuegoTable.Rows[e.RowIndex].Cells[0].Text);
+            videojuego.Titulo = videojuegoTable.Rows[e.RowIndex].Cells[1].Text;
 
             if (videojuego.deleteVideojuego())
             {
                 FillVideojuegosTable();
-                //ToDo mensaje mostrando exito
+                //Mensaje mostrando exito
+                mostrarResultado("Videojuego eliminado correctamente.");
             }
             else
             {
-                //ToDo mensaje mostrando error
+                //Mensaje mostrando error
+                mostrarError("Error al eliminar el videojuego.");
             }
         }
 
@@ -126,6 +140,24 @@ namespace web
         protected void crearVideojuegoClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void mostrarError(string error)
+        {
+            msgSalida.Text = error;
+            msgSalida.BackColor = System.Drawing.Color.Red;
+        }
+
+        private void cleanMsg()
+        {
+            msgSalida.Text = "";
+            msgSalida.BackColor = System.Drawing.Color.White;
+        }
+
+        private void mostrarResultado(string resultado)
+        {
+            msgSalida.Text = resultado;
+            msgSalida.BackColor = System.Drawing.Color.Green;
         }
 
 

@@ -70,17 +70,11 @@ namespace library
         {
             bool leido = false;
             SqlConnection connection = null;
-            SqlConnection conProductora = null;
-            SqlConnection conCategoria = null;
             SqlDataReader dr = null;
             try
             {
                 connection = new SqlConnection(constring);
-                conProductora = new SqlConnection(constring);
-                conCategoria = new SqlConnection(constring);
                 connection.Open();
-                conProductora.Open();
-                conCategoria.Open();
                 string sentence = "SELECT * FROM [Videojuego] WHERE titulo = @titulo";
                 SqlCommand com = new SqlCommand(sentence, connection);
                 com.Parameters.AddWithValue("@titulo", en.Titulo);
@@ -142,8 +136,6 @@ namespace library
         {
             bool leido = false;
             SqlConnection connection = null;
-            //SqlConnection conProductora = null;
-            //SqlConnection conCategoria = null;
             SqlDataReader dr = null;
             try
             {
@@ -320,19 +312,34 @@ namespace library
         {
             bool actualizado = false;
             SqlConnection connection = null;
-            String sentence = "UPDATE [Videojuego] SET " +
-                "titulo = @titulo, descripcion = @descripcion, fecha_lanzamiento = @fecha_lanzamiento," +
-                "plataforma = @plataforma, precio = @precio, imagen = @imagen, productoraID = @productoraID, categoriaID = @categoriaID) " +
-                "WHERE id = @id;";
+
+            
 
             try
             {
+                CADProductora productora = new CADProductora();
+                productora.readProductoraNombre(en.Productora);
+
+                CADCategoria categoria = new CADCategoria();
+                categoria.readCategoriaNombre(en.Categoria);
+
+                String sentence = "UPDATE [Videojuego] SET titulo='" + en.Titulo + "', descripcion='" + en.Descripcion
+                + "', fecha_lanzamiento='" + en.FechaLanzamiento + "', plataforma='" + en.Plataforma
+                + "', precio='" + en.Precio + "', imagen='" + en.Imagen + "', productoraID='" + en.Productora.Id + "', categoriaID='" + en.Categoria.id
+                + "' WHERE id = '" + en.Id + "'";
+
+                /*String sentence = "UPDATE [Videojuego] SET " +
+                "titulo = @titulo, descripcion = @descripcion, fecha_lanzamiento = @fecha_lanzamiento," +
+                "plataforma = @plataforma, precio = @precio, imagen = @imagen, productoraID = @productoraID, categoriaID = @categoriaID " +
+                "WHERE id = @id;";*/
+
+
                 connection = new SqlConnection(constring);
                 connection.Open();
 
                 SqlCommand com = new SqlCommand(sentence, connection);
 
-                com.Parameters.AddWithValue("@titulo", en.Titulo);
+                /*com.Parameters.AddWithValue("@titulo", en.Titulo);
                 com.Parameters.AddWithValue("@descripcion", en.Descripcion);
                 com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
@@ -340,7 +347,7 @@ namespace library
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
                 com.Parameters.AddWithValue("@categoriaID", en.Categoria);
-                com.Parameters.AddWithValue("@id", en.Id);
+                com.Parameters.AddWithValue("@id", en.Id);*/
 
                 com.ExecuteNonQuery();
 

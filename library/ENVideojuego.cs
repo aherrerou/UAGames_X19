@@ -142,34 +142,8 @@ namespace library
 
         public bool updateVideojuego()
         {
-            bool actualizado = false;
             CADVideojuego cad = new CADVideojuego();
-            ENVideojuego aux = new ENVideojuego();
-
-            aux.Id = this.Id;
-            aux.Titulo = this.Titulo;
-            aux.Descripcion = this.Descripcion;
-            aux.FechaLanzamiento = this.FechaLanzamiento;
-            aux.Plataforma = this.Plataforma;
-            aux.Imagen = this.Imagen;
-            aux.Precio = this.Precio;
-            aux.Productora = this.Productora;
-            aux.Categoria = this.Categoria;
-
-            if (cad.readVideojuego(this))
-            {
-                actualizado = cad.updateVideojuego(aux);
-                this.Titulo = aux.Titulo;
-                this.Descripcion = aux.Descripcion;
-                this.FechaLanzamiento = aux.FechaLanzamiento;
-                this.Plataforma = aux.Plataforma;
-                this.Imagen = aux.Imagen;
-                this.Precio = aux.Precio;
-                this.Productora = aux.Productora;
-                this.Categoria = aux.Categoria;
-            }
-
-            return actualizado;
+            return cad.updateVideojuego(this);
         }
 
         public DataTable updateVideojuego(int i)
@@ -180,15 +154,15 @@ namespace library
 
         public bool deleteVideojuego()
         {
-            bool eliminado = false;
             CADVideojuego cad = new CADVideojuego();
+            return cad.deleteVideojuego(this);
+            
+        }
 
-            if (cad.readVideojuego(this))
-            {
-                eliminado = cad.deleteVideojuego(this);
-            }
-
-            return eliminado;
+        public DataTable deleteVideojuego(int i)
+        {
+            CADVideojuego cad = new CADVideojuego();
+            return cad.deleteVideojuego(this, i);
         }
 
     }
