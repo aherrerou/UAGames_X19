@@ -116,43 +116,18 @@ namespace library
             return cad.readOfertasProductora(listaofertas, productora);
         }
 
-        public bool actualizaroferta()
+        public bool updateOferta()
         {
-            bool actualizado = false;
+
             CADOferta cad = new CADOferta();
-            ENOferta aux = new ENOferta();
-
-            aux.Id = this.Id;
-            aux.FechaInicio = this.FechaInicio;
-            aux.FechaFin = this.FechaFin;
-            aux.Descuento = this.Descuento;
-            aux.Productora = this.Productora;
-            aux.Videojuego = this.Videojuego;
-
-            if (cad.readOferta(this))
-            {
-                actualizado = cad.updateOferta(aux);
-                this.FechaInicio = aux.FechaInicio;
-                this.FechaFin = aux.FechaFin;
-                this.Descuento = aux.Descuento;
-                this.Productora = aux.Productora;
-                this.Videojuego = aux.Videojuego;
-            }
-
-            return actualizado;
+            return cad.updateOferta(this);
         }
 
-        public bool eliminarOferta()
+        public bool deleteOferta()
         {
-            bool eliminado = false;
             CADOferta cad = new CADOferta();
+            return cad.deleteOferta(this);
 
-            if (cad.readOferta(this))
-            {
-                eliminado = cad.deleteOferta(this);
-            }
-
-            return eliminado;
         }
     }
 }

@@ -3,11 +3,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
-        <div class="showGrid">
-            <h2>Ofertas</h2>
+        <div>
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-primary">Ofertas</h2>
+                </div>
+                <div class="col">
+                     <asp:Label ID="msgSalida" runat="server" Text=""></asp:Label>
+                </div>
+            </div>
+
             <asp:GridView ID="ofertasTable" runat="server" CssClass="grid" AutoGenerateColumns="False"
-                DataKeyNames="id" PageSize="5" AllowPaging="True"
+                DataKeyNames="id" PageSize="5" AllowPaging="True" AllowSorting="true" OnSorting="OfertasTable_Sorting"
                 EmptyDataText="Ups, no se han encontrado ofertas."
                 OnPageIndexChanging="changePageOfertasTable"
                 OnRowEditing="clickRowEditOferta"
@@ -16,17 +23,17 @@
                 OnRowDeleting="clickRowDeleteOferta">
 
                 <Columns>
-                    <asp:BoundField DataField="id" HeaderText="ID" ReadOnly="True" SortExpression="Id" />
-                    <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                    <asp:BoundField DataField="videojuego" HeaderText="Videojuego" SortExpression="Videojuego" />
-                    <asp:BoundField DataField="productora" HeaderText="Productora" SortExpression="Productora" />
-                    <asp:BoundField DataField="descuento" HeaderText="Descuento" SortExpression="Descuento" />
-                    <asp:BoundField DataField="fecha_inicio" HeaderText="Fecha Inicio" SortExpression="FechaInicio" />
-                    <asp:BoundField DataField="fecha_fin" HeaderText="Fecha Fin" SortExpression="FechaFin" />
+                    <asp:BoundField DataField="id" HeaderText="ID" ReadOnly="True" SortExpression="id" />
+                    <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
+                    <asp:BoundField DataField="videojuego" HeaderText="Videojuego" SortExpression="videojuego" />
+                    <asp:BoundField DataField="productora" HeaderText="Productora" SortExpression="productora" />
+                    <asp:BoundField DataField="descuento" HeaderText="Descuento" SortExpression="descuento" />
+                    <asp:BoundField DataField="fecha_inicio" HeaderText="Fecha Inicio" SortExpression="fecha_inicio" />
+                    <asp:BoundField DataField="fecha_fin" HeaderText="Fecha Fin" SortExpression="fecha_fin" />
                     <asp:CommandField HeaderText="Acciones" ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/cancel.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
                         ShowEditButton="True" ShowDeleteButton="True" ShowCancelButton="True" UpdateImageUrl="~/assets/imagenes/iconos/check.png"
                         DeleteImageUrl="~/assets/imagenes/iconos/trash.png">
-                        <ControlStyle Height="20px" Width="20px" CssClass="botones" />
+                        <ControlStyle Height="20px" Width="20px"/>
                     </asp:CommandField>
 
                 </Columns>
@@ -45,7 +52,10 @@
             <br />
             <br />
 
-            <h2>Crear oferta</h2>
+            <div>
+                <h2>Crear oferta</h2>
+                <asp:Label ID="msgSalidaCrear" runat="server" Text=""></asp:Label>
+            </div>
             <div class="crearFlex">
                 <div class="flexIzq">
                     Nombre:
@@ -55,23 +65,18 @@
                     Fecha Fin:
             <asp:TextBox ID="nuevaFechaFin" runat="server"></asp:TextBox>
                     Productora:
-                    <asp:TextBox ID="nuevaProductora" runat="server"></asp:TextBox>
-            <!--<asp:DropDownList ID="productorasList" AutoPostBack="True" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server" />-->
+            <asp:DropDownList ID="productorasList" AutoPostBack="True" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server" />
                 </div>
                 <div class="flexDer">
                     Videojuego:
-                    <asp:TextBox ID="nuevoVideojuego" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="videojuegosList" AutoPostBack="True" runat="server" />
                     Descuento:
                     <asp:TextBox ID="nuevoDescuento" runat="server"></asp:TextBox>
-            <!--<asp:DropDownList ID="videojuegosList" AutoPostBack="True" OnSelectedIndexChanged="VideojuegoSelectionChange" runat="server" />-->
                 <br />
                 <asp:Button id="crearOferta" Text="Crear" runat="server" OnClick="crearOfertaClick"/>
                 </div>
 
             </div>
         </div>
-
-
-    </main>
 
 </asp:Content>

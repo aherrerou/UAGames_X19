@@ -20,24 +20,35 @@ namespace library
         {
             bool creado = false;
             SqlConnection connection = null;
-            String sentence = "INSERT INTO [Oferta] " +
+            /*String sentence = "INSERT INTO [Oferta] " +
                 "(nombre, descuento, fecha_inicio, fecha_fin, productoraID, videojuegoID) " +
-                "VALUES (@nombre, @descuento, @fecha_inicio, @fecha_fin, @productoraID, @videojuegoID);";
+                "VALUES (@nombre, @descuento, @fecha_inicio, @fecha_fin, @productoraID, @videojuegoID);";*/
 
 
             try
             {
+                CADProductora productora = new CADProductora();
+                productora.readProductora(en.Productora);
+
+                CADVideojuego videojuego= new CADVideojuego();
+                videojuego.readVideojuego(en.Videojuego);
+
+                String sentence = "INSERT INTO [Oferta] (nombre, descuento, fecha_inicio, fecha_fin, productoraID, videojuegoID) " +
+                   "VALUES ('" + en.Nombre + "', '" + en.Descuento + "', '" + en.FechaInicio + "', '" + en.FechaFin
+               + "', '" + en.Productora.Id + "', '" + en.Videojuego.Id
+               + "' );";
+
                 connection = new SqlConnection(constring);
                 connection.Open();
 
                 SqlCommand com = new SqlCommand(sentence, connection);
 
-                com.Parameters.AddWithValue("@nombre", en.Nombre);
+                /*com.Parameters.AddWithValue("@nombre", en.Nombre);
                 com.Parameters.AddWithValue("@descuento", en.Descuento);
                 com.Parameters.AddWithValue("@fecha_inicio", en.FechaInicio.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 com.Parameters.AddWithValue("@fecha_fin", en.FechaFin.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
-                com.Parameters.AddWithValue("@videojuegoID", en.Videojuego.Id);
+                com.Parameters.AddWithValue("@videojuegoID", en.Videojuego.Id);*/
 
                 com.ExecuteNonQuery();
                 creado = true;
@@ -97,27 +108,14 @@ namespace library
                     en.FechaFin = DateTime.Parse(dr["fecha_fin"].ToString());
 
                     //Lectura de la productora
-                    ENProductora productora = new ENProductora();
-                    productora.Id = Int32.Parse(dr["productoraID"].ToString());
+                    en.Productora.Id = Int32.Parse(dr["productoraID"].ToString());
 
-                    
-                    sentence = "SELECT * FROM [Productora] WHERE id = " + productora.Id + ";";
-                    SqlCommand comProd = new SqlCommand(sentence, connectionProductora);
-                    drProductora = comProd.ExecuteReader();
-
-                    if (drProductora.Read())
-                    {
-                        productora.Nombre = dr["nombre"].ToString(); ;
-                        productora.Descripcion = dr["descripcion"].ToString();
-                        productora.Imagen = dr["Imagen"].ToString();
-                        productora.Web = dr["Web"].ToString();
-                    }
-
-                    en.Productora = productora;
+                    CADProductora prod = new CADProductora();
+                    prod.readProductora(en.Productora);
 
                     //Lectura del videojuego
                     ENVideojuego videojuego = new ENVideojuego();
-                    videojuego.Id = Int32.Parse(dr["videojuegoID"].ToString());
+                    en.Videojuego.Id = Int32.Parse(dr["videojuegoID"].ToString());
 
 
                     //Se lee el videojuego a partir de su ID
@@ -306,26 +304,37 @@ namespace library
         {
             bool actualizado = false;
             SqlConnection connection = null;
-            String sentence = "UPDATE [Oferta] SET " +
+            /*String sentence = "UPDATE [Oferta] SET " +
                 "nombre = @nombre, fecha_inicio = @fecha_inicio," +
                 "fecha_fin = @fecha_fin, descuento = @descuento, productoraID = @productoraID, videojuegoID = @videojuegoID) " +
-                "WHERE id = @id;";
+                "WHERE id = @id;";*/
 
 
             try
             {
+                CADProductora productora = new CADProductora();
+                productora.readProductora(en.Productora);
+
+                CADVideojuego videojuego = new CADVideojuego();
+                videojuego.readVideojuego(en.Videojuego);
+
+                String sentence = "UPDATE [Oferta] SET nombre='" + en.Nombre + "', fecha_inicio='" + en.FechaInicio
+                + "', fecha_fin='" + en.FechaFin + "', descuento='" + en.Descuento
+                + "', productoraID='" + en.Productora.Id + "', videojuegoID='" + en.Videojuego.Id
+                + "' WHERE id = '" + en.Id + "'";
+
                 connection = new SqlConnection(constring);
                 connection.Open();
 
                 SqlCommand com = new SqlCommand(sentence, connection);
 
-                com.Parameters.AddWithValue("@nombre", en.Nombre);
+                /*com.Parameters.AddWithValue("@nombre", en.Nombre);
                 com.Parameters.AddWithValue("@fecha_inicio", en.FechaInicio.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 com.Parameters.AddWithValue("@fecha_fin", en.FechaFin.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
                 com.Parameters.AddWithValue("@descuento", en.Descuento);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
                 com.Parameters.AddWithValue("@videojuegoID", en.Videojuego.Id);
-                com.Parameters.AddWithValue("@id", en.Id);
+                com.Parameters.AddWithValue("@id", en.Id);*/
 
                 com.ExecuteNonQuery();
 
@@ -363,7 +372,7 @@ namespace library
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "DELETE FROM [Videojuego] " +
+                string sentence = "DELETE FROM [Oferta] " +
                     "where id = @id;";
                 SqlCommand com = new SqlCommand(sentence, connection);
                 com.Parameters.AddWithValue("@id", en.Id);

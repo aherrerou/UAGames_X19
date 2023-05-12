@@ -15,6 +15,15 @@ namespace web
     {
 
         /// <summary>
+        /// Control msgSalida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msgSalida;
+
+        /// <summary>
         /// Control ofertasTable.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView ofertasTable;
+
+        /// <summary>
+        /// Control msgSalidaCrear.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msgSalidaCrear;
 
         /// <summary>
         /// Control nuevoNombre.
@@ -51,15 +69,6 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox nuevaFechaFin;
 
         /// <summary>
-        /// Control nuevaProductora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevaProductora;
-
-        /// <summary>
         /// Control productorasList.
         /// </summary>
         /// <remarks>
@@ -69,13 +78,13 @@ namespace web
         protected global::System.Web.UI.WebControls.DropDownList productorasList;
 
         /// <summary>
-        /// Control nuevoVideojuego.
+        /// Control videojuegosList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nuevoVideojuego;
+        protected global::System.Web.UI.WebControls.DropDownList videojuegosList;
 
         /// <summary>
         /// Control nuevoDescuento.
@@ -85,15 +94,6 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nuevoDescuento;
-
-        /// <summary>
-        /// Control videojuegosList.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList videojuegosList;
 
         /// <summary>
         /// Control crearOferta.

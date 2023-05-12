@@ -31,8 +31,59 @@ namespace web
         protected void FillVideojuegosTable()
         {
             ENVideojuego videojuego = new ENVideojuego();
-            videojuegoTable.DataSource = videojuego.readVideojuegos();
+            //Persist the table in the Session object.
+            Session["VideojuegosGrid"] = videojuego.readVideojuegos();
+
+            //Bind the GridView control to the data source.
+            videojuegoTable.DataSource = Session["VideojuegosGrid"];
             videojuegoTable.DataBind();
+        }
+
+        protected void VideojuegosTable_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+            //Retrieve the table from the session object.
+            DataTable dt = Session["VideojuegosGrid"] as DataTable;
+
+            if (dt != null)
+            {
+
+                //Sort the data.
+                dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
+                videojuegoTable.DataSource = Session["VideojuegosGrid"];
+                videojuegoTable.DataBind();
+            }
+
+        }
+
+        private string GetSortDirection(string column)
+        {
+
+            // By default, set the sort direction to ascending.
+            string sortDirection = "ASC";
+
+            // Retrieve the last column that was sorted.
+            string sortExpression = ViewState["SortExpression"] as string;
+
+            if (sortExpression != null)
+            {
+                // Check if the same column is being sorted.
+                // Otherwise, the default value can be returned.
+                if (sortExpression == column)
+                {
+                    string lastDirection = ViewState["SortDirection"] as string;
+                    if ((lastDirection != null) && (lastDirection == "ASC"))
+                    {
+                        sortDirection = "DESC";
+                    }
+                }
+            }
+
+            // Save new values in ViewState.
+            ViewState["SortDirection"] = sortDirection;
+            ViewState["SortExpression"] = column;
+
+            return sortDirection;
         }
 
         protected void FillProductorasDropdown()
