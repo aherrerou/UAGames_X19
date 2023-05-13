@@ -51,15 +51,6 @@ namespace web
         protected global::System.Web.UI.WebControls.DropDownList filtroCategoria;
 
         /// <summary>
-        /// Control filtroFecha.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox filtroFecha;
-
-        /// <summary>
         /// Control filtroPlataforma.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox filtroPlataforma;
+
+        /// <summary>
+        /// Control filtroFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox filtroFecha;
 
         /// <summary>
         /// Control filtros.
@@ -132,24 +132,6 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox nuevaFechaLanzamiento;
 
         /// <summary>
-        /// Control productorasList.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList productorasList;
-
-        /// <summary>
-        /// Control categoriasList.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList categoriasList;
-
-        /// <summary>
         /// Control nuevoPrecio.
         /// </summary>
         /// <remarks>
@@ -175,6 +157,24 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nuevaDescripcion;
+
+        /// <summary>
+        /// Control productorasList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList productorasList;
+
+        /// <summary>
+        /// Control categoriasList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList categoriasList;
 
         /// <summary>
         /// Control crearVideojuego.

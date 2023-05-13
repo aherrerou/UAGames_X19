@@ -100,7 +100,6 @@ namespace web
         }
         protected void FillVideojuegosDropdown()
         {
-            //ToDo leer productora y obtener solo los de la productora
             ENVideojuego videojuego = new ENVideojuego();
             DataTable dt = videojuego.readVideojuegos();
             ListItem i;
@@ -108,6 +107,60 @@ namespace web
             {
                 i = new ListItem(r["titulo"].ToString(), r["id"].ToString());
                 videojuegosList.Items.Add(i);
+                filtroVideojuego.Items.Add(i);
+            }
+        }
+
+        protected void FillVideojuegosDropdownOnChange()
+        {
+            videojuegosList.Items.Clear();
+            //Se obtienen solo los de la productora
+            int productora = int.Parse(productorasList.SelectedValue);
+            ENVideojuego videojuego = new ENVideojuego();
+            DataTable dt;
+
+            if (productora != 0)
+            {
+                videojuego.Productora.Id = productora;
+                dt = videojuego.readVideojuegosProductora();
+            }
+            else
+            {
+                dt = videojuego.readVideojuegos();
+            }
+
+
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["titulo"].ToString(), r["id"].ToString());
+                videojuegosList.Items.Add(i);
+            }
+        }
+
+        protected void FillFiltroVideojuegos()
+        {
+            filtroVideojuego.Items.Clear();
+            //ToDo leer productora y obtener solo los de la productora
+            int productora = int.Parse(filtroProductora.SelectedValue);
+            ENVideojuego videojuego = new ENVideojuego();
+            DataTable dt = new DataTable();
+
+            if (productora != 0)
+            {
+                videojuego.Productora.Id = productora;
+                dt = videojuego.readVideojuegosProductora();
+            }
+            else
+            {
+                dt = videojuego.readVideojuegos();
+            }
+
+
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["titulo"].ToString(), r["id"].ToString());
                 filtroVideojuego.Items.Add(i);
             }
         }
@@ -177,14 +230,14 @@ namespace web
 
         protected void ProductoraSelectionChange(object sender, EventArgs e)
         {
-            //Hacer aparecer videojuego cuando se seleccione productora
-            FillVideojuegosDropdown();
+            //POner videojeugos de productora exclusivamente
+            FillVideojuegosDropdownOnChange();
         }
 
         protected void filtroProductoraOnChange(object sender, EventArgs e)
         {
-            //Hacer aparecer videojuego cuando se seleccione productora
-            FillVideojuegosDropdown();
+            //POner videojeugos de productora exclusivamente
+            FillFiltroVideojuegos();
         }
 
         protected void crearOfertaClick(object sender, EventArgs e)

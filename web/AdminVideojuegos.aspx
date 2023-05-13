@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-        <div class="container bg-light overflow-auto" style="min-height:599px;">
-           <div class="row">
+    <div class="container bg-light overflow-auto" style="min-height: 599px;">
+        <div class="row">
             <div class="col-md-2">
                 <h2 class="text-primary">Videojuegos</h2>
             </div>
@@ -36,10 +36,11 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col">
-                        <!--Fecha lanzamiento-->
-                        <asp:TextBox ID="filtroFecha" runat="server" type="date" CssClass="mb-2" value=""></asp:TextBox>
                         <!--Plataforma-->
-                    <asp:TextBox ID="filtroPlataforma" runat="server" PlaceHolder="Plataforma..." value="" CssClass="mb-2"></asp:TextBox>
+                        <asp:TextBox ID="filtroPlataforma" runat="server" PlaceHolder="Plataforma..." value="" CssClass="mb-2"></asp:TextBox>
+                        <!--Fecha lanzamiento-->
+                        Fecha lanzamiento:
+                        <asp:TextBox ID="filtroFecha" runat="server" type="date" CssClass="mb-2" value=""></asp:TextBox>
                     </div>
                     <div class="col">
 
@@ -48,20 +49,15 @@
                         <asp:Button CssClass="btn btn-danger mt-3" ID="resetFiltros" Text="Eliminar filtros" runat="server" OnClick="resetFiltrosOnClick" />
 
                     </div>
-
                 </div>
-
-
-
-
 
                 <div class="col-md-3">
                     <asp:Label ID="msgSalida" runat="server" CssClass="text-white" Text=""></asp:Label>
                 </div>
             </div>
         </div>
-            <div class="table-responsive">
-                <asp:GridView ID="videojuegoTable" runat="server" CssClass="text-primary" AutoGenerateColumns="False" BorderStyle="None" BackColor="White" BorderWidth="2px"
+        <div class="table-responsive">
+            <asp:GridView ID="videojuegoTable" runat="server" CssClass="text-primary" AutoGenerateColumns="False" BorderStyle="None" BackColor="White" BorderWidth="2px"
                 DataKeyNames="id" PageSize="5" AllowPaging="True" AllowSorting="true" OnSorting="VideojuegosTable_Sorting" CellPadding="5"
                 EmptyDataText="Ups, no se han encontrado videojuegos."
                 OnPageIndexChanging="changePageVideojuegosTable"
@@ -69,15 +65,15 @@
                 OnRowCancelingEdit="clickRowCancelVideojuego"
                 OnRowUpdating="clickRowUpdateVideojuego"
                 OnRowDeleting="clickRowDeleteVideojuego"
-                gridlines="Horizontal">
+                GridLines="Horizontal">
 
                 <Columns>
-                    <asp:BoundField DataField="id" HeaderText="ID" ReadOnly="True" SortExpression="id"/>
+                    <asp:BoundField DataField="id" HeaderText="ID" ReadOnly="True" SortExpression="id" />
                     <asp:BoundField DataField="titulo" HeaderText="Titulo" SortExpression="titulo" />
                     <asp:BoundField DataField="productora" HeaderText="Productora" SortExpression="productora" />
                     <asp:BoundField DataField="categoria" HeaderText="Categoria" SortExpression="categoria" />
-                    <asp:BoundField DataField="fecha_lanzamiento" HeaderText="Fecha Lanzamiento" SortExpression="fecha_lanzamiento"  />
-                    <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="precio"/>
+                    <asp:BoundField DataField="fecha_lanzamiento" HeaderText="Fecha Lanzamiento" SortExpression="fecha_lanzamiento" />
+                    <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="precio" />
                     <asp:BoundField DataField="plataforma" HeaderText="Plataforma" SortExpression="plataforma" />
                     <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen" NullDisplayText="X" ControlStyle-Width="50px">
                     </asp:ImageField>
@@ -85,12 +81,12 @@
                     <asp:CommandField HeaderText="Acciones" ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/cancel.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
                         ShowEditButton="True" ShowDeleteButton="True" ShowCancelButton="True" UpdateImageUrl="~/assets/imagenes/iconos/check.png"
                         DeleteImageUrl="~/assets/imagenes/iconos/trash.png">
-                        <ControlStyle Height="20px" Width="20px"/>
+                        <ControlStyle Height="20px" Width="20px" />
                     </asp:CommandField>
 
                 </Columns>
                 <FooterStyle BackColor="White" ForeColor="#0d6efd" />
-            <HeaderStyle BackColor="#0d6efd" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Font-Underline="false" />
+                <HeaderStyle BackColor="#0d6efd" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Font-Underline="false" />
                 <PagerStyle BackColor="White" ForeColor="#0d6efd" HorizontalAlign="Center" />
                 <RowStyle ForeColor="#0d6efd" />
                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
@@ -99,36 +95,63 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-            </div>
-            
-            <br />
-            <div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
                 <h2>Crear videojuego</h2>
+            </div>
+            <div class="col-md-4">
                 <asp:Label ID="msgSalidaCrear" CssClass="text-white" runat="server" Text=""></asp:Label>
             </div>
-            <div class="crearFlex">
-                <div class="flexIzq">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div>
                     Titulo:
             <asp:TextBox ID="nuevoTitulo" runat="server"></asp:TextBox>
+                </div>
+                <div class="mt-2">
                     Fecha lanzamiento:
             <asp:TextBox ID="nuevaFechaLanzamiento" runat="server" type="date"></asp:TextBox>
-                    Productora:
-            <asp:DropDownList ID="productorasList" AutoPostBack="false" runat="server" />
-                    Categoria:
-                    <asp:DropDownList ID="categoriasList" AutoPostBack="false" runat="server" />
                 </div>
-                <div class="flexDer">
+                <div class="mt-2">
                     Precio:
                     <asp:TextBox ID="nuevoPrecio" runat="server"></asp:TextBox>
-                    Plataforma:
-                    <asp:TextBox ID="nuevaPlataforma" runat="server"></asp:TextBox>
-                    Descripcion:
-                    <asp:TextBox ID="nuevaDescripcion" runat="server"></asp:TextBox>
-
-                    <br />
-                    <asp:Button ID="crearVideojuego" CssClass="btn btn-primary" Text="Crear" runat="server" OnClick="crearVideojuegoClick" />
                 </div>
 
             </div>
+            <div class="col-md-4">
+                <div class="mt-2">
+                    Plataforma:
+                    <asp:TextBox ID="nuevaPlataforma" runat="server"></asp:TextBox>
+                </div>
+                <div class="mt-2">
+                    Descripcion:
+                    <asp:TextBox ID="nuevaDescripcion" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mt-2">
+                    Productora:
+            <asp:DropDownList ID="productorasList" AutoPostBack="false" runat="server">
+                <Items>
+                    <asp:ListItem Text="Productora" Value="" />
+                </Items>
+            </asp:DropDownList>
+                </div>
+                <div class="mt-2">
+                    Categoria:
+                    <asp:DropDownList ID="categoriasList" AutoPostBack="false" runat="server">
+                        <Items>
+                            <asp:ListItem Text="Categoria" Value="" />
+                        </Items>
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="mt-2">
+                <asp:Button ID="crearVideojuego" CssClass="btn btn-primary" Text="Crear" runat="server" OnClick="crearVideojuegoClick" />
+            </div>
         </div>
+    </div>
 </asp:Content>

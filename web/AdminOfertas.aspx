@@ -23,7 +23,7 @@
                     </div>
                     <div class="col">
                         <!--DropDown productora-->
-                        <asp:DropDownList ID="filtroProductora" AutoPostBack="false" OnSelectedIndexChanged="filtroProductoraOnChange" runat="server" CssClass="mb-2">
+                        <asp:DropDownList ID="filtroProductora" AutoPostBack="true" OnSelectedIndexChanged="filtroProductoraOnChange" runat="server" CssClass="mb-2">
                             <Items>
                                 <asp:ListItem Text="Productora" Value="0" />
                             </Items>
@@ -96,7 +96,6 @@
             </asp:GridView>
         </div>
         <br />
-        <br />
 
         <div class="row">
             <div class="col-md-6">
@@ -128,7 +127,7 @@
                 </div>
                 <div class="mt-2">
                     Productora:
-            <asp:DropDownList ID="productorasList" AutoPostBack="false" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server">
+            <asp:DropDownList ID="productorasList" AutoPostBack="true" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server">
                 <Items>
                     <asp:ListItem Text="Productora" Value="" />
                 </Items>
