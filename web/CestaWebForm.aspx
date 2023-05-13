@@ -4,75 +4,43 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
   
- <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-    <title>Cesta de compra</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {background-color: #f2f2f2;}
-
-        button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-
-        #precio {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    </style>
-
 <main>
-    <form id="form1">
-        <div>
-            <h1>Cesta de compra</h1>
-            <table>
-                <tr>
-                    <th>Videojuego</th>
-                    <th>Fecha</th>
-                    <th>Cantidad</th>
-                    <th>Precio unitario</th>
-                </tr>
-                <tr>
-                    <td>Videojuego 1</td>
-                    <td>01/05/2023</td>
-                    <td>2</td>
-                    <td>30€</td>
-                </tr>
-                <tr>
-                    <td>Videojuego 2</td>
-                    <td>02/05/2023</td>
-                    <td>1</td>
-                    <td>25€</td>
-                </tr>
-            </table>
-            <div id="precio">Precio total: 85€</div>
-            <asp:Button ID="btnComprar" runat="server" Text="Comprar" OnClick="btnCompra_Click" />
-            
+        <div class="showGrid">
+            <h2>Cesta</h2>
+            <asp:GridView ID="cestaTable" runat="server" CssClass="grid" AutoGenerateColumns="False"
+                DataKeyNames="videojuegoID" PageSize="5" AllowPaging="True"
+                EmptyDataText="Ups, no se ha encontrado nada en la cesta."
+                OnPageIndexChanging="changePageCestaTable"
+                OnRowEditing="clickRowEditCesta"
+                OnRowCancelingEdit="clickRowCancelCesta"
+                OnRowUpdating="clickRowUpdateCesta"
+                OnRowDeleting="clickRowDeleteCesta">
+
+                <Columns>
+                    <asp:BoundField DataField="videojuegoID" HeaderText="VideojuegoID" ReadOnly="True" SortExpression="VideojuegoID" />
+                    <asp:BoundField DataField="usuarioID" HeaderText="usuarioID" SortExpression="usuarioID" />
+                    <asp:BoundField DataField="titulo" HeaderText="Titulo" SortExpression="Titulo" />
+                    <asp:CommandField HeaderText="Acciones" ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/cancel.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
+                        ShowEditButton="True" ShowDeleteButton="True" ShowCancelButton="True" UpdateImageUrl="~/assets/imagenes/iconos/check.png"
+                        DeleteImageUrl="~/assets/imagenes/iconos/trash.png">
+                        <ControlStyle Height="20px" Width="20px" CssClass="botones" />
+                    </asp:CommandField>
+
+                </Columns>
+                <FooterStyle BackColor="#0A2558" ForeColor="#fff" />
+                <HeaderStyle BackColor="#0A2558" Font-Bold="True" ForeColor="#fff" />
+                <PagerSettings Mode="Numeric" Position="Bottom" PreviousPageText="True" />
+                <PagerStyle HorizontalAlign="Center" ForeColor="#0A2558" />
+                <RowStyle ForeColor="#0A2558" />
+                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#00547E" />
+            </asp:GridView>
+
         </div>
-    </form>
-</main>
-</html>
+ </main>           
 
 
 </asp:Content>
