@@ -68,7 +68,7 @@
             </nav>
         </header>
 
-        <main class="flex-shrink-0 py-4 bg-light overflow-auto">
+        <main class="flex-shrink-0 py-4 bg-light overflow-auto text-primary">
             <asp:ContentPlaceHolder ID="main" runat="server">
             </asp:ContentPlaceHolder>
         </main>

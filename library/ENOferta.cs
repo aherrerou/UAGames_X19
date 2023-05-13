@@ -110,10 +110,10 @@ namespace library
             return cad.readOfertas();
         }
 
-        public bool readofertasProductora(List<ENOferta> listaofertas, string productora)
+        public DataTable readOfertas(string query)
         {
             CADOferta cad = new CADOferta();
-            return cad.readOfertasProductora(listaofertas, productora);
+            return cad.readOfertas(query);
         }
 
         public bool updateOferta()

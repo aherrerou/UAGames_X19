@@ -18,12 +18,15 @@ namespace web
                 FillOfertasTable();
                 FillProductorasDropdown();
                 FillVideojuegosDropdown();
+                FillProductorasFiltro();
+                FillVideojuegosFiltro();
                 cleanMsg();
             }
         }
 
         protected void changePageOfertasTable(object sender, GridViewPageEventArgs e)
         {
+            cleanMsg();
             ofertasTable.PageIndex = e.NewPageIndex;
             FillOfertasTable();
         }
@@ -41,7 +44,7 @@ namespace web
 
         protected void OfertasTable_Sorting(object sender, GridViewSortEventArgs e)
         {
-
+            cleanMsg();
             //Retrieve the table from the session object.
             DataTable dt = Session["OfertasGrid"] as DataTable;
 
@@ -58,7 +61,6 @@ namespace web
 
         private string GetSortDirection(string column)
         {
-
             // By default, set the sort direction to ascending.
             string sortDirection = "ASC";
 
@@ -98,8 +100,21 @@ namespace web
             }
         }
 
+        protected void FillProductorasFiltro()
+        {
+            ENProductora productora = new ENProductora();
+            DataTable dt = productora.readProductorasNombre();
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
+                filtroProductora.Items.Add(i);
+            }
+        }
+
         protected void FillVideojuegosDropdown()
         {
+            //ToDo leer productora y obtener solo los de la productora
             ENVideojuego videojuego = new ENVideojuego();
             DataTable dt = videojuego.readVideojuegos();
             ListItem i;
@@ -110,8 +125,22 @@ namespace web
             }
         }
 
+        protected void FillVideojuegosFiltro()
+        {
+            //ToDo leer productora y obtener solo los de la productora
+            ENVideojuego videojuego = new ENVideojuego();
+            DataTable dt = videojuego.readVideojuegos();
+            ListItem i;
+            foreach (DataRow r in dt.Rows)
+            {
+                i = new ListItem(r["titulo"].ToString(), r["id"].ToString());
+                filtroVideojuego.Items.Add(i);
+            }
+        }
+
         protected void clickRowEditOferta(object sender, GridViewEditEventArgs e)
         {
+            cleanMsg();
             //NewEditIndex property used to determine the index of the row being edited.  
             ofertasTable.EditIndex = e.NewEditIndex;
             FillOfertasTable();
@@ -119,6 +148,7 @@ namespace web
 
         protected void clickRowCancelOferta(object sender, GridViewCancelEditEventArgs e)
         {
+            cleanMsg();
             //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview  
             ofertasTable.EditIndex = -1;
             FillOfertasTable();
@@ -126,6 +156,7 @@ namespace web
 
         protected void clickRowUpdateOferta(object sender, GridViewUpdateEventArgs e)
         {
+            cleanMsg();
             ENOferta oferta = new ENOferta();
             oferta.Id = Int32.Parse(ofertasTable.Rows[e.RowIndex].Cells[0].Text);
             oferta.Nombre = ((TextBox)ofertasTable.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
@@ -152,6 +183,7 @@ namespace web
 
         protected void clickRowDeleteOferta(object sender, GridViewDeleteEventArgs e)
         {
+            cleanMsg();
             ENOferta oferta = new ENOferta();
             oferta.Id = Int32.Parse(ofertasTable.Rows[e.RowIndex].Cells[0].Text);
             oferta.Nombre = ofertasTable.Rows[e.RowIndex].Cells[1].Text;
@@ -172,7 +204,13 @@ namespace web
         protected void ProductoraSelectionChange(object sender, EventArgs e)
         {
             //Hacer aparecer videojuego cuando se seleccione productora
+            FillVideojuegosDropdown();
+        }
 
+        protected void filtroProductoraOnChange(object sender, EventArgs e)
+        {
+            //Hacer aparecer videojuego cuando se seleccione productora
+            FillVideojuegosDropdown();
         }
 
         protected void crearOfertaClick(object sender, EventArgs e)
@@ -201,15 +239,73 @@ namespace web
                 {
                     msgSalidaCrear.Text = "Oferta creada correctamente.";
                     msgSalidaCrear.BackColor = System.Drawing.Color.Green;
+                    msgSalidaCrear.ForeColor = System.Drawing.Color.White;
                     FillOfertasTable();
                 }
                 else
                 {
                     msgSalidaCrear.Text = "ERROR al crear la oferta.";
                     msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+                    msgSalidaCrear.ForeColor = System.Drawing.Color.White;
                 }
 
             }
+        }
+
+        protected void filtrarOfertasOnClick(object sender, EventArgs e)
+        {
+            int productora = int.Parse(filtroProductora.SelectedValue);
+            int videojuego = int.Parse(filtroVideojuego.SelectedValue);
+
+            string query = "WHERE ";
+            //Se van agregando filtros a la query
+            if(productora != 0)
+            {
+                query += " o.productoraID = '" + productora + "' AND";
+            }
+
+            if (videojuego != 0)
+            {
+                query += " o.videojuegoID = '" + videojuego + "' AND";
+            }
+
+            string nombre = filtroNombre.Text.ToString();
+
+            if(nombre != "")
+            {
+                query += " nombre LIKE '" + videojuego + "%' AND";
+            }
+
+            if(fechaInicio.Text.ToString() != "")
+            {
+                DateTime inicio = DateTime.Parse(fechaInicio.Text.ToString()).Date;
+                query += " fecha_inicio >= '" + inicio + "' AND";
+
+            }
+
+            if (fechaFin.Text.ToString() != "")
+            {
+                DateTime fin = DateTime.Parse(fechaFin.Text.ToString());
+                query += " fecha_fin >= '" + fin + "' AND";
+
+            }
+
+            int descuento = int.Parse(filtroDescuento.Text.ToString());
+            query += " descuento >= '" + descuento + "' ;";
+
+            ENOferta oferta = new ENOferta();
+            //Persist the table in the Session object.
+            Session["OfertasGrid"] = oferta.readOfertas(query);
+
+            //Bind the GridView control to the data source.           
+            ofertasTable.DataSource = Session["OfertasGrid"];
+            ofertasTable.DataBind();
+        }
+
+        protected void resetFiltrosOnClick(object sender, EventArgs e)
+        {
+            FillOfertasTable();
+            cleanMsg();
         }
 
 

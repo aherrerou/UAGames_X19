@@ -12,7 +12,7 @@
                     <!--Filtros-->
                 </div>
                 <div class="col">
-                     <asp:Label ID="msgSalida" runat="server" Text=""></asp:Label>
+                     <asp:Label ID="msgSalida" runat="server" CssClass="text-white" Text=""></asp:Label>
                 </div>
             </div>
             <div class="table-responsive">
@@ -44,20 +44,22 @@
                     </asp:CommandField>
 
                 </Columns>
-                <HeaderStyle CssClass="text-white bg-primary h4" Font-Bold="True" />
-                <PagerSettings Mode="Numeric" Position="Bottom" PreviousPageText="True" />
-                <PagerStyle HorizontalAlign="Center" CssClass="text-primary h5" />
-                <EditRowStyle CssClass="text-primary" />
-                <SelectedRowStyle CssClass="h1" Font-Bold="True" />
-                <SortedAscendingHeaderStyle />
-                <SortedDescendingHeaderStyle  />
+                <FooterStyle BackColor="White" ForeColor="#0d6efd" />
+            <HeaderStyle BackColor="#0d6efd" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="White" ForeColor="#0d6efd" HorizontalAlign="Left" />
+            <RowStyle ForeColor="#0d6efd" />
+            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+            <SortedAscendingHeaderStyle BackColor="#007DBB" />
+            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+            <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
             </div>
             
             <br />
             <div>
                 <h2>Crear videojuego</h2>
-                <asp:Label ID="msgSalidaCrear" runat="server" Text=""></asp:Label>
+                <asp:Label ID="msgSalidaCrear" CssClass="text-white" runat="server" Text=""></asp:Label>
             </div>
             <div class="crearFlex">
                 <div class="flexIzq">
