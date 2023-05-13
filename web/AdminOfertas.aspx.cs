@@ -31,7 +31,11 @@ namespace web
         protected void FillOfertasTable()
         {
             ENOferta oferta = new ENOferta();
-            ofertasTable.DataSource = oferta.readOfertas();
+            //Persist the table in the Session object.
+            Session["OfertasGrid"] = oferta.readOfertas();
+
+            //Bind the GridView control to the data source.           
+            ofertasTable.DataSource = Session["OfertasGrid"];
             ofertasTable.DataBind();
         }
 
