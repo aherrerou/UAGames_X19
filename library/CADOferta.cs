@@ -34,7 +34,7 @@ namespace library
                 videojuego.readVideojuego(en.Videojuego);
 
                 String sentence = "INSERT INTO [Oferta] (nombre, descuento, fecha_inicio, fecha_fin, productoraID, videojuegoID) " +
-                   "VALUES ('" + en.Nombre + "', '" + en.Descuento + "', '" + en.FechaInicio + "', '" + en.FechaFin
+                   "VALUES ('" + en.Nombre + "', '" + en.Descuento + "', '" + en.FechaInicio.ToString("yyyy-MM-dd") + "', '" + en.FechaFin.ToString("yyyy-MM-dd")
                + "', '" + en.Productora.Id + "', '" + en.Videojuego.Id
                + "' );";
 
@@ -81,16 +81,10 @@ namespace library
             SqlConnection connection = null;
             SqlDataReader dr = null;
 
-            SqlConnection connectionProductora = null;
-            SqlDataReader drProductora = null;
-
             try
             {
                 connection = new SqlConnection(constring);
                 connection.Open();
-
-                connectionProductora = new SqlConnection(constring);
-                connectionProductora.Open();
 
 
                 string sentence = "SELECT * FROM [Oferta] WHERE nombre = @nombre";
@@ -103,6 +97,71 @@ namespace library
                 if (dr.Read())
                 {
                     en.Id = Int32.Parse(dr["id"].ToString());
+                    en.Descuento = Double.Parse(dr["descuento"].ToString());
+                    en.FechaInicio = DateTime.Parse(dr["fecha_inicio"].ToString());
+                    en.FechaFin = DateTime.Parse(dr["fecha_fin"].ToString()); 
+
+                    //Lectura de la productora
+                    en.Productora.Id = Int32.Parse(dr["productoraID"].ToString());
+
+                    CADProductora prod = new CADProductora();
+                    prod.readProductora(en.Productora);
+
+                    //Lectura del videojuego
+                    ENVideojuego videojuego = new ENVideojuego();
+                    en.Videojuego.Id = Int32.Parse(dr["videojuegoID"].ToString());
+
+
+                    //Se lee el videojuego a partir de su ID
+                    CADVideojuego cad = new CADVideojuego();
+                    cad.readVideojuegoId(videojuego);
+
+                    en.Videojuego = videojuego;
+
+                    leido = true;
+                }
+
+            }
+            catch (SqlException sqlex)
+            {
+                leido = false;
+                Console.WriteLine("Reading oferta operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                leido = false;
+                Console.WriteLine("Reading oferta operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (dr != null) dr.Close();
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return leido;
+        }
+
+        public bool readOfertaId(ENOferta en)
+        {
+            bool leido = false;
+            SqlConnection connection = null;
+            SqlDataReader dr = null;
+
+            try
+            {
+                connection = new SqlConnection(constring);
+                connection.Open();
+
+
+                string sentence = "SELECT * FROM [Oferta] WHERE id = @id";
+                SqlCommand com = new SqlCommand(sentence, connection);
+                com.Parameters.AddWithValue("@id", en.Id);
+                //Se obtiene cursor
+                dr = com.ExecuteReader();
+
+                //Se lee primer elemento
+                if (dr.Read())
+                {
+                    en.Nombre = dr["nombre"].ToString();
                     en.Descuento = Double.Parse(dr["descuento"].ToString());
                     en.FechaInicio = DateTime.Parse(dr["fecha_inicio"].ToString());
                     en.FechaFin = DateTime.Parse(dr["fecha_fin"].ToString());
@@ -185,6 +244,7 @@ namespace library
             return ofertas;
         }
 
+        //ToDo rehacer
         public bool readOfertasProductora(List<ENOferta> listaVideojuegos, string prod)
         {
             bool leidos = false;
@@ -313,15 +373,15 @@ namespace library
             try
             {
                 CADProductora productora = new CADProductora();
-                productora.readProductora(en.Productora);
+                productora.readProductoraNombre(en.Productora);
 
                 CADVideojuego videojuego = new CADVideojuego();
                 videojuego.readVideojuego(en.Videojuego);
 
-                String sentence = "UPDATE [Oferta] SET nombre='" + en.Nombre + "', fecha_inicio='" + en.FechaInicio
-                + "', fecha_fin='" + en.FechaFin + "', descuento='" + en.Descuento
+                String sentence = "UPDATE [Oferta] SET nombre='" + en.Nombre + "', fecha_inicio='" + en.FechaInicio.ToString("yyyy-MM-dd")
+                + "', fecha_fin='" + en.FechaFin.ToString("yyyy-MM-dd") + "', descuento='" + en.Descuento
                 + "', productoraID='" + en.Productora.Id + "', videojuegoID='" + en.Videojuego.Id
-                + "' WHERE id = '" + en.Id + "'";
+                + "' WHERE id = '" + en.Id + "';";
 
                 connection = new SqlConnection(constring);
                 connection.Open();

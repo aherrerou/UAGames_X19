@@ -173,7 +173,39 @@ namespace web
 
         protected void crearOfertaClick(object sender, EventArgs e)
         {
-            
+            if (nuevoNombre.Text == "" || nuevoDescuento.Text == "")
+            {
+                msgSalidaCrear.Text = "Por favor, introduce el titulo y el precio del videojuego.";
+                msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+            }
+            else if (DateTime.Parse(nuevaFechaFin.Text.ToString()) < DateTime.Parse(nuevaFechaInicio.Text.ToString()))
+            {
+                msgSalidaCrear.Text = "La fecha de fin de la oferta debe ser mayor que la fecha de inicio.";
+                msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                ENOferta en = new ENOferta();
+                en.Nombre = nuevoNombre.Text.ToString();
+                en.Descuento = Int32.Parse(nuevoDescuento.Text.ToString());
+                en.FechaInicio = DateTime.Parse(nuevaFechaInicio.Text.ToString());
+                en.FechaFin = DateTime.Parse(nuevaFechaFin.Text.ToString());
+                en.Productora.Id = Int32.Parse(productorasList.SelectedValue);
+                en.Videojuego.Id = Int32.Parse(videojuegosList.SelectedValue);
+
+                if (en.addOferta())
+                {
+                    msgSalidaCrear.Text = "Oferta creada correctamente.";
+                    msgSalidaCrear.BackColor = System.Drawing.Color.Green;
+                    FillOfertasTable();
+                }
+                else
+                {
+                    msgSalidaCrear.Text = "ERROR al crear la oferta.";
+                    msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+                }
+
+            }
         }
 
 

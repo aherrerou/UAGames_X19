@@ -61,9 +61,9 @@
                     Nombre:
             <asp:TextBox ID="nuevoNombre" runat="server"></asp:TextBox>
                     Fecha Inicio:
-            <asp:TextBox ID="nuevaFechaInicio" runat="server"></asp:TextBox>
+            <asp:TextBox ID="nuevaFechaInicio" runat="server" type="date"></asp:TextBox>
                     Fecha Fin:
-            <asp:TextBox ID="nuevaFechaFin" runat="server"></asp:TextBox>
+            <asp:TextBox ID="nuevaFechaFin" runat="server" type="date"></asp:TextBox>
                     Productora:
             <asp:DropDownList ID="productorasList" AutoPostBack="True" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server" />
                 </div>
