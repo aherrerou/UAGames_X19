@@ -23,13 +23,13 @@
                     </div>
                     <div class="col">
                         <!--DropDown productora-->
-                        <asp:DropDownList ID="filtroProductora" AutoPostBack="True" OnSelectedIndexChanged="filtroProductoraOnChange" runat="server" CssClass="mb-2">
+                        <asp:DropDownList ID="filtroProductora" AutoPostBack="false" OnSelectedIndexChanged="filtroProductoraOnChange" runat="server" CssClass="mb-2">
                             <Items>
                                 <asp:ListItem Text="Productora" Value="0" />
                             </Items>
                         </asp:DropDownList>
                         <!--DropDown videojuego-->
-                        <asp:DropDownList ID="filtroVideojuego" AutoPostBack="True" runat="server" CssClass="mb-2">
+                        <asp:DropDownList ID="filtroVideojuego" AutoPostBack="false" runat="server" CssClass="mb-2">
                             <Items>
                                 <asp:ListItem Text="Videojuego" Value="0" />
                             </Items>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="mt-2">
                     Productora:
-            <asp:DropDownList ID="productorasList" AutoPostBack="True" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server">
+            <asp:DropDownList ID="productorasList" AutoPostBack="false" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server">
                 <Items>
                     <asp:ListItem Text="Productora" Value="" />
                 </Items>
@@ -136,7 +136,7 @@
                 </div>
                 <div class="mt-2">
                     Videojuego:
-                    <asp:DropDownList ID="videojuegosList" AutoPostBack="True" runat="server">
+                    <asp:DropDownList ID="videojuegosList" AutoPostBack="false" runat="server">
                         <Items>
                             <asp:ListItem Text="Videojuego" Value="" />
                         </Items>

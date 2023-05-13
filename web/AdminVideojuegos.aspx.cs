@@ -95,6 +95,7 @@ namespace web
             {
                 i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
                 productorasList.Items.Add(i);
+                filtroProductora.Items.Add(i);
             }
         }
 
@@ -107,6 +108,7 @@ namespace web
             {
                 i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
                 categoriasList.Items.Add(i);
+                filtroCategoria.Items.Add(i);
             }
         }
 
@@ -209,10 +211,69 @@ namespace web
                     msgSalidaCrear.BackColor = System.Drawing.Color.Red;
                 }
 
+            }   
+        }
+
+        protected void filtrarOnClick(object sender, EventArgs e)
+        {
+            int productora = int.Parse(filtroProductora.SelectedValue);
+            int categoria = int.Parse(filtroCategoria.SelectedValue);
+
+            string query = "WHERE ";
+            //Se van agregando filtros a la query
+            if (productora != 0)
+            {
+                query += " v.productoraID = '" + productora + "' AND";
             }
 
-            
+            if (categoria != 0)
+            {
+                query += " v.categoriaID = '" + categoria + "' AND";
+            }
+
+            string titulo = filtroTitulo.Text.ToString();
+
+            if (titulo != "")
+            {
+                query += " titulo LIKE '" + titulo + "%' AND";
+            }
+
+            if (filtroFecha.Text.ToString() != "")
+            {
+                DateTime fecha = DateTime.Parse(filtroFecha.Text.ToString()).Date;
+                query += " fecha_lanzamiento >= '" + fecha + "' AND";
+
+            }
+
+            string plataforma = filtroPlataforma.Text.ToString();
+
+            if (plataforma != "")
+            {
+                query += " plataforma LIKE '" + plataforma + "%' AND";
+            }
+
+            int precio = int.Parse(filtroPrecio.Text.ToString());
+            query += " precio >= '" + precio + "' ;";
+
+            ENVideojuego videojuego = new ENVideojuego();
+            //Persist the table in the Session object.
+            Session["VideojuegosGrid"] = videojuego.readVideojuegos(query);
+
+            //Bind the GridView control to the data source.           
+            videojuegoTable.DataSource = Session["VideojuegosGrid"];
+            videojuegoTable.DataBind();
         }
+
+        protected void resetFiltrosOnClick(object sender, EventArgs e)
+        {
+            FillVideojuegosTable();
+            filtroProductora.SelectedValue = "0";
+            filtroCategoria.SelectedValue = "0";
+            filtroTitulo.Text = "";
+            filtroPlataforma.Text = "";
+            cleanMsg();
+        }
+
 
         private void mostrarError(string error)
         {

@@ -243,6 +243,41 @@ namespace library
             return videojuegos;
         }
 
+
+        public DataTable readVideojuegos(string query)
+        {
+            SqlConnection connection = null;
+            DataTable videojuegos = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(constring);
+                connection.Open();
+
+                string sentence = "SELECT v.titulo, v.id, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
+                    "p.nombre AS productora, c.nombre AS categoria FROM [Videojuego] v " +
+                    "JOIN [Productora] p ON v.productoraID = p.id " +
+                    "JOIN [Categoria] c ON v.categoriaID = c.id ";
+                sentence += query;
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(videojuegos);
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return videojuegos;
+        }
+
         //Leer videojuegos especificos de una productora
         public DataSet readVideojuegosProductora(string prod)
         {

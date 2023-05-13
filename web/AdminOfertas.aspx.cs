@@ -18,8 +18,6 @@ namespace web
                 FillOfertasTable();
                 FillProductorasDropdown();
                 FillVideojuegosDropdown();
-                FillProductorasFiltro();
-                FillVideojuegosFiltro();
                 cleanMsg();
             }
         }
@@ -97,21 +95,9 @@ namespace web
             {
                 i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
                 productorasList.Items.Add(i);
-            }
-        }
-
-        protected void FillProductorasFiltro()
-        {
-            ENProductora productora = new ENProductora();
-            DataTable dt = productora.readProductorasNombre();
-            ListItem i;
-            foreach (DataRow r in dt.Rows)
-            {
-                i = new ListItem(r["nombre"].ToString(), r["id"].ToString());
                 filtroProductora.Items.Add(i);
             }
         }
-
         protected void FillVideojuegosDropdown()
         {
             //ToDo leer productora y obtener solo los de la productora
@@ -122,18 +108,6 @@ namespace web
             {
                 i = new ListItem(r["titulo"].ToString(), r["id"].ToString());
                 videojuegosList.Items.Add(i);
-            }
-        }
-
-        protected void FillVideojuegosFiltro()
-        {
-            //ToDo leer productora y obtener solo los de la productora
-            ENVideojuego videojuego = new ENVideojuego();
-            DataTable dt = videojuego.readVideojuegos();
-            ListItem i;
-            foreach (DataRow r in dt.Rows)
-            {
-                i = new ListItem(r["titulo"].ToString(), r["id"].ToString());
                 filtroVideojuego.Items.Add(i);
             }
         }
@@ -273,7 +247,7 @@ namespace web
 
             if(nombre != "")
             {
-                query += " nombre LIKE '" + videojuego + "%' AND";
+                query += " nombre LIKE '" + nombre + "%' AND";
             }
 
             if(fechaInicio.Text.ToString() != "")
