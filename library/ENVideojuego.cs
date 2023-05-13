@@ -134,16 +134,16 @@ namespace library
             return cad.readVideojuegos(query);
         }
 
-        public DataSet readVideojuegosProductora(string productora)
+        public DataTable readVideojuegosProductora()
         {
             CADVideojuego cad = new CADVideojuego();
-            return cad.readVideojuegosProductora(productora);
+            return cad.readVideojuegosProductora(this);
         }
 
-        public DataSet readVideojuegosCategoria(string categoria)
+        public DataTable readVideojuegosCategoria()
         {
             CADVideojuego cad = new CADVideojuego();
-            return cad.readVideojuegosCategoria(categoria);
+            return cad.readVideojuegosCategoria(this);
         }
 
         public bool updateVideojuego()
