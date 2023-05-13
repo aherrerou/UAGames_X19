@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-        <div>
+        <div class="container bg-light overflow-auto" style="min-height:599px;">
             <div class="row">
                 <div class="col">
                     <h2 class="text-primary">Ofertas</h2>
@@ -12,7 +12,7 @@
                      <asp:Label ID="msgSalida" runat="server" Text=""></asp:Label>
                 </div>
             </div>
-
+            <div class="table-responsive">
             <asp:GridView ID="ofertasTable" runat="server" CssClass="grid" AutoGenerateColumns="False"
                 DataKeyNames="id" PageSize="5" AllowPaging="True" AllowSorting="true" OnSorting="OfertasTable_Sorting"
                 EmptyDataText="Ups, no se han encontrado ofertas."
@@ -37,18 +37,15 @@
                     </asp:CommandField>
 
                 </Columns>
-                <FooterStyle BackColor="#0A2558" ForeColor="#fff" />
-                <HeaderStyle BackColor="#0A2558" Font-Bold="True" ForeColor="#fff" />
+                <HeaderStyle CssClass="text-white bg-primary h4" Font-Bold="True" />
                 <PagerSettings Mode="Numeric" Position="Bottom" PreviousPageText="True" />
-                <PagerStyle HorizontalAlign="Center" ForeColor="#0A2558" />
-                <RowStyle ForeColor="#0A2558" />
-                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                <PagerStyle HorizontalAlign="Center" CssClass="text-primary h5" />
+                <EditRowStyle CssClass="text-primary" />
+                <SelectedRowStyle CssClass="h1" Font-Bold="True" />
+                <SortedAscendingHeaderStyle />
+                <SortedDescendingHeaderStyle  />
             </asp:GridView>
-
+            </div>
             <br />
             <br />
 

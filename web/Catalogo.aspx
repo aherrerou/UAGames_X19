@@ -3,14 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
+    <div class="container bg-light h-100 overflow-auto mb-auto">
         
         <asp:ListView ID="VideojuegosListView" runat="server" GroupItemCount="4" >
             <LayoutTemplate>
-                <div class="listaVideojuegos">
-                    <h1 style="text-align:center">Videojuegos</h1>
+                <div>
+                    <h1 class="text-center text-primary">Videojuegos</h1>
                     <br />
-                    <table CssClass="tableVideojuegos" runat="server">
+                    <table runat="server">
                     <tr runat="server" id="groupPlaceholder">
                     </tr>
                 </table>
@@ -69,5 +69,5 @@
             </EmptyDataTemplate>
         </asp:ListView>
 
-    </main>
+    </div>
 </asp:Content>

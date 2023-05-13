@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-        <div class="container">
+        <div class="container bg-light overflow-auto" style="min-height:599px;">
             <div class="row">
                 <div class="col">
                     <h2 class="text-primary">Videojuegos</h2>
@@ -15,8 +15,8 @@
                      <asp:Label ID="msgSalida" runat="server" Text=""></asp:Label>
                 </div>
             </div>
-
-            <asp:GridView ID="videojuegoTable" runat="server" CssClass="text-primary" AutoGenerateColumns="False"
+            <div class="table-responsive">
+                <asp:GridView ID="videojuegoTable" runat="server" CssClass="text-primary" AutoGenerateColumns="False"
                 DataKeyNames="id" PageSize="5" AllowPaging="True" AllowSorting="true" OnSorting="VideojuegosTable_Sorting"
                 EmptyDataText="Ups, no se han encontrado videojuegos."
                 OnPageIndexChanging="changePageVideojuegosTable"
@@ -52,6 +52,8 @@
                 <SortedAscendingHeaderStyle />
                 <SortedDescendingHeaderStyle  />
             </asp:GridView>
+            </div>
+            
             <br />
             <div>
                 <h2>Crear videojuego</h2>
