@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml%22%3E>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Crear Categoría</title>
+    <title>Crear Productora</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,14 +65,17 @@
             </div>
              <div>
                 <label for="txtWebn">Web:</label>
-                <asp:TextBox ID="TxtWeb" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
+                <asp:TextBox ID="txtWeb" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
             <div>
-              <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="btnCrearProductora_Click" />
+              <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="onCrear" />
             </div>
         </div>
     </form>
-
+    <br />
+            <asp:Label ID="PResultado" runat="server" Text =" " />&nbsp;
+            <br />
+   
 </main>
 </html>
 

@@ -57,29 +57,42 @@ namespace library
         }
 
 
-        public void createProductora(ENProductora en)
+        public bool createProductora(ENProductora en)
         {
+            bool creada = false;
+            SqlConnection conect = null;
+            string query = "INSERT INTO [Productora]" + "(nombre,descripcion,imagen,web)" + "VALUES (@nombre, @descripcion,@imagen,@web);";
             try
             {
-                con = new SqlConnection(datos);
-                con.Open();
-                string query = "INSERT INTO Productora (Nombre, Descripcion, Imagen, Web) VALUES (@Nombre, @Descripcion, @Imagen, @Web)";
-                SqlCommand consulta = new SqlCommand(query, con);
-                consulta.Parameters.AddWithValue("@Nombre", en.Nombre);
-                consulta.Parameters.AddWithValue("@Descripcion", en.Descripcion);
-                consulta.Parameters.AddWithValue("@Imagen", en.Imagen);
-                consulta.Parameters.AddWithValue("@Web", en.Web);
+                conect = new SqlConnection(datos);
+                conect.Open();
+               
+                SqlCommand consulta = new SqlCommand(query, conect);
+                consulta.Parameters.AddWithValue("@nombre", en.Nombre);
+                consulta.Parameters.AddWithValue("@descripcion", en.Descripcion);
+                consulta.Parameters.AddWithValue("@imagen", en.Imagen);
+                consulta.Parameters.AddWithValue("@web", en.Web);
                 consulta.ExecuteNonQuery();
+                creada = true;
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return creada;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al crear la productora en la base de datos: " + ex.Message);
+                creada = false;
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                
             }
             finally
             {
-                if (con != null)
-                    con.Close();
+                if (conect != null)
+                    conect.Close();
             }
+           
+            return creada;
         }
 
         public bool readFirstProductora(ENProductora en)

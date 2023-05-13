@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
+
 namespace library
 {
     public class ENNoticia
@@ -51,6 +53,7 @@ namespace library
             productoraID = -1;
 
         }
+
         public ENNoticia(int id, string titulo, DateTime fecha_public, string contenido, int productora)
         {
             this.id = id;
@@ -98,6 +101,13 @@ namespace library
             CADNoticia prod = new CADNoticia();
             bool deleted = prod.deleteNoticia(this);
             return deleted;
+        }
+        public DataSet readNoticia()
+        {
+            DataSet result = new DataSet();
+            CADNoticia c = new CADNoticia();
+            result = c.readNoticia();
+            return result;
         }
     }
 }

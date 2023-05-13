@@ -64,9 +64,9 @@ namespace library
         }
         public bool createProductora()
         {
-
+            bool creada = true;
             CADProductora nuevaProductora = new CADProductora();
-            bool creada = nuevaProductora.readProductora(this);
+           creada = nuevaProductora.createProductora(this);
             return creada;
         }
         public bool readFirstProductora()

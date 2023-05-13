@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace library
     class CADNoticia
     {
         private string cadenaConexion;
-       
+
         public CADNoticia()
         {
 
-            cadenaConexion = "Data Source=SERVIDOR;Initial Catalog=BASEDEDATOS;Integrated Security=True";
+            cadenaConexion = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
-       
+
         public bool createNoticia(ENNoticia noticia)
         {
             bool creada = false;
@@ -272,7 +273,17 @@ namespace library
 
             return eliminada;
         }
+        public DataSet readNoticia()
+        {
+            DataSet bdvirtual = new DataSet();
+
+            SqlConnection c = new SqlConnection(cadenaConexion);
+            string query = "select titulo,fecha_public,contenido FROM Noticia ORDER by fecha_public desc";
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
+            da.Fill(bdvirtual, "Noticia");
+            return bdvirtual;
 
 
+        }
     }
 }
