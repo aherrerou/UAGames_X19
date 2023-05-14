@@ -110,6 +110,12 @@ namespace library
             return cad.readOfertas();
         }
 
+        public DataTable readOfertasActuales()
+        {
+            CADOferta cad = new CADOferta();
+            return cad.readOfertasActuales();
+        }
+
         public DataTable readOferta(int id)
         {
             CADOferta cad = new CADOferta();

@@ -235,7 +235,7 @@ namespace web
 
             if (titulo != "")
             {
-                query += " titulo LIKE '" + titulo + "%' AND";
+                query += " titulo LIKE '%" + titulo + "%' AND";
             }
 
             if (filtroFecha.Text.ToString() != "")
@@ -249,7 +249,7 @@ namespace web
 
             if (plataforma != "")
             {
-                query += " plataforma LIKE '" + plataforma + "%' AND";
+                query += " plataforma LIKE '%" + plataforma + "%' AND";
             }
 
             int precio = int.Parse(filtroPrecio.Text.ToString());

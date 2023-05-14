@@ -284,7 +284,7 @@ namespace web
             int productora = int.Parse(filtroProductora.SelectedValue);
             int videojuego = int.Parse(filtroVideojuego.SelectedValue);
 
-            string query = "WHERE ";
+            string query = "WHERE";
             //Se van agregando filtros a la query
             if(productora != 0)
             {
@@ -300,25 +300,25 @@ namespace web
 
             if(nombre != "")
             {
-                query += " nombre LIKE '" + nombre + "%' AND";
+                query += " o.nombre LIKE '%" + nombre + "%' AND";
             }
 
             if(fechaInicio.Text.ToString() != "")
             {
                 DateTime inicio = DateTime.Parse(fechaInicio.Text.ToString()).Date;
-                query += " fecha_inicio >= '" + inicio + "' AND";
+                query += " o.fecha_inicio >= '" + inicio + "' AND";
 
             }
 
             if (fechaFin.Text.ToString() != "")
             {
                 DateTime fin = DateTime.Parse(fechaFin.Text.ToString());
-                query += " fecha_fin >= '" + fin + "' AND";
+                query += " o.fecha_fin >= '" + fin + "' AND";
 
             }
 
             int descuento = int.Parse(filtroDescuento.Text.ToString());
-            query += " descuento >= '" + descuento + "' ;";
+            query += " o.descuento >= '" + descuento + "' ;";
 
             ENOferta oferta = new ENOferta();
             //Persist the table in the Session object.

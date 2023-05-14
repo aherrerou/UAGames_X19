@@ -21,7 +21,7 @@ namespace web
         protected void fillOfertas()
         {
             ENOferta oferta = new ENOferta();
-            ofertasListView.DataSource = oferta.readOfertas();
+            ofertasListView.DataSource = oferta.readOfertasActuales();
             ofertasListView.DataBind();
         }
 
