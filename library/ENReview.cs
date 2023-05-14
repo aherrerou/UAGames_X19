@@ -13,7 +13,7 @@ namespace library
     public class ENReview
     {
         public ENUsuario usuario { get; set; }
-        public ENVideojuego videoJuego { get; set; }
+        public ENVideojuego videojuego { get; set; }
         public int id { get; set; }
         public DateTime fecha { get; set; }
         public string comentario { get; set; }
@@ -23,7 +23,7 @@ namespace library
         public ENReview()
         {
             this.usuario = new ENUsuario();
-            this.videoJuego = new ENVideojuego();
+            this.videojuego = new ENVideojuego();
             this.fecha = DateTime.Now;
             this.puntuacion = 0;
             this.comentario = "";
@@ -33,7 +33,7 @@ namespace library
         public ENReview(DateTime fecha , int puntuacion , string comentario , ENVideojuego videojuego , ENUsuario usuario)
         {
             this.usuario = usuario;
-            this.videoJuego = videojuego;
+            this.videojuego = videojuego;
             this.fecha = fecha;
             this.puntuacion = puntuacion;
             this.comentario = comentario;
@@ -42,27 +42,24 @@ namespace library
 
         public bool createReview()
         {
-            return this.review.createReview(this, usuario , videoJuego);
+            return this.review.createReview(this);
         }
         public bool deleteReview()
         {
-            return this.review.deleteReview(this);
+            return this.review.deleteReview(this.id);
         }
         public bool updateReview()
         {
             return this.review.updateReview(this);
         }
-        public bool readReview()
+        public DataTable readReview()
         {
             return this.review.readReview(this);
         }
 
-        public DataSet listarReviews()
+        public DataTable listarReviews()
         {
-            DataSet result = new DataSet();
-            CADReview c = new CADReview();
-            result = c.listarReviews();
-            return result;
+            return this.review.listarReviews(this.usuario);
         }
     }
 
