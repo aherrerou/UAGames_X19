@@ -103,5 +103,12 @@ namespace library
             result = c.listarClientesD();
             return result;
         }
+        public DataSet listarClientesDPublico(string tema)
+        {
+            DataSet result = new DataSet();
+            CADPublicacion c = new CADPublicacion();
+            result = c.listarClientesDPublico(tema);
+            return result;
+        }
     }
 }

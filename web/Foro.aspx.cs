@@ -190,9 +190,9 @@ namespace web
         protected void LeerP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
-            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", publicacion, usu);
+            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", tema, usu);
             bool result = en.readPublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en la lectura de la publicación";
@@ -205,9 +205,9 @@ namespace web
         protected void LeerPrimeroP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
-            ENPublicacion en = new ENPublicacion(0, "blank", publicacion, usu);
+            ENPublicacion en = new ENPublicacion(0, "blank", tema, usu);
             bool result = en.readFirstPublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en la lectura de la primera publicación";
@@ -222,9 +222,9 @@ namespace web
         protected void LeerAnteriorP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
-            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", publicacion, usu);
+            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", tema, usu);
             bool result = en.readPrevPublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en la lectura de la anterior publicación";
@@ -239,9 +239,9 @@ namespace web
         protected void LeerSiguienteP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
-            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", publicacion, usu);
+            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", tema, usu);
             bool result = en.readNextPublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en la lectura de la siguiente publicación";
@@ -256,10 +256,10 @@ namespace web
         protected void CrearP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
             usu.id = int.Parse(TUsuario.Text);
-            ENPublicacion en = new ENPublicacion(0, TTexto.Text, publicacion, usu);
+            ENPublicacion en = new ENPublicacion(0, TTexto.Text, tema, usu);
             bool result = en.createPublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en la creación de la publicación";
@@ -269,10 +269,10 @@ namespace web
         protected void ActualizarP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
             usu.id = int.Parse(TUsuario.Text);
-            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), TTexto.Text, publicacion, usu);
+            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), TTexto.Text, tema, usu);
             bool result = en.updatePublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en la actualización de la publicación";
@@ -282,9 +282,9 @@ namespace web
         protected void BorrarP(object sender, EventArgs e)
         {
             ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
-            ENTema publicacion = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
+            ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
             ENUsuario usu = new ENUsuario();
-            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", publicacion, usu);
+            ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), "blank", tema, usu);
             bool result = en.deletePublicacion();
             if (result == false)
                 LResultado_P.Text = "Error en el borrado de la publicación";
