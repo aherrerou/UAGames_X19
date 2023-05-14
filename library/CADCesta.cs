@@ -126,9 +126,12 @@ namespace library
                 conect = new SqlConnection(conexionBBDD);
                 conect.Open();
 
-                string query = "SELECT videojuegoID,usuarioID, v.titulo FROM CestaCompra c, Videojuego v";
-                                  //"JOIN [Videojuego] v ON c.videojuegoID = v.id";
-                                  //"JOIN [Usuario] u ON c.usuarioID = u.id"; 
+                string query = "SELECT v.titulo, c.fecha, v.precio FROM Usuario u " +
+                    "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
+                    "INNER JOIN Videojuego v ON c.videojuegoID = v.id ";
+                    
+                //"JOIN [Videojuego] v ON c.videojuegoID = v.id";
+                //"JOIN [Usuario] u ON c.usuarioID = u.id"; 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conect);
                 adapter.Fill(cestas);
             }
@@ -183,29 +186,35 @@ namespace library
             return true;
         }
 
-        public bool deleteCesta(ENCesta ces, ENUsuario usuario)
+        public bool deleteCesta(ENCesta ces)
         {
+            bool controlador = false;
             SqlConnection conect = null;
+            string query = "delete from Cesta where usuarioID = @usuarioID;";
 
             try
             {
+                conect = new SqlConnection(conexionBBDD);
                 conect.Open();
-                string query = "delete from Cesta where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
                 com.ExecuteReader();
+
+                controlador = true;
 
             }
 
             catch (SqlException sqlex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+
             }
 
             catch (Exception ex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
             }
 
             finally
@@ -213,7 +222,7 @@ namespace library
                 conect.Close();
             }
 
-            return true;
+            return controlador;
         }
     }
 }
