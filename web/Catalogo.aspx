@@ -58,7 +58,7 @@
                         <tr runat="server" id="groupPlaceholder">
                         </tr>
                     </table>
-
+                    <div class="text-center">
                     <asp:DataPager runat="server" ID="DataPager" PageSize="8"  HorizontalAlign="Center" CssClass="text-center text-primary">
                         <Fields>
                             <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="False" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-primary"
@@ -69,6 +69,7 @@
                         </Fields>
                     </asp:DataPager>
                 </div>
+                    </div>
 
             </LayoutTemplate>
             <GroupTemplate>

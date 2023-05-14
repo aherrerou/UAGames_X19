@@ -158,8 +158,8 @@ namespace library
                 connection = new SqlConnection(conexionBBDD);
                 connection.Open();
 
-                string sentence = "SELECT r.id, r.puntuacion, r.comentario, r.fecha " +
-                    "u.nick AS usuario FROM [Review] v " +
+                string sentence = "SELECT r.id, r.puntuacion, r.comentario, r.fecha, " +
+                    "u.nick AS usuario FROM [Review] r " +
                     "JOIN [Usuario] u ON r.usuarioID = u.id " +
                     "WHERE r.videojuegoID = '" + videojuego + "';";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);

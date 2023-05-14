@@ -31,6 +31,7 @@ namespace web
                     descripcionLabel.Text = videojuego.Descripcion;
                     precioLabel.Text = videojuego.Precio.ToString();
                     fillReviews(videojuego.Id);
+                    fillOferta(videojuego.Id);
 
                 }
             }
@@ -91,6 +92,24 @@ namespace web
             ENReview review = new ENReview();
             listViewReviews.DataSource = review.readReviews(videojuego);
             listViewReviews.DataBind();
+        }
+
+        protected void fillOferta(int videojuego)
+        {
+            ENOferta oferta = new ENOferta();
+            ofertaDisplay.DataSource = oferta.readOferta(videojuego);
+            ofertaDisplay.DataBind();
+            //Comprobar si contenido en oferta
+            if(ofertaDisplay.Items.Count > 0)
+            {
+                precioLabel.Style.Add("text-decoration", "line-through");
+                //Actualizar precio
+            }
+            else
+            {
+                
+            }
+           
         }
 
         protected void EliminarComentario(Object sender, EventArgs e)

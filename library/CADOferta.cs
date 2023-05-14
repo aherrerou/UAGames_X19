@@ -218,7 +218,7 @@ namespace library
                 connection.Open();
 
                 string sentence = "SELECT o.nombre, o.id, o.descuento, o.fecha_inicio, o.fecha_fin, " +
-                    "p.nombre AS productora, v.titulo AS videojuego FROM [Oferta] o " +
+                    "p.nombre AS productora, v.titulo AS videojuego, v.imagen as imagen, v.id as vid FROM [Oferta] o " +
                     "JOIN [Productora] p ON o.productoraID = p.id " +
                     "JOIN [Videojuego] v ON o.videojuegoID = v.id;";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
@@ -235,6 +235,42 @@ namespace library
             {
 
                 Console.WriteLine("Reading ofertas operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return ofertas;
+        }
+
+        public DataTable readOferta(int id)
+        {
+            SqlConnection connection = null;
+            DataTable ofertas = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(constring);
+                connection.Open();
+
+                string sentence = "SELECT nombre, id, descuento, fecha_inicio, fecha_fin " +
+                    " FROM [Oferta] " +
+                    "WHERE videojuegoID = '" + id + "' AND fecha_inicio >= GETDATE();";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(ofertas);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                Console.WriteLine("Reading oferta operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Reading oferta operation has failed.Error: {0}", ex.Message);
             }
             finally
             {
