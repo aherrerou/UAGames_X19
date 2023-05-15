@@ -17,22 +17,17 @@ namespace web
         {
             if (!Page.IsPostBack)
             {
-                CargarReseñas();
+                //ENVideojuego v= new ENVideojuego();
+                //ENUsuario u = new ENUsuario();
+                //v.Id = 1;
+                //u.id = 1;
+                //ENReview en = new ENReview(Convert.ToDateTime("2002-10-02"), Convert.ToInt32("8"), "paco", v, u);
+                //bool result = en.createReview();
+                ENReview en = new ENReview();
+                data = en.listarReviews();
+                ReviewListView.DataSource = data;
+                ReviewListView.DataBind();
             }
-        }
-
-        protected void CargarReseñas()
-        {
-            ENReview en = new ENReview();
-            data = en.listarReviews();
-            reviewTable.DataSource = data;
-            reviewTable.DataBind();
-        }
-
-        protected void CrearReseña_Click(object sender, EventArgs e)
-        {
-            //ENReview en = new ENReview(Convert.ToDateTime(this.Fecha.Text), Convert.ToInt32(this.Puntuacion.Text), this.Comentario.Text , Convert.ToInt32(this.VideojuegoID.Text),Convert.ToInt32(this.UsuarioID.Text));
-            //bool result = en.createReview();
         }
     }
 }

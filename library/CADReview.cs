@@ -142,19 +142,17 @@ namespace library
         }
 
 
-        public DataTable listarReviews(ENUsuario user)
+        public DataTable listarReviews(ENReview review)
         {
             DataTable dataTable = new DataTable();
             try
             {
                 c.Open();
-                string query = "SELECT * FROM REVIEW r where r.usuarioID = " + 1 + ";";
-                SqlCommand com = new SqlCommand(query, c);
-                SqlDataReader reader = com.ExecuteReader();
-
-                dataTable.Load(reader);
-
-                reader.Close();
+                string query = "SELECT r.* , v.Imagen as imagen , v.nombre as nombrejuego, u.nombre as nombreUsuario" +
+                    " FROM Review r , videojuego v , usuario u " +
+                    "where v.Id = r.videojuegoID and r.usuarioID = u.id;";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, c);
+                adapter.Fill(dataTable);
             }
             catch (SqlException ex)
             {

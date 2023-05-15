@@ -59,7 +59,7 @@ namespace library
 
         public DataTable listarReviews()
         {
-            return this.review.listarReviews(this.usuario);
+            return this.review.listarReviews(this);
         }
     }
 
