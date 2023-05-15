@@ -54,7 +54,7 @@
 
             <div>
                 <center>
-                    <asp:Button id="comprar" Text="Comprar" runat="server" OnClick="ComprarClick"/>
+                    <asp:Button id="comprar" Text="Comprar" runat="server" OnClick="ComprarClick" NavigateUrl="Foro.aspx"/>
                 </center>
             </div>
         </div>

@@ -79,9 +79,7 @@ namespace web
 
             protected void ComprarClick(object sender, EventArgs e)
             {
-
-
-
+                Response.Redirect("ThankYouPage.aspx");
             }
         }
 }

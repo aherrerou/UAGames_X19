@@ -82,10 +82,11 @@ namespace library
 
         public bool deleteCesta()
         {
-            bool res = true;
+            /*bool res = true;
             CADCesta ces = new CADCesta();
             res = ces.deleteCesta(this,usuario);
-            return res;
+            return res;*/
+            return true;
         }
     }
 }
