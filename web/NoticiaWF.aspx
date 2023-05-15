@@ -1,37 +1,22 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NoticiaWF.aspx" Inherits="WebNoticiaWF" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="NoticiaWF.aspx.cs" Inherits="web.NoticiaWF" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ListView ID="NoticiasListView" runat="server" ItemPlaceholderID="itemPlaceholder">
-                <LayoutTemplate>
-                    <div>
-                        <h1>Noticias</h1>
-                        <table>
-                            <tr>
-                                <th>Título</th>
-                                <th>Imagen</th>
-                                <th>Fecha de publicación</th>
-                            </tr>
-                            <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
-                        </table>
-                    </div>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td><%# Eval("Titulo") %></td>
-                        <td><asp:Image ID="NoticiaImagen" runat="server" ImageUrl='<%# Eval("ImagenUrl") %>' /></td>
-                        <td><%# Eval("FechaPublicacion") %></td>
-                    </tr>
-                </ItemTemplate>
-            </asp:ListView>
-        </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
+  <asp:ListView ID="ListView1" runat="server">
+<ItemTemplate>
+    <div class="list">
+        <table>
+           <tr><td><img src="<%#Eval("imagen") %>"></td></tr>
+           <tr><td><h1><%#Eval("titulo") %></h1></td></tr>
+           <tr><td><p><%#Eval("fecha_public") %>"</p></td></tr>
+
+        </table>
+    </div>
+</ItemTemplate>
+
+
+
+
+  </asp:ListView>
+ 
+</asp:Content>

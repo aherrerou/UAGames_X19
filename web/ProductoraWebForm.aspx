@@ -69,6 +69,7 @@
             </div>
             <div>
               <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="onCrear" />
+                 <asp:Button ID="btnLeerProductora" runat="server" Text="Leer Productora" OnClick="onLeer" />
             </div>
         </div>
     </form>

@@ -35,8 +35,26 @@ namespace web
         }
         protected void onLeer(object sender,EventArgs e)
         {
+            if (txtNombre.Text == "")
+                PResultado.Text = "Nombre de la productora no introducido.";
+            else
+            {
+                ENProductora prod = new ENProductora();
+                prod.Nombre = txtNombre.Text;
+
+                if (prod.readProductora())
+                {
+                    txtNombre.Text = prod.Nombre;
+                    txtImg.Text = prod.Imagen;
+                    txtDescripcion.Text = prod.Descripcion;
+                    txtWeb.Text = prod.Web;
+                    PResultado.Text = "Productora " + prod.Nombre + " mostrada con éxito.";
+                }
+                else PResultado.Text = "Productora no encontrada en la B.D.";
+            }
 
         }
+
     }
 
     

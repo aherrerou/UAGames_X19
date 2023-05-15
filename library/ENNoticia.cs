@@ -109,6 +109,7 @@ namespace library
             result = c.readNoticia();
             return result;
         }
+
     }
 }
 

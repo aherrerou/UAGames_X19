@@ -69,6 +69,13 @@ namespace library
            creada = nuevaProductora.createProductora(this);
             return creada;
         }
+        public bool readProductora()
+        {
+            bool creada=true;
+            CADProductora prod = new CADProductora();
+            creada = prod.createProductora(this);
+            return creada;
+        }
         public bool readFirstProductora()
         {
             CADProductora user = new CADProductora();
@@ -109,6 +116,7 @@ namespace library
             CADProductora productora = new CADProductora();
             return productora.readProductorasNombre();
         }
+
     }
 }
 

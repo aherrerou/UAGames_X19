@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,12 +14,16 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                ENNoticia en = new ENNoticia();
-
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["miconexion"].ToString());
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Noticia",con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            ListView1.DataSource = dt;
+            ListView1.DataBind();
+            
             }
         }
 
+
     }
-}
+
