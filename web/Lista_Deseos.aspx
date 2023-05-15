@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Lista_Deseos.aspx.cs" Inherits="web.Lista_Deseos" %>
+﻿<%@ Page Title="" Language="C#" UnobtrusiveValidationMode="None" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Lista_Deseos.aspx.cs" Inherits="web.Lista_Deseos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
@@ -27,7 +27,8 @@
             <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar"/>
             <br />
             <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
-            <br />
+            <asp:RequiredFieldValidator ID="RequiredUsuario" FieldToValidate="TUsuario" runat="server" ErrorMessage="* Usuario obligatorio"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredId" FieldToValidate="TId" runat="server" ErrorMessage="* Id de lista obligatoria"></asp:RequiredFieldValidator>
             <h2><asp:Label ID="LListado" runat="server" Text ="Listado de listas de deseos" /></h2>
             <asp:GridView ID="GridView1" runat="server" CssClass="grid"></asp:GridView>
         </div>

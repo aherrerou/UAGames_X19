@@ -16,16 +16,19 @@ namespace web
         }
         protected void Crear(object sender, EventArgs e)
         {
-            if (TPassword.Text != TRepitePassword.Text)
-                LResultado.Text = "Las contraseñas introducidas no coinciden";
-            else
+            if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(0, TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, "blank");
-                bool result = en.createUsuario();
-                if (result == false)
-                    LResultado.Text = "Error en la creación del usuario";
+                if (TPassword.Text != TRepitePassword.Text)
+                    LResultado.Text = "Las contraseñas introducidas no coinciden";
                 else
-                    LResultado.Text = "Proceso de creación realizado con éxito";
+                {
+                    ENUsuario en = new ENUsuario(0, TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, "blank");
+                    bool result = en.createUsuario();
+                    if (result == false)
+                        LResultado.Text = "Error en la creación del usuario";
+                    else
+                        LResultado.Text = "Proceso de creación realizado con éxito";
+                }
             }
         }
     }

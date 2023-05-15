@@ -37,6 +37,8 @@ namespace web
                     BCrear_F.Visible = false;
                     BActualizar_F.Visible = false;
                     BBorrar_F.Visible = false;
+                    RequiredUsuario.Visible = false;
+                    RequiredId.Visible = false;
                 }
             }
             if (!Page.IsPostBack)
@@ -53,17 +55,20 @@ namespace web
         }
         protected void Leer(object sender, EventArgs e)
         {
-            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
-            bool result = en.readLista();
-            if (result == false)
-                LResultado.Text = "Error en la lectura de la lista";
-            else
+            if (RequiredId.IsValid)
             {
-                TId.Text = en.id.ToString();
-                TNombre.Text = en.nombre;
-                TDescripcion.Text = en.descripcion;
-                TUsuario.Text = en.usuario.id.ToString();
-                LResultado.Text = "Proceso de lectura realizado con éxito";
+                ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
+                bool result = en.readLista();
+                if (result == false)
+                    LResultado.Text = "Error en la lectura de la lista";
+                else
+                {
+                    TId.Text = en.id.ToString();
+                    TNombre.Text = en.nombre;
+                    TDescripcion.Text = en.descripcion;
+                    TUsuario.Text = en.usuario.id.ToString();
+                    LResultado.Text = "Proceso de lectura realizado con éxito";
+                }
             }
         }
         protected void LeerPrimero(object sender, EventArgs e)
@@ -83,63 +88,78 @@ namespace web
         }
         protected void LeerAnterior(object sender, EventArgs e)
         {
-            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
-            bool result = en.readPrevLista();
-            if (result == false)
-                LResultado.Text = "Error en la lectura de la anterior lista";
-            else
+            if (RequiredId.IsValid)
             {
-                TId.Text = en.id.ToString();
-                TNombre.Text = en.nombre;
-                TDescripcion.Text = en.descripcion;
-                TUsuario.Text = en.usuario.id.ToString();
-                LResultado.Text = "Proceso de lectura de anterior lista realizado con éxito";
+                ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
+                bool result = en.readPrevLista();
+                if (result == false)
+                    LResultado.Text = "Error en la lectura de la anterior lista";
+                else
+                {
+                    TId.Text = en.id.ToString();
+                    TNombre.Text = en.nombre;
+                    TDescripcion.Text = en.descripcion;
+                    TUsuario.Text = en.usuario.id.ToString();
+                    LResultado.Text = "Proceso de lectura de anterior lista realizado con éxito";
+                }
             }
         }
         protected void LeerSiguiente(object sender, EventArgs e)
         {
-            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
-            bool result = en.readNextLista();
-            if (result == false)
-                LResultado.Text = "Error en la lectura de la siguiente lista";
-            else
+            if (RequiredId.IsValid)
             {
-                TId.Text = en.id.ToString();
-                TNombre.Text = en.nombre;
-                TDescripcion.Text = en.descripcion;
-                TUsuario.Text = en.usuario.id.ToString();
-                LResultado.Text = "Proceso de lectura de siguiente lista realizado con éxito";
+                ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), "blank", "blank", usu);
+                bool result = en.readNextLista();
+                if (result == false)
+                    LResultado.Text = "Error en la lectura de la siguiente lista";
+                else
+                {
+                    TId.Text = en.id.ToString();
+                    TNombre.Text = en.nombre;
+                    TDescripcion.Text = en.descripcion;
+                    TUsuario.Text = en.usuario.id.ToString();
+                    LResultado.Text = "Proceso de lectura de siguiente lista realizado con éxito";
+                }
             }
         }
         protected void Crear(object sender, EventArgs e)
         {
-            usu.id = int.Parse(TUsuario.Text);
-            ENLista_Deseos en = new ENLista_Deseos(0, TNombre.Text, TDescripcion.Text, usu);
-            bool result = en.createLista();
-            if (result == false)
-                LResultado.Text = "Error en la creación de la lista";
-            else
-                LResultado.Text = "Proceso de creación realizado con éxito";
+            if(RequiredUsuario.IsValid)
+            {
+                usu.id = int.Parse(TUsuario.Text);
+                ENLista_Deseos en = new ENLista_Deseos(0, TNombre.Text, TDescripcion.Text, usu);
+                bool result = en.createLista();
+                if (result == false)
+                    LResultado.Text = "Error en la creación de la lista";
+                else
+                    LResultado.Text = "Proceso de creación realizado con éxito";
+            }
         }
         protected void Actualizar(object sender, EventArgs e)
         {
-            usu.id = int.Parse(TUsuario.Text);
-            ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), TNombre.Text, TDescripcion.Text, usu);
-            bool result = en.updateLista();
-            if (result == false)
-                LResultado.Text = "Error en la actualización de la lista";
-            else
-                LResultado.Text = "Proceso de actualización realizado con éxito";
+            if (RequiredId.IsValid && RequiredUsuario.IsValid)
+            {
+                usu.id = int.Parse(TUsuario.Text);
+                ENLista_Deseos en = new ENLista_Deseos(int.Parse(TId.Text), TNombre.Text, TDescripcion.Text, usu);
+                bool result = en.updateLista();
+                if (result == false)
+                    LResultado.Text = "Error en la actualización de la lista";
+                else
+                    LResultado.Text = "Proceso de actualización realizado con éxito";
+            }
         }
         protected void Borrar(object sender, EventArgs e)
         {
-            usu.id = int.Parse(TUsuario.Text);
-            ENLista_Deseos en = new ENLista_Deseos();
-            bool result = en.deleteLista();
-            if (result == false)
-                LResultado.Text = "Error en el borrado de la lista";
-            else
-                LResultado.Text = "Proceso de borrado realizado con éxito";
+            if (RequiredUsuario.IsValid)
+            {
+                usu.id = int.Parse(TUsuario.Text);
+                ENLista_Deseos en = new ENLista_Deseos();
+                bool result = en.deleteLista();
+                if (result == false)
+                    LResultado.Text = "Error en el borrado de la lista";
+                else
+                    LResultado.Text = "Proceso de borrado realizado con éxito";
+            }
         }
     }
 }
