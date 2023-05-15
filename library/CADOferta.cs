@@ -291,9 +291,9 @@ namespace library
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "SELECT nombre, id, descuento, fecha_inicio, fecha_fin " +
-                    " FROM [Oferta] " +
-                    "WHERE videojuegoID = '" + id + "' AND fecha_inicio >= GETDATE();";
+                string sentence = "SELECT o.nombre, o.id, o.descuento, o.fecha_inicio, o.fecha_fin, CAST((v.precio*(100-o.descuento)/100) AS DECIMAL(5,2)) as nuevoPrecio" +
+                    " FROM [Oferta] o JOIN [Videojuego] v ON o.videojuegoID = v.id " +
+                    "WHERE o.videojuegoID = '" + id + "' AND o.fecha_inicio <= GETDATE() AND o.fecha_fin >= GETDATE();";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                 adapter.Fill(ofertas);
 

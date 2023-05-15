@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Videojuego.aspx.cs" Inherits="web.Videojuego" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+    <link rel="stylesheet" href="assets/css/Rating.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
+    <asp:ScriptManager ID="asm" runat="server" />
     <div class="container bg-light overflow-auto" style="min-height: 599px;">
         <div class="d-flex flex-row text-primary mt-3">
             <div class="mt-3">
@@ -69,23 +73,23 @@
                                     <h3>Descuento: <%# Eval("descuento") %>%</h3>
                                     <h3>Desde: <%# Eval("fecha_inicio") %></h3>
                                     <h3>Hasta: <%# Eval("fecha_fin") %></h3>
-                                    <h3> <asp:Label ID="nuevoPrecio" runat="server" ></asp:Label></h3>
                             </div>
                         </div>
                     </div>
+                    <br />
+                    <div class="card bg-primary text-white mx-3 my-2 border-0">
+                        <h1 class="card-title">Precio oferta: <%# Eval("nuevoPrecio") %> €</h1>
+                        </div>
                 </td>
             </ItemTemplate>
-
-
                     </asp:ListView>
             </div>
         </div>
 
         <!--REVIEWS-->
-        <div class="row mt-5">
-            <h1>Valoraciones</h1>
+        <div class="row d-flex flex-row mt-5">
+           <h1>Valoraciones</h1>
         </div>
-
         <asp:ListView ID="listViewReviews" runat="server">
             <EmptyDataTemplate>
                 <span>No hay valoraciones de este videojuego.</span>
@@ -96,7 +100,7 @@
                         <tr runat="server" id="groupPlaceholder">
                         </tr>
                     </table>
-                    <div class="text-center">
+                    <div class="text-left">
                         <asp:DataPager runat="server" ID="DataPager" PageSize="8" HorizontalAlign="Center" CssClass="text-center text-primary">
                         <Fields>
                             <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-primary"
@@ -111,6 +115,7 @@
                 </div>
             </LayoutTemplate>
             <GroupTemplate>
+
                 <tr runat="server" id="videojuegoRow" class="mx-4">
                     <td runat="server" id="itemPlaceholder"></td>
                 </tr>
@@ -125,7 +130,9 @@
                                     <h4><%# Eval("usuario") %>  </h4>
                                 </div>
                                 <div class="col-md-4">
-                                    <h2><%# Eval("puntuacion") %></h2>
+                                   <h2> <ajaxToolkit:Rating ID="ratingAvg" runat="server" CurrentRating='<%# Eval("puntuacion") %>' MaxRating="5" 
+                     EmptyStarCssClass="emptyRatingStar" FilledStarCssClass="filledRatingStar" StarCssClass="emptyRatingStar" WaitingStarCssClass="emptyRatingStar" ReadOnly="true"/></h3>
+                                    
                                 </div>
                                 <div class="col-md-4">
                                     <%# Eval("fecha") %>

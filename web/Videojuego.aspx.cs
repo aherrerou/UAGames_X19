@@ -105,10 +105,6 @@ namespace web
                 precioLabel.Style.Add("text-decoration", "line-through");
                 //Actualizar precio
             }
-            else
-            {
-                
-            }
            
         }
 
