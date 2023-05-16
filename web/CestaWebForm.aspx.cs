@@ -79,7 +79,26 @@ namespace web
 
             protected void ComprarClick(object sender, EventArgs e)
             {
-                Response.Redirect("ThankYouPage.aspx");
+            //Modificar por datos en pantalla de la cesta(Hablar con Iker)
+            ENUsuario usuario = new ENUsuario();
+            usuario.id = 1;
+            DateTime fecha = DateTime.Now;
+            double total = 99;
+            //
+            ENCabecera_Compra compra = new ENCabecera_Compra(usuario, fecha,total);
+            compra.createCabecera_Compra();
+            // Modificar por datos en pantalla de la cesta(Hablar con Iker
+            int cantidad = 1;
+            int importe = 10;
+            ENVideojuego videojuego= new ENVideojuego();
+            videojuego.Id = 1;
+            ENLinea_Compra linea = new ENLinea_Compra(cantidad, importe, videojuego);
+            int idcabecera = 1; //crear variable global y después de los insert ajustar esto y no tocar más la BBDD
+            linea.createLinea_Compra(idcabecera);
+            idcabecera++;
+            //
+            //ENLinea_Compra lineas = new ENLinea_Compra();
+            Response.Redirect("ThankYouPage.aspx");
             }
         }
 }

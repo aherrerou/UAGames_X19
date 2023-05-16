@@ -21,14 +21,14 @@ namespace library
             c = new SqlConnection(conexionBBDD);
         }
 
-        public bool createCabecera(ENCabecera_Compra cabecera, ENUsuario usuario)
+        public bool createCabecera(ENCabecera_Compra cabecera)
         {
             bool result = true;
             try
             {
                 this.c.Open();
                 string fechaFormatoCorrecto = cabecera.fecha.ToString("yyyy-MM-dd HH:mm:ss");
-                string query = "INSERT INTO Compra (fecha,total,usuarioID) VALUES (CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120),0.00," + usuario.id +");";
+                string query = "INSERT INTO Compra (fecha,total,usuarioID) VALUES (CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120),"+cabecera.totalCompra+"," + cabecera.usuario.id +");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
