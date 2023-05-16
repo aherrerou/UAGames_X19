@@ -4,22 +4,22 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <main>
-        <asp:ListView ID="ReviewListView" runat="server" GroupItemCount="4" >
+        <asp:ListView ID="ReviewListView" runat="server" GroupItemCount="4">
             <LayoutTemplate>
                 <div class="listaReviews">
-                    <h1 style="text-align:center">Reviews</h1>
+                    <h1 style="text-align: center">Reviews</h1>
                     <br />
-                    <table CssClass="tableReviews" runat="server">
-                    <tr runat="server" id="groupPlaceholder">
-                    </tr>
-                </table>
+                    <table cssclass="tableReviews" runat="server">
+                        <tr runat="server" id="groupPlaceholder">
+                        </tr>
+                    </table>
 
-                <asp:DataPager runat="server" ID="DataPager" PageSize="8" style="text-align:center; font-size:20px; color:#0A2558; font-weight: 800;">
-                    <Fields>
-                    </Fields>
-                </asp:DataPager>
+                    <asp:DataPager runat="server" ID="DataPager" PageSize="8" style="text-align: center; font-size: 20px; color: #0A2558; font-weight: 800;">
+                        <Fields>
+                        </Fields>
+                    </asp:DataPager>
                 </div>
-                
+
             </LayoutTemplate>
             <GroupTemplate>
                 <tr runat="server" id="reviewRow">
@@ -29,21 +29,19 @@
             <ItemTemplate>
                 <td>
                     <div class="card">
-                        <asp:Hyperlink id="link" runat="server" NavigateUrl='<%#$"Review.aspx?id={Eval("id")}" %>'>
-			    <asp:image id="imagenCard" runat="server" imageurl='<%# Eval("imagen") %>' alt="Card image cap" CssClass="card-img-top"/>
-                        </asp:hyperlink>
-                        
+                        <asp:HyperLink ID="link" runat="server" NavigateUrl='<%#$"Review.aspx?id={Eval("id")}" %>'>
+                            <asp:Image ID="imagenCard" runat="server" ImageUrl='<%# Eval("imagen") %>' alt="Card image cap" CssClass="card-img-top" />
+                        </asp:HyperLink>
+
                         <div class="card-body">
                             <%--<asp:Hyperlink id="linkProductora" runat="server" Text='<%# Eval("productora") %>' NavigateUrl='<%#$"Productora.aspx?id={Eval("id")}" %>'/>--%>
                             <a href="#">
-                            <h6><%# Eval("puntuacion") %></h6>
+                                <h6><%# Eval("puntuacion") %></h6>
                             </a>
                             <h6><%# Eval("comentario") %></h6>
                             <div class="botones">
-                                <%--<asp:ImageButton id="addCart" runat="server" AlternateText="Add Cart" ImageAlign="middle"
-                                ImageUrl="assets/imagenes/iconos/cartAdd.png"/>
-                                <asp:ImageButton id="addList" runat="server" AlternateText="Add List" ImageAlign="middle"
-                                ImageUrl="assets/imagenes/iconos/addList.png"/>--%>
+                                <asp:ImageButton ID="deleteReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/eraser.png"
+                                    OnClick="deleteReview_Click" />
                             </div>
                         </div>
                     </div>
@@ -57,5 +55,23 @@
                 </table>
             </EmptyDataTemplate>
         </asp:ListView>
+    </main>
+    <main>
+        <div class="showGrid">
+            <h2>Crear reseña</h2>
+            <div class="crearFlex">
+                <div class="flexIzq">
+                    Nombre del Videojuego:
+            <asp:TextBox ID="nombreVideojuego" runat="server"></asp:TextBox>
+                    Puntuacion:
+                    <asp:TextBox ID="puntuacion" runat="server"></asp:TextBox>
+                </div>
+                <div class="flexDer">
+                    Comentario:
+                    <asp:TextBox ID="comentario" runat="server"></asp:TextBox>
+                    <br />
+                    <asp:Button ID="crearReview" Text="Crear" runat="server" OnClick="crearReviewClick" />
+                </div>
+            </div>
     </main>
 </asp:Content>

@@ -29,5 +29,32 @@ namespace web
                 ReviewListView.DataBind();
             }
         }
+        protected void crearReviewClick(object sender, EventArgs e)
+        {
+            ENVideojuego v = new ENVideojuego();
+            ENUsuario u = new ENUsuario();
+
+            v.Titulo = nombreVideojuego.ToString();
+
+            if (v.readVideojuego())
+            {
+                //Falta comprobar que haya iniciado sesion
+                ENReview review = new ENReview(DateTime.Now, Convert.ToInt32(puntuacion), comentario.ToString(), v, u);
+            }
+        }
+
+        protected void deleteReview_Click(object sender, EventArgs e)
+        {
+            ENVideojuego v = new ENVideojuego();
+            ENUsuario u = new ENUsuario();
+
+            v.Titulo = nombreVideojuego.ToString();
+
+            if (v.readVideojuego())
+            {
+                //Falta comprobar que haya iniciado sesion
+                ENReview review = new ENReview(DateTime.Now, Convert.ToInt32(puntuacion), comentario.ToString(), v, u);
+            }
+        }
     }
 }
