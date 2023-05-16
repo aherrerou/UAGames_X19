@@ -33,28 +33,33 @@ namespace web
         {
             ENVideojuego v = new ENVideojuego();
             ENUsuario u = new ENUsuario();
+            u.id = 1;
 
-            v.Titulo = nombreVideojuego.ToString();
+            v.Titulo = nombreVideojuego.Text.ToString();
 
             if (v.readVideojuego())
             {
                 //Falta comprobar que haya iniciado sesion
                 ENReview review = new ENReview(DateTime.Now, Convert.ToInt32(puntuacion), comentario.ToString(), v, u);
+                review.createReview();
             }
         }
 
         protected void deleteReview_Click(object sender, EventArgs e)
         {
-            ENVideojuego v = new ENVideojuego();
-            ENUsuario u = new ENUsuario();
+            ENReview r = new ENReview();
+            
 
-            v.Titulo = nombreVideojuego.ToString();
+            //var vs = this.ReviewListView.DeleteItem(this);
+            //v.Titulo = nombreVideojuego.ToString();
 
-            if (v.readVideojuego())
-            {
-                //Falta comprobar que haya iniciado sesion
-                ENReview review = new ENReview(DateTime.Now, Convert.ToInt32(puntuacion), comentario.ToString(), v, u);
-            }
+            //if (v.readVideojuego())
+            //{
+            //    //Falta comprobar que haya iniciado sesion
+            //    ENReview review = new ENReview();
+
+            //    review.readReview();
+            //}
         }
     }
 }

@@ -52,7 +52,7 @@ namespace library
         {
             return this.review.updateReview(this);
         }
-        public DataTable readReview()
+        public bool readReview()
         {
             return this.review.readReview(this);
         }

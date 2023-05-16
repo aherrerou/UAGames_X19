@@ -28,21 +28,33 @@
             </GroupTemplate>
             <ItemTemplate>
                 <td>
-                    <div class="card">
-                        <asp:HyperLink ID="link" runat="server" NavigateUrl='<%#$"Review.aspx?id={Eval("id")}" %>'>
-                            <asp:Image ID="imagenCard" runat="server" ImageUrl='<%# Eval("imagen") %>' alt="Card image cap" CssClass="card-img-top" />
-                        </asp:HyperLink>
-
-                        <div class="card-body">
-                            <%--<asp:Hyperlink id="linkProductora" runat="server" Text='<%# Eval("productora") %>' NavigateUrl='<%#$"Productora.aspx?id={Eval("id")}" %>'/>--%>
-                            <a href="#">
-                                <h6><%# Eval("puntuacion") %></h6>
+                    <div>
+                        <div>
+                            <a>
+                                <h3><%# Eval("nombrejuego") %></h3>
                             </a>
-                            <h6><%# Eval("comentario") %></h6>
-                            <div class="botones">
+                            <a>
+                                <h4><%# Eval("nombreUsuario") %></h4>
+                            </a>
+                            
+                        </div>
+                        <div>
+                            <input type="hidden" name="idReview" value='<%# Eval("id") %>'>
                                 <asp:ImageButton ID="deleteReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/eraser.png"
                                     OnClick="deleteReview_Click" />
                             </div>
+                        <asp:HyperLink ID="link" runat="server" NavigateUrl='<%#$"Review.aspx?id={Eval("id")}" %>'>
+                            <div class = "imagen-reseña">
+                            <asp:Image ID="imagenCard" runat="server" ImageUrl='<%# Eval("imagen") %>' />
+                            </div>
+                        </asp:HyperLink>
+
+                        <div>
+                            <a>
+                                <h6><%# Eval("puntuacion") %></h6>
+                            </a>
+                            <h6><%# Eval("comentario") %></h6>
+                            
                         </div>
                     </div>
                 </td>

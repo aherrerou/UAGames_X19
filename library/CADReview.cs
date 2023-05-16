@@ -112,35 +112,63 @@ namespace library
             return result;
         }
 
-        public DataTable readReview(ENReview review)
+        public bool readReview(ENReview review)
         {
-            DataTable dataTable = new DataTable();
+            bool leido = false;
+            SqlConnection connection = null;
+            SqlConnection conProductora = null;
+            SqlConnection conCategoria = null;
+            SqlDataReader dr = null;
             try
             {
-                c.Open();
-                string query = "SELECT * FROM REVIEW r where r.id = " + review.id + ";";
-                SqlCommand com = new SqlCommand(query, c);
-                SqlDataReader reader = com.ExecuteReader();
+                connection.Open();
+                conProductora.Open();
+                conCategoria.Open();
+                string sentence = "SELECT * FROM Review WHERE id = @id";
+                SqlCommand com = new SqlCommand(sentence, connection);
+                com.Parameters.AddWithValue("@id", review.id);
+                //Se obtiene cursor
+                dr = com.ExecuteReader();
 
-                dataTable.Load(reader);
+                //Se lee primer elemento
+                if (dr.Read())
+                {
+                    review.id = Convert.ToInt32(dr["id"].ToString());
+                    review.fecha = DateTime.Parse(dr["fecha_lanzamiento"].ToString());
+                    review.comentario = dr["comentario"].ToString();
+                    review.puntuacion = Convert.ToInt32(dr["puntuacion"].ToString());
 
-                reader.Close();
+                    //Lectura del videojuego
+                    ENVideojuego v= new ENVideojuego();
+                    v.Id = Int32.Parse(dr["videojuegoID"].ToString());
+
+                    v.readVideojuego();
+
+                    //Lectura del usuario
+                    ENUsuario u = new ENUsuario();
+                    u.readUsuario();
+
+                    leido = true;
+                }
+
             }
-            catch (SqlException ex)
+            catch (SqlException sqlex)
             {
-                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                leido = false;
+                Console.WriteLine("Reading videojuego operation has failed.Error: {0}", sqlex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                leido = false;
+                Console.WriteLine("Reading videojuego operation has failed.Error: {0}", ex.Message);
             }
             finally
             {
-                c.Close();
+                if (dr != null) dr.Close();
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
             }
-            return dataTable;
+            return leido;
         }
-
 
         public DataTable listarReviews(ENReview review)
         {
@@ -148,7 +176,7 @@ namespace library
             try
             {
                 c.Open();
-                string query = "SELECT r.* , v.Imagen as imagen , v.nombre as nombrejuego, u.nombre as nombreUsuario" +
+                string query = "SELECT r.* , v.Imagen as imagen , v.Titulo as nombrejuego, u.nombre as nombreUsuario" +
                     " FROM Review r , videojuego v , usuario u " +
                     "where v.Id = r.videojuegoID and r.usuarioID = u.id;";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, c);
