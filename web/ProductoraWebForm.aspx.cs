@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using library;
+using System.Data;
+
 namespace web
 {
     public partial class ProductoraWebForm : System.Web.UI.Page
@@ -35,22 +37,27 @@ namespace web
         }
         protected void onLeer(object sender,EventArgs e)
         {
+            PResultado.Text = "";
             if (txtNombre.Text == "")
                 PResultado.Text = "Nombre de la productora no introducido.";
             else
             {
                 ENProductora prod = new ENProductora();
                 prod.Nombre = txtNombre.Text;
+                DataTable dt = new DataTable();
+               
+                dt= prod.readProductorasNombre2(txtNombre.Text);
 
-                if (prod.readProductora())
+                if (dt.Rows.Count == 0)
                 {
-                    txtNombre.Text = prod.Nombre;
-                    txtImg.Text = prod.Imagen;
-                    txtDescripcion.Text = prod.Descripcion;
-                    txtWeb.Text = prod.Web;
-                    PResultado.Text = "Productora " + prod.Nombre + " mostrada con éxito.";
+                    PResultado.Text = "No existe una productora en la base de datos con ese nombre";
                 }
-                else PResultado.Text = "Productora no encontrada en la B.D.";
+                else
+                {
+                    ListView1.DataSource = prod.readProductorasNombre2(txtNombre.Text);
+                    ListView1.DataBind();
+                }
+                
             }
 
         }

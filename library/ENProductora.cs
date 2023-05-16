@@ -116,6 +116,11 @@ namespace library
             CADProductora productora = new CADProductora();
             return productora.readProductorasNombre();
         }
+        public DataTable readProductorasNombre2(string name)
+        {
+            CADProductora productora = new CADProductora();
+            return productora.readProductorasNombre2(name);
+        }
 
     }
 }

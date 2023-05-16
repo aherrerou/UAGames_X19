@@ -76,8 +76,56 @@
     <br />
             <asp:Label ID="PResultado" runat="server" Text =" " />&nbsp;
             <br />
-   
-</main>
+    <asp:ListView ID="ListView1" runat="server">
+            <ItemTemplate>
+                <div class="list">
+                    <div class="list-img">
+                        <img src="<%#Eval("imagen") %>"  />
+                    </div>
+                    <div class="list-content">
+                        <h1><%#Eval("nombre") %></h1>
+                        <h1><%#Eval("web") %></h1>
+                        <p><%#Eval("descripcion") %></p>
+                      
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:ListView>
+    </main>
+    <style>
+        .list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .list-img {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .list-img img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .list-content {
+            text-align: left;
+        }
+
+        .list-button {
+            margin-top: 10px;
+        }
+
+        .noticia-enlace {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0080FF;
+            text-decoration: none;
+        }
+    </style>
+
 </html>
 
 </asp:Content>

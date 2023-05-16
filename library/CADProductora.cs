@@ -296,8 +296,7 @@ namespace library
             }
             return del;
         }
-
-        public DataTable readProductorasNombre()
+        public DataTable readProductorasNombre2(string name)
         {
             SqlConnection connection = null;
             DataTable productoras = new DataTable();
@@ -307,7 +306,39 @@ namespace library
                 connection = new SqlConnection(datos);
                 connection.Open();
 
-                string sentence = "SELECT nombre, id FROM [Productora];";
+                string sentence = "SELECT nombre, id,imagen,web,descripcion FROM [Productora] where nombre='" + name + "';";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(productoras);
+                
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return productoras;
+        }
+
+    
+public DataTable readProductorasNombre()
+        {
+            SqlConnection connection = null;
+            DataTable productoras = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(datos);
+                connection.Open();
+
+                string sentence = "SELECT nombre, id,imagen,web,descripcion FROM [Productora];";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                 adapter.Fill(productoras);
 
