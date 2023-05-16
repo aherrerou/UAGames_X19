@@ -11,20 +11,21 @@ namespace library
 {
     class CADCategoria
     {
-        private SqlConnection conect;
+        
         private string conexionBBDD;
 
 
         public CADCategoria()
         {
-            conexionBBDD = ConfigurationManager.ConnectionStrings["UAGames"].ToString();
-            conect = null;
+            conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
+            
         }
 
         public bool createCategoria(ENCategoria categoria)
         {
 
             bool crear = false;
+            SqlConnection conect = null;
             string query = "INSERT INTO [Categoria]" + "(nombre,descripcion)" + "VALUES (@nombre, @descripcion);";
             try
             {
@@ -67,6 +68,7 @@ namespace library
         public bool readCategoria(ENCategoria categoria)
         {
             string query = "select * from Categoria where id = " + categoria.id + ";";
+            SqlConnection conect = null;
             bool controlador = true;
             try
             {
@@ -114,11 +116,49 @@ namespace library
             return true;
         }
 
-        public bool updateCategoria(ENCategoria categoria)
+        public DataTable readCategorias()
         {
+            SqlConnection conect = null;
+            DataTable categorias = new DataTable();
+
             try
             {
-                this.conect.Open();
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+
+                string sentence = "SELECT * from Categoria;";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, conect);
+                adapter.Fill(categorias);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                Console.WriteLine("Reading ofertas operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Reading ofertas operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+
+                if (conect != null) conect.Close(); // Se asegura de cerrar la conexión.
+            }
+            return categorias;
+        }
+
+        public bool updateCategoria(ENCategoria categoria)
+        {
+
+            SqlConnection conect = null;
+
+            try
+            {
+                
+                conect.Open();
                 string query = "update Categoria set nombre = " + categoria.id + ", descripcion = '"+ categoria.descripcion  + "'where id = '" + categoria.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
@@ -139,7 +179,7 @@ namespace library
 
             finally
             {
-                this.conect.Close();
+                conect.Close();
             }
 
             return true;
@@ -147,33 +187,44 @@ namespace library
 
         public bool deleteCategoria(ENCategoria categoria)
         {
+            bool controlador = false;
+            SqlConnection conect = null;
+            string query = "delete from Categoria where id = @id;";
+
             try
             {
-                this.conect.Open();
-                string query = "delete from Categoria where id = " + categoria.id + ";";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+                
+
+                
                 SqlCommand com = new SqlCommand(query, conect);
+                com.Parameters.AddWithValue("@id", categoria.id);
                 com.ExecuteReader();
 
+                controlador = true;
             }
 
             catch (SqlException sqlex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+                
             }
 
             catch (Exception ex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                
             }
 
             finally
             {
-                this.conect.Close();
+                conect.Close();
             }
 
-            return true;
+            return controlador ;
         }
 
         /*public DataSet listas()
