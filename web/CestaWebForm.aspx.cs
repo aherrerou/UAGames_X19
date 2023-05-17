@@ -79,7 +79,6 @@ namespace web
 
             protected void ComprarClick(object sender, EventArgs e)
             {
-            //Modificar por datos en pantalla de la cesta(Hablar con Iker)
             if (Session["login_nick"] == null)
             {
                 Response.Redirect("Inicia_Sesion.aspx");
@@ -90,23 +89,27 @@ namespace web
                 usuario.nick = Session["login_nick"].ToString();
                 usuario.readUsuario();
                 DateTime fecha = DateTime.Now;
-                double precioTotal = 0;
+                double precioTotal = 0.00;
                 foreach (GridViewRow row in cestaTable.Rows)
                 {
                     precioTotal += Convert.ToDouble(row.Cells[2].Text);
                 };
-                //
+                //0
                 ENCabecera_Compra compra = new ENCabecera_Compra(usuario, fecha, precioTotal);
                 compra.createCabecera_Compra();
-                // Modificar por datos en pantalla de la cesta(Hablar con Iker
+                // Falta insertar lineas, si no puedo coger id_videojuego sacarlo por mi cuenta con el usuario buscando su cesta
                 int cantidad = 1;
-                int importe = 10;
-                ENVideojuego videojuego = new ENVideojuego();
-                videojuego.Id = 1;
-                ENLinea_Compra linea = new ENLinea_Compra(cantidad, importe, videojuego);
-                int idcabecera = 1; //crear variable global y después de los insert ajustar esto y no tocar más la BBDD
-                linea.createLinea_Compra(idcabecera);
-                idcabecera++;
+                foreach (GridViewRow row in cestaTable.Rows)
+                {
+                    double importe = Convert.ToDouble(row.Cells[2].Text);
+                    ENVideojuego videojuego = new ENVideojuego();
+                    videojuego.Id = 1;
+                    ENLinea_Compra linea = new ENLinea_Compra(cantidad, importe, videojuego);
+                    int idcabecera = 1; //crear variable global y después de los insert ajustar esto y no tocar más la BBDD
+                    linea.createLinea_Compra(idcabecera);
+                    idcabecera++;
+
+                };
                 Response.Redirect("ThankYouPage.aspx");
                 //
                 //ENLinea_Compra lineas = new ENLinea_Compra();

@@ -28,7 +28,8 @@ namespace library
             {
                 this.c.Open();
                 string fechaFormatoCorrecto = cabecera.fecha.ToString("yyyy-MM-dd HH:mm:ss");
-                string query = "INSERT INTO Compra (fecha,total,usuarioID) VALUES (CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120),"+cabecera.totalCompra+"," + cabecera.usuario.id +");";
+                string total = cabecera.totalCompra.ToString().Replace(',','.');
+                string query = "INSERT INTO Compra (fecha,total,usuarioID) VALUES (CONVERT(datetime, '" + fechaFormatoCorrecto + "', 120),"+total+"," + cabecera.usuario.id +");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
