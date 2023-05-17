@@ -64,7 +64,7 @@ namespace library
                     if ((int)dr["id"] == lista.id)
                     {
                         sigue_while = false;
-                        lista.usuario.id = (int)dr["UsuarioID"];
+                        lista.usuario.id = (int)dr["usuarioID"];
                         lista.nombre = dr["nombre"].ToString();
                         lista.descripcion = dr["descripcion"].ToString();
                     }
@@ -312,12 +312,22 @@ namespace library
             }
             return true;
         }
-        public DataSet listarClientesD()
+        public DataSet listarClientesDAdmin()
         {
             DataSet bdvirtual = new DataSet();
 
             SqlConnection c = new SqlConnection(conexionBBDD);
             SqlDataAdapter da = new SqlDataAdapter("select * from ListaDeseos", c);
+            da.Fill(bdvirtual, "ListaDeseos");
+            return bdvirtual;
+        }
+        public DataSet listarClientesDUsu(ENLista_Deseos lista)
+        {
+            DataSet bdvirtual = new DataSet();
+
+            string query = "select * from ListaDeseos where usuarioID = " + lista.usuario.id;
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
             da.Fill(bdvirtual, "ListaDeseos");
             return bdvirtual;
         }

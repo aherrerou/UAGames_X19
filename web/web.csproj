@@ -92,6 +92,7 @@
     <Content Include="CestaWebForm.aspx" />
     <Content Include="Compras.aspx" />
     <Content Include="Foro.aspx" />
+    <Content Include="Foro_Publico.aspx" />
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
     <Content Include="NoticiaWF.aspx" />
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="Foro.aspx.designer.cs">
       <DependentUpon>Foro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Foro_Publico.aspx.cs">
+      <DependentUpon>Foro_Publico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro_Publico.aspx.designer.cs">
+      <DependentUpon>Foro_Publico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicia_Sesion.aspx.cs">
       <DependentUpon>Inicia_Sesion.aspx</DependentUpon>

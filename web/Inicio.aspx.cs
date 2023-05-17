@@ -11,7 +11,10 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["login_nick"] != null)
+            {
+                Label1.Text = "Bienvenido, " + Session["login_nick"].ToString();
+            }
         }
     }
 }

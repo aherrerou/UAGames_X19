@@ -22,7 +22,8 @@
             <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar"/>
             <br />
             <asp:Label ID="LResultado_F" runat="server" Text =" " />&nbsp;
-            <br />
+            <asp:RequiredFieldValidator ID="RequiredForoId" FieldToValidate="TId_F" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredForoNombre" FieldToValidate="TNombre" runat="server" ErrorMessage="Nombre obligatorio"></asp:RequiredFieldValidator>
             <h2>Leer o modificar lista de temas</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId_T" runat="server"></asp:TextBox>
@@ -40,7 +41,8 @@
             <asp:Button ID="BBorrar_T" runat="server" Text="Borrar" OnClick="BorrarT"/>
             <br />
             <asp:Label ID="LResultado_T" runat="server" Text =" " />&nbsp;
-            <br />
+            <asp:RequiredFieldValidator ID="RequiredTemaId" FieldToValidate="TId_T" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredTemaTitulo" FieldToValidate="TTitulo" runat="server" ErrorMessage="Título obligatoria"></asp:RequiredFieldValidator>
             <h2>Leer o modificar lista de publicaciones</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId_P" runat="server"></asp:TextBox>
@@ -61,8 +63,9 @@
             <asp:Button ID="BBorrar_P" runat="server" Text="Borrar" OnClick="BorrarP"/>
             <br />
             <asp:Label ID="LResultado_P" runat="server" Text =" " />&nbsp;
-            <br />
-                <h2>Listado de publicaciones</h2>
+            <asp:RequiredFieldValidator ID="RequiredPubliId" FieldToValidate="TId_P" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredPubliText" FieldToValidate="TText" runat="server" ErrorMessage="Texto obligatoria"></asp:RequiredFieldValidator>
+            <h2>Listado de publicaciones</h2>
             <asp:GridView ID="GridView1" runat="server" CssClass="grid"></asp:GridView>
         </div>
     </main>

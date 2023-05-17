@@ -40,9 +40,15 @@
             <asp:Button ID="BCrear_F" runat="server" Text="Crear" OnClick="Crear"/>
             <asp:Button ID="BActualizar_F" runat="server" Text="Actualizar" OnClick="Actualizar"/>
             <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar"/>
-            <br />
+            <asp:RequiredFieldValidator ID="RequiredNick" FieldToValidate="TNick" runat="server" ErrorMessage="* Nick obligatorio"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredNombre" FieldToValidate="TNombre" runat="server" ErrorMessage="* Nombre sin rellenar"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredApellidos" FieldToValidate="TApellidos" runat="server" ErrorMessage="* Apellidos sin rellenar"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredEmail" FieldToValidate="TEmail" runat="server" ErrorMessage="* Email sin rellenar"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredTelefono" FieldToValidate="TTelefono" runat="server" ErrorMessage="* Teléfono sin rellenar"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredFecha" FieldToValidate="TFecha" runat="server" ErrorMessage="* Fecha sin rellenar"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredRol" FieldToValidate="TRol" runat="server" ErrorMessage="* Rol sin rellenar"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredPassword" FieldToValidate="TPassword" runat="server" ErrorMessage="* Password sin rellenar"></asp:RequiredFieldValidator>
             <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
-            <br />
             <h2>Listado de usuarios</h2>
             <asp:GridView ID="GridView1" runat="server" CssClass="grid"></asp:GridView>
         </div>

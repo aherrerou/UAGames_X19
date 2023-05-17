@@ -95,11 +95,18 @@ namespace library
             result = c.deleteLista(this);
             return result;
         }
-        public DataSet listarClientesD()
+        public DataSet listarClientesDAdmin()
         {
             DataSet result = new DataSet();
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.listarClientesD();
+            result = c.listarClientesDAdmin();
+            return result;
+        }
+        public DataSet listarClientesDUsu()
+        {
+            DataSet result = new DataSet();
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.listarClientesDUsu(this);
             return result;
         }
     }

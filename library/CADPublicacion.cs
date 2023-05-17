@@ -322,5 +322,15 @@ namespace library
             da.Fill(bdvirtual, "Publicacion");
             return bdvirtual;
         }
+        public DataSet listarClientesDPublico(string tema)
+        {
+            DataSet bdvirtual = new DataSet();
+
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            string query = "select p.text as Texto, u.nick as Usuario from Usuario u join Publicacion as p on usuarioID = u.id join Tema as t on temaID = t.id where Titulo = '" + tema + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
+            da.Fill(bdvirtual, "Publicacion");
+            return bdvirtual;
+        }
     }
 }
