@@ -4,6 +4,20 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <main>
+
+        <div class="showGrid">
+            <div class="textbox-container">
+            Videojuego:
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="textbox-aspnet"></asp:TextBox>
+
+            Usuario:
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="textbox-aspnet"></asp:TextBox>
+
+            <asp:Button ID="filtrarReview" runat="server" Text="Filtrar" OnClick="filtrarReview_Click" />
+                </div>
+        </div>
+    </main>
+    <main>
         <asp:ListView ID="ReviewListView" runat="server" GroupItemCount="4">
             <LayoutTemplate>
                 <div class="listaReviews">
@@ -36,16 +50,11 @@
                             <a>
                                 <h4><%# Eval("nombreUsuario") %></h4>
                             </a>
-                            
+
                         </div>
-                        <div>
-                            <input type="hidden" name="idReview" value='<%# Eval("id") %>'>
-                                <asp:ImageButton ID="deleteReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/eraser.png"
-                                    OnClick="deleteReview_Click" />
-                            </div>
                         <asp:HyperLink ID="link" runat="server" NavigateUrl='<%#$"Review.aspx?id={Eval("id")}" %>'>
-                            <div class = "imagen-reseña">
-                            <asp:Image ID="imagenCard" runat="server" ImageUrl='<%# Eval("imagen") %>' />
+                            <div class="imagen-reseña">
+                                <asp:Image ID="imagenCard" runat="server" ImageUrl='<%# Eval("imagen") %>' />
                             </div>
                         </asp:HyperLink>
 
@@ -56,9 +65,9 @@
                             <h6><%# Eval("comentario") %></h6>
                             <div class="botones">
                                 <asp:ImageButton ID="deleteReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/eraser.png"
-                                    OnClick="deleteReview_Click"  CommandArgument='<%# Eval("id") %>'/>
+                                    OnClick="deleteReview_Click" CommandArgument='<%# Eval("id") %>' />
                                 <asp:ImageButton ID="editarReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/edit.png"
-                                    OnClick="editarReview_Click"  CommandArgument='<%# Eval("id") %>'/>
+                                    OnClick="editarReview_Click" CommandArgument='<%# Eval("id") %>' />
                             </div>
                         </div>
                     </div>

@@ -27,6 +27,14 @@ main {
     justify-content: center;
 }
 
+div .textbox-container {
+    display: flex;
+}
+
+.textbox-container .textbox-aspnet {
+    margin-right: 10px;
+}
+
     main .listaVideojuegos {
         width: 100%;
         display: flex;

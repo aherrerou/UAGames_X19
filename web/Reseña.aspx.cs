@@ -66,7 +66,7 @@ namespace web
         {
             ENReview review = new ENReview();
             review.id = Convert.ToInt32(((Button)sender).CommandArgument);
-            review.filtrarReviewPorVideojuego();
+            review.filtrarReview();
         }
     }
 }

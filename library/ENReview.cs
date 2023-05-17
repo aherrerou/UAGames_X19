@@ -66,9 +66,10 @@ namespace library
         {
             return this.review.comprobarUsuarioReview(this);
         }
-        public DataTable filtrarReviewPorVideojuego()
+
+        public DataTable filtrarReview()
         {
-            return this.review.filtrarReviewPorVideojuego(this);
+            return this.review.filtrarReview(this);
         }
     }
 

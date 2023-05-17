@@ -95,7 +95,7 @@ namespace library
                 string query = "SELECT * FROM Review WHERE id = @id and usuarioID = @usuarioID";
                 SqlCommand com1 = new SqlCommand(query, c);
                 com1.Parameters.AddWithValue("@id", review.id);
-                com1.Parameters.AddWithValue("@@usuarioID", review.usuario.id);
+                com1.Parameters.AddWithValue("@usuarioID", review.usuario.id);
                 com1.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -115,7 +115,7 @@ namespace library
             return result;
         }
 
-        public DataTable filtrarReviewPorVideojuego(ENReview review)
+        public DataTable filtrarReview(ENReview review)
         {
             DataTable dataTable = new DataTable();
             try
@@ -123,9 +123,13 @@ namespace library
                 c.Open();
                 string query = "SELECT r.* , v.Imagen as imagen , v.nombre as nombrejuego, u.nombre as nombreUsuario"
                     +" FROM Review r , videojuego v , usuario u " 
-                    + "where v.Id = r.videojuegoID and r.usuarioID = u.id and r.videojuegoID =" + review.videojuego.Id + " ;";
-
-                SqlDataAdapter adapter = new SqlDataAdapter(query, c);
+                    + "where v.Id = r.videojuegoID and r.usuarioID = u.id " +
+                    "and (@videojuegoID is null or r.videojuegoID = @videojuegoID) " +
+                    "and (@usuarioID is null or r.usuarioID = @usuarioID);";
+                SqlCommand com1 = new SqlCommand(query, c);
+                com1.Parameters.AddWithValue("@videojuegoID", review.videojuego.Id);
+                com1.Parameters.AddWithValue("@usuarioID", review.usuario.id);
+                SqlDataAdapter adapter = new SqlDataAdapter(com1);
                 adapter.Fill(dataTable);
             }
             catch (SqlException ex)
@@ -188,8 +192,8 @@ namespace library
                 connection.Open();
                 conProductora.Open();
                 conCategoria.Open();
-                string sentence = "SELECT * FROM Review WHERE id = @id";
-                SqlCommand com = new SqlCommand(sentence, connection);
+                string query = "SELECT * FROM Review WHERE id = @id";
+                SqlCommand com = new SqlCommand(query, connection);
                 com.Parameters.AddWithValue("@id", review.id);
                 //Se obtiene cursor
                 dr = com.ExecuteReader();
@@ -198,18 +202,18 @@ namespace library
                 if (dr.Read())
                 {
                     review.id = Convert.ToInt32(dr["id"].ToString());
-                    review.fecha = DateTime.Parse(dr["fecha_lanzamiento"].ToString());
+                    review.fecha = DateTime.Parse(dr["fecha"].ToString());
                     review.comentario = dr["comentario"].ToString();
                     review.puntuacion = Convert.ToInt32(dr["puntuacion"].ToString());
 
                     //Lectura del videojuego
                     ENVideojuego v= new ENVideojuego();
-                    v.Id = Int32.Parse(dr["videojuegoID"].ToString());
-
+                    v.Id = Convert.ToInt32(dr["videojuegoID"].ToString());
                     v.readVideojuego();
 
                     //Lectura del usuario
                     ENUsuario u = new ENUsuario();
+                    u.id = Convert.ToInt32(dr["usuarioID"].ToString());
                     u.readUsuario();
 
                     leido = true;
@@ -219,12 +223,12 @@ namespace library
             catch (SqlException sqlex)
             {
                 leido = false;
-                Console.WriteLine("Reading videojuego operation has failed.Error: {0}", sqlex.Message);
+                Console.WriteLine("Reading review operation has failed.Error: {0}", sqlex.Message);
             }
             catch (Exception ex)
             {
                 leido = false;
-                Console.WriteLine("Reading videojuego operation has failed.Error: {0}", ex.Message);
+                Console.WriteLine("Reading review operation has failed.Error: {0}", ex.Message);
             }
             finally
             {
