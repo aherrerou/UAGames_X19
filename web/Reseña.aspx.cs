@@ -38,14 +38,14 @@ namespace web
                 {
                     review.createReview();
                 }
-                
+
             }
         }
 
         protected void deleteReview_Click(object sender, EventArgs e)
-        {    
+        {
             ENReview review = new ENReview();
-            review.id =Convert.ToInt32(((Button)sender).CommandArgument);
+            review.id = Convert.ToInt32(((Button)sender).CommandArgument);
             if (review.comprobarUsuarioReview())
             {
                 review.deleteReview();
@@ -66,6 +66,21 @@ namespace web
         {
             ENReview review = new ENReview();
             review.id = Convert.ToInt32(((Button)sender).CommandArgument);
+            review.filtrarReview();
+        }
+
+        protected void misReviews_Click(object sender, EventArgs e)
+        {
+            ENUsuario u = new ENUsuario();
+            if (Session["login_nick"] != null)
+            {
+
+                u.nick = Session["login_nick"].ToString();
+                u.readUsuario();
+            }
+
+            ENReview review = new ENReview();
+            review.usuario = u;
             review.filtrarReview();
         }
     }

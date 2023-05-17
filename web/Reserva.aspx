@@ -5,15 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <main>
         <div class="showGrid">
-            <h2>reservas</h2>
+            <h2>Reservas</h2>
             <asp:GridView ID="reservasTable" runat="server" CssClass="grid" AutoGenerateColumns="False"
                 DataKeyNames="id" PageSize="5" AllowPaging="True"
-                EmptyDataText="Ups, no se han encontrado reservas."
-                <%--OnPageIndexChanging="changePagereservasTable"--%>
-                OnRowEditing="editReserva_click"
-                OnRowCancelingEdit="quitarEditReserva_click"
-                OnRowUpdating="updateReserva_click"
-                OnRowDeleting="clickRowDeletereserva">
+                EmptyDataText="Ups, no se han encontrado reservas.">
+                
 
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="ID" ReadOnly="True" SortExpression="Id" />
@@ -40,8 +36,12 @@
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
         </div>
-
-
     </main>
 
 </asp:Content>
+
+
+<%--OnRowEditing="editReserva_click"
+                OnRowCancelingEdit="quitarEditReserva_click"
+                OnRowUpdating="updateReserva_click"
+                OnRowDeleting="clickRowDeletereserva">--%>

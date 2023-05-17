@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Reseña.aspx.cs" Inherits="web.Reseña" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="misReseñas.aspx.cs" Inherits="web.misReseñas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 
@@ -6,14 +6,9 @@
     <main>
 
         <div class="showGrid">
-            <asp:Button ID="misReviews" Text="Crear" runat="server" OnClick="misReviews_Click"/>
             <div class="textbox-container">
                 Videojuego:
             <asp:TextBox ID="TextBox1" runat="server" CssClass="textbox-aspnet"></asp:TextBox>
-
-                Usuario:
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="textbox-aspnet"></asp:TextBox>
-
                 <asp:Button ID="filtrarReview" runat="server" Text="Filtrar" OnClick="filtrarReview_Click" />
             </div>
         </div>

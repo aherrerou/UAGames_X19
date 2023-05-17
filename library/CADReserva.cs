@@ -179,7 +179,7 @@ namespace library
             try
             {
                 c.Open();
-                string query = "SELECT r.* , v.Imagen as imagen , v.Titulo as nombrejuego, u.nombre as nombreUsuario" +
+                string query = "SELECT r.* , v.Titulo as videojuego, u.nombre as usuario" +
                     " FROM Reserva r , videojuego v , usuario u " +
                     "where v.Id = r.videojuegoID and r.usuarioID = u.id;";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, c);

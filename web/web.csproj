@@ -94,6 +94,7 @@
     <Content Include="Foro.aspx" />
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
+    <Content Include="misReseñas.aspx" />
     <Content Include="NoticiaWF.aspx" />
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />
@@ -173,6 +174,13 @@
     </Compile>
     <Compile Include="Lista_Deseos.aspx.designer.cs">
       <DependentUpon>Lista_Deseos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="misReseñas.aspx.cs">
+      <DependentUpon>misReseñas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="misReseñas.aspx.designer.cs">
+      <DependentUpon>misReseñas.aspx</DependentUpon>
     </Compile>
     <Compile Include="NoticiaWF.aspx.cs">
       <DependentUpon>NoticiaWF.aspx</DependentUpon>

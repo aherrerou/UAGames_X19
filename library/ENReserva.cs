@@ -57,7 +57,10 @@ namespace library
             return this.reserva.readReserva(this);
         }
 
-        public DataTable 
+        public DataTable mostrarReservas()
+        {
+            return this.reserva.mostrarReservas(this);
+        }
     }
 
 }
