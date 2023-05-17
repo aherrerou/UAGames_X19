@@ -36,9 +36,6 @@ namespace library
         }
         public bool deleteReserva()
         {
-            //Para prueba
-            //this.id = 4;
-            //
             return this.Reserva.deleteReserva(this);
         }
         public bool updateReserva()

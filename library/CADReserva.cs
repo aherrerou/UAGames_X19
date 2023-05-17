@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace library
 {
-    class CADReserva
+    public class CADReserva
     {
         private string conexionBBDD;
         private SqlConnection c;

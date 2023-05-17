@@ -17,12 +17,6 @@ namespace web
         {
             if (!Page.IsPostBack)
             {
-                //ENVideojuego v= new ENVideojuego();
-                //ENUsuario u = new ENUsuario();
-                //v.Id = 1;
-                //u.id = 1;
-                //ENReview en = new ENReview(Convert.ToDateTime("2002-10-02"), Convert.ToInt32("8"), "paco", v, u);
-                //bool result = en.createReview();
                 ENReview en = new ENReview();
                 data = en.listarReviews();
                 ReviewListView.DataSource = data;
@@ -39,27 +33,40 @@ namespace web
 
             if (v.readVideojuego())
             {
-                //Falta comprobar que haya iniciado sesion
                 ENReview review = new ENReview(DateTime.Now, Convert.ToInt32(puntuacion), comentario.ToString(), v, u);
-                review.createReview();
+                if (review.comprobarUsuarioReview())
+                {
+                    review.createReview();
+                }
+                
             }
         }
 
         protected void deleteReview_Click(object sender, EventArgs e)
+        {    
+            ENReview review = new ENReview();
+            review.id =Convert.ToInt32(((Button)sender).CommandArgument);
+            if (review.comprobarUsuarioReview())
+            {
+                review.deleteReview();
+            }
+        }
+
+        protected void editarReview_Click(object sender, EventArgs e)
         {
-            ENReview r = new ENReview();
-            
+            ENReview review = new ENReview();
+            review.id = Convert.ToInt32(((Button)sender).CommandArgument);
+            if (review.comprobarUsuarioReview())
+            {
+                review.updateReview();
+            }
+        }
 
-            //var vs = this.ReviewListView.DeleteItem(this);
-            //v.Titulo = nombreVideojuego.ToString();
-
-            //if (v.readVideojuego())
-            //{
-            //    //Falta comprobar que haya iniciado sesion
-            //    ENReview review = new ENReview();
-
-            //    review.readReview();
-            //}
+        protected void filtrarReview_Click(object sender, EventArgs e)
+        {
+            ENReview review = new ENReview();
+            review.id = Convert.ToInt32(((Button)sender).CommandArgument);
+            review.filtrarReviewPorVideojuego();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace library
         }
         public bool deleteReview()
         {
-            return this.review.deleteReview(this.id);
+            return this.review.deleteReview(this);
         }
         public bool updateReview()
         {
@@ -60,6 +60,15 @@ namespace library
         public DataTable listarReviews()
         {
             return this.review.listarReviews(this);
+        }
+
+        public bool comprobarUsuarioReview()
+        {
+            return this.review.comprobarUsuarioReview(this);
+        }
+        public DataTable filtrarReviewPorVideojuego()
+        {
+            return this.review.filtrarReviewPorVideojuego(this);
         }
     }
 

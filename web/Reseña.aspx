@@ -54,7 +54,12 @@
                                 <h6><%# Eval("puntuacion") %></h6>
                             </a>
                             <h6><%# Eval("comentario") %></h6>
-                            
+                            <div class="botones">
+                                <asp:ImageButton ID="deleteReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/eraser.png"
+                                    OnClick="deleteReview_Click"  CommandArgument='<%# Eval("id") %>'/>
+                                <asp:ImageButton ID="editarReview" runat="server" ImageAlign="Middle" ImageUrl="assets/imagenes/iconos/edit.png"
+                                    OnClick="editarReview_Click"  CommandArgument='<%# Eval("id") %>'/>
+                            </div>
                         </div>
                     </div>
                 </td>

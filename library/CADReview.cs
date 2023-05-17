@@ -53,16 +53,50 @@ namespace library
             return result;
         }
 
-        public bool deleteReview(int id)
+        public bool deleteReview(ENReview review)
         {
             bool result = true;
+           
+            //Borramos la review
+            if (result) { 
+                try
+                {
+                    c.Open();
+                    string query = "DELETE FROM Review WHERE id = @id;";
+                    SqlCommand com2 = new SqlCommand(query, c);
+                    com2.Parameters.AddWithValue("@id", review.id);
+                    com2.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                    result = false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                    result = false;
+                }
+                finally
+                {
+                    c.Close();
+                }
+            }
+            return result;
+        }
+
+        public bool comprobarUsuarioReview(ENReview review)
+        {
+            bool result = true;
+            //Comprobamos que la review sea del usuario de la sesión 
             try
             {
                 c.Open();
-                string query = "DELETE FROM Review WHERE id = @id;";
-                SqlCommand com = new SqlCommand(query, c);
-                com.Parameters.AddWithValue("@id", id);
-                com.ExecuteNonQuery();
+                string query = "SELECT * FROM Review WHERE id = @id and usuarioID = @usuarioID";
+                SqlCommand com1 = new SqlCommand(query, c);
+                com1.Parameters.AddWithValue("@id", review.id);
+                com1.Parameters.AddWithValue("@@usuarioID", review.usuario.id);
+                com1.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
@@ -81,18 +115,48 @@ namespace library
             return result;
         }
 
-        public bool updateReview(ENReview review)
+        public DataTable filtrarReviewPorVideojuego(ENReview review)
         {
-            bool result = true;
+            DataTable dataTable = new DataTable();
             try
             {
                 c.Open();
-                string query = "UPDATE Review SET puntuacion = @puntuacion, comentario = @comentario, fecha = @fecha WHERE id = @id;";
+                string query = "SELECT r.* , v.Imagen as imagen , v.nombre as nombrejuego, u.nombre as nombreUsuario"
+                    +" FROM Review r , videojuego v , usuario u " 
+                    + "where v.Id = r.videojuegoID and r.usuarioID = u.id and r.videojuegoID =" + review.videojuego.Id + " ;";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, c);
+                adapter.Fill(dataTable);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+            }
+            finally
+            {
+                c.Close();
+            }
+            return dataTable;
+        }
+
+        public bool updateReview(ENReview review)
+        {
+            bool result = true;
+           
+            try
+            {
+                c.Open();
+                string query = "UPDATE Review SET puntuacion = @puntuacion, comentario = @comentario, fecha = @fecha , videojuegoID = @videojuegoID WHERE id = @id;";
                 SqlCommand com = new SqlCommand(query, c);
                 com.Parameters.AddWithValue("@puntuacion", review.puntuacion);
                 com.Parameters.AddWithValue("@comentario", review.comentario);
                 com.Parameters.AddWithValue("@fecha", review.fecha.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@id", review.id);
+                com.Parameters.AddWithValue("@videojuegoID", review.videojuego.Id);
                 com.ExecuteNonQuery();
             }
             catch (SqlException ex)
