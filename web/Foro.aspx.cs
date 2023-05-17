@@ -311,7 +311,7 @@ namespace web
         protected void CrearP(object sender, EventArgs e)
         {
             if (RequiredForoId.IsValid && RequiredForoNombre.IsValid && RequiredTemaId.IsValid
-                && RequiredTemaTitulo.IsValid && RequiredPubliId.IsValid && RequiredPubliText.IsValid)
+                && RequiredTemaTitulo.IsValid && RequiredPubliId.IsValid && RequiredPubliText.IsValid && RequiredUsuario.IsValid)
             {
                 ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
                 ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
@@ -333,7 +333,6 @@ namespace web
                 ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
                 ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
                 ENUsuario usu = new ENUsuario();
-                usu.id = int.Parse(TUsuario.Text);
                 ENPublicacion en = new ENPublicacion(int.Parse(TId_P.Text), TTexto.Text, tema, usu);
                 bool result = en.updatePublicacion();
                 if (result == false)
@@ -357,6 +356,12 @@ namespace web
                 else
                     LResultado_P.Text = "Proceso de borrado realizado con éxito";
             }
+        }
+        protected void GridBorrar(object sender, EventArgs e)
+        {
+            ENPublicacion en = new ENPublicacion();
+            en.id = Convert.ToInt32(((Button)sender).CommandArgument);
+            en.deletePublicacion();
         }
     }
 }

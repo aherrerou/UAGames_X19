@@ -6,16 +6,16 @@
         <div class="showGrid">
             <h1><asp:Label ID="LTitulo" runat="server" Text ="Administrar Listas de Deseos" /></h1>
             <asp:Label ID="LId" runat="server" Text ="Id" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TId" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TId" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <asp:Label ID="LNombre" runat="server" Text ="Nombre" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TNombre" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TNombre" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <asp:Label ID="LDescripcion" runat="server" Text ="Descripción" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TDescripcion" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TDescripcion" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <asp:Label ID="LUsuario" runat="server" Text ="Id de usuario" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TUsuario" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TUsuario" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <br />
             <asp:Button ID="BLeer_F" runat="server" Text="Leer" OnClick="Leer"/>

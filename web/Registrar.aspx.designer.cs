@@ -141,6 +141,15 @@ namespace web
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredEmail;
 
         /// <summary>
+        /// Control RegularEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularEmail;
+
+        /// <summary>
         /// Control RequiredFecha.
         /// </summary>
         /// <remarks>
@@ -150,6 +159,15 @@ namespace web
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFecha;
 
         /// <summary>
+        /// Control CompareFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareFecha;
+
+        /// <summary>
         /// Control RequiredTelefono.
         /// </summary>
         /// <remarks>
@@ -157,6 +175,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredTelefono;
+
+        /// <summary>
+        /// Control RegularTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularTelefono;
 
         /// <summary>
         /// Control RequiredPassword.
