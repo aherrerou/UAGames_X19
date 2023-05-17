@@ -15,6 +15,15 @@ namespace web
     {
 
         /// <summary>
+        /// Control txtId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtId;
+
+        /// <summary>
         /// Control txtImg.
         /// </summary>
         /// <remarks>
@@ -60,13 +69,49 @@ namespace web
         protected global::System.Web.UI.WebControls.Button btnCrearProductora;
 
         /// <summary>
-        /// Control btnLeerProductora.
+        /// Control btnLeerNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLeerProductora;
+        protected global::System.Web.UI.WebControls.Button btnLeerNombre;
+
+        /// <summary>
+        /// Control btnLeerID.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLeerID;
+
+        /// <summary>
+        /// Control btnBorrarProductora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBorrarProductora;
+
+        /// <summary>
+        /// Control btnUpdateProductora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateProductora;
+
+        /// <summary>
+        /// Control btnLeerTodas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLeerTodas;
 
         /// <summary>
         /// Control PResultado.

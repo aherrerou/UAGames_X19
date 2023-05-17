@@ -52,7 +52,11 @@
         <div class="form-container">
             <h2>Crear productoras</h2>
             <div>
-                <label for="txtId">Imagen:</label>
+                <label for="txtIdn">Id:</label>
+                <asp:TextBox ID="txtId" runat="server" ></asp:TextBox>
+            </div>
+            <div>
+                <label for="txtImg">Imagen:</label>
                 <asp:TextBox ID="txtImg" runat="server"></asp:TextBox>
             </div>
             <div>
@@ -69,7 +73,12 @@
             </div>
             <div>
               <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="onCrear" />
-                 <asp:Button ID="btnLeerProductora" runat="server" Text="Leer Productora" OnClick="onLeer" />
+                 <asp:Button ID="btnLeerNombre" runat="server" Text="Leer Productora por nombre" OnClick="onLeerNombre" />
+                <asp:Button ID="btnLeerID" runat="server" Text="Leer Productora por ID" OnClick="onLeerId" />
+                 <asp:Button ID="btnBorrarProductora" runat="server" Text="Borrar Productora" OnClick="onBorrar" />
+                <asp:Button ID="btnUpdateProductora" runat="server" Text="Actualizar Productora" OnClick="onUpdate" />
+
+                 <asp:Button ID="btnLeerTodas" runat="server" Text="Mostrar todas las productoras" OnClick="onLeerTodas" />
             </div>
         </div>
     </form>
