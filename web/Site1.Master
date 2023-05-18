@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="web.Site1" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
     <form id="form1" runat="server">
         <header class="navbar navbar-expand-lg navbar-primary bd-navbar sticky-top bg-primary border-bottom border-primary">
             <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
-                <asp:HyperLink NavigateUrl="Inicio.aspx" class="d-flex align-items-center mb-2 mb-md-0 text-white text-decoration-none navbar-brand p-0 me-0 me-lg-2 bg-primary" style="font-weight:bold;" Text="UA Games" runat="server" />
+                <asp:HyperLink NavigateUrl="Inicio.aspx" class="d-flex align-items-center mb-2 mb-md-0 text-white text-decoration-none navbar-brand p-0 me-0 me-lg-2 bg-primary" Style="font-weight: bold;" Text="UA Games" runat="server" />
                 <div class="d-flex bg-primary">
                     <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -40,28 +41,34 @@
                                 <StaticMenuItemStyle HorizontalPadding="20" />
                                 <Items>
                                     <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
-                                    <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx"  />
                                     <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
                                     <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
+                                    <asp:MenuItem Text="Administrador">
+                                        <asp:MenuItem Text="Videojuegos" NavigateUrl="AdminVideojuegos.aspx" />
+                                        <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
+                                        <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx" />
+                                    </asp:MenuItem>
                                 </Items>
-                                 <LevelMenuItemStyles>
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white" />
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white" />
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white" />
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white" />
-                                  </LevelMenuItemStyles>
+                                <LevelMenuItemStyles>
+                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white fs-5" />
+                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white bg-primary fs-6" />
+                                </LevelMenuItemStyles>
                             </asp:Menu>
                         </ul>
 
-                        <hr class="d-lg-none text-white-50 bg-primary">
-
                         <ul class="navbar-nav flex-row flex-wrap ms-md-auto bg-primary">
                             <li class="nav-item col-6 col-lg-auto">
-                                <!-- Authentication Links -->
-                               <asp:Button ID="BtnIniciarSesion" CssClass="btn btn-light text-primary" Text="Iniciar sesion" runat="server" OnClick="BtnIniciarSesion_Click" />
-                                <asp:Button ID="BtnRegistrarse" CssClass="btn btn-light text-primary" Text="Registrarse" runat="server" OnClick="BtnRegistrarse_Click" />
-                        </li>
-            
+                                <asp:Label ID="MenuNoSesion" runat="server">
+                                    <!-- Authentication Links -->
+                                    <asp:Button ID="BtnIniciarSesion" CssClass="btn btn-light text-primary me-2" Text="Iniciar sesion" runat="server" OnClick="BtnIniciarSesion_Click" />
+                                    <asp:Button ID="BtnRegistrarse" CssClass="btn btn-light text-primary me-2" Text="Registrarse" runat="server" OnClick="BtnRegistrarse_Click" />
+                                </asp:Label>
+
+                                <asp:Label ID="MenuSesion" runat="server">
+                                    <asp:ImageButton ID="BtnCart" CssClass="bg-light rounded me-2" runat="server" AlternateText="Cart" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/cart.png" OnClick="clickCart" />
+                                    <asp:ImageButton ID="BtnSalir" CssClass="bg-light rounded me-2" runat="server" AlternateText="LogOut" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/logOut.png" OnClick="clickLogOut" />
+                                </asp:Label>
+                            </li>
 
                         </ul>
                     </div>
@@ -73,47 +80,47 @@
             <asp:ContentPlaceHolder ID="main" runat="server">
             </asp:ContentPlaceHolder>
         </main>
-        
+
 
         <footer class="footer mt-auto py-3 text-white bg-primary border-top border-primary">
-        <div class="container bg-primary">
-            <div class="row">
-                <div class="col-5">
-                    <asp:HyperLink NavigateUrl="Inicio.aspx" class="text-white text-decoration-none" style="font-weight:bold; font-size:30px;" Text="UA Games" runat="server" />
+            <div class="container bg-primary">
+                <div class="row">
+                    <div class="col-5">
+                        <asp:HyperLink NavigateUrl="Inicio.aspx" class="text-white text-decoration-none" Style="font-weight: bold; font-size: 30px;" Text="UA Games" runat="server" />
+                    </div>
+                    <div class="col mb-3">
+                        <h5 class="text-decoration-underline">Servicios</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="Catalogo.aspx" class="nav-link p-0 text-white">Catálogo</a></li>
+                            <li class="nav-item mb-2"><a href="AdminOfertas.aspx" class="nav-link p-0 text-white">Ofertas</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Noticias</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Foro</a></li>
+                        </ul>
+                    </div>
+                    <div class="col mb-3">
+                        <h5 class="text-decoration-underline">Compañía</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="Contacto.aspx" class="nav-link p-0 text-white">Contacto</a></li>
+                            <li class="nav-item mb-2"><a href="PreguntasFrec.aspx" class="nav-link p-0 text-white">Preguntas frecuentes</a></li>
+                            <li class="nav-item mb-2"><a href="SobreNosotros.aspx" class="nav-link p-0 text-white">Sobre nosotros</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Redes Sociales</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col mb-3">
-                    <h5 class="text-decoration-underline">Servicios</h5>
-                    <ul class="nav flex-column">
-                         <li class="nav-item mb-2"><a href="Catalogo.aspx" class="nav-link p-0 text-white">Catálogo</a></li>
-                         <li class="nav-item mb-2"><a href="AdminOfertas.aspx" class="nav-link p-0 text-white">Ofertas</a></li>
-                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Noticias</a></li>
-                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Foro</a></li>
-                    </ul>
-                </div>
-                <div class="col mb-3">
-                    <h5 class="text-decoration-underline">Compañía</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="Contacto.aspx" class="nav-link p-0 text-white">Contacto</a></li>
-                        <li class="nav-item mb-2"><a href="PreguntasFrec.aspx" class="nav-link p-0 text-white">Preguntas frecuentes</a></li>
-                        <li class="nav-item mb-2"><a href="SobreNosotros.aspx" class="nav-link p-0 text-white">Sobre nosotros</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Redes Sociales</a></li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="row border-top border-light">
-                <div class="col align-middle">
-                    <span class="text-white align-middle">&copy; 2023 <a href="#" class="text-white text-decoration-none">UA Games</a>, Inc. All rights reserved</span>
-                </div>
-                <div class="col text-left align-middle">
-                    <span class="text-white align-middle">
-                        <a href="Privacidad.aspx" class="text-decoration-none text-white align-middle">Política de privacidad</a>
-                        <a href="Terminos.aspx" class="text-decoration-none text-white align-middle">Términos y condiciones</a>
-                    </span>
+                <div class="row border-top border-light">
+                    <div class="col align-middle">
+                        <span class="text-white align-middle">&copy; 2023 <a href="#" class="text-white text-decoration-none">UA Games</a>, Inc. All rights reserved</span>
+                    </div>
+                    <div class="col text-left align-middle">
+                        <span class="text-white align-middle">
+                            <a href="Privacidad.aspx" class="text-decoration-none text-white align-middle">Política de privacidad</a>
+                            <a href="Terminos.aspx" class="text-decoration-none text-white align-middle">Términos y condiciones</a>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
