@@ -96,9 +96,9 @@
 
                         <div class="card-body text-center">
                             <asp:HyperLink ID="linkProductora"  CssClass="text-white" runat="server" Text='<%# Eval("productora") %>' NavigateUrl='<%#$"Productora.aspx?id={Eval("id")}" %>' /> <br />
-                            <asp:HyperLink ID="linkCategoria"  CssClass="text-white" runat="server" Text='<%# Eval("categoria") %>' NavigateUrl='<%#$"Catalogo.aspx?categoria={Eval("id")}" %>' />
-                            <h6><%# Eval("plataforma") %></h6>
-                            <h6><%# Eval("precio") %> €</h6>
+                            <asp:HyperLink ID="linkCategoria"  CssClass="text-white" runat="server" Text='<%# Eval("categoria") %>' NavigateUrl='<%#$"Catalogo.aspx?categoria={Eval("id")}" %>' /><br />
+                            <asp:Label id="plataforma" runat="server" Text='<%# Eval("plataforma") %>'></asp:Label><br />
+                            <asp:Label id="precio" runat="server" Text='<%# Eval("nuevoPrecio") %>'></asp:Label> € <br />
                             <div class="text-center justify-content-between justify-content-around d-flex flex-row">
                                 <asp:ImageButton ID="addCart" runat="server" AlternateText="Add Cart" ImageAlign="middle" style="height: 3rem;"
                                     ImageUrl="assets/imagenes/iconos/cartAdd.png" OnClientClick="clickAddCart" OnClick="clickAddCart" CommandArgument='<%# Eval("id") %>' />
