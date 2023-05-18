@@ -49,6 +49,7 @@ CREATE TABLE [dbo].[Videojuego] (
   [plataforma] VARCHAR(255),
   [precio] DECIMAL(10,2),
   [imagen] VARCHAR(255) DEFAULT 'assets/imagenes/iconos/game.png',
+  [stock] INT DEFAULT 0,
   [productoraID] INT NOT NULL,
   [categoriaID] INT NOT NULL,
   FOREIGN KEY ([productoraID]) REFERENCES Productora([id]) ON DELETE CASCADE ON UPDATE CASCADE,

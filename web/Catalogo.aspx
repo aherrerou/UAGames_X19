@@ -7,6 +7,16 @@
         <div class="row">
             <div class="col-md-3 align-middle">
                 <h1 class="text-center text-primary">Videojuegos</h1>
+                <asp:DropDownList ID="ordenar" AutoPostBack="false" runat="server" CssClass="mb-2 mx-5 px-5 mt-4">
+                            <Items>
+                                <asp:ListItem Text="Ordenar por:" Value="id" />
+                                <asp:ListItem Text="Titulo" Value="titulo" />
+                                <asp:ListItem Text="Categoria" Value="categoria" />
+                                <asp:ListItem Text="Productora" Value="productora" />
+                                <asp:ListItem Text="Precio" Value="precio" />
+                                <asp:ListItem Text="Plataforma" Value="plataforma" />
+                            </Items>
+            </asp:DropDownList>
             </div>
             <div class="col-md-8 m-md-3">
                 <!--Filtros-->

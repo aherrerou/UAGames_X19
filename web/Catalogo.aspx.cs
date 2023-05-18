@@ -32,6 +32,7 @@ namespace web
         {
             int productora = int.Parse(filtroProductora.SelectedValue);
             int categoria = int.Parse(filtroCategoria.SelectedValue);
+            string orden = ordenar.SelectedValue;
 
             string query = "WHERE ";
             //Se van agregando filtros a la query
@@ -67,7 +68,8 @@ namespace web
             }
 
             int precio = int.Parse(filtroPrecio.Text.ToString());
-            query += " precio >= '" + precio + "' ;";
+            query += " precio >= '" + precio + "' ORDER BY '" + orden + "';";
+
 
             ENVideojuego videojuego = new ENVideojuego();          
             VideojuegosListView.DataSource = videojuego.readVideojuegos(query);
@@ -81,6 +83,7 @@ namespace web
             filtroCategoria.SelectedValue = "0";
             filtroTitulo.Text = "";
             filtroPlataforma.Text = "";
+            ordenar.SelectedValue = "id";
         }
 
         protected void FillProductorasDropdown()
