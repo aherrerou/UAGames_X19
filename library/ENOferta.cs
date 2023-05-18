@@ -110,49 +110,36 @@ namespace library
             return cad.readOfertas();
         }
 
-        public bool readofertasProductora(List<ENOferta> listaofertas, string productora)
+        public DataTable readOfertasActuales()
         {
             CADOferta cad = new CADOferta();
-            return cad.readOfertasProductora(listaofertas, productora);
+            return cad.readOfertasActuales();
         }
 
-        public bool actualizaroferta()
+        public DataTable readOferta(int id)
         {
-            bool actualizado = false;
             CADOferta cad = new CADOferta();
-            ENOferta aux = new ENOferta();
-
-            aux.Id = this.Id;
-            aux.FechaInicio = this.FechaInicio;
-            aux.FechaFin = this.FechaFin;
-            aux.Descuento = this.Descuento;
-            aux.Productora = this.Productora;
-            aux.Videojuego = this.Videojuego;
-
-            if (cad.readOferta(this))
-            {
-                actualizado = cad.updateOferta(aux);
-                this.FechaInicio = aux.FechaInicio;
-                this.FechaFin = aux.FechaFin;
-                this.Descuento = aux.Descuento;
-                this.Productora = aux.Productora;
-                this.Videojuego = aux.Videojuego;
-            }
-
-            return actualizado;
+            return cad.readOferta(id);
         }
 
-        public bool eliminarOferta()
+        public DataTable readOfertas(string query)
         {
-            bool eliminado = false;
             CADOferta cad = new CADOferta();
+            return cad.readOfertas(query);
+        }
 
-            if (cad.readOferta(this))
-            {
-                eliminado = cad.deleteOferta(this);
-            }
+        public bool updateOferta()
+        {
 
-            return eliminado;
+            CADOferta cad = new CADOferta();
+            return cad.updateOferta(this);
+        }
+
+        public bool deleteOferta()
+        {
+            CADOferta cad = new CADOferta();
+            return cad.deleteOferta(this);
+
         }
     }
 }

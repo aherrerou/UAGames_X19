@@ -17,7 +17,7 @@ INSERT INTO categoria (nombre) VALUES
 ('Simulación');
 
 -- Insertar videojuegos
-INSERT INTO videojuego (titulo, productoraId, categoriaId, fecha_lanzamiento, precio, imagen, descripcion, plataforma) VALUES 
+INSERT INTO videojuego (titulo, productoraID, categoriaID, fecha_lanzamiento, precio, imagen, descripcion, plataforma) VALUES 
 ('FIFA 23', 1, 3, '2023-09-28', 59.99, 'assets/imagenes/videojuegos/Fifa23.jpg', 'Juego de futbol', 'ps5'),
 ('Battlefield 2042', 1, 1, '2021-10-22', 69.99, 'assets/imagenes/videojuegos/Battlefield2042.jpg', 'Juego de guerra moderna', 'pc'),
 ('Apex Legends', 2, 1, '2019-02-04', 0, 'assets/imagenes/videojuegos/ApexLegends.jpg', 'Juego shooter primera persona', 'pc'),
@@ -36,3 +36,14 @@ INSERT INTO oferta (nombre, descuento, fecha_inicio, fecha_fin, videojuegoID, pr
 ('Oferta Black Friday Assassin''s Creed Valhalla', 40, '2023-11-24', '2023-11-26', 5, 4),
 ('Oferta Halloween Call of Duty: Modern Warfare', 25, '2023-10-27', '2023-10-31', 6, 5),
 ('Oferta de Navidad Grand Theft Auto V', 15, '2023-12-24', '2023-12-26', 7, 6);
+
+
+--- Insertar usuarios
+INSERT INTO usuario (nick, nombre, apellidos, email, password, fecha_nacimiento, telefono) VALUES 
+('cgsg4', 'Clara', 'Gonzalez', 'cgsg4@gcloud.ua.es', '1234', '1994-03-09', '123456789');
+
+-- Insertar reviews
+INSERT INTO review (puntuacion, comentario, fecha, usuarioID, videojuegoID) VALUES
+(1, 'lo de siempre, no innovan', '2023-05-14', 1, 1),
+(2, 'prueba', '2023-05-18', 1, 1),
+(3, 'mas pruebas', '2023-05-20', 1, 1);
