@@ -19,6 +19,7 @@
                         <!--Precio-->
                         Precio:
                     <asp:TextBox ID="filtroPrecio" runat="server" type="number" min="0" value="0" CssClass="mb-2"></asp:TextBox>
+                         <asp:RegularExpressionValidator ID="regexFiltroPrecio" runat="server" ForeColor="Red"  ErrorMessage="El numero tiene que estar separado por comas"  ControlToValidate="filtroPrecio" ValidationExpression="^[0-9]+(?:,[0-9]+)?$"></asp:RegularExpressionValidator>
 
                     </div>
                     <div class="col">
@@ -110,14 +111,19 @@
                 <div>
                     Titulo:
             <asp:TextBox ID="nuevoTitulo" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorTitulo" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevoTitulo"></asp:RequiredFieldValidator>
+                     <asp:RegularExpressionValidator ID="regexTitulo" runat="server" ForeColor="Red"  ErrorMessage="*"  ControlToValidate="nuevoTitulo" ValidationExpression="^[a-zA-Z0-9]*$"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mt-2">
                     Fecha lanzamiento:
             <asp:TextBox ID="nuevaFechaLanzamiento" runat="server" type="date"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorFecha" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevaFechaLanzamiento"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mt-2">
                     Precio:
                     <asp:TextBox ID="nuevoPrecio" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorPrecio" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevoPrecio"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="regexPrecio" runat="server" ForeColor="Red"  ErrorMessage="El numero tiene que estar separado por comas"  ControlToValidate="nuevoPrecio" ValidationExpression="^[0-9]+(?:,[0-9]+)?$"></asp:RegularExpressionValidator>
                 </div>
 
             </div>
@@ -125,10 +131,14 @@
                 <div class="mt-2">
                     Plataforma:
                     <asp:TextBox ID="nuevaPlataforma" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorPlataforma" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevaPlataforma"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="regexPlataforma" runat="server" ForeColor="Red"  ErrorMessage="*"  ControlToValidate="nuevaPlataforma" ValidationExpression="^[a-zA-Z0-9]*$"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mt-2">
                     Descripcion:
                     <asp:TextBox ID="nuevaDescripcion" runat="server"></asp:TextBox>
+                     <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorDescripcion" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevaDescripcion"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="regexDescripcion" runat="server" ForeColor="Red"  ErrorMessage="*"  ControlToValidate="nuevaDescripcion" ValidationExpression="^[a-zA-Z0-9\s\.,_-]*$"></asp:RegularExpressionValidator>
                 </div>
             </div>
             <div class="col-md-4">
@@ -136,7 +146,7 @@
                     Productora:
             <asp:DropDownList ID="productorasList" AutoPostBack="false" runat="server">
                 <Items>
-                    <asp:ListItem Text="Productora" Value="" />
+                    <asp:ListItem Text="Productora" Value="0" />
                 </Items>
             </asp:DropDownList>
                 </div>
@@ -144,13 +154,14 @@
                     Categoria:
                     <asp:DropDownList ID="categoriasList" AutoPostBack="false" runat="server">
                         <Items>
-                            <asp:ListItem Text="Categoria" Value="" />
+                            <asp:ListItem Text="Categoria" Value="0" />
                         </Items>
                     </asp:DropDownList>
                 </div>
             </div>
             <div class="mt-2">
-                <asp:Button ID="crearVideojuego" CssClass="btn btn-primary" Text="Crear" runat="server" OnClick="crearVideojuegoClick" />
+                <asp:Button ID="crearVideojuego" CssClass="btn btn-primary" Text="Crear" runat="server" OnClick="crearVideojuegoClick" ValidationGroup="CreateValidation"/>
+                <asp:Label ID="msgValidar" CssClass="text-white bg-danger" runat="server"></asp:Label>
             </div>
         </div>
     </div>

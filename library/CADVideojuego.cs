@@ -34,10 +34,10 @@ namespace library
                 categoria.readCategoria(en.Categoria);
 
 
-                String sentence = "INSERT INTO [Videojuego] (titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
-                    "VALUES ('" + en.Titulo + "', '" + en.Descripcion  + "', '" + en.FechaLanzamiento + "', '" + en.Plataforma
-                + "', '" + en.Precio + "', '" + en.Imagen + "', '" + en.Productora.Id + "', '" + en.Categoria.id
-                + "' );";
+                String sentence = "INSERT INTO [Videojuego] (titulo, descripcion, fecha_lanzamiento, plataforma, precio, productoraID, categoriaID) " +
+                    "VALUES ('" + en.Titulo + "', '" + en.Descripcion  + "', '" + en.FechaLanzamiento.ToString("yyyy/MM/dd") + "', '" + en.Plataforma
+                + "', " + en.Precio + ", "  + en.Productora.Id + ", " + en.Categoria.id
+                + " );";
 
                 connection = new SqlConnection(constring);
                 connection.Open();

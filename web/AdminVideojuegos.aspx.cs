@@ -183,10 +183,9 @@ namespace web
         protected void crearVideojuegoClick(object sender, EventArgs e)
         {
             
-            if(nuevoTitulo.Text == "" || nuevoPrecio.Text == "")
+            if(productorasList.SelectedValue == "0" || categoriasList.SelectedValue == "0")
             {
-                msgSalidaCrear.Text = "Por favor, introduce el titulo y el precio del videojuego.";
-                msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+                msgValidar.Text = "Por favor, selecciona una productora y una categoria.";
             }
             else
             {
@@ -199,7 +198,11 @@ namespace web
                 en.Productora.Id = Int32.Parse(productorasList.SelectedValue);
                 en.Categoria.id = Int32.Parse(categoriasList.SelectedValue);
 
-                if (en.addVideojuego())
+                if (en.readVideojuego())
+                {
+                    msgValidar.Text = "ERROR: Ya existe un videojuego con ese título.";
+                } 
+                else if (en.addVideojuego())
                 {
                     msgSalidaCrear.Text = "Videojuego creado correctamente.";
                     msgSalidaCrear.BackColor = System.Drawing.Color.Green;
@@ -216,6 +219,7 @@ namespace web
 
         protected void filtrarOnClick(object sender, EventArgs e)
         {
+            cleanMsg();
             int productora = int.Parse(filtroProductora.SelectedValue);
             int categoria = int.Parse(filtroCategoria.SelectedValue);
 
@@ -241,7 +245,7 @@ namespace web
             if (filtroFecha.Text.ToString() != "")
             {
                 DateTime fecha = DateTime.Parse(filtroFecha.Text.ToString()).Date;
-                query += " fecha_lanzamiento >= '" + fecha + "' AND";
+                query += " fecha_lanzamiento >= '" + fecha.ToString("yyyy/MM/dd") + "' AND";
 
             }
 
@@ -287,6 +291,7 @@ namespace web
             msgSalida.BackColor = System.Drawing.Color.White;
             msgSalidaCrear.Text = "";
             msgSalidaCrear.BackColor = System.Drawing.Color.White;
+            msgValidar.Text = "";
         }
 
         private void mostrarResultado(string resultado)
