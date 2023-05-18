@@ -16,6 +16,7 @@
                     <div class="col">
                         <!--Barar busqueda por nombre-->
                         <asp:TextBox ID="filtroTitulo" runat="server" placeholder="Videojuego..." value="" CssClass="mb-2" />
+                        <asp:RegularExpressionValidator ID="regexFiltroTitulo" runat="server" ForeColor="Red"  ErrorMessage="*"  ControlToValidate="filtroTitulo" ValidationExpression="^[a-zA-Z0-9]*$"></asp:RegularExpressionValidator>
                         <!--Precio-->
                         Precio:
                     <asp:TextBox ID="filtroPrecio" runat="server" type="number" min="0" value="0" CssClass="mb-2"></asp:TextBox>
@@ -50,10 +51,6 @@
                         <asp:Button CssClass="btn btn-danger mt-3" ID="resetFiltros" Text="Eliminar filtros" runat="server" OnClick="resetFiltrosOnClick" />
 
                     </div>
-                </div>
-
-                <div class="col-md-3">
-                    <asp:Label ID="msgSalida" runat="server" CssClass="text-white" Text=""></asp:Label>
                 </div>
             </div>
         </div>

@@ -24,6 +24,15 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox filtroTitulo;
 
         /// <summary>
+        /// Control regexFiltroTitulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regexFiltroTitulo;
+
+        /// <summary>
         /// Control filtroPrecio.
         /// </summary>
         /// <remarks>
@@ -94,15 +103,6 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button resetFiltros;
-
-        /// <summary>
-        /// Control msgSalida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label msgSalida;
 
         /// <summary>
         /// Control videojuegoTable.

@@ -31,6 +31,7 @@ namespace web
 
         protected void FillOfertasTable()
         {
+            cleanMsg();
             ENOferta oferta = new ENOferta();
             //Persist the table in the Session object.
             Session["OfertasGrid"] = oferta.readOfertas();
@@ -242,15 +243,13 @@ namespace web
 
         protected void crearOfertaClick(object sender, EventArgs e)
         {
-            if (nuevoNombre.Text == "" || nuevoDescuento.Text == "")
+            if (productorasList.SelectedValue == "0" || videojuegosList.SelectedValue == "0")
             {
-                msgSalidaCrear.Text = "Por favor, introduce el titulo y el precio del videojuego.";
-                msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+                msgValidar.Text = "Por favor, selecciona una productora y una categoria.";
             }
             else if (DateTime.Parse(nuevaFechaFin.Text.ToString()) < DateTime.Parse(nuevaFechaInicio.Text.ToString()))
             {
-                msgSalidaCrear.Text = "La fecha de fin de la oferta debe ser mayor que la fecha de inicio.";
-                msgSalidaCrear.BackColor = System.Drawing.Color.Red;
+                msgValidar.Text = "La fecha de fin de la oferta debe ser mayor que la fecha de inicio.";
             }
             else
             {
@@ -262,7 +261,12 @@ namespace web
                 en.Productora.Id = Int32.Parse(productorasList.SelectedValue);
                 en.Videojuego.Id = Int32.Parse(videojuegosList.SelectedValue);
 
-                if (en.addOferta())
+
+                if (en.readOferta())
+                {
+                    msgValidar.Text = "ERROR: Ya existe una oferta con ese nombre.";
+                }
+                else if(en.addOferta())
                 {
                     msgSalidaCrear.Text = "Oferta creada correctamente.";
                     msgSalidaCrear.BackColor = System.Drawing.Color.Green;
@@ -306,14 +310,14 @@ namespace web
             if(fechaInicio.Text.ToString() != "")
             {
                 DateTime inicio = DateTime.Parse(fechaInicio.Text.ToString()).Date;
-                query += " o.fecha_inicio >= '" + inicio + "' AND";
+                query += " o.fecha_inicio >= '" + inicio.ToString("yyyy/MM/dd") + "' AND";
 
             }
 
             if (fechaFin.Text.ToString() != "")
             {
                 DateTime fin = DateTime.Parse(fechaFin.Text.ToString());
-                query += " o.fecha_fin >= '" + fin + "' AND";
+                query += " o.fecha_fin <= '" + fin.ToString("yyyy/MM/dd") + "' AND";
 
             }
 
@@ -338,22 +342,21 @@ namespace web
 
         private void mostrarError(string error)
         {
-            msgSalida.Text = error;
-            msgSalida.BackColor = System.Drawing.Color.Red;
+            msgSalidaCrear.Text = error;
+            msgSalidaCrear.BackColor = System.Drawing.Color.Red;
         }
 
         private void cleanMsg()
         {
-            msgSalida.Text = "";
-            msgSalida.BackColor = System.Drawing.Color.White;
             msgSalidaCrear.Text = "";
             msgSalidaCrear.BackColor = System.Drawing.Color.White;
+            msgValidar.Text = "";
         }
 
         private void mostrarResultado(string resultado)
         {
-            msgSalida.Text = resultado;
-            msgSalida.BackColor = System.Drawing.Color.Green;
+            msgSalidaCrear.Text = resultado;
+            msgSalidaCrear.BackColor = System.Drawing.Color.Green;
         }
     }
 }

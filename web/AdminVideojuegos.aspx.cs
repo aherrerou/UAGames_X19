@@ -281,14 +281,12 @@ namespace web
 
         private void mostrarError(string error)
         {
-            msgSalida.Text = error;
-            msgSalida.BackColor = System.Drawing.Color.Red;
+            msgSalidaCrear.Text = error;
+            msgSalidaCrear.BackColor = System.Drawing.Color.Red;
         }
 
         private void cleanMsg()
         {
-            msgSalida.Text = "";
-            msgSalida.BackColor = System.Drawing.Color.White;
             msgSalidaCrear.Text = "";
             msgSalidaCrear.BackColor = System.Drawing.Color.White;
             msgValidar.Text = "";
@@ -296,8 +294,8 @@ namespace web
 
         private void mostrarResultado(string resultado)
         {
-            msgSalida.Text = resultado;
-            msgSalida.BackColor = System.Drawing.Color.Green;
+            msgSalidaCrear.Text = resultado;
+            msgSalidaCrear.BackColor = System.Drawing.Color.Green;
         }
 
 

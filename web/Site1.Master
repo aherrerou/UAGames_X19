@@ -38,7 +38,7 @@
                         <hr class="d-lg-none text-white-50 bg-primary">
                         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav ms-md-auto text-white bg-primary">
                             <asp:Menu ID="menu" runat="server" Orientation="Horizontal">
-                                <StaticMenuItemStyle HorizontalPadding="20" />
+                                <StaticMenuItemStyle HorizontalPadding="20"/>
                                 <Items>
                                     <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
                                     <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
@@ -50,7 +50,7 @@
                                     </asp:MenuItem>
                                 </Items>
                                 <LevelMenuItemStyles>
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white fs-5" />
+                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white fs-5 bg-primary" />
                                     <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white bg-primary fs-6" />
                                 </LevelMenuItemStyles>
                             </asp:Menu>

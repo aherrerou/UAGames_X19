@@ -374,7 +374,7 @@ namespace library
                 categoria.readCategoriaNombre(en.Categoria);
 
                 String sentence = "UPDATE [Videojuego] SET titulo='" + en.Titulo + "', descripcion='" + en.Descripcion
-                + "', fecha_lanzamiento='" + en.FechaLanzamiento + "', plataforma='" + en.Plataforma
+                + "', fecha_lanzamiento='" + en.FechaLanzamiento.ToString("yyyy/MM/dd") + "', plataforma='" + en.Plataforma
                 + "', precio='" + en.Precio + "', imagen='" + en.Imagen + "', productoraID='" + en.Productora.Id + "', categoriaID='" + en.Categoria.id
                 + "' WHERE id = '" + en.Id + "'";
 

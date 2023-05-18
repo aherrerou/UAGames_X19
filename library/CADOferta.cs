@@ -34,7 +34,7 @@ namespace library
                 videojuego.readVideojuego(en.Videojuego);
 
                 String sentence = "INSERT INTO [Oferta] (nombre, descuento, fecha_inicio, fecha_fin, productoraID, videojuegoID) " +
-                   "VALUES ('" + en.Nombre + "', '" + en.Descuento + "', '" + en.FechaInicio.ToString("yyyy-MM-dd") + "', '" + en.FechaFin.ToString("yyyy-MM-dd")
+                   "VALUES ('" + en.Nombre + "', '" + en.Descuento + "', '" + en.FechaInicio.ToString("yyyy/MM/dd") + "', '" + en.FechaFin.ToString("yyyy/MM/dd")
                + "', '" + en.Productora.Id + "', '" + en.Videojuego.Id
                + "' );";
 
@@ -293,7 +293,7 @@ namespace library
 
                 string sentence = "SELECT o.nombre, o.id, o.descuento, o.fecha_inicio, o.fecha_fin, CAST((v.precio*(100-o.descuento)/100) AS DECIMAL(5,2)) as nuevoPrecio" +
                     " FROM [Oferta] o JOIN [Videojuego] v ON o.videojuegoID = v.id " +
-                    "WHERE o.videojuegoID = '" + id + "' AND o.fecha_inicio <= GETDATE() AND o.fecha_fin >= GETDATE();";
+                    "WHERE o.videojuegoID = '" + id + "' AND GETDATE() BETWEEN fecha_inicio AND fecha_fin;";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                 adapter.Fill(ofertas);
 
@@ -375,8 +375,8 @@ namespace library
                 CADVideojuego videojuego = new CADVideojuego();
                 videojuego.readVideojuego(en.Videojuego);
 
-                String sentence = "UPDATE [Oferta] SET nombre='" + en.Nombre + "', fecha_inicio='" + en.FechaInicio.ToString("yyyy-MM-dd")
-                + "', fecha_fin='" + en.FechaFin.ToString("yyyy-MM-dd") + "', descuento='" + en.Descuento
+                String sentence = "UPDATE [Oferta] SET nombre='" + en.Nombre + "', fecha_inicio='" + en.FechaInicio.ToString("yyyy/MM/dd")
+                + "', fecha_fin='" + en.FechaFin.ToString("yyyy/MM/dd") + "', descuento='" + en.Descuento
                 + "', productoraID='" + en.Productora.Id + "', videojuegoID='" + en.Videojuego.Id
                 + "' WHERE id = '" + en.Id + "';";
 

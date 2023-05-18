@@ -24,6 +24,15 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox filtroNombre;
 
         /// <summary>
+        /// Control regexNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regexNombre;
+
+        /// <summary>
         /// Control filtroDescuento.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox filtroDescuento;
+
+        /// <summary>
+        /// Control validatorFiltroDescuento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator validatorFiltroDescuento;
 
         /// <summary>
         /// Control filtroProductora.
@@ -87,15 +105,6 @@ namespace web
         protected global::System.Web.UI.WebControls.Button resetFiltros;
 
         /// <summary>
-        /// Control msgSalida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label msgSalida;
-
-        /// <summary>
         /// Control ofertasTable.
         /// </summary>
         /// <remarks>
@@ -123,6 +132,24 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox nuevoNombre;
 
         /// <summary>
+        /// Control validatorNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorNombre;
+
+        /// <summary>
+        /// Control regexNuevoNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regexNuevoNombre;
+
+        /// <summary>
         /// Control nuevaFechaInicio.
         /// </summary>
         /// <remarks>
@@ -130,6 +157,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nuevaFechaInicio;
+
+        /// <summary>
+        /// Control validatorFechaInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorFechaInicio;
 
         /// <summary>
         /// Control nuevaFechaFin.
@@ -141,6 +177,15 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox nuevaFechaFin;
 
         /// <summary>
+        /// Control validatorFechaFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorFechaFin;
+
+        /// <summary>
         /// Control nuevoDescuento.
         /// </summary>
         /// <remarks>
@@ -148,6 +193,24 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nuevoDescuento;
+
+        /// <summary>
+        /// Control validatorNuevoDescuento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorNuevoDescuento;
+
+        /// <summary>
+        /// Control nuevoDescuentoValidator.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator nuevoDescuentoValidator;
 
         /// <summary>
         /// Control productorasList.
@@ -175,5 +238,14 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button crearOferta;
+
+        /// <summary>
+        /// Control msgValidar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msgValidar;
     }
 }
