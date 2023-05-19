@@ -13,6 +13,8 @@ namespace web
 {
         public partial class CestaWebForm : System.Web.UI.Page
         {
+        // Aquí indicar el id de la base de datos por la que empezará, revisad que no haya saltos
+        public static int idCabecera = 1;
 
             DataTable data = new DataTable();
             protected void Page_Load(object sender, EventArgs e)
@@ -94,26 +96,25 @@ namespace web
                 {
                     precioTotal += Convert.ToDouble(row.Cells[2].Text);
                 };
-                //0
+
                 ENCabecera_Compra compra = new ENCabecera_Compra(usuario, fecha, precioTotal);
                 compra.createCabecera_Compra();
-                // Falta insertar lineas, si no puedo coger id_videojuego sacarlo por mi cuenta con el usuario buscando su cesta
+                // Falta que recorra todos los productos, actualmente sólo podemos hacer pedido de 1 producto y una unidad.
                 int cantidad = 1;
                 foreach (GridViewRow row in cestaTable.Rows)
                 {
-                    double importe = Convert.ToDouble(row.Cells[2].Text);
-                    ENVideojuego videojuego = new ENVideojuego();
-                    videojuego.Id = 1;
-                    ENLinea_Compra linea = new ENLinea_Compra(cantidad, importe, videojuego);
-                    int idcabecera = 1; //crear variable global y después de los insert ajustar esto y no tocar más la BBDD
-                    linea.createLinea_Compra(idcabecera);
-                    idcabecera++;
-
-                };
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        double importe = Convert.ToDouble(row.Cells[2].Text);
+                        ENVideojuego videojuego = new ENVideojuego();
+                        ENCesta cesta = new ENCesta();
+                        videojuego.Id = cesta.articulosCesta(usuario);
+                        ENLinea_Compra linea = new ENLinea_Compra(cantidad, importe, videojuego);
+                        linea.createLinea_Compra(CestaWebForm.idCabecera);
+                        CestaWebForm.idCabecera++;
+                    }
+                }
                 Response.Redirect("ThankYouPage.aspx");
-                //
-                //ENLinea_Compra lineas = new ENLinea_Compra();
-
             }
             }
         }

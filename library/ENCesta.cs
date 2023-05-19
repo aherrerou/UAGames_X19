@@ -88,5 +88,10 @@ namespace library
             return res;*/
             return true;
         }
+        public int articulosCesta(ENUsuario usuario)
+        {
+            CADCesta cesta = new CADCesta();
+            return cesta.articulosCesta(usuario);
+        }
     }
 }

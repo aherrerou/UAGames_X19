@@ -24,7 +24,8 @@ namespace library
             try
             {
                 this.c.Open();
-                string query = "INSERT INTO LineasCompra (importe, videojuegoID, cantidad, compraID) VALUES (" + linea.importe + ","+ linea.videojuego.Id + ","+linea.cantidad+"," + idcabecera+ ");";
+                string importe = linea.importe.ToString().Replace(",", ".");
+                string query = "INSERT INTO LineasCompra (importe, videojuegoID, cantidad, compraID) VALUES (" + importe + ","+ linea.videojuego.Id + ","+linea.cantidad+"," + idcabecera+ ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }
