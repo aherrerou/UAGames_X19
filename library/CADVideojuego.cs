@@ -20,26 +20,38 @@ namespace library
         {
             bool creado = false;
             SqlConnection connection = null;
-            String sentence = "INSERT INTO [Videojuego] " +
+            /*String sentence = "INSERT INTO [Videojuego] " +
                 "(titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
-                "VALUES (@titulo, @descripcion, @fecha_lanzamiento, @plataforma, @precio, @imagen, @productoraID, @categoriaID);";
+                "VALUES (@titulo, @descripcion, @fecha_lanzamiento, @plataforma, @precio, @imagen, @productoraID, @categoriaID);";*/
 
 
             try
             {
+                CADProductora productora = new CADProductora();
+                productora.readProductora(en.Productora);
+
+                CADCategoria categoria = new CADCategoria();
+                categoria.readCategoria(en.Categoria);
+
+
+                String sentence = "INSERT INTO [Videojuego] (titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
+                    "VALUES ('" + en.Titulo + "', '" + en.Descripcion  + "', '" + en.FechaLanzamiento + "', '" + en.Plataforma
+                + "', '" + en.Precio + "', '" + en.Imagen + "', '" + en.Productora.Id + "', '" + en.Categoria.id
+                + "' );";
+
                 connection = new SqlConnection(constring);
                 connection.Open();
 
                 SqlCommand com = new SqlCommand(sentence, connection);
 
-                com.Parameters.AddWithValue("@titulo", en.Titulo);
+                /*com.Parameters.AddWithValue("@titulo", en.Titulo);
                 com.Parameters.AddWithValue("@descripcion", en.Descripcion);
                 com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
                 com.Parameters.AddWithValue("@precio", en.Precio);
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
-                com.Parameters.AddWithValue("@categoriaID", en.Categoria.id);
+                com.Parameters.AddWithValue("@categoriaID", en.Categoria.id);*/
 
                 com.ExecuteNonQuery();
                 creado = true;
@@ -70,17 +82,11 @@ namespace library
         {
             bool leido = false;
             SqlConnection connection = null;
-            SqlConnection conProductora = null;
-            SqlConnection conCategoria = null;
             SqlDataReader dr = null;
             try
             {
                 connection = new SqlConnection(constring);
-                conProductora = new SqlConnection(constring);
-                conCategoria = new SqlConnection(constring);
                 connection.Open();
-                conProductora.Open();
-                conCategoria.Open();
                 string sentence = "SELECT * FROM [Videojuego] WHERE titulo = @titulo";
                 SqlCommand com = new SqlCommand(sentence, connection);
                 com.Parameters.AddWithValue("@titulo", en.Titulo);
@@ -142,8 +148,6 @@ namespace library
         {
             bool leido = false;
             SqlConnection connection = null;
-            //SqlConnection conProductora = null;
-            //SqlConnection conCategoria = null;
             SqlDataReader dr = null;
             try
             {
@@ -239,25 +243,60 @@ namespace library
             return videojuegos;
         }
 
-        //Leer videojuegos especificos de una productora
-        public DataSet readVideojuegosProductora(string prod)
+
+        public DataTable readVideojuegos(string query)
         {
             SqlConnection connection = null;
-            DataSet videojuegos = null;
+            DataTable videojuegos = new DataTable();
 
             try
             {
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "SELECT v.titulo, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
+                string sentence = "SELECT v.titulo, v.id, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
                     "p.nombre AS productora, c.nombre AS categoria FROM [Videojuego] v " +
                     "JOIN [Productora] p ON v.productoraID = p.id " +
-                    "JOIN [Categoria] c ON v.categoriaID = c.id" +
-                    "WHERE p.nombre = '" + prod +
+                    "JOIN [Categoria] c ON v.categoriaID = c.id ";
+                sentence += query;
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(videojuegos);
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return videojuegos;
+        }
+
+        //Leer videojuegos especificos de una productora
+        public DataTable readVideojuegosProductora(ENVideojuego en)
+        {
+            SqlConnection connection = null;
+            DataTable videojuegos = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(constring);
+                connection.Open();
+
+                string sentence = "SELECT v.id, v.titulo, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
+                    "p.nombre AS productora, c.nombre AS categoria FROM [Videojuego] v " +
+                    "JOIN [Productora] p ON v.productoraID = p.id " +
+                    "JOIN [Categoria] c ON v.categoriaID = c.id " +
+                    "WHERE v.productoraID = '" + en.Productora.Id +
                     "';";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
-                adapter.Fill(videojuegos, "videojuego");
+                adapter.Fill(videojuegos);
 
             }
             catch (SqlException sqlex)
@@ -276,25 +315,25 @@ namespace library
         }
 
         //Leer videojuegos especificos de una categoria
-        public DataSet readVideojuegosCategoria(string cat)
+        public DataTable readVideojuegosCategoria(ENVideojuego en)
         {
             SqlConnection connection = null;
             SqlDataReader dr = null;
-            DataSet videojuegos = null;
+            DataTable videojuegos = new DataTable();
 
             try
             {
                 connection = new SqlConnection(constring);
                 connection.Open();
 
-                string sentence = "SELECT v.titulo, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
+                string sentence = "SELECT v.id, v.titulo, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
                     "p.nombre AS productora, c.nombre AS categoria FROM [Videojuego] v " +
                     "JOIN [Productora] p ON v.productoraID = p.id " +
-                    "JOIN [Categoria] c ON v.categoriaID = c.id" +
-                    "WHERE c.nombre = '" + cat +
+                    "JOIN [Categoria] c ON v.categoriaID = c.id " +
+                    "WHERE v.categoriaID = '" + en.Categoria.id +
                     "';";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
-                adapter.Fill(videojuegos, "videojuego");
+                adapter.Fill(videojuegos);
 
             }
             catch (SqlException sqlex)
@@ -320,19 +359,34 @@ namespace library
         {
             bool actualizado = false;
             SqlConnection connection = null;
-            String sentence = "UPDATE [Videojuego] SET " +
-                "titulo = @titulo, descripcion = @descripcion, fecha_lanzamiento = @fecha_lanzamiento," +
-                "plataforma = @plataforma, precio = @precio, imagen = @imagen, productoraID = @productoraID, categoriaID = @categoriaID) " +
-                "WHERE id = @id;";
+
+            
 
             try
             {
+                CADProductora productora = new CADProductora();
+                productora.readProductoraNombre(en.Productora);
+
+                CADCategoria categoria = new CADCategoria();
+                categoria.readCategoriaNombre(en.Categoria);
+
+                String sentence = "UPDATE [Videojuego] SET titulo='" + en.Titulo + "', descripcion='" + en.Descripcion
+                + "', fecha_lanzamiento='" + en.FechaLanzamiento + "', plataforma='" + en.Plataforma
+                + "', precio='" + en.Precio + "', imagen='" + en.Imagen + "', productoraID='" + en.Productora.Id + "', categoriaID='" + en.Categoria.id
+                + "' WHERE id = '" + en.Id + "'";
+
+                /*String sentence = "UPDATE [Videojuego] SET " +
+                "titulo = @titulo, descripcion = @descripcion, fecha_lanzamiento = @fecha_lanzamiento," +
+                "plataforma = @plataforma, precio = @precio, imagen = @imagen, productoraID = @productoraID, categoriaID = @categoriaID " +
+                "WHERE id = @id;";*/
+
+
                 connection = new SqlConnection(constring);
                 connection.Open();
 
                 SqlCommand com = new SqlCommand(sentence, connection);
 
-                com.Parameters.AddWithValue("@titulo", en.Titulo);
+                /*com.Parameters.AddWithValue("@titulo", en.Titulo);
                 com.Parameters.AddWithValue("@descripcion", en.Descripcion);
                 com.Parameters.AddWithValue("@fecha_lanzamiento", en.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@plataforma", en.Plataforma);
@@ -340,7 +394,7 @@ namespace library
                 com.Parameters.AddWithValue("@imagen", en.Imagen);
                 com.Parameters.AddWithValue("@productoraID", en.Productora.Id);
                 com.Parameters.AddWithValue("@categoriaID", en.Categoria);
-                com.Parameters.AddWithValue("@id", en.Id);
+                com.Parameters.AddWithValue("@id", en.Id);*/
 
                 com.ExecuteNonQuery();
 
