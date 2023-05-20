@@ -95,18 +95,18 @@ namespace library
             result = c.deleteLista(this);
             return result;
         }
-        public DataSet listarClientesDAdmin()
+        public DataSet listarVjLista()
         {
             DataSet result = new DataSet();
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.listarClientesDAdmin();
+            result = c.listarVjLista(this);
             return result;
         }
-        public DataSet listarClientesDUsu()
+        public bool deleteVjLista(ENVideojuego vj)
         {
-            DataSet result = new DataSet();
+            bool result = false;
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.listarClientesDUsu(this);
+            result = c.deleteVjLista(vj);
             return result;
         }
     }

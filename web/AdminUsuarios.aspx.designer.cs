@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class Usuario
+    public partial class AdminUsuarios
     {
 
         /// <summary>

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace web
 {
-    public partial class Usuario : System.Web.UI.Page
+    public partial class AdminUsuarios : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +26,7 @@ namespace web
         {
             if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(0, TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+                ENUsuario en = new ENUsuario(0, TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", false);
                 bool result = en.readUsuario();
                 if (result == false)
                     LResultado.Text = "Error en la lectura del usuario";
@@ -38,7 +38,7 @@ namespace web
                     TEmail.Text = en.email;
                     TTelefono.Text = en.telef;
                     TFecha.Text = en.fecha_nac.ToString();
-                    TRol.Text = en.rol;
+                    TRol.Text = en.admin.ToString();
                     TPassword.Text = en.password;
                     LResultado.Text = "Proceso de lectura realizado con éxito";
                 }
@@ -59,7 +59,7 @@ namespace web
                 TEmail.Text = en.email;
                 TTelefono.Text = en.telef;
                 TFecha.Text = en.fecha_nac.ToString();
-                TRol.Text = en.rol;
+                TRol.Text = en.admin.ToString();
                 TPassword.Text = en.password;
                 LResultado.Text = "Proceso de lectura de primer usuario realizado con éxito";
             }
@@ -68,7 +68,7 @@ namespace web
         {
             if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", false);
                 bool result = en.readPrevUsuario();
                 if (result == false)
                     LResultado.Text = "Error en la lectura del anterior usuario";
@@ -81,7 +81,7 @@ namespace web
                     TEmail.Text = en.email;
                     TTelefono.Text = en.telef;
                     TFecha.Text = en.fecha_nac.ToString();
-                    TRol.Text = en.rol;
+                    TRol.Text = en.admin.ToString();
                     TPassword.Text = en.password;
                     LResultado.Text = "Proceso de lectura de anterior usuario realizado con éxito";
                 }
@@ -91,7 +91,7 @@ namespace web
         {
             if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", false);
                 bool result = en.readNextUsuario();
                 if (result == false)
                     LResultado.Text = "Error en la lectura del siguiente usuario";
@@ -104,7 +104,7 @@ namespace web
                     TEmail.Text = en.email;
                     TTelefono.Text = en.telef;
                     TFecha.Text = en.fecha_nac.ToString();
-                    TRol.Text = en.rol;
+                    TRol.Text = en.admin.ToString();
                     TPassword.Text = en.password;
                     LResultado.Text = "Proceso de lectura de siguiente usuario realizado con éxito";
                 }
@@ -114,7 +114,7 @@ namespace web
         {
             if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, TRol.Text);
+                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, Convert.ToBoolean(TRol.Text));
                 bool result = en.createUsuario();
                 if (result == false)
                     LResultado.Text = "Error en la creación del usuario";
@@ -126,7 +126,7 @@ namespace web
         {
             if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, TRol.Text);
+                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, Convert.ToBoolean(TRol.Text));
                 bool result = en.updateUsuario();
                 if (result == false)
                     LResultado.Text = "Error en la actualización del usuario";
@@ -138,13 +138,25 @@ namespace web
         {
             if (Page.IsValid)
             {
-                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", "blank");
+                ENUsuario en = new ENUsuario(int.Parse(TId.Text), TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", false);
                 bool result = en.deleteUsuario();
                 if (result == false)
                     LResultado.Text = "Error en el borrado del usuario";
                 else
                     LResultado.Text = "Proceso de borrado realizado con éxito";
             }
+        }
+        protected void Gridview1_SelectedItemChanged(object sender, EventArgs e)
+        {
+            TId.Text = GridView1.SelectedRow.Cells[1].Text;
+            TNick.Text = GridView1.SelectedRow.Cells[2].Text;
+            TNombre.Text = GridView1.SelectedRow.Cells[3].Text;
+            TApellidos.Text = GridView1.SelectedRow.Cells[4].Text;
+            TEmail.Text = GridView1.SelectedRow.Cells[5].Text;
+            TTelefono.Text = GridView1.SelectedRow.Cells[6].Text;
+            TFecha.Text = GridView1.SelectedRow.Cells[7].Text;
+            TRol.Text = Convert.ToBoolean(GridView1.SelectedRow.Cells[8].Text).ToString();
+            TPassword.Text = GridView1.SelectedRow.Cells[9].Text;
         }
     }
 }

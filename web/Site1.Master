@@ -42,11 +42,12 @@
                                 <Items>
                                     <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
                                     <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
-                                    <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
+                                    <asp:MenuItem Text="Foro" NavigateUrl="Foro_Publico.aspx" />
                                     <asp:MenuItem Text="Administrador">
                                         <asp:MenuItem Text="Videojuegos" NavigateUrl="AdminVideojuegos.aspx" />
                                         <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
                                         <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx" />
+                                        <asp:MenuItem Text="Foros" NavigateUrl="AdminForos.aspx" />
                                     </asp:MenuItem>
                                 </Items>
                                 <LevelMenuItemStyles>

@@ -22,7 +22,7 @@ namespace web
                     LResultado.Text = "Las contraseñas introducidas no coinciden";
                 else
                 {
-                    ENUsuario en = new ENUsuario(0, TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, "blank");
+                    ENUsuario en = new ENUsuario(0, TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, false);
                     bool result = en.createUsuario();
                     if (result == false)
                         LResultado.Text = "Error en la creación del usuario";

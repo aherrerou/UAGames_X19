@@ -10,7 +10,7 @@ using library;
 
 namespace web
 {
-    public partial class Foro : System.Web.UI.Page
+    public partial class AdminForos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -311,7 +311,7 @@ namespace web
         protected void CrearP(object sender, EventArgs e)
         {
             if (RequiredForoId.IsValid && RequiredForoNombre.IsValid && RequiredTemaId.IsValid
-                && RequiredTemaTitulo.IsValid && RequiredPubliId.IsValid && RequiredPubliText.IsValid && RequiredUsuario.IsValid)
+                && RequiredTemaTitulo.IsValid && RequiredPubliId.IsValid && RequiredPubliTexto.IsValid && RequiredUsuario.IsValid)
             {
                 ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
                 ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
@@ -328,7 +328,7 @@ namespace web
         protected void ActualizarP(object sender, EventArgs e)
         {
             if (RequiredForoId.IsValid && RequiredForoNombre.IsValid && RequiredTemaId.IsValid
-                && RequiredTemaTitulo.IsValid && RequiredPubliId.IsValid && RequiredPubliText.IsValid)
+                && RequiredTemaTitulo.IsValid && RequiredPubliId.IsValid && RequiredPubliTexto.IsValid)
             {
                 ENForo foro = new ENForo(int.Parse(TId_F.Text), TNombre.Text);
                 ENTema tema = new ENTema(int.Parse(TId_T.Text), TTitulo.Text, foro);
@@ -357,11 +357,15 @@ namespace web
                     LResultado_P.Text = "Proceso de borrado realizado con éxito";
             }
         }
-        protected void GridBorrar(object sender, EventArgs e)
+        protected void Gridview1_SelectedItemChanged(object sender, EventArgs e)
         {
-            ENPublicacion en = new ENPublicacion();
-            en.id = Convert.ToInt32(((Button)sender).CommandArgument);
-            en.deletePublicacion();
+            TId_P.Text = GridView1.SelectedRow.Cells[1].Text;
+            TTexto.Text = GridView1.SelectedRow.Cells[2].Text;
+            TUsuario.Text = GridView1.SelectedRow.Cells[3].Text;
+            TId_T.Text = GridView1.SelectedRow.Cells[4].Text;
+            TTitulo.Text = GridView1.SelectedRow.Cells[5].Text;
+            TId_F.Text = GridView1.SelectedRow.Cells[6].Text;
+            TNombre.Text = GridView1.SelectedRow.Cells[7].Text;
         }
     }
 }

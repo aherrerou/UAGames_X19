@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" UnobtrusiveValidationMode="None" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Foro.aspx.cs" Inherits="web.Foro" %>
+﻿<%@ Page Title="" Language="C#" UnobtrusiveValidationMode="None" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminForos.aspx.cs" Inherits="web.AdminForos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -23,8 +23,8 @@
             <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar" />
             <br />
             <asp:Label ID="LResultado_F" runat="server" Text=" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredForoId" FieldToValidate="TId_F" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredForoNombre" FieldToValidate="TNombre" runat="server" ErrorMessage="Nombre obligatorio"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredForoId" ControlToValidate="TId_F" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredForoNombre" ControlToValidate="TNombre" runat="server" ErrorMessage="Nombre obligatorio"></asp:RequiredFieldValidator>
             <h2>Leer o modificar lista de temas</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId_T" runat="server" CausesValidation="True"></asp:TextBox>
@@ -42,8 +42,8 @@
             <asp:Button ID="BBorrar_T" runat="server" Text="Borrar" OnClick="BorrarT" />
             <br />
             <asp:Label ID="LResultado_T" runat="server" Text=" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredTemaId" FieldToValidate="TId_T" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredTemaTitulo" FieldToValidate="TTitulo" runat="server" ErrorMessage="Título obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredTemaId" ControlToValidate="TId_T" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredTemaTitulo" ControlToValidate="TTitulo" runat="server" ErrorMessage="Título obligatoria"></asp:RequiredFieldValidator>
             <h2>Leer o modificar lista de publicaciones</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId_P" runat="server" CausesValidation="True"></asp:TextBox>
@@ -64,12 +64,11 @@
             <asp:Button ID="BBorrar_P" runat="server" Text="Borrar" OnClick="BorrarP" />
             <br />
             <asp:Label ID="LResultado_P" runat="server" Text=" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredPubliId" FieldToValidate="TId_P" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredPubliText" FieldToValidate="TText" runat="server" ErrorMessage="Texto obligatorio"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredUsuario" FieldToValidate="TUsuario" runat="server" ErrorMessage="Id de usuario"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredPubliId" ControlToValidate="TId_P" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredPubliTexto" ControlToValidate="TTexto" runat="server" ErrorMessage="Texto obligatorio"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredUsuario" ControlToValidate="TUsuario" runat="server" ErrorMessage="Id de usuario"></asp:RequiredFieldValidator>
             <h2>Listado de publicaciones</h2>
-            <asp:GridView ID="GridView1" runat="server" CssClass="grid">
-                <asp:ImageButton ID="BGridBorrar" runat="server" ImageAlign="Middle" ImageUrl="|DataDirectory|\web\assets\imagenes\iconos\trash.png" OnClick="GridBorrar" CommandArgument='<%# Eval("ID_Publicación") %>''></asp:ImageButton>
+            <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="true" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged">
             </asp:GridView>
         </div>
     </main>
