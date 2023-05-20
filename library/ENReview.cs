@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,12 @@ namespace library
         public bool readReview()
         {
             return this.review.readReview(this);
+        }
+
+        public DataTable readReviews(int videojuego)
+        {
+            CADReview cad = new CADReview();
+            return cad.readReviews(videojuego);
         }
     }
 
