@@ -18,6 +18,50 @@ namespace library
         {
             conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
+        public bool addVideojuego(ENCesta ces,int videojuegoID)
+        {
+            bool añadir = false;
+            SqlConnection connection = null;
+
+            try
+            {
+                CADVideojuego videojuego = new CADVideojuego();
+                videojuego.readVideojuego(ces.videojuegoID);
+
+                CADUsuario usuario = new CADUsuario();
+                usuario.readUsuario(ces.usuarioID);
+
+
+                String sentence = "INSERT INTO [CestaCompra] (usuarioID,videojuegoID,fecha) " +
+                    "VALUES (" + ces.usuarioID.id + ", " + videojuegoID + ", '" + ces.fecha.ToString("yyyy/MM/dd") + " ');";
+
+                connection = new SqlConnection(conexionBBDD);
+                connection.Open();
+
+                SqlCommand com = new SqlCommand(sentence, connection);
+                com.ExecuteNonQuery();
+                añadir = true;
+            }
+            catch (SqlException e)
+            {
+                añadir = false;
+                Console.WriteLine("Creating videogame operation has failed.Error: {0}", e.Message);
+            }
+            catch (Exception e)
+            {
+                añadir = false;
+                Console.WriteLine("Creating videogame operation has failed.Error: {0}", e.Message);
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return añadir;
+
+        }
 
         public bool createCesta(ENCesta ces, ENVideojuego videojuego, ENUsuario usuario) 
         {
@@ -31,8 +75,8 @@ namespace library
                 conect.Open();
                 SqlCommand com = new SqlCommand(query, conect);
 
-                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
-                com.Parameters.AddWithValue("@videojuegoID", ces.videojuegoID);
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                com.Parameters.AddWithValue("@videojuegoID", ces.videojuegoID.Id);
                 com.Parameters.AddWithValue("@fecha", ces.fecha);
 
                 com.ExecuteNonQuery();
@@ -126,7 +170,7 @@ namespace library
                 conect = new SqlConnection(conexionBBDD);
                 conect.Open();
 
-                string query = "SELECT v.titulo, c.fecha, v.precio FROM Usuario u " +
+                string query = "SELECT c.usuarioID,c.videojuegoID,v.titulo, c.fecha, v.precio FROM Usuario u " +
                     "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
                     "INNER JOIN Videojuego v ON c.videojuegoID = v.id ";
                     
@@ -190,16 +234,16 @@ namespace library
         {
             bool controlador = false;
             SqlConnection conect = null;
-            string query = "delete from Cesta where usuarioID = @usuarioID;";
+            string query = "DELETE FROM CestaCompra WHERE usuarioID = @usuarioID AND videojuegoID = @videojuegoID";
 
             try
             {
                 conect = new SqlConnection(conexionBBDD);
                 conect.Open();
                 SqlCommand com = new SqlCommand(query, conect);
-                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                com.Parameters.AddWithValue("@videojuegoID", ces.videojuegoID.Id);
                 com.ExecuteReader();
-
                 controlador = true;
 
             }

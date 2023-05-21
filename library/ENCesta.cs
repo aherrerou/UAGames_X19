@@ -50,6 +50,13 @@ namespace library
         }
 
         // Métodos
+
+        public bool addVideojuego(int videojuegoID)
+        {
+            CADCesta ces = new CADCesta();
+            return ces.addVideojuego(this,videojuegoID);
+
+        }
         public bool createCesta()
         {
             bool res = true;
@@ -82,11 +89,11 @@ namespace library
 
         public bool deleteCesta()
         {
-            /*bool res = true;
+            bool res = true;
             CADCesta ces = new CADCesta();
-            res = ces.deleteCesta(this,usuario);
-            return res;*/
-            return true;
+            res = ces.deleteCesta(this);
+            return res;
+       
         }
     }
 }
