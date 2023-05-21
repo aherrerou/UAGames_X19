@@ -16,9 +16,11 @@
                     <div class="col">
                         <!--Barar busqueda por nombre-->
                         <asp:TextBox ID="filtroNombre" runat="server" placeholder="Oferta..." value="" CssClass="mb-2" />
+                        <asp:RegularExpressionValidator ID="regexNombre" runat="server" ForeColor="Red"  ErrorMessage="*"  ControlToValidate="filtroNombre" ValidationExpression="^[a-zA-Z0-9]*$"></asp:RegularExpressionValidator>
                         <!--Descuento-->
                         Descuento:
                     <asp:TextBox ID="filtroDescuento" runat="server" type="number" min="0" max="100" value="0" CssClass="mb-2"></asp:TextBox>
+                        <asp:RangeValidator ID="validatorFiltroDescuento" runat="server" ControlToValidate="filtroDescuento" ErrorMessage="Descuento entre 0 y 100" MaximumValue="100"  MinimumValue="0" Type="Integer"></asp:RangeValidator>
 
                     </div>
                     <div class="col">
@@ -36,9 +38,9 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col">
-                        <!--Fecha inicio-->
+                        Fecha inicio
                         <asp:TextBox ID="fechaInicio" runat="server" type="date" CssClass="mb-2" value=""></asp:TextBox>
-                        <!--Fecha fin-->
+                        Fecha fin
                         <asp:TextBox ID="fechaFin" runat="server" type="date" CssClass="mb-2" value=""></asp:TextBox>
                     </div>
                     <div class="col">
@@ -49,14 +51,6 @@
 
                     </div>
 
-                </div>
-
-
-
-
-
-                <div class="col-md-3">
-                    <asp:Label ID="msgSalida" runat="server" CssClass="text-white" Text=""></asp:Label>
                 </div>
             </div>
         </div>
@@ -110,26 +104,32 @@
                 <div>
                     Nombre:
                     <asp:TextBox ID="nuevoNombre" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorNombre" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevoNombre"></asp:RequiredFieldValidator>
+                     <asp:RegularExpressionValidator ID="regexNuevoNombre" runat="server" ForeColor="Red"  ErrorMessage="*"  ControlToValidate="nuevoNombre" ValidationExpression="^[a-zA-Z0-9]*$"></asp:RegularExpressionValidator>
                 </div>
                 <div class="mt-2">
                     Fecha Inicio:
                     <asp:TextBox ID="nuevaFechaInicio" runat="server" type="date"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorFechaInicio" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevaFechaInicio"></asp:RequiredFieldValidator>
                 </div>
                 <div class="mt-2">
                     Fecha Fin:
                     <asp:TextBox ID="nuevaFechaFin" runat="server" type="date"></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorFechaFin" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevaFechaFin"></asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="col-md-6">
                 <div>
                     Descuento (0-100):
-                    <asp:TextBox ID="nuevoDescuento" runat="server" type="number" min="1" max="100" value="5"></asp:TextBox>
+                    <asp:TextBox ID="nuevoDescuento" runat="server" type="number" min="1" max="100" value=""></asp:TextBox>
+                    <asp:RequiredFieldValidator ValidationGroup="CreateValidation" ID="validatorNuevoDescuento" runat="server" ForeColor="Red"  ErrorMessage="*" ControlToValidate="nuevoDescuento"></asp:RequiredFieldValidator>
+                    <asp:RangeValidator ID="nuevoDescuentoValidator" runat="server" ControlToValidate="nuevoDescuento" ErrorMessage="Descuento entre 0 y 100" MaximumValue="100"  MinimumValue="0" Type="Integer"></asp:RangeValidator>
                 </div>
                 <div class="mt-2">
                     Productora:
             <asp:DropDownList ID="productorasList" AutoPostBack="true" OnSelectedIndexChanged="ProductoraSelectionChange" runat="server">
                 <Items>
-                    <asp:ListItem Text="Productora" Value="" />
+                    <asp:ListItem Text="Productora" Value="0" />
                 </Items>
             </asp:DropDownList>
                 </div>
@@ -137,13 +137,14 @@
                     Videojuego:
                     <asp:DropDownList ID="videojuegosList" AutoPostBack="false" runat="server">
                         <Items>
-                            <asp:ListItem Text="Videojuego" Value="" />
+                            <asp:ListItem Text="Videojuego" Value="0" />
                         </Items>
                     </asp:DropDownList>
                 </div>
             </div>
             <div class="mt-2">
-                <asp:Button CssClass="btn btn-primary" ID="crearOferta" Text="Crear" runat="server" OnClick="crearOfertaClick" />
+                <asp:Button CssClass="btn btn-primary" ID="crearOferta" Text="Crear" runat="server" OnClick="crearOfertaClick" ValidationGroup="CreateValidation"/>
+                <asp:Label ID="msgValidar" CssClass="text-white bg-danger" runat="server"></asp:Label>
             </div>
 
         </div>

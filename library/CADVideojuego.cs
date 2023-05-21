@@ -34,10 +34,10 @@ namespace library
                 categoria.readCategoria(en.Categoria);
 
 
-                String sentence = "INSERT INTO [Videojuego] (titulo, descripcion, fecha_lanzamiento, plataforma, precio, imagen, productoraID, categoriaID) " +
-                    "VALUES ('" + en.Titulo + "', '" + en.Descripcion  + "', '" + en.FechaLanzamiento + "', '" + en.Plataforma
-                + "', '" + en.Precio + "', '" + en.Imagen + "', '" + en.Productora.Id + "', '" + en.Categoria.id
-                + "' );";
+                String sentence = "INSERT INTO [Videojuego] (titulo, descripcion, fecha_lanzamiento, plataforma, precio, productoraID, categoriaID) " +
+                    "VALUES ('" + en.Titulo + "', '" + en.Descripcion  + "', '" + en.FechaLanzamiento.ToString("yyyy/MM/dd") + "', '" + en.Plataforma
+                + "', " + en.Precio + ", "  + en.Productora.Id + ", " + en.Categoria.id
+                + " );";
 
                 connection = new SqlConnection(constring);
                 connection.Open();
@@ -221,9 +221,12 @@ namespace library
                 connection.Open();
 
                 string sentence = "SELECT v.titulo, v.id, v.descripcion, v.fecha_lanzamiento, v.plataforma, v.precio, v.imagen, " +
+                    "o.descuento, o.fecha_inicio, o.fecha_fin, CAST((v.precio*(100- COALESCE(o.descuento, 0))/100) AS DECIMAL(5,2)) as nuevoPrecio, " +
                     "p.nombre AS productora, c.nombre AS categoria FROM [Videojuego] v " +
                     "JOIN [Productora] p ON v.productoraID = p.id " +
-                    "JOIN [Categoria] c ON v.categoriaID = c.id;";
+                    "JOIN [Categoria] c ON v.categoriaID = c.id " +
+                    "LEFT JOIN (SELECT * FROM [Oferta] WHERE GETDATE() BETWEEN fecha_inicio AND fecha_fin) o ON o.videojuegoID = v.id " +
+                    "ORDER BY v.id;";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                 adapter.Fill(videojuegos);
                
@@ -371,7 +374,7 @@ namespace library
                 categoria.readCategoriaNombre(en.Categoria);
 
                 String sentence = "UPDATE [Videojuego] SET titulo='" + en.Titulo + "', descripcion='" + en.Descripcion
-                + "', fecha_lanzamiento='" + en.FechaLanzamiento + "', plataforma='" + en.Plataforma
+                + "', fecha_lanzamiento='" + en.FechaLanzamiento.ToString("yyyy/MM/dd") + "', plataforma='" + en.Plataforma
                 + "', precio='" + en.Precio + "', imagen='" + en.Imagen + "', productoraID='" + en.Productora.Id + "', categoriaID='" + en.Categoria.id
                 + "' WHERE id = '" + en.Id + "'";
 
