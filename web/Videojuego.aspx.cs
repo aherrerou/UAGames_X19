@@ -64,7 +64,7 @@ namespace web
 
         protected void clickAddCart(object sender, EventArgs e)
         {
-            if (Session["userEmail"] == null)
+            if (Session["login_nick"] == null)
             {
                 Response.Redirect("Inicia_Sesion.aspx");
             }
@@ -77,11 +77,11 @@ namespace web
                     //Se agrega a lista de deseos
                     ENCesta cesta = new ENCesta();
                     ENUsuario auxUser = new ENUsuario();
-                    auxUser.email = Session["userEmail"].ToString();
-                    cesta.usuario = auxUser;
+                    auxUser.nick = Session["login_nick"].ToString();
+                    cesta.usuarioID = auxUser;
                     cesta.readCesta();
                     //Agregar elemento a la lista
-                    //cesta.addVideojuego(videojuego.Id);
+                    cesta.addVideojuego(videojuego.Id);
                 }
 
             }
