@@ -64,7 +64,7 @@ namespace library
                     if ((int)dr["id"] == lista.id)
                     {
                         sigue_while = false;
-                        lista.usuario.id = (int)dr["UsuarioID"];
+                        lista.usuario.id = (int)dr["usuarioID"];
                         lista.nombre = dr["nombre"].ToString();
                         lista.descripcion = dr["descripcion"].ToString();
                     }
@@ -312,14 +312,57 @@ namespace library
             }
             return true;
         }
-        public DataSet listarClientesD()
+        public DataSet listarVjLista(ENLista_Deseos lista)
         {
             DataSet bdvirtual = new DataSet();
 
+            string query = "select v.id, v.titulo, v.fecha_lanzamiento from Videojuego as v join ListaDeseosVideojuego as dv on v.id=dv.videojuegoID join ListaDeseos as d on dv.listaDeseosID=d.id where d.usuarioID = " + lista.usuario.id;
             SqlConnection c = new SqlConnection(conexionBBDD);
-            SqlDataAdapter da = new SqlDataAdapter("select * from ListaDeseos", c);
-            da.Fill(bdvirtual, "ListaDeseos");
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
+            da.Fill(bdvirtual, "Videojuego");
             return bdvirtual;
+        }
+        public bool deleteVjLista(ENVideojuego vj)
+        {
+            string query_comprueba = "Select * from ListaDeseosVideojuego";
+            string query = "Delete from ListaDeseosVideojuego where videojuegoID = " + vj.Id;
+            bool sigue_while = true;
+            try
+            {
+                c = new SqlConnection(conexionBBDD);
+                c.Open();
+                SqlCommand comprueba = new SqlCommand(query_comprueba, c);
+                SqlDataReader dr = comprueba.ExecuteReader();
+                while (dr.Read() && sigue_while == true)
+                {
+                    if ((int)dr["Id"] == vj.Id)
+                    {
+                        sigue_while = false;
+                    }
+                }
+                if (sigue_while == true)
+                    throw new Exception("No se ha encontrado un videojuego con la id indicada");
+                dr.Close();
+                SqlCommand com = new SqlCommand(query, c);
+                com.ExecuteNonQuery();
+                dr.Close();
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (c != null)
+                    c.Close();
+            }
+            return true;
         }
     }
 }
