@@ -160,7 +160,7 @@ namespace library
             return controlador;
         }
 
-        public DataTable readCestas()
+        public DataTable readCestas(ENCesta cesta)
         {   
             SqlConnection conect = null;
             DataTable cestas = new DataTable();
@@ -170,12 +170,14 @@ namespace library
                 conect = new SqlConnection(conexionBBDD);
                 conect.Open();
 
-                string query = "SELECT c.usuarioID,c.videojuegoID,v.titulo, c.fecha, v.precio FROM Usuario u " +
-                    "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
-                    "INNER JOIN Videojuego v ON c.videojuegoID = v.id ";
-                    
-                //"JOIN [Videojuego] v ON c.videojuegoID = v.id";
-                //"JOIN [Usuario] u ON c.usuarioID = u.id"; 
+                ENUsuario usuaurio = new ENUsuario();
+
+
+                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, v.precio FROM Usuario u " +
+               "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
+               "INNER JOIN Videojuego v ON c.videojuegoID = v.id " +
+               "WHERE u.id ='" + cesta.usuarioID.id + "'";
+
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conect);
                 adapter.Fill(cestas);
             }
@@ -206,6 +208,7 @@ namespace library
                 conect.Open();
                 string query = "update Cesta set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
+
                 com.ExecuteReader();
 
             }

@@ -21,6 +21,11 @@ namespace web
                 DataTable data = new DataTable();
                 if (!Page.IsPostBack)
                 {
+                    if (Session["login_nick"] == null)
+                    {
+                        Response.Redirect("Inicia_Sesion.aspx");
+                    }
+
                     FillCestasTable();
                     decimal precioTotal = 0;
 
@@ -47,7 +52,13 @@ namespace web
 
             protected void FillCestasTable()
             {
+                ENUsuario usuario = new ENUsuario();
+                usuario.nick = (Session["login_nick"]).ToString();
+                usuario.readUsuario();
+
                 ENCesta cesta = new ENCesta();
+                cesta.usuarioID.id = usuario.id;
+
                 data = cesta.readCestas();
                 cestaTable.DataSource = data;
                 cestaTable.DataBind();               

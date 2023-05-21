@@ -76,7 +76,7 @@ namespace library
         public DataTable readCestas()
         {
             CADCesta cesta = new CADCesta();
-            return cesta.readCestas();
+            return cesta.readCestas(this);
         }
 
         public bool updateCesta()
