@@ -155,6 +155,7 @@ namespace web
                     cesta.readCesta();
                     //Agregar elemento a la lista
                     cesta.addVideojuego(videojuego.Id);
+
                 }
 
             }
