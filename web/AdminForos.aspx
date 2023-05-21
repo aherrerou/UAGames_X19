@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
+    <div class="container bg-light overflow-auto" style="min-height:599px;">>
         <div class="showGrid">
             <h1>Página de foros</h1>
             <h2>Leer o modificar lista de foros</h2>
@@ -68,8 +68,8 @@
             <asp:RequiredFieldValidator ID="RequiredPubliTexto" ControlToValidate="TTexto" runat="server" ErrorMessage="Texto obligatorio"></asp:RequiredFieldValidator>
             <asp:RequiredFieldValidator ID="RequiredUsuario" ControlToValidate="TUsuario" runat="server" ErrorMessage="Id de usuario"></asp:RequiredFieldValidator>
             <h2>Listado de publicaciones</h2>
-            <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="true" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged">
+            <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="true" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged" CellPadding="5" PageSize="5" AllowPaging="True">
             </asp:GridView>
         </div>
-    </main>
+    </div>
 </asp:Content>

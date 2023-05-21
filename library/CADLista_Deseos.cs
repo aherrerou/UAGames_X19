@@ -91,6 +91,48 @@ namespace library
             }
             return true;
         }
+        public bool readListaPorUsu(ENLista_Deseos lista) //selecciona la lista de un usuario indicado por la id del usuario
+        {
+            bool sigue_while = true;
+            string query = "Select * from ListaDeseos where usuarioID = " + lista.usuario.id;
+            try
+            {
+                c = new SqlConnection(conexionBBDD);
+                c.Open();
+                SqlCommand com = new SqlCommand(query, c);
+                SqlDataReader dr = com.ExecuteReader();
+                while (dr.Read() && sigue_while == true)
+                {
+                    if ((int)dr["usuarioID"] == lista.id)
+                    {
+                        sigue_while = false;
+                        lista.id = (int)dr["id"];
+                        lista.nombre = dr["nombre"].ToString();
+                        lista.descripcion = dr["descripcion"].ToString();
+                    }
+                }
+                if (sigue_while == true)
+                {
+                    throw new Exception("No se ha encontrado la lista con la ID de usuario indicada");
+                }
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (c != null)
+                    c.Close();
+            }
+            return true;
+        }
         public bool readFirstLista(ENLista_Deseos lista) //recoge todas las listas y devuelve la primera
         {
             string query = "Select * from ListaDeseos";
@@ -346,6 +388,34 @@ namespace library
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
                 dr.Close();
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (c != null)
+                    c.Close();
+            }
+            return true;
+        }
+        public bool addVideojuegoLista(ENLista_Deseos lista, int videojuego)
+        {
+            string query = "Insert into ListaDeseosVideojuego (listaDeseosID, videojuegoID) values " + "(" + lista.id + "," + videojuego + ")";
+            try
+            {
+                c = new SqlConnection(conexionBBDD);
+                c.Open();
+                SqlCommand com = new SqlCommand(query, c);
+                com.ExecuteNonQuery();
+                c.Close();
             }
             catch (SqlException sqlex)
             {

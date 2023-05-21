@@ -60,6 +60,13 @@ namespace library
             result = c.readLista(this);
             return result;
         }
+        public bool readListaPorUsu()
+        {
+            bool result = true;
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.readLista(this);
+            return result;
+        }
         public bool readFirstLista()
         {
             bool result = true;
@@ -107,6 +114,13 @@ namespace library
             bool result = false;
             CADLista_Deseos c = new CADLista_Deseos();
             result = c.deleteVjLista(vj);
+            return result;
+        }
+        public bool addVideojuegoLista(int videojuego)
+        {
+            bool result = true;
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.addVideojuegoLista(this, videojuego);
             return result;
         }
     }

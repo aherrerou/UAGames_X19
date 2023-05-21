@@ -13,6 +13,13 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["login_nick"] == null)
+                Response.Redirect("Inicia_Sesion.aspx");
+            ENUsuario usuario = new ENUsuario();
+            usuario.nick = Session["login_nick"].ToString();
+            usuario.readUsuario();
+            if (!usuario.admin)
+                Response.Redirect("Inicia_Sesion.aspx");
             if (!Page.IsPostBack)
             {
                 ENUsuario en = new ENUsuario();
@@ -148,15 +155,18 @@ namespace web
         }
         protected void Gridview1_SelectedItemChanged(object sender, EventArgs e)
         {
-            TId.Text = GridView1.SelectedRow.Cells[1].Text;
-            TNick.Text = GridView1.SelectedRow.Cells[2].Text;
-            TNombre.Text = GridView1.SelectedRow.Cells[3].Text;
-            TApellidos.Text = GridView1.SelectedRow.Cells[4].Text;
-            TEmail.Text = GridView1.SelectedRow.Cells[5].Text;
-            TTelefono.Text = GridView1.SelectedRow.Cells[6].Text;
-            TFecha.Text = GridView1.SelectedRow.Cells[7].Text;
-            TRol.Text = Convert.ToBoolean(GridView1.SelectedRow.Cells[8].Text).ToString();
-            TPassword.Text = GridView1.SelectedRow.Cells[9].Text;
+            ENUsuario usu = new ENUsuario();
+            usu.nick = GridView1.SelectedRow.Cells[2].Text;
+            usu.readUsuario();
+            TId.Text = usu.id.ToString();
+            TNick.Text = usu.nick;
+            TNombre.Text = usu.nombre;
+            TApellidos.Text = usu.apellidos;
+            TEmail.Text = usu.email;
+            TTelefono.Text = usu.telef;
+            TPassword.Text = usu.password;
+            TFecha.Text = Convert.ToString(usu.fecha_nac);
+            TRol.Text = usu.admin.ToString();
         }
     }
 }

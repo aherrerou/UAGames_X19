@@ -67,6 +67,7 @@
 
                                 <asp:Label ID="MenuSesion" runat="server">
                                     <asp:ImageButton ID="BtnCart" CssClass="bg-light rounded me-2" runat="server" AlternateText="Cart" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/cart.png" OnClick="clickCart" />
+                                    <asp:ImageButton ID="BtnLista" CssClass="bg-light rounded me-2" runat="server" AlternateText="WishList" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/starEmpty.png" OnClick="clickLista" />
                                     <asp:ImageButton ID="BtnSalir" CssClass="bg-light rounded me-2" runat="server" AlternateText="LogOut" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/logOut.png" OnClick="clickLogOut" />
                                 </asp:Label>
                             </li>

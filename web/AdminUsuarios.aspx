@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
+    <div class="container bg-light overflow-auto" style="min-height:599px;">
         <div class="showGrid">
             <h1>Página de Usuarios</h1>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
@@ -53,8 +53,9 @@
             <asp:RequiredFieldValidator ID="RequiredPassword" ControlToValidate="TPassword" runat="server" ErrorMessage="* Password sin rellenar"></asp:RequiredFieldValidator>
             <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
             <h2>Listado de usuarios</h2>
-            <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="true" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged" HorizontalAlign="Center"></asp:GridView>
+            <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="True" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged" HorizontalAlign="Center" CellPadding="5" PageSize="5" AllowPaging="True">
+            </asp:GridView>
         </div>
-    </main>
+    </div>
 </asp:Content>
 

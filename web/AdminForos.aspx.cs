@@ -14,6 +14,13 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["login_nick"] == null)
+                Response.Redirect("Inicia_Sesion.aspx");
+            ENUsuario usuario = new ENUsuario();
+            usuario.nick = Session["login_nick"].ToString();
+            usuario.readUsuario();
+            if (!usuario.admin)
+                Response.Redirect("Inicia_Sesion.aspx");
             if (!Page.IsPostBack)
             {
                 ENPublicacion en = new ENPublicacion();

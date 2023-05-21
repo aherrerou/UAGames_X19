@@ -112,7 +112,7 @@ namespace web
 
         protected void clickAddList(object sender, EventArgs e)
         {
-            if (Session["userEmail"] == null)
+            if (Session["login_nick"] == null)
             {
                 Response.Redirect("Inicia_Sesion.aspx");
             }
@@ -125,11 +125,12 @@ namespace web
                     //Se agrega a lista de deseos
                     ENLista_Deseos lista = new ENLista_Deseos();
                     ENUsuario auxUser = new ENUsuario();
-                    auxUser.email = Session["userEmail"].ToString();
+                    auxUser.nick = Session["login_nick"].ToString();
+                    auxUser.readUsuario();
                     lista.usuario = auxUser;
-                    lista.readLista();
+                    lista.readListaPorUsu();
                     //Agregar elemento a la lista
-                    //lista.addVideojuegoLista(videojuego.Id);
+                    lista.addVideojuegoLista(videojuego.Id);
                 }
                 
             }
@@ -137,7 +138,7 @@ namespace web
 
         protected void clickAddCart(object sender, EventArgs e)
         {
-            if (Session["userEmail"] == null)
+            if (Session["login_nick"] == null)
             {
                 Response.Redirect("Inicia_Sesion.aspx");
             }
@@ -150,7 +151,7 @@ namespace web
                     //Se agrega a lista de deseos
                     ENCesta cesta = new ENCesta();
                     ENUsuario auxUser = new ENUsuario();
-                    auxUser.email = Session["userEmail"].ToString();
+                    auxUser.nick = Session["login_nick"].ToString();
                     cesta.usuario = auxUser;
                     cesta.readCesta();
                     //Agregar elemento a la lista
