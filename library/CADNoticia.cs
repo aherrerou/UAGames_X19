@@ -18,260 +18,146 @@ namespace library
 
             cadenaConexion = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
-
-        public bool createNoticia(ENNoticia noticia)
+        //no
+        public bool createNoticia(ENNoticia en)
         {
             bool creada = false;
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
-
+            SqlConnection conect = null;
+            string query = "INSERT INTO [Noticia] " +
+                "(titulo, contenido, fecha_public, imagen, productoraID) " +
+                "VALUES (@titulo, @contenido, @fecha_public, @imagen, @productoraID);"; 
             try
             {
-                conexion.Open();
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "INSERT INTO Noticias (Titulo, FechaPublicacion, Contenido, ProductoraID) VALUES (@Titulo, @FechaPublicacion, @Contenido, @ProductoraID)";
-                comando.Parameters.AddWithValue("@Titulo", noticia.Titulo);
-                comando.Parameters.AddWithValue("@FechaPublicacion", noticia.FechaPublicacion);
-                comando.Parameters.AddWithValue("@Contenido", noticia.Contenido);
-                comando.Parameters.AddWithValue("@ProductoraID", noticia.ProductoraID);
-                comando.Connection = conexion;
-
-                int filasAfectadas = comando.ExecuteNonQuery();
-                if (filasAfectadas > 0)
-                {
-                    creada = true;
-                }
+                conect = new SqlConnection(cadenaConexion);
+                conect.Open();
+               
+                SqlCommand consulta = new SqlCommand(query, conect);
+                consulta.Parameters.AddWithValue("@titulo", en.Titulo);
+                consulta.Parameters.AddWithValue("@fecha_public", en.FechaPublicacion.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
+                consulta.Parameters.AddWithValue("@contenido", en.Contenido);
+                consulta.Parameters.AddWithValue("@imagen", en.Imagen);
+                consulta.Parameters.AddWithValue("@productoraID", en.ProductoraID);
+                consulta.ExecuteNonQuery();
+                creada = true;
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return creada;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al crear la noticia: " + ex.Message);
+                creada = false;
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                
             }
             finally
             {
-                conexion.Close();
+                if (conect != null)
+                    conect.Close();
             }
-
+           
             return creada;
         }
 
-        public bool readNoticia(ENNoticia noticia)
+
+        //si
+
+        public DataTable readNoticiass()
         {
-            bool leida = false;
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
+            SqlConnection connection = null;
+            DataTable noticia = new DataTable();
 
             try
             {
-                conexion.Open();
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "SELECT Id, Titulo, FechaPublicacion, Contenido, ProductoraID FROM Noticias WHERE Id = @Id";
-                comando.Parameters.AddWithValue("@Id", noticia.Id);
-                comando.Connection = conexion;
+                connection = new SqlConnection(cadenaConexion);
+                connection.Open();
 
-                SqlDataReader lector = comando.ExecuteReader();
-                if (lector.Read())
-                {
-                    noticia.Id = Convert.ToInt32(lector["Id"]);
-                    noticia.Titulo = lector["Titulo"].ToString();
-                    noticia.FechaPublicacion = Convert.ToDateTime(lector["FechaPublicacion"]);
-                    noticia.Contenido = lector["Contenido"].ToString();
-                    noticia.ProductoraID = Convert.ToInt32(lector["ProductoraID"]);
-                    leida = true;
-                }
-                lector.Close();
+                string sentence = "SELECT * FROM Noticia";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(noticia);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading noticias operation has failed.Error: {0}", sqlex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al leer la noticia: " + ex.Message);
+                Console.WriteLine("Reading noticias operation has failed.Error: {0}", ex.Message);
             }
             finally
             {
-                conexion.Close();
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
             }
-
-            return leida;
-        }
-        public bool readNextNoticia(ENNoticia noticia)
-        {
-            bool leida = false;
-
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
-
-            try
-            {
-                conexion.Open();
-
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "SELECT TOP 1 Id, Titulo, FechaPublicacion, Contenido, ProductoraID FROM Noticias WHERE FechaPublicacion > @FechaActual ORDER BY FechaPublicacion";
-                comando.Parameters.AddWithValue("@FechaActual", noticia.FechaPublicacion);
-                comando.Connection = conexion;
-
-                SqlDataReader lector = comando.ExecuteReader();
-                if (lector.Read())
-                {
-                    noticia.Id = Convert.ToInt32(lector["Id"]);
-                    noticia.Titulo = lector["Titulo"].ToString();
-                    noticia.FechaPublicacion = Convert.ToDateTime(lector["FechaPublicacion"]);
-                    noticia.Contenido = lector["Contenido"].ToString();
-                    noticia.ProductoraID = Convert.ToInt32(lector["ProductoraID"]);
-                    leida = true;
-                }
-                lector.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al leer la noticia: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Close();
-            }
-
-            return leida;
+            return noticia;
         }
 
+    
 
 
-        public bool readFirstNoticia(ENNoticia noticia)
+
+    //si
+    public bool updateNoticia(ENNoticia en)
         {
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
-            string query = "SELECT TOP 1 * FROM Noticias ORDER BY id ASC";
-
+            bool updated = false;
+            SqlConnection con = new SqlConnection(cadenaConexion);
             try
             {
-                conexion.Open();
-
-                SqlCommand comando = new SqlCommand(query, conexion);
-
-                SqlDataReader reader = comando.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    noticia.Id = Convert.ToInt32(reader["id"]);
-                    noticia.Titulo = reader["titulo"].ToString();
-                    noticia.FechaPublicacion = Convert.ToDateTime(reader["fecha_public"]);
-                    noticia.Contenido = reader["contenido"].ToString();
-                    noticia.ProductoraID = Convert.ToInt32(reader["productoraID"]);
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                
+                con.Open();
+                string query = "UPDATE Noticia SET titulo=@titulo,contenido=@contenido, imagen=@imagen, fecha_public=@fecha_public WHERE Id=@Id";
+                SqlCommand consulta = new SqlCommand(query, con);
+                consulta.Parameters.AddWithValue("@contenido", en.Contenido);
+                consulta.Parameters.AddWithValue("@fecha_public", en.FechaPublicacion);
+                consulta.Parameters.AddWithValue("@imagen", en.Imagen);
+                consulta.Parameters.AddWithValue("@titulo", en.Titulo);
+                consulta.Parameters.AddWithValue("@id", en.Id);
+                consulta.ExecuteNonQuery();
+                updated = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw new Exception("Error al actualizar la noticia en la base de datos: " + ex.Message);
             }
             finally
             {
-                conexion.Close();
+                if (con != null)
+                    con.Close();
+
             }
+            return updated;
+
+
+
+
         }
-        public bool readPrevNoticia(ENNoticia noticia)
+        //si
+        public bool deleteNoticia(ENNoticia en)
         {
-            bool leida = false;
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
-
+            bool del = false;
+            SqlConnection con = new SqlConnection(cadenaConexion);
             try
             {
-                conexion.Open();
-
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "SELECT TOP 1 Id, Titulo, FechaPublicacion, Contenido, ProductoraID FROM Noticias WHERE FechaPublicacion < @FechaPublicacion ORDER BY FechaPublicacion DESC";
-                comando.Parameters.AddWithValue("@FechaPublicacion", noticia.FechaPublicacion);
-                comando.Connection = conexion;
-
-                SqlDataReader lector = comando.ExecuteReader();
-                if (lector.Read())
-                {
-                    noticia.Id = Convert.ToInt32(lector["Id"]);
-                    noticia.Titulo = lector["Titulo"].ToString();
-                    noticia.FechaPublicacion = Convert.ToDateTime(lector["FechaPublicacion"]);
-                    noticia.Contenido = lector["Contenido"].ToString();
-                    noticia.ProductoraID = Convert.ToInt32(lector["ProductoraID"]);
-                    leida = true;
-                }
-                lector.Close();
+               
+                con.Open();
+                string query = "DELETE FROM Noticia WHERE Id=@Id";
+                SqlCommand consulta = new SqlCommand(query, con);
+                consulta.Parameters.AddWithValue("@Id", en.Id);
+                consulta.ExecuteNonQuery();
+                del = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al leer la noticia: " + ex.Message);
+                throw new Exception("Error al eliminar la noticia de la base de datos: " + ex.Message);
             }
             finally
             {
-                conexion.Close();
+                if (con != null)
+                    con.Close();
             }
-
-            return leida;
-        }
-
-        public bool updateNoticia(ENNoticia noticia)
-        {
-            bool actualizada = false;
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
-
-            try
-            {
-                conexion.Open();
-
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "UPDATE Noticias SET Titulo = @Titulo, FechaPublicacion = @FechaPublicacion, Contenido = @Contenido, ProductoraID = @ProductoraID WHERE Id = @Id";
-                comando.Parameters.AddWithValue("@Titulo", noticia.Titulo);
-                comando.Parameters.AddWithValue("@FechaPublicacion", noticia.FechaPublicacion);
-                comando.Parameters.AddWithValue("@Contenido", noticia.Contenido);
-                comando.Parameters.AddWithValue("@ProductoraID", noticia.ProductoraID);
-                comando.Parameters.AddWithValue("@Id", noticia.Id);
-                comando.Connection = conexion;
-
-                int filasAfectadas = comando.ExecuteNonQuery();
-                if (filasAfectadas > 0)
-                {
-                    actualizada = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al actualizar la noticia: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Close();
-            }
-
-            return actualizada;
-        }
-
-        public bool deleteNoticia(ENNoticia noticia)
-        {
-            bool eliminada = false;
-            SqlConnection conexion = new SqlConnection(cadenaConexion);
-
-            try
-            {
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "DELETE FROM Noticias WHERE Id = @Id";
-                comando.Parameters.AddWithValue("@Id", noticia.Id);
-                comando.Connection = conexion;
-
-                conexion.Open();
-                int filasAfectadas = comando.ExecuteNonQuery();
-
-                if (filasAfectadas > 0)
-                {
-                    eliminada = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al eliminar la noticia: " + ex.Message);
-            }
-            finally
-            {
-                conexion.Close();
-            }
-
-            return eliminada;
+            return del;
         }
         public DataSet readNoticia()
         {
@@ -284,6 +170,106 @@ namespace library
             return bdvirtual;
 
 
+        }
+        //si
+        public DataTable readNoticiasId2(ENNoticia en)
+        {
+            SqlConnection connection = null;
+            DataTable noticias = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(cadenaConexion);
+                connection.Open();
+
+                string sentence = "SELECT titulo , fecha_public , contenido , imagen , id FROM [Noticia] where id='" + en.Id + "';";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(noticias);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading noticias operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading noticias operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return noticias;
+        }
+        //si
+        public bool readNoticia(ENNoticia en)
+        {
+            bool leida = false;
+            SqlConnection con = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                
+                con.Open();
+                string query = "Select * From Noticia Where Id='" + en.Id + "' ";
+                SqlCommand consulta = new SqlCommand(query, con);
+                SqlDataReader search = consulta.ExecuteReader();
+
+
+                if (search.Read())
+                {
+                    en.Id = Int32.Parse(search["Id"].ToString());
+                    en.Titulo = search["Nombre"].ToString();
+                    en.Contenido = search["Contenido"].ToString();
+                    en.Imagen = search["Imagen"].ToString();
+                    en.FechaPublicacion = DateTime.Parse(search["fecha_public"].ToString());
+                    leida = true;
+                }
+                search.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al buscar la productora en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+
+            return leida;
+        }
+        //si
+        public DataTable readNoticiaTitulo2(ENNoticia en)
+        {
+            SqlConnection connection = null;
+            DataTable noticia = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(cadenaConexion);
+                connection.Open();
+
+                string sentence = "SELECT * FROM [Noticia] where titulo='" + en.Titulo + "';";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(noticia);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading noticia operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading noticia operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return noticia;
         }
     }
 }

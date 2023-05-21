@@ -15,7 +15,13 @@ namespace library
         private DateTime fecha_public;
         private string contenido;
         private int productoraID;
+        private string imagen;
 
+        public string Imagen
+        {
+            get { return imagen; }
+            set { imagen= value; }
+        }
         public int Id
         {
             get { return id; }
@@ -46,16 +52,18 @@ namespace library
         }
         public ENNoticia()
         {
-            id = -1;
+            id = 0;
             titulo = "";
-            fecha_public = DateTime.Now;
+            fecha_public = DateTime.UtcNow;
             contenido = "";
-            productoraID = -1;
+            productoraID = 0;
+            Imagen = "";
 
         }
 
-        public ENNoticia(int id, string titulo, DateTime fecha_public, string contenido, int productora)
+        public ENNoticia(int id, string titulo, DateTime fecha_public, string contenido, int productora,string img)
         {
+            this.Imagen = img;
             this.id = id;
             this.titulo = titulo;
             this.fecha_public = fecha_public;
@@ -66,30 +74,10 @@ namespace library
         {
 
             CADNoticia nuevaNoticia = new CADNoticia();
-            bool creada = nuevaNoticia.readNoticia(this);
-            return creada;
+            return  nuevaNoticia.createNoticia(this);
+           
         }
-        public bool readFirstNoticia()
-        {
-            CADNoticia user = new CADNoticia();
-            bool read = user.readFirstNoticia(this);
-            return read;
-        }
-        public bool readNextNoticia()
-        {
-            CADNoticia user = new CADNoticia();
-            bool read = false;
-            if (user.readNoticia(this))
-                read = user.readNextNoticia(this);
-            return read;
-        }
-
-        public bool readPrevNoticia()
-        {
-            CADNoticia user = new CADNoticia();
-            bool read = user.readPrevNoticia(this);
-            return read;
-        }
+        
         public bool updateNoticia()
         {
             CADNoticia prod = new CADNoticia();
@@ -108,6 +96,21 @@ namespace library
             CADNoticia c = new CADNoticia();
             result = c.readNoticia();
             return result;
+        }
+        public DataTable readNoticias()
+        {
+            CADNoticia noticia = new CADNoticia();
+            return noticia.readNoticiass();
+        }
+        public DataTable readNoticiasTitulo2()
+        {
+            CADNoticia noticia = new CADNoticia();
+            return noticia.readNoticiaTitulo2(this);
+        }
+        public DataTable readNoticiasId2()
+        {
+            CADNoticia noticia = new CADNoticia();
+            return noticia.readNoticiasId2(this);
         }
 
     }
