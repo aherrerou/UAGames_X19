@@ -7,19 +7,18 @@
             <h1>Iniciar sesión</h1>
             Nick:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TNick" runat="server"></asp:TextBox> 
+            <asp:RequiredFieldValidator ID="RequiredNick" Enabled="false" runat="server" ErrorMessage=" * Usuario obligatorio" ControlToValidate="TNick">
+            </asp:RequiredFieldValidator>
             <br />
             Password:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
-            <br />
+            <asp:RequiredFieldValidator ID="RequiredPassword" Enabled="false" runat="server" ErrorMessage=" * Contraseña obligatoria" ControlToValidate="TPassword">
+            </asp:RequiredFieldValidator>
             <br />
             <br />
             <asp:Button ID="BBuscar" runat="server" Text="Entrar" OnClick="Leer"/>
             <br />
-            <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredNick" runat="server" ErrorMessage=" * Usuario obligatorio" ControlToValidate="TNick">
-            </asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredPassword" runat="server" ErrorMessage=" * Contraseña obligatoria" ControlToValidate="TPassword">
-            </asp:RequiredFieldValidator>
+            <asp:Label ID="LResultado" runat="server" Text =" " />
         </div>
     </div>
 </asp:Content>

@@ -8,45 +8,51 @@
         <div class="registro_inicio">
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <h1>Registrar nuevo usuario</h1>
-            Nick:&#9;&#9;
+            Nick:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TNick" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredNick" ControlToValidate="TNick" runat="server" ErrorMessage="* Introduce el Nick"></asp:RequiredFieldValidator>
             <br />
-            Nombre:&#9;&#9;
+            Nombre:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TNombre" runat="server" CausesValidation="True"></asp:TextBox>
-            Apellidos:&#9;&#9;
+            <asp:RequiredFieldValidator ID="RequiredNombre" ControlToValidate="TNombre" runat="server" ErrorMessage="* Introduce el Nombre"></asp:RequiredFieldValidator>
+            <br />
+            Apellidos:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TApellidos" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredApellidos" ControlToValidate="TApellidos" runat="server" ErrorMessage="* Introduce los Apellidos"></asp:RequiredFieldValidator>
             <br />
-            Email:&#9;&#9;
+            Email:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TEmail" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredEmail" ControlToValidate="TEmail" runat="server" ErrorMessage="* Introduce el Email"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularEmail" ControlToValidate="TEmail" runat="server" ErrorMessage="* Email incorrecto" ValidationExpression="\S+@\S+\.\S+"></asp:RegularExpressionValidator>
             <br />
-            Fecha de nacimiento (yyyy-MM-dd):&#9;
+            Fecha de nacimiento (yyyy-MM-dd):&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TFecha" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFecha" ControlToValidate="TFecha" runat="server" ErrorMessage="* Introduce la Fecha de Nacimiento"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareFecha" runat="server" ControlToValidate="TFecha" ErrorMessage="* Formato de fecha incorrecto" Operator="DataTypeCheck" Type="Date" ValidationGroup="grpDate" />
             <br />
-            Teléfono:&#9;&#9;
+            Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TTelefono" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Introduce el Teléfono"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Teléfono incorrecto" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
             <br />
-            Password:&#9;&#9;
+            <br />
+            <br />
+            Password:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TPassword" runat="server" CausesValidation="True"></asp:TextBox>
             <ajaxToolkit:PasswordStrength ID="PasswordStrength1" runat="server" Enabled="true" TargetControlID="TPassword" DisplayPosition="RightSide" StrengthIndicatorType="Text" 
                 PreferredPasswordLength="10" PrefixText="Seguridad: " TextStrengthDescriptions="Débil; Media; Fuerte; Muy fuerte" MinimumSymbolCharacters="1" MinimumLowerCaseCharacters="2" MinimumUpperCaseCharacters="2" MinimumNumericCharacters="2"/>
+            <asp:RequiredFieldValidator ID="RequiredPassword" ControlToValidate="TPassword" runat="server" ErrorMessage="* Introduce la Password"></asp:RequiredFieldValidator>
             <br />
-            Repita Password:&#9;&#9;
+            Repita Password:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TRepitePassword" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredRepite" ControlToValidate="TRepitePassword" runat="server" ErrorMessage="* Repite la Password"></asp:RequiredFieldValidator>
+            <br />
+            <br />
             <br />
             <asp:Button ID="BCrear" runat="server" Text="Crear" OnClick="Crear"/>
             <br />
-            <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredNick" ControlToValidate="TNick" runat="server" ErrorMessage="* Introduce el Nick"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredNombre" ControlToValidate="TNombre" runat="server" ErrorMessage="* Introduce el Nombre"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredApellidos" ControlToValidate="TApellidos" runat="server" ErrorMessage="* Introduce los Apellidos"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredEmail" ControlToValidate="TEmail" runat="server" ErrorMessage="* Introduce el Email"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularEmail" ControlToValidate="TEmail" runat="server" ErrorMessage="* Email incorrecto" ValidationExpression="\S+@\S+\.\S+"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator ID="RequiredFecha" ControlToValidate="TFecha" runat="server" ErrorMessage="* Introduce la Fecha de Nacimiento"></asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareFecha" runat="server" ControlToValidate="TFecha" ErrorMessage="* Formato de fecha incorrecto" Operator="DataTypeCheck" Type="Date" ValidationGroup="grpDate" />
-            <asp:RequiredFieldValidator ID="RequiredTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Introduce el Teléfono"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Teléfono incorrecto" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator ID="RequiredPassword" ControlToValidate="TPassword" runat="server" ErrorMessage="* Introduce la Password"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredRepite" ControlToValidate="TRepitePassword" runat="server" ErrorMessage="* Repite la Password"></asp:RequiredFieldValidator>
+            <asp:Label ID="LResultado" runat="server" Text =" " />
+            <br />
         </div>
     </div>
 </asp:Content>

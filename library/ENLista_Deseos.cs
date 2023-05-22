@@ -64,7 +64,7 @@ namespace library
         {
             bool result = true;
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.readLista(this);
+            result = c.readListaPorUsu(this);
             return result;
         }
         public bool readFirstLista()

@@ -103,7 +103,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["usuarioID"] == lista.id)
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
                     {
                         sigue_while = false;
                         lista.id = (int)dr["id"];
@@ -358,7 +358,7 @@ namespace library
         {
             DataSet bdvirtual = new DataSet();
 
-            string query = "select v.id, v.titulo, v.fecha_lanzamiento from Videojuego as v join ListaDeseosVideojuego as dv on v.id=dv.videojuegoID join ListaDeseos as d on dv.listaDeseosID=d.id where d.usuarioID = " + lista.usuario.id;
+            string query = "select v.titulo, v.fecha_lanzamiento from Videojuego as v join ListaDeseosVideojuego as dv on v.id=dv.videojuegoID join ListaDeseos as d on dv.listaDeseosID=d.id where d.usuarioID = " + lista.usuario.id;
             SqlConnection c = new SqlConnection(conexionBBDD);
             SqlDataAdapter da = new SqlDataAdapter(query, c);
             da.Fill(bdvirtual, "Videojuego");
@@ -377,7 +377,7 @@ namespace library
                 SqlDataReader dr = comprueba.ExecuteReader();
                 while (dr.Read() && sigue_while == true)
                 {
-                    if ((int)dr["Id"] == vj.Id)
+                    if ((int)dr["videojuegoID"] == vj.Id)
                     {
                         sigue_while = false;
                     }

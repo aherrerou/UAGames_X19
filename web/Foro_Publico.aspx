@@ -15,16 +15,25 @@
             <asp:DropDownList runat="server" ID="DTema" Visible="false"></asp:DropDownList>
             <br />
             <asp:Button ID="BBuscar" runat="server" Text="Buscar" OnClick="Buscar" Visible="false"/>
-            <asp:GridView ID="GridView1" runat="server" CssClass="grid" HorizontalAlign="Center" CellPadding="5" PageSize="5" AllowPaging="True"></asp:GridView>
+            <div class="table-responsive">
+                <asp:GridView ID="GridView1" runat="server" CssClass="grid" HorizontalAlign="Center" CellPadding="5" PageSize="5" AllowPaging="True" OnPageIndexChanging="ChangePage">
+                    <FooterStyle BackColor="White" ForeColor="#0d6efd" />
+                    <HeaderStyle BackColor="#0d6efd" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Font-Underline="false" />
+                    <PagerStyle BackColor="White" ForeColor="#0d6efd" HorizontalAlign="Center" />
+                    <RowStyle ForeColor="#0d6efd" />
+                    <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                </asp:GridView>
+            </div>
             <br />
             <h2>Hacer una publicación:</h2>
             <br />
             Texto: &nbsp;&nbsp;&nbsp;&nbsp;
             <br />
-            <asp:TextBox ID="TTexto" runat="server" Height="90px" Width="300px"></asp:TextBox>
+            <asp:TextBox ID="TTexto" runat="server" Height="90px" Width="300px" TextMode="MultiLine"></asp:TextBox>
             <br />
             <br />
             <asp:Button ID="BPublicar" runat="server" Text="Publicar" OnClick="Publicar"/>
+            <br />
             <asp:Label ID="LResultado" runat="server" Text=" "></asp:Label>
         </div>
     </div>

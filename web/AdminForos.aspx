@@ -23,8 +23,8 @@
             <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar" />
             <br />
             <asp:Label ID="LResultado_F" runat="server" Text=" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredForoId" ControlToValidate="TId_F" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredForoNombre" ControlToValidate="TNombre" runat="server" ErrorMessage="Nombre obligatorio"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredForoId" Enabled="false" ControlToValidate="TId_F" runat="server" ErrorMessage="* Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredForoNombre" Enabled="false" ControlToValidate="TNombre" runat="server" ErrorMessage="* Nombre obligatorio"></asp:RequiredFieldValidator>
             <h2>Leer o modificar lista de temas</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId_T" runat="server" CausesValidation="True"></asp:TextBox>
@@ -42,8 +42,8 @@
             <asp:Button ID="BBorrar_T" runat="server" Text="Borrar" OnClick="BorrarT" />
             <br />
             <asp:Label ID="LResultado_T" runat="server" Text=" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredTemaId" ControlToValidate="TId_T" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredTemaTitulo" ControlToValidate="TTitulo" runat="server" ErrorMessage="Título obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredTemaId" Enabled="false" ControlToValidate="TId_T" runat="server" ErrorMessage="* Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredTemaTitulo" Enabled="false" ControlToValidate="TTitulo" runat="server" ErrorMessage="* Título obligatorio"></asp:RequiredFieldValidator>
             <h2>Leer o modificar lista de publicaciones</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TId_P" runat="server" CausesValidation="True"></asp:TextBox>
@@ -64,12 +64,19 @@
             <asp:Button ID="BBorrar_P" runat="server" Text="Borrar" OnClick="BorrarP" />
             <br />
             <asp:Label ID="LResultado_P" runat="server" Text=" " />&nbsp;
-            <asp:RequiredFieldValidator ID="RequiredPubliId" ControlToValidate="TId_P" runat="server" ErrorMessage="Id obligatoria"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredPubliTexto" ControlToValidate="TTexto" runat="server" ErrorMessage="Texto obligatorio"></asp:RequiredFieldValidator>
-            <asp:RequiredFieldValidator ID="RequiredUsuario" ControlToValidate="TUsuario" runat="server" ErrorMessage="Id de usuario"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredPubliId" Enabled="false" ControlToValidate="TId_P" runat="server" ErrorMessage="* Id obligatoria"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredPubliTexto" Enabled="false" ControlToValidate="TTexto" runat="server" ErrorMessage="* Texto obligatorio"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredUsuario" Enabled="false" ControlToValidate="TUsuario" runat="server" ErrorMessage="* Id de usuario obligatoria"></asp:RequiredFieldValidator>
             <h2>Listado de publicaciones</h2>
-            <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="true" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged" CellPadding="5" PageSize="5" AllowPaging="True">
-            </asp:GridView>
+            <div class="table-responsive">
+                <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateSelectButton="true" selectedindex="1" onselectedindexchanged="Gridview1_SelectedItemChanged" CellPadding="5" PageSize="5" AllowPaging="True" OnPageIndexChanging="ChangePage">
+                    <FooterStyle BackColor="White" ForeColor="#0d6efd" />
+                    <HeaderStyle BackColor="#0d6efd" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Font-Underline="false" />
+                    <PagerStyle BackColor="White" ForeColor="#0d6efd" HorizontalAlign="Center" />
+                    <RowStyle ForeColor="#0d6efd" />
+                    <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                </asp:GridView>
+            </div>
         </div>
     </div>
 </asp:Content>

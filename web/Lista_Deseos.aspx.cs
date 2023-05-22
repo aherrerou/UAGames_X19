@@ -31,13 +31,33 @@ namespace web
                 GridView1.DataBind();
             }
         }
-        protected void Gridview1_SelectedItemDeleted(object sender, EventArgs e)
+        protected void Gridview1_SelectedItemDeleted(object sender, GridViewDeleteEventArgs e)
         {
             ENVideojuego vj = new ENVideojuego();
-            vj.Id = int.Parse(GridView1.SelectedRow.Cells[1].Text);
+            vj.Titulo = GridView1.Rows[e.RowIndex].Cells[1].Text;
             vj.readVideojuego();
             ENLista_Deseos lista = new ENLista_Deseos();
             lista.deleteVjLista(vj);
+        }
+
+        protected void BRefresh_Click(object sender, EventArgs e)
+        {
+            ENLista_Deseos en = new ENLista_Deseos();
+            en.usuario = usu;
+            DataSet d = new DataSet();
+            d = en.listarVjLista();
+            GridView1.DataSource = d;
+            GridView1.DataBind();
+        }
+        protected void ChangePage(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            ENLista_Deseos en = new ENLista_Deseos();
+            en.usuario = usu;
+            DataSet d = new DataSet();
+            d = en.listarVjLista();
+            GridView1.DataSource = d;
+            GridView1.DataBind();
         }
     }
 }
