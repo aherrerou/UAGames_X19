@@ -23,18 +23,27 @@ namespace web
                 DataTable data = new DataTable();
                 if (!Page.IsPostBack)
                 {
+                    if (Session["login_nick"] == null)
+                    {
+                        Response.Redirect("Inicia_Sesion.aspx");
+                    }
+
                     FillCestasTable();
                     decimal precioTotal = 0;
 
                     // Recorre los elementos del GridView y suma el precio de cada uno
                     foreach (GridViewRow row in cestaTable.Rows)
                     {
-                        precioTotal += Convert.ToDecimal(row.Cells[2].Text);
+                        precioTotal += Convert.ToDecimal(row.Cells[4].Text);
                     }
 
                     // Muestra el precio total en un Label
                     precioTotalLabel.Text = precioTotal.ToString("C");
-                }
+
+                    cestaTable.Columns[0].Visible = false;
+                    cestaTable.Columns[1].Visible = false;
+
+                 }
             }
 
             protected void changePageCestaTable(object sender, GridViewPageEventArgs e)
@@ -45,7 +54,13 @@ namespace web
 
             protected void FillCestasTable()
             {
+                ENUsuario usuario = new ENUsuario();
+                usuario.nick = (Session["login_nick"]).ToString();
+                usuario.readUsuario();
+
                 ENCesta cesta = new ENCesta();
+                cesta.usuarioID.id = usuario.id;
+
                 data = cesta.readCestas();
                 cestaTable.DataSource = data;
                 cestaTable.DataBind();               
@@ -70,13 +85,20 @@ namespace web
 
             protected void clickRowDeleteCesta(object sender, GridViewDeleteEventArgs e)
             {
-                /*ENCesta en = new ENCesta(cateTable.Rows[e.RowIndex].Cells[1].Text, categoriasTable.Rows[e.RowIndex].Cells[1].Text, categoriasTable.Rows[e.RowIndex].Cells[2].Text);
+                ENCesta en = new ENCesta();
+                en.usuarioID.id = Int32.Parse(cestaTable.Rows[e.RowIndex].Cells[0].Text);
+                en.videojuegoID.Id = Int32.Parse(cestaTable.Rows[e.RowIndex].Cells[1].Text);
                 bool result = en.deleteCesta();
-                if (result == false)
-                    Resultado.Text = "Error en el borrado de la categoria";
-                else
-                    FillCategoriasTable();
-                Resultado.Text = "Proceso de borrado realizado con éxito";*/
+
+            if (result == false)
+            {
+                Resultado.Text = "Error en el borrado de la categoria";
+            }
+            else
+            {
+                FillCestasTable();
+                Resultado.Text = "Proceso de borrado realizado con éxito";
+            }
             }
 
             protected void ComprarClick(object sender, EventArgs e)
