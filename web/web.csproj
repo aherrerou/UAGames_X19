@@ -111,6 +111,7 @@
     <Content Include="CatalogoPrueba.aspx" />
     <Content Include="Terminos.aspx" />
     <Content Include="ThankYouPage.aspx" />
+    <Content Include="Top10Compras.aspx" />
     <Content Include="Videojuego.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
@@ -284,6 +285,13 @@
     </Compile>
     <Compile Include="ThankYouPage.aspx.designer.cs">
       <DependentUpon>ThankYouPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Top10Compras.aspx.cs">
+      <DependentUpon>Top10Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Top10Compras.aspx.designer.cs">
+      <DependentUpon>Top10Compras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Videojuego.aspx.cs">
       <DependentUpon>Videojuego.aspx</DependentUpon>
