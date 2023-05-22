@@ -24,6 +24,15 @@ namespace web
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
+        /// Control SqlDataSource.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource;
+
+        /// <summary>
         /// Control UAGAMES.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,14 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource UAGAMES;
+
+        /// <summary>
+        /// Control barChart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl barChart;
     }
 }

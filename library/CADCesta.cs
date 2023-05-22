@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,95 +11,155 @@ namespace library
 {
     class CADCesta
     {
-        private SqlConnection conect;
         private string conexionBBDD;
         
 
         public CADCesta()
         {
-            conexionBBDD = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database.mdf;Integrated Security=True;";
-            conect = new SqlConnection(conexionBBDD);
+            conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
         }
 
-        public bool createCesta(ENCesta ces, ENVideojuego videojuego, ENUsuario usuario) {
+        public bool createCesta(ENCesta ces, ENVideojuego videojuego, ENUsuario usuario) 
+        {
+            bool crear = false;
+            SqlConnection conect = null;
+            string query = "INSERT INTO [Cesta]" + "(usuarioID,videojuegoID,fecha)" + "VALUES (@usuarioID, @videojuegoID,@fecha);";
 
             try
             {
-                this.conect.Open();
-                string date = ces.Fecha.ToString("yyyy-MM-dd HH:mm:ss");
-
-                string query = "Insert into Cesta (usuarioID,VideojuegoID,fecha) values " + "('" + usuario.id + "','" + videojuego.Id + "','" + date + "');";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
                 SqlCommand com = new SqlCommand(query, conect);
+
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
+                com.Parameters.AddWithValue("@videojuegoID", ces.videojuegoID);
+                com.Parameters.AddWithValue("@fecha", ces.fecha);
+
                 com.ExecuteNonQuery();
+                crear = true;
             }
             catch (SqlException sqlex)
             {
                 
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
-                
+                crear = false;
+
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                crear = false;
             }
             
             finally
             {
-                this.conect.Close();
+                if (conect != null)
+                {
+                    conect.Close();
+                }
             }
 
-            return true;
+            return crear;
         }
 
-        public bool readCesta(ENCesta ces, ENUsuario usuario)
+        public bool readCesta(ENCesta ces)
         {
+            bool controlador = false;
+            SqlConnection conect = null;
+            string query = "SELECT * FROM [Cesta] WHERE usuarioID = @usuarioID";
+
+            SqlDataReader dr = null;
+
             try
             {
-                this.conect.Open();
-                string query = "select * from Cesta where usuarioID = '" + usuario.id + "';";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+
                 SqlCommand com = new SqlCommand(query, conect);
-                SqlDataReader dataread = com.ExecuteReader();
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
 
-                if (dataread.Read())
-                {
-                    usuario.id = int.Parse(dataread["usuarioID"].ToString());
-                }
-                else
-                {
-                    return false;
-                }
-                dataread.Close();
+                dr = com.ExecuteReader();
 
+                if (dr.Read())
+                {
+                    ENUsuario usu = new ENUsuario();
+                    usu.id = Int32.Parse(dr["usuarioID"].ToString());
+
+                    ENVideojuego vid = new ENVideojuego();
+                    vid.Id = Int32.Parse(dr["viedeojuegoID"].ToString());
+
+                    ces.fecha = DateTime.Parse(dr["fecha"].ToString());
+
+                    controlador = true;
+                }             
             }
 
             catch (SqlException sqlex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+                controlador = false;
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                controlador = false;
             }
 
             finally
             {
-                this.conect.Close();
+                if (dr != null) dr.Close();
+                if (conect != null) conect.Close();
             }
 
-            return true;
+            return controlador;
+        }
+
+        public DataTable readCestas()
+        {   
+            SqlConnection conect = null;
+            DataTable cestas = new DataTable();
+
+            try
+            {
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+
+                string query = "SELECT v.titulo, c.fecha, v.precio FROM Usuario u " +
+                    "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
+                    "INNER JOIN Videojuego v ON c.videojuegoID = v.id ";
+                    
+                //"JOIN [Videojuego] v ON c.videojuegoID = v.id";
+                //"JOIN [Usuario] u ON c.usuarioID = u.id"; 
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conect);
+                adapter.Fill(cestas);
+            }
+            catch (SqlException sqlex)
+            {
+
+                Console.WriteLine("Reading ofertas operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Reading ofertas operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+
+                if (conect != null) conect.Close(); // Se asegura de cerrar la conexión.
+            }
+            return cestas;
         }
 
         public bool updateCesta(ENCesta ces, ENUsuario usuario, ENVideojuego videojuego)
         {
+            SqlConnection conect = null;
+
             try
             {
-                this.conect.Open();
+                conect.Open();
                 string query = "update Cesta set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
                 com.ExecuteReader();
@@ -118,41 +180,72 @@ namespace library
 
             finally
             {
-                this.conect.Close();
+                conect.Close();
             }
 
             return true;
         }
 
-        public bool deleteCesta(ENCesta ces, ENUsuario usuario)
+        public bool deleteCesta(ENCesta ces)
         {
+            bool controlador = false;
+            SqlConnection conect = null;
+            string query = "delete from Cesta where usuarioID = @usuarioID;";
+
             try
             {
-                this.conect.Open();
-                string query = "delete from Cesta where usuarioID = '" + usuario.id + "';";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
                 SqlCommand com = new SqlCommand(query, conect);
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
                 com.ExecuteReader();
+
+                controlador = true;
 
             }
 
             catch (SqlException sqlex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+
             }
 
             catch (Exception ex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
             }
 
             finally
             {
-                this.conect.Close();
+                conect.Close();
             }
 
-            return true;
+            return controlador;
         }
+        public int articulosCesta(ENUsuario usuario)
+        {
+            int videojuegoID = 0;
+            using (SqlConnection conect = new SqlConnection(conexionBBDD))
+            {
+                conect.Open();
+                string query = "SELECT CESTACOMPRA.videojuegoID FROM USUARIO INNER JOIN CESTACOMPRA ON Usuario.id = CESTACOMPRA.usuarioID WHERE Usuario.id = @UsuarioID";
+                SqlCommand com = new SqlCommand(query, conect);
+                com.Parameters.AddWithValue("@UsuarioID", usuario.id);
+
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    videojuegoID = Convert.ToInt32(reader["videojuegoID"]);
+                }
+
+                reader.Close();
+                conect.Close();
+            }
+            return videojuegoID;
+        }
+
     }
 }
