@@ -24,9 +24,9 @@ namespace library
         public bool createUsuario(ENUsuario usuario)
         {
             string fechaFormatoCorrecto = usuario.fecha_nac.ToString("yyyy-MM-dd");
-            string query = "Insert into Usuario (nick, nombre, apellidos, email, password, fecha_nacimiento, telefono, rol) values " +
+            string query = "Insert into Usuario (nick, nombre, apellidos, email, password, fecha_nacimiento, telefono, admin) values " +
                 "('" + usuario.nick + "','" + usuario.nombre + "','" + usuario.apellidos + "','" + usuario.email + "','" + usuario.password 
-                + "','" + fechaFormatoCorrecto + "','" + usuario.telef + "','" + usuario.rol + "')";
+                + "','" + fechaFormatoCorrecto + "','" + usuario.telef + "'," + Convert.ToInt32(usuario.admin) + ")";
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -55,7 +55,7 @@ namespace library
         public bool readUsuario(ENUsuario usuario) //busca un usuario por su nick, que es único
         {
             bool sigue_while = true;
-            string query = "Select * from Usuario where nick = '" + usuario.nick + "'";
+            string query = "Select * from [Usuario] where nick = '" + usuario.nick + "';";
             try
             {
                 c = new SqlConnection(conexionBBDD);
@@ -74,7 +74,7 @@ namespace library
                         usuario.password = dr["password"].ToString();
                         usuario.fecha_nac = (DateTime)dr["fecha_nacimiento"];
                         usuario.telef = dr["telefono"].ToString();
-                        usuario.rol = dr["rol"].ToString();
+                        usuario.admin = Convert.ToBoolean(dr["admin"]);
                     }
                 }
                 if (sigue_while == true)
@@ -117,7 +117,7 @@ namespace library
                 usuario.password = dr["password"].ToString();
                 usuario.fecha_nac = (DateTime)dr["fecha_nacimiento"];
                 usuario.telef = dr["telefono"].ToString();
-                usuario.rol = dr["rol"].ToString();
+                usuario.admin = Convert.ToBoolean(dr["admin"]);
                 dr.Close();
             }
             catch (SqlException sqlex)
@@ -164,7 +164,7 @@ namespace library
                             usuario.password = dr["password"].ToString();
                             usuario.fecha_nac = (DateTime)dr["fecha_nacimiento"];
                             usuario.telef = dr["telefono"].ToString();
-                            usuario.rol = dr["rol"].ToString();
+                            usuario.admin = Convert.ToBoolean(dr["admin"]);
                         }
                         else
                             throw new Exception("No hay siguiente usuario");
@@ -203,7 +203,7 @@ namespace library
             string password = "blank";
             DateTime fecha_nac = DateTime.Now;
             string telef = "blank";
-            string rol = "blank";
+            bool admin = false;
 
             try
             {
@@ -226,7 +226,7 @@ namespace library
                         usuario.password = password;
                         usuario.fecha_nac =fecha_nac;
                         usuario.telef = telef;
-                        usuario.rol = rol;
+                        usuario.admin = admin;
                     }
                     else
                     {
@@ -238,7 +238,7 @@ namespace library
                         password = dr["password"].ToString();
                         fecha_nac = (DateTime)dr["fecha_nacimiento"];
                         telef = dr["telefono"].ToString();
-                        rol = dr["rol"].ToString();
+                        admin = Convert.ToBoolean(dr["admin"]);
                     }
                 }
                 dr.Close();
@@ -266,7 +266,7 @@ namespace library
             string fechaFormatoCorrecto = usuario.fecha_nac.ToString("yyyy-MM-dd");
             string query_comprueba = "Select * from Usuario";
             string query = "Update Usuario set nombre = '" + usuario.nombre + "', apellidos = '" + usuario.apellidos + "', email = '" + usuario.email + "', password = '" + usuario.password
-                 + "', fecha_nacimiento = '" + fechaFormatoCorrecto + "', telefono = '" + usuario.telef + "', rol = '" + usuario.rol + "' where nick = '" + usuario.nick + "'";
+                 + "', fecha_nacimiento = '" + fechaFormatoCorrecto + "', telefono = '" + usuario.telef + "', admin = '" + Convert.ToInt32(usuario.admin) + "' where nick = '" + usuario.nick + "'";
             bool sigue_while = true;
             try
             {

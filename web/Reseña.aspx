@@ -6,21 +6,20 @@
     <main>
 
         <div class="showGrid">
-            <asp:Button ID="misReviews" Text="Crear" runat="server" OnClick="misReviews_Click"/>
-            <div class="textbox-container">
-                Videojuego:
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="textbox-aspnet"></asp:TextBox>
-
-                Usuario:
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="textbox-aspnet"></asp:TextBox>
-
-                <asp:Button ID="filtrarReview" runat="server" Text="Filtrar" OnClick="filtrarReview_Click" />
-            </div>
+            <asp:Button ID="misReviews" Text="Crear" runat="server" OnClick="misReviews_Click" />
         </div>
     </main>
     <main>
         <asp:ListView ID="ReviewListView" runat="server" GroupItemCount="4">
             <LayoutTemplate>
+                    Videojuego:
+                    <asp:TextBox ID="videojuego" runat="server"></asp:TextBox>
+                    Usuario:
+                    <asp:TextBox ID="usuario" runat="server"></asp:TextBox>
+
+
+                    <asp:Button ID="filtrarReview" runat="server" Text="Filtrar" OnClick="filtrarReview_Click" />
+                </div>
                 <div class="listaReviews">
                     <h1 style="text-align: center">Reviews</h1>
                     <br />

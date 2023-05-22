@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +79,13 @@ namespace library
             CADForo c = new CADForo();
             result = c.deleteForo(this);
             return result;
+        }
+        public DataSet readAllForo()
+        {
+            DataSet data = new DataSet();
+            CADForo c = new CADForo();
+            data = c.readAllForo();
+            return data;
         }
     }
 }

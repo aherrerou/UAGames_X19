@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,12 +70,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminForos.aspx" />
     <Content Include="AdminOfertas.aspx" />
+    <Content Include="AdminUsuarios.aspx" />
     <Content Include="AdminVideojuegos.aspx" />
     <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="assets\css\Rating.css" />
     <Content Include="assets\css\StyleSheet1.css" />
     <Content Include="assets\imagenes\iconos\cart.png" />
     <Content Include="assets\imagenes\iconos\cartAdd.png" />
@@ -91,7 +97,7 @@
     <Content Include="CategoriaWebForm.aspx" />
     <Content Include="CestaWebForm.aspx" />
     <Content Include="Compras.aspx" />
-    <Content Include="Foro.aspx" />
+    <Content Include="Foro_Publico.aspx" />
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
     <Content Include="misReseñas.aspx" />
@@ -105,19 +111,34 @@
     <Content Include="SobreNosotros.aspx" />
     <Content Include="CatalogoPrueba.aspx" />
     <Content Include="Terminos.aspx" />
-    <Content Include="Usuario.aspx" />
+    <Content Include="ThankYouPage.aspx" />
+    <Content Include="Top10Compras.aspx" />
     <Content Include="Videojuego.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
     <Content Include="Contacto.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminForos.aspx.cs">
+      <DependentUpon>AdminForos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminForos.aspx.designer.cs">
+      <DependentUpon>AdminForos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminOfertas.aspx.cs">
       <DependentUpon>AdminOfertas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminOfertas.aspx.designer.cs">
       <DependentUpon>AdminOfertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUsuarios.aspx.cs">
+      <DependentUpon>AdminUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUsuarios.aspx.designer.cs">
+      <DependentUpon>AdminUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminVideojuegos.aspx.cs">
       <DependentUpon>AdminVideojuegos.aspx</DependentUpon>
@@ -154,12 +175,12 @@
     <Compile Include="Compras.aspx.designer.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Foro.aspx.cs">
-      <DependentUpon>Foro.aspx</DependentUpon>
+    <Compile Include="Foro_Publico.aspx.cs">
+      <DependentUpon>Foro_Publico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Foro.aspx.designer.cs">
-      <DependentUpon>Foro.aspx</DependentUpon>
+    <Compile Include="Foro_Publico.aspx.designer.cs">
+      <DependentUpon>Foro_Publico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicia_Sesion.aspx.cs">
       <DependentUpon>Inicia_Sesion.aspx</DependentUpon>
@@ -274,12 +295,19 @@
     <Compile Include="Terminos.aspx.designer.cs">
       <DependentUpon>Terminos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.aspx.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="ThankYouPage.aspx.cs">
+      <DependentUpon>ThankYouPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuario.aspx.designer.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="ThankYouPage.aspx.designer.cs">
+      <DependentUpon>ThankYouPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Top10Compras.aspx.cs">
+      <DependentUpon>Top10Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Top10Compras.aspx.designer.cs">
+      <DependentUpon>Top10Compras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Videojuego.aspx.cs">
       <DependentUpon>Videojuego.aspx</DependentUpon>

@@ -312,12 +312,23 @@ namespace library
             }
             return true;
         }
+
         public DataSet listarClientesD()
         {
             DataSet bdvirtual = new DataSet();
 
             SqlConnection c = new SqlConnection(conexionBBDD);
             string query = "select p.id as ID_Publicación, p.text as Texto, p.usuarioID as ID_Usuario, t.id as ID_Tema, t.titulo as Título_Tema, f.id as ID_Foro, f.nombre as Nombre_Foro from Publicacion as p join Tema as t on temaID = t.id join Foro as f on foroID = f.id";
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
+            da.Fill(bdvirtual, "Publicacion");
+            return bdvirtual;
+        }
+        public DataSet listarClientesDPublico(string tema)
+        {
+            DataSet bdvirtual = new DataSet();
+
+            SqlConnection c = new SqlConnection(conexionBBDD);
+            string query = "select p.text as Texto, u.nick as Usuario from Usuario u join Publicacion as p on usuarioID = u.id join Tema as t on temaID = t.id where Titulo = '" + tema + "'";
             SqlDataAdapter da = new SqlDataAdapter(query, c);
             da.Fill(bdvirtual, "Publicacion");
             return bdvirtual;

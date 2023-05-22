@@ -65,7 +65,7 @@ namespace web
         protected void filtrarReview_Click(object sender, EventArgs e)
         {
             ENReview review = new ENReview();
-            review.id = Convert.ToInt32(((Button)sender).CommandArgument);
+            
             review.filtrarReview();
         }
 
