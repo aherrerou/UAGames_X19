@@ -14,7 +14,7 @@
                     <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
                 </asp:GridView>
             </div>
-            <asp:Button ID="BRefresh" runat="server" Text="Recargar Lista" OnClick="BRefresh_Click"/>
+            <asp:Button ID="BRefresh" CssClass="btn btn-primary" runat="server" Text="Recargar Lista" OnClick="BRefresh_Click"/>
         </div>
     </div>
 </asp:Content>

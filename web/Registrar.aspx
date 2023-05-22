@@ -33,23 +33,23 @@
             Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TTelefono" runat="server" CausesValidation="True"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Introduce el Teléfono"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Teléfono incorrecto" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularTelefono" ControlToValidate="TTelefono" runat="server" ErrorMessage="* Teléfono incorrecto" ValidationExpression="[0-9]{9}"></asp:RegularExpressionValidator>
             <br />
             <br />
             <br />
             Password:&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TPassword" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:TextBox ID="TPassword" runat="server" CausesValidation="True" type="password"></asp:TextBox>
             <ajaxToolkit:PasswordStrength ID="PasswordStrength1" runat="server" Enabled="true" TargetControlID="TPassword" DisplayPosition="RightSide" StrengthIndicatorType="Text" 
                 PreferredPasswordLength="10" PrefixText="Seguridad: " TextStrengthDescriptions="Débil; Media; Fuerte; Muy fuerte" MinimumSymbolCharacters="1" MinimumLowerCaseCharacters="2" MinimumUpperCaseCharacters="2" MinimumNumericCharacters="2"/>
             <asp:RequiredFieldValidator ID="RequiredPassword" ControlToValidate="TPassword" runat="server" ErrorMessage="* Introduce la Password"></asp:RequiredFieldValidator>
             <br />
             Repita Password:&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TRepitePassword" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:TextBox ID="TRepitePassword" runat="server" CausesValidation="True" type="password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredRepite" ControlToValidate="TRepitePassword" runat="server" ErrorMessage="* Repite la Password"></asp:RequiredFieldValidator>
             <br />
             <br />
             <br />
-            <asp:Button ID="BCrear" runat="server" Text="Crear" OnClick="Crear"/>
+            <asp:Button ID="BCrear" CssClass="btn btn-primary" runat="server" Text="Crear" OnClick="Crear"/>
             <br />
             <asp:Label ID="LResultado" runat="server" Text =" " />
             <br />

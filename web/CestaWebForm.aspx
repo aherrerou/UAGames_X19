@@ -56,7 +56,7 @@
             <asp:Label ID="Resultado" runat="server" Text =" " />&nbsp;
             <div>
                 
-                    <asp:Button id="comprar" Text="Comprar" runat="server" OnClick="ComprarClick" NavigateUrl="Foro.aspx"/>
+                    <asp:Button id="comprar" CssClass="btn btn-primary" Text="Comprar" runat="server" OnClick="ComprarClick" NavigateUrl="Foro.aspx"/>
                 
             </div>
             </center>

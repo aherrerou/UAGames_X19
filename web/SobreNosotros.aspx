@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-     <div class="container bg-light overflow-auto" style="min-height: 599px;">
+     <div class="container bg-light overflow-auto" style="min-height: 625px;">
     <h1>UA Games</h1>
 
         <p>Bienvenidos a UAGames, una plataforma de venta en línea de videojuegos de diferentes plataformas. Nuestra plataforma está diseñada para ofrecer a los usuarios una experiencia de compra fácil y agradable. Creemos que comprar videojuegos debe ser una experiencia sin complicaciones y emocionante.</p>

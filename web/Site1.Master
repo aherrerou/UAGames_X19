@@ -41,13 +41,22 @@
                             <asp:Menu ID="menu" runat="server" Orientation="Horizontal">
                                 <StaticMenuItemStyle HorizontalPadding="20"/>
                                 <Items>
-                                    <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
+                                    <asp:MenuItem Text="Catalogo" NavigateUrl="Catalogo.aspx" />
                                     <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
                                     <asp:MenuItem Text="Foro" NavigateUrl="Foro_Publico.aspx" />
+                                </Items>
+                                <LevelMenuItemStyles>
+                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white fs-5 bg-primary" />
+                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white bg-primary fs-6" />
+                                </LevelMenuItemStyles>
+                            </asp:Menu>
+                             <asp:Menu ID="menuAdmin" runat="server" Orientation="Horizontal" Visible="false">
+                                <StaticMenuItemStyle HorizontalPadding="20"/>
+                                <Items>
                                     <asp:MenuItem Text="Administrador">
                                         <asp:MenuItem Text="Videojuegos" NavigateUrl="AdminVideojuegos.aspx" />
                                         <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
-                                        <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx" />
+                                        <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx"  />
                                         <asp:MenuItem Text="Foros" NavigateUrl="AdminForos.aspx" />
                                     </asp:MenuItem>
                                 </Items>
@@ -95,9 +104,8 @@
                         <h5 class="text-decoration-underline">Servicios</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="Catalogo.aspx" class="nav-link p-0 text-white">Catálogo</a></li>
-                            <li class="nav-item mb-2"><a href="AdminOfertas.aspx" class="nav-link p-0 text-white">Ofertas</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Noticias</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Foro</a></li>
+                            <li class="nav-item mb-2"><a href="Noticias.aspx" class="nav-link p-0 text-white">Noticias</a></li>
+                            <li class="nav-item mb-2"><a href="Foro_Publico.aspx" class="nav-link p-0 text-white">Foro</a></li>
                         </ul>
                     </div>
                     <div class="col mb-3">
@@ -106,7 +114,6 @@
                             <li class="nav-item mb-2"><a href="Contacto.aspx" class="nav-link p-0 text-white">Contacto</a></li>
                             <li class="nav-item mb-2"><a href="PreguntasFrec.aspx" class="nav-link p-0 text-white">Preguntas frecuentes</a></li>
                             <li class="nav-item mb-2"><a href="SobreNosotros.aspx" class="nav-link p-0 text-white">Sobre nosotros</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Redes Sociales</a></li>
                         </ul>
                     </div>
                 </div>

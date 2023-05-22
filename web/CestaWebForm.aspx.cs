@@ -116,7 +116,8 @@ namespace web
                 double precioTotal = 0.00;
                 foreach (GridViewRow row in cestaTable.Rows)
                 {
-                    precioTotal += Convert.ToDouble(row.Cells[2].Text);
+                    String precio = row.Cells[4].Text;
+                    precioTotal += Convert.ToDouble(precio);
                 };
 
                 ENCabecera_Compra compra = new ENCabecera_Compra(usuario, fecha, precioTotal);
@@ -127,7 +128,7 @@ namespace web
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        double importe = Convert.ToDouble(row.Cells[2].Text);
+                        double importe = Convert.ToDouble(row.Cells[4].Text);
                         ENVideojuego videojuego = new ENVideojuego();
                         ENCesta cesta = new ENCesta();
                         videojuego.Id = cesta.articulosCesta(usuario);

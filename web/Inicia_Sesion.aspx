@@ -11,12 +11,12 @@
             </asp:RequiredFieldValidator>
             <br />
             Password:&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TPassword" runat="server" type="password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredPassword" Enabled="false" runat="server" ErrorMessage=" * Contraseña obligatoria" ControlToValidate="TPassword">
             </asp:RequiredFieldValidator>
             <br />
             <br />
-            <asp:Button ID="BBuscar" runat="server" Text="Entrar" OnClick="Leer"/>
+            <asp:Button ID="BBuscar" CssClass="btn btn-primary" runat="server" Text="Entrar" OnClick="Leer"/>
             <br />
             <asp:Label ID="LResultado" runat="server" Text =" " />
         </div>

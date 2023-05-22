@@ -145,7 +145,7 @@ namespace web
             else
             {
                 ENVideojuego videojuego = new ENVideojuego();
-                videojuego.Id = Int32.Parse(((Button)sender).CommandArgument);
+                videojuego.Id = Int32.Parse(((ImageButton)sender).CommandArgument);
                 if (videojuego.readVideojuegoId())
                 {
                     //Se agrega a lista de deseos
