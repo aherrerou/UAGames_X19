@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
 
 namespace library
 {
@@ -145,6 +146,39 @@ namespace library
                 this.c.Close();
             }
             return result;
+        }
+
+        public DataTable readReviews(int videojuego)
+        {
+            SqlConnection connection = null;
+            DataTable videojuegos = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(conexionBBDD);
+                connection.Open();
+
+                string sentence = "SELECT r.id, r.puntuacion, r.comentario, r.fecha, " +
+                    "u.nick AS usuario FROM [Review] r " +
+                    "JOIN [Usuario] u ON r.usuarioID = u.id " +
+                    "WHERE r.videojuegoID = '" + videojuego + "';";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(videojuegos);
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return videojuegos;
         }
     }
 }

@@ -56,6 +56,41 @@ namespace library
             return leida;
         }
 
+        public bool readProductoraNombre(ENProductora en)
+        {
+            bool leida = false;
+            try
+            {
+                con = new SqlConnection(datos);
+                con.Open();
+                string query = "Select * From Productora Where nombre='" + en.Nombre + "' ";
+                SqlCommand consulta = new SqlCommand(query, con);
+                SqlDataReader search = consulta.ExecuteReader();
+
+
+                if (search.Read())
+                {
+                    en.Id = Int32.Parse(search["Id"].ToString());
+                    en.Descripcion = search["Descripcion"].ToString();
+                    en.Imagen = search["Imagen"].ToString();
+                    en.Web = search["Web"].ToString();
+                    leida = true;
+                }
+                search.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al buscar la productora en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+
+            return leida;
+        }
+
 
         public void createProductora(ENProductora en)
         {

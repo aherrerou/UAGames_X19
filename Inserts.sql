@@ -36,3 +36,14 @@ INSERT INTO oferta (nombre, descuento, fecha_inicio, fecha_fin, videojuegoID, pr
 ('Oferta Black Friday Assassin''s Creed Valhalla', 40, '2023-11-24', '2023-11-26', 5, 4),
 ('Oferta Halloween Call of Duty: Modern Warfare', 25, '2023-10-27', '2023-10-31', 6, 5),
 ('Oferta de Navidad Grand Theft Auto V', 15, '2023-12-24', '2023-12-26', 7, 6);
+
+
+--- Insertar usuarios
+INSERT INTO usuario (nick, nombre, apellidos, email, password, fecha_nacimiento, telefono) VALUES 
+('cgsg4', 'Clara', 'Gonzalez', 'cgsg4@gcloud.ua.es', '1234', '1994-03-09', '123456789');
+
+-- Insertar reviews
+INSERT INTO review (puntuacion, comentario, fecha, usuarioID, videojuegoID) VALUES
+(1, 'lo de siempre, no innovan', '2023-05-14', 1, 1),
+(2, 'prueba', '2023-05-18', 1, 1),
+(3, 'mas pruebas', '2023-05-20', 1, 1);
