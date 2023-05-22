@@ -152,10 +152,12 @@ namespace web
                     ENCesta cesta = new ENCesta();
                     ENUsuario auxUser = new ENUsuario();
                     auxUser.nick = Session["login_nick"].ToString();
-                    cesta.usuario = auxUser;
+                    //Se lee usuario
+                    auxUser.readUsuario();
+                    cesta.usuarioID = auxUser;
                     cesta.readCesta();
                     //Agregar elemento a la lista
-                    //cesta.addVideojuego(videojuego.Id);
+                    cesta.addVideojuego(videojuego.Id);
                 }
 
             }
