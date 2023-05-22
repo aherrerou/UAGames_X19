@@ -42,11 +42,12 @@
                                 <Items>
                                     <asp:MenuItem Text="Videojuegos" NavigateUrl="Catalogo.aspx" />
                                     <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
-                                    <asp:MenuItem Text="Foro" NavigateUrl="Foro.aspx" />
+                                    <asp:MenuItem Text="Foro" NavigateUrl="Foro_Publico.aspx" />
                                     <asp:MenuItem Text="Administrador">
                                         <asp:MenuItem Text="Videojuegos" NavigateUrl="AdminVideojuegos.aspx" />
                                         <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
                                         <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx" />
+                                        <asp:MenuItem Text="Foros" NavigateUrl="AdminForos.aspx" />
                                     </asp:MenuItem>
                                 </Items>
                                 <LevelMenuItemStyles>
@@ -66,6 +67,7 @@
 
                                 <asp:Label ID="MenuSesion" runat="server">
                                     <asp:ImageButton ID="BtnCart" CssClass="bg-light rounded me-2" runat="server" AlternateText="Cart" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/cart.png" OnClick="clickCart" />
+                                    <asp:ImageButton ID="BtnLista" CssClass="bg-light rounded me-2" runat="server" AlternateText="WishList" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/starEmpty.png" OnClick="clickLista" />
                                     <asp:ImageButton ID="BtnSalir" CssClass="bg-light rounded me-2" runat="server" AlternateText="LogOut" ImageAlign="middle" Style="height: 3rem;" ImageUrl="assets/imagenes/iconos/logOut.png" OnClick="clickLogOut" />
                                 </asp:Label>
                             </li>

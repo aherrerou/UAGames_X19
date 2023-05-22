@@ -1,21 +1,24 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Inicia_Sesion.aspx.cs" Inherits="web.Inicia_Sesion" %>
+﻿<%@ Page Title="" Language="C#" UnobtrusiveValidationMode="None" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Inicia_Sesion.aspx.cs" Inherits="web.Inicia_Sesion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
+    <div class="container bg-light overflow-auto" style="min-height:599px;">
         <div class="registro_inicio">
             <h1>Iniciar sesión</h1>
-            Nick&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TNick" runat="server"></asp:TextBox>
+            Nick:&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TNick" runat="server"></asp:TextBox> 
+            <asp:RequiredFieldValidator ID="RequiredNick" Enabled="false" runat="server" ErrorMessage=" * Usuario obligatorio" ControlToValidate="TNick">
+            </asp:RequiredFieldValidator>
             <br />
-            Password&nbsp;&nbsp;&nbsp;&nbsp;
+            Password:&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TPassword" runat="server"></asp:TextBox>
-            <br />
+            <asp:RequiredFieldValidator ID="RequiredPassword" Enabled="false" runat="server" ErrorMessage=" * Contraseña obligatoria" ControlToValidate="TPassword">
+            </asp:RequiredFieldValidator>
             <br />
             <br />
             <asp:Button ID="BBuscar" runat="server" Text="Entrar" OnClick="Leer"/>
             <br />
-            <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
+            <asp:Label ID="LResultado" runat="server" Text =" " />
         </div>
-    </main>
+    </div>
 </asp:Content>

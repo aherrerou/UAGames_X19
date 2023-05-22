@@ -11,7 +11,7 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["nick"] == null)
+            if (Session["login_nick"] == null)
             {
                 MenuNoSesion.Visible = true;
                 MenuSesion.Visible = false;
@@ -37,10 +37,15 @@ namespace web
         {
             Response.Redirect("Registrar.aspx");
         }
+        protected void clickLista(object sender, EventArgs e)
+        {
+            Response.Redirect("Lista_Deseos.aspx");
+        }
 
         protected void clickLogOut(object sender, EventArgs e)
         {
-            Response.Redirect("Registrar.aspx");
+            Session["login_nick"] = null;
+            Response.Redirect("Inicio.aspx");
         }
     }
 }

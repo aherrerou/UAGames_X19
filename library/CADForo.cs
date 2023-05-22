@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
 
 namespace library
 {
@@ -299,6 +300,14 @@ namespace library
                     c.Close();
             }
             return true;
+        }
+        public DataSet readAllForo()
+        {
+            DataSet data = new DataSet();
+            c = new SqlConnection(conexionBBDD);
+            SqlDataAdapter da= new SqlDataAdapter("Select nombre from Foro", c);
+            da.Fill(data, "Foro");
+            return data;
         }
     }
 }

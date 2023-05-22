@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminOfertas.aspx" />
+    <Content Include="AdminUsuarios.aspx" />
     <Content Include="AdminVideojuegos.aspx" />
     <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database_log.ldf">
@@ -96,7 +97,8 @@
     <Content Include="CategoriaWebForm.aspx" />
     <Content Include="CestaWebForm.aspx" />
     <Content Include="Compras.aspx" />
-    <Content Include="Foro.aspx" />
+    <Content Include="AdminForos.aspx" />
+    <Content Include="Foro_Publico.aspx" />
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
     <Content Include="NoticiaWF.aspx" />
@@ -108,7 +110,6 @@
     <Content Include="SobreNosotros.aspx" />
     <Content Include="CatalogoPrueba.aspx" />
     <Content Include="Terminos.aspx" />
-    <Content Include="Usuario.aspx" />
     <Content Include="Videojuego.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
@@ -121,6 +122,13 @@
     </Compile>
     <Compile Include="AdminOfertas.aspx.designer.cs">
       <DependentUpon>AdminOfertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUsuarios.aspx.cs">
+      <DependentUpon>AdminUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUsuarios.aspx.designer.cs">
+      <DependentUpon>AdminUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminVideojuegos.aspx.cs">
       <DependentUpon>AdminVideojuegos.aspx</DependentUpon>
@@ -157,12 +165,19 @@
     <Compile Include="Compras.aspx.designer.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Foro.aspx.cs">
-      <DependentUpon>Foro.aspx</DependentUpon>
+    <Compile Include="AdminForos.aspx.cs">
+      <DependentUpon>AdminForos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Foro.aspx.designer.cs">
-      <DependentUpon>Foro.aspx</DependentUpon>
+    <Compile Include="AdminForos.aspx.designer.cs">
+      <DependentUpon>AdminForos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Foro_Publico.aspx.cs">
+      <DependentUpon>Foro_Publico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro_Publico.aspx.designer.cs">
+      <DependentUpon>Foro_Publico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicia_Sesion.aspx.cs">
       <DependentUpon>Inicia_Sesion.aspx</DependentUpon>
@@ -262,13 +277,6 @@
     </Compile>
     <Compile Include="Terminos.aspx.designer.cs">
       <DependentUpon>Terminos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Usuario.aspx.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Usuario.aspx.designer.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Videojuego.aspx.cs">
       <DependentUpon>Videojuego.aspx</DependentUpon>
