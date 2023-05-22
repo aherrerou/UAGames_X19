@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
  
-    <div class="container bg-light overflow-auto" style="min-height: 599px;">
+    <div class="container bg-light overflow-auto" style="min-height: 625px;">
         <div class="showGrid">
             <center>
                 <h2>Tu cesta</h2>

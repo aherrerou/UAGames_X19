@@ -68,7 +68,7 @@ namespace web
             }
 
             int precio = int.Parse(filtroPrecio.Text.ToString());
-            query += " precio >= '" + precio + "' ORDER BY '" + orden + "';";
+            query += " precio <= '" + precio + "' ORDER BY '" + orden + "';";
 
 
             ENVideojuego videojuego = new ENVideojuego();          

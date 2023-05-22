@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div class="container bg-light overflow-auto" style="min-height: 599px;">
+    <div class="container bg-light overflow-auto" style="min-height: 625px;">
         <div class="row">
             <div class="col-md-3 align-middle">
                 <h1 class="text-center text-primary">Videojuegos</h1>
@@ -28,7 +28,7 @@
                         <asp:TextBox ID="filtroTitulo" runat="server" placeholder="Videojuego..." value="" CssClass="mb-2" />
                         <!--Precio-->
                         Precio:
-                        <asp:TextBox ID="filtroPrecio" runat="server" type="number" min="0" value="0" CssClass="mb-2"></asp:TextBox>
+                        <asp:TextBox ID="filtroPrecio" runat="server" type="number" min="0" value="100" CssClass="mb-2"></asp:TextBox>
                     </div>
                     <div class="col">
                         <!--DropDown productora-->

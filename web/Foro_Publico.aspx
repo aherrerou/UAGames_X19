@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div class="container bg-light overflow-auto" style="min-height:599px;">
+    <div class="container bg-light overflow-auto" style="min-height:625px;">
         <div class="showGrid">
             <h1>Página de Foro</h1>
             <br />

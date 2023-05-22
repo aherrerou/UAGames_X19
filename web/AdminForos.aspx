@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div class="container bg-light overflow-auto" style="min-height:599px;">>
-        <div class="showGrid">
+    <div class="container bg-light overflow-auto" style="min-height:599px;">
             <h1>Página de foros</h1>
             <h2>Leer o modificar lista de foros</h2>
             Id&nbsp;&nbsp;&nbsp;&nbsp;
@@ -14,13 +13,13 @@
             <asp:TextBox ID="TNombre" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="BLeer_F" runat="server" Text="Leer" OnClick="Leer" />
-            <asp:Button ID="BLeerP_F" runat="server" Text="Leer Primero" OnClick="LeerPrimero" />
-            <asp:Button ID="BLeerA_F" runat="server" Text="Leer Anterior" OnClick="LeerAnterior" />
-            <asp:Button ID="BLeerS_F" runat="server" Text="Leer Siguiente" OnClick="LeerSiguiente" />
-            <asp:Button ID="BCrear_F" runat="server" Text="Crear" OnClick="Crear" />
-            <asp:Button ID="BActualizar_F" runat="server" Text="Actualizar" OnClick="Actualizar" />
-            <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar" />
+            <asp:Button ID="BLeer_F" runat="server" Text="Leer" OnClick="Leer" CssClass="btn btn-primary" />
+            <asp:Button ID="BLeerP_F" runat="server" Text="Leer Primero" OnClick="LeerPrimero" CssClass="btn btn-primary" />
+            <asp:Button ID="BLeerA_F" runat="server" Text="Leer Anterior" OnClick="LeerAnterior"  CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerS_F" runat="server" Text="Leer Siguiente" OnClick="LeerSiguiente" CssClass="btn btn-primary"/>
+            <asp:Button ID="BCrear_F" runat="server" Text="Crear" OnClick="Crear" CssClass="btn btn-primary"/>
+            <asp:Button ID="BActualizar_F" runat="server" Text="Actualizar" OnClick="Actualizar" CssClass="btn btn-primary"/>
+            <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar" CssClass="btn btn-primary"/>
             <br />
             <asp:Label ID="LResultado_F" runat="server" Text=" " />&nbsp;
             <asp:RequiredFieldValidator ID="RequiredForoId" Enabled="false" ControlToValidate="TId_F" runat="server" ErrorMessage="* Id obligatoria"></asp:RequiredFieldValidator>
@@ -33,13 +32,13 @@
             <asp:TextBox ID="TTitulo" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="BLeer_T" runat="server" Text="Leer" OnClick="LeerT" />
-            <asp:Button ID="BLeerP_T" runat="server" Text="Leer Primero" OnClick="LeerPrimeroT" />
-            <asp:Button ID="BLeerA_T" runat="server" Text="Leer Anterior" OnClick="LeerAnteriorT" />
-            <asp:Button ID="BLeerS_T" runat="server" Text="Leer Siguiente" OnClick="LeerSiguienteT" />
-            <asp:Button ID="BCrear_T" runat="server" Text="Crear" OnClick="CrearT" />
-            <asp:Button ID="BActualizar_T" runat="server" Text="Actualizar" OnClick="ActualizarT" />
-            <asp:Button ID="BBorrar_T" runat="server" Text="Borrar" OnClick="BorrarT" />
+            <asp:Button ID="BLeer_T" runat="server" Text="Leer" OnClick="LeerT" CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerP_T" runat="server" Text="Leer Primero" OnClick="LeerPrimeroT" CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerA_T" runat="server" Text="Leer Anterior" OnClick="LeerAnteriorT" CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerS_T" runat="server" Text="Leer Siguiente" OnClick="LeerSiguienteT" CssClass="btn btn-primary"/>
+            <asp:Button ID="BCrear_T" runat="server" Text="Crear" OnClick="CrearT" CssClass="btn btn-primary"/>
+            <asp:Button ID="BActualizar_T" runat="server" Text="Actualizar" OnClick="ActualizarT" CssClass="btn btn-primary"/>
+            <asp:Button ID="BBorrar_T" runat="server" Text="Borrar" OnClick="BorrarT" CssClass="btn btn-primary"/>
             <br />
             <asp:Label ID="LResultado_T" runat="server" Text=" " />&nbsp;
             <asp:RequiredFieldValidator ID="RequiredTemaId" Enabled="false" ControlToValidate="TId_T" runat="server" ErrorMessage="* Id obligatoria"></asp:RequiredFieldValidator>
@@ -55,13 +54,13 @@
             <asp:TextBox ID="TUsuario" runat="server" CausesValidation="True"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="BLeer_P" runat="server" Text="Leer" OnClick="LeerP" />
-            <asp:Button ID="BLeerP_P" runat="server" Text="Leer Primero" OnClick="LeerPrimeroP" />
-            <asp:Button ID="BLeerA_P" runat="server" Text="Leer Anterior" OnClick="LeerAnteriorP" />
-            <asp:Button ID="BLeerS_P" runat="server" Text="Leer Siguiente" OnClick="LeerSiguienteP" />
-            <asp:Button ID="BCrear_P" runat="server" Text="Crear" OnClick="CrearP" />
-            <asp:Button ID="BActualizar_P" runat="server" Text="Actualizar" OnClick="ActualizarP" />
-            <asp:Button ID="BBorrar_P" runat="server" Text="Borrar" OnClick="BorrarP" />
+            <asp:Button ID="BLeer_P" runat="server" Text="Leer" OnClick="LeerP" CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerP_P" runat="server" Text="Leer Primero" OnClick="LeerPrimeroP" CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerA_P" runat="server" Text="Leer Anterior" OnClick="LeerAnteriorP" CssClass="btn btn-primary"/>
+            <asp:Button ID="BLeerS_P" runat="server" Text="Leer Siguiente" OnClick="LeerSiguienteP" CssClass="btn btn-primary"/>
+            <asp:Button ID="BCrear_P" runat="server" Text="Crear" OnClick="CrearP" CssClass="btn btn-primary"/>
+            <asp:Button ID="BActualizar_P" runat="server" Text="Actualizar" OnClick="ActualizarP" CssClass="btn btn-primary"/>
+            <asp:Button ID="BBorrar_P" runat="server" Text="Borrar" OnClick="BorrarP" CssClass="btn btn-primary"/>
             <br />
             <asp:Label ID="LResultado_P" runat="server" Text=" " />&nbsp;
             <asp:RequiredFieldValidator ID="RequiredPubliId" Enabled="false" ControlToValidate="TId_P" runat="server" ErrorMessage="* Id obligatoria"></asp:RequiredFieldValidator>
@@ -78,5 +77,4 @@
                 </asp:GridView>
             </div>
         </div>
-    </div>
 </asp:Content>
