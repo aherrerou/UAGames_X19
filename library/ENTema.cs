@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,6 +86,20 @@ namespace library
             bool result = true;
             CADTema c = new CADTema();
             result = c.deleteTema(this);
+            return result;
+        }
+        public DataSet readAllTema(string foro)
+        {
+            DataSet data = new DataSet();
+            CADTema c = new CADTema();
+            data = c.readAllTema(foro);
+            return data;
+        }
+        public bool readTemaTitulo()
+        {
+            bool result = true;
+            CADTema c = new CADTema();
+            result = c.readTemaTitulo(this);
             return result;
         }
     }
