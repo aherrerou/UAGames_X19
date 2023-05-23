@@ -31,15 +31,40 @@ namespace library
                 CADUsuario usuario = new CADUsuario();
                 usuario.readUsuario(ces.usuarioID);
 
-
-                String sentence = "INSERT INTO [CestaCompra] (usuarioID,videojuegoID,fecha) " +
-                    "VALUES (" + ces.usuarioID.id + ", " + videojuegoID + ", '" + ces.fecha.ToString("yyyy/MM/dd") + " ');";
-
                 connection = new SqlConnection(conexionBBDD);
                 connection.Open();
 
-                SqlCommand com = new SqlCommand(sentence, connection);
-                com.ExecuteNonQuery();
+                string selectQuery = "SELECT COUNT(*) FROM [CestaCompra] WHERE usuarioID = @usuarioID AND videojuegoID = @videojuegoID;";
+                SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+                selectCommand.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                selectCommand.Parameters.AddWithValue("@videojuegoID", videojuegoID);
+                int count = (int)selectCommand.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    // El videojuego ya está en la cesta, incrementar la cantidad
+                    string updateQuery = "UPDATE [CestaCompra] SET cantidad = cantidad + @cantidad WHERE usuarioID = @usuarioID AND videojuegoID = @videojuegoID;";
+                    SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                    updateCommand.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                    updateCommand.Parameters.AddWithValue("@videojuegoID", videojuegoID);
+                    updateCommand.Parameters.AddWithValue("@cantidad", ces.cantidad);
+                    updateCommand.ExecuteNonQuery();
+                }
+
+
+                else
+                {
+                    // El videojuego no está en la cesta, insertarlo
+                    string insertQuery = "INSERT INTO [CestaCompra] (usuarioID, videojuegoID, fecha, cantidad) VALUES (@usuarioID, @videojuegoID, @fecha, @cantidad);";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                    insertCommand.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                    insertCommand.Parameters.AddWithValue("@videojuegoID", videojuegoID);
+                    insertCommand.Parameters.AddWithValue("@fecha", ces.fecha.ToString("yyyy/MM/dd"));
+                    insertCommand.Parameters.AddWithValue("@cantidad", ces.cantidad);
+                    insertCommand.ExecuteNonQuery();
+                }
+
+
                 añadir = true;
             }
             catch (SqlException e)
@@ -67,7 +92,7 @@ namespace library
         {
             bool crear = false;
             SqlConnection conect = null;
-            string query = "INSERT INTO [Cesta]" + "(usuarioID,videojuegoID,fecha)" + "VALUES (@usuarioID, @videojuegoID,@fecha);";
+            string query = "INSERT INTO [CestaCompra]" + "(usuarioID,videojuegoID,fecha,cantidad)" + "VALUES (@usuarioID, @videojuegoID,@fecha,@cantidad);";
 
             try
             {
@@ -78,6 +103,7 @@ namespace library
                 com.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
                 com.Parameters.AddWithValue("@videojuegoID", ces.videojuegoID.Id);
                 com.Parameters.AddWithValue("@fecha", ces.fecha);
+                com.Parameters.AddWithValue("@cantidad", ces.cantidad);
 
                 com.ExecuteNonQuery();
                 crear = true;
@@ -111,7 +137,7 @@ namespace library
         {
             bool controlador = false;
             SqlConnection conect = null;
-            string query = "SELECT * FROM [Cesta] WHERE usuarioID = @usuarioID";
+            string query = "SELECT * FROM [CestaCompra] WHERE usuarioID = @usuarioID";
 
             SqlDataReader dr = null;
 
@@ -121,7 +147,7 @@ namespace library
                 conect.Open();
 
                 SqlCommand com = new SqlCommand(query, conect);
-                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
 
                 dr = com.ExecuteReader();
 
@@ -134,9 +160,12 @@ namespace library
                     vid.Id = Int32.Parse(dr["viedeojuegoID"].ToString());
 
                     ces.fecha = DateTime.Parse(dr["fecha"].ToString());
+                    ces.cantidad = Int32.Parse(dr["cantidad"].ToString());
+
 
                     controlador = true;
-                }             
+                }
+                dr.Close();
             }
 
             catch (SqlException sqlex)
@@ -153,7 +182,6 @@ namespace library
 
             finally
             {
-                if (dr != null) dr.Close();
                 if (conect != null) conect.Close();
             }
 
@@ -173,10 +201,11 @@ namespace library
                 ENUsuario usuaurio = new ENUsuario();
 
 
-                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, v.precio FROM Usuario u " +
+                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, c.cantidad ,SUM(v.precio*c.cantidad) as total FROM Usuario u " +
                "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
                "INNER JOIN Videojuego v ON c.videojuegoID = v.id " +
-               "WHERE u.id ='" + cesta.usuarioID.id + "'";
+               "WHERE u.id ='" + cesta.usuarioID.id + "'" +
+               "GROUP BY c.usuarioID, c.videojuegoID, v.titulo, c.fecha, c.cantidad;";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conect);
                 adapter.Fill(cestas);
@@ -206,7 +235,7 @@ namespace library
             try
             {
                 conect.Open();
-                string query = "update Cesta set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
+                string query = "update CestaCompra set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
 
                 com.ExecuteReader();

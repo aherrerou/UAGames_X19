@@ -64,33 +64,23 @@ namespace library
         }
         public bool createProductora()
         {
-
+            bool creada = true;
             CADProductora nuevaProductora = new CADProductora();
-            bool creada = nuevaProductora.readProductora(this);
+           creada = nuevaProductora.createProductora(this);
             return creada;
         }
-        public bool readFirstProductora()
+        public bool readProductora()
         {
-            CADProductora user = new CADProductora();
-            bool read = user.readFirstProductora(this);
-            return read;
+            bool creada = true;
+            CADProductora prod = new CADProductora();
+            creada = prod.createProductora(this);
+            return creada;
         }
 
-        public bool readNextProductora()
-        {
-            CADProductora user = new CADProductora();
-            bool read = false;
-            if (user.readProductora(this))
-                read = user.readNextProductora(this);
-            return read;
-        }
 
-        public bool readPrevProductora()
-        {
-            CADProductora user = new CADProductora();
-            bool read = user.readPrevProductora(this);
-            return read;
-        }
+
+
+
         public bool updateProductora()
         {
             CADProductora prod = new CADProductora();
@@ -103,12 +93,27 @@ namespace library
             bool deleted = prod.deleteProductora(this);
             return deleted;
         }
-
+        public DataTable readProductoras()
+        {
+            CADProductora productora = new CADProductora();
+            return productora.readProductoras();
+        }
         public DataTable readProductorasNombre()
         {
             CADProductora productora = new CADProductora();
             return productora.readProductorasNombre();
         }
+        public DataTable readProductorasNombre2()
+        {
+            CADProductora productora = new CADProductora();
+            return productora.readProductorasNombre2(this);
+        }
+        public DataTable readProductorasId2()
+        {
+            CADProductora productora = new CADProductora();
+            return productora.readProductorasId2(this);
+        }
+
     }
 }
 

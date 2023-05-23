@@ -110,6 +110,7 @@ CREATE TABLE [dbo].[CestaCompra] (
   [usuarioID] INT NOT NULL,
   [videojuegoID] INT NOT NULL,
   [fecha] DATE,
+  [cantidad] INT,
   FOREIGN KEY ([usuarioID]) REFERENCES Usuario([id]) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ([videojuegoID]) REFERENCES Videojuego([id]) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT PK_CestaCompra PRIMARY KEY ([usuarioID],[videojuegoID])

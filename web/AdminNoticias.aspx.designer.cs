@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class ProductoraWebForm
+    public partial class AdminNoticias
     {
 
         /// <summary>
@@ -33,49 +33,58 @@ namespace web
         protected global::System.Web.UI.WebControls.TextBox txtImg;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control txtTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.TextBox txtTitulo;
 
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control txtContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.WebControls.TextBox txtContenido;
 
         /// <summary>
-        /// Control txtWeb.
+        /// Control txtprodID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtWeb;
+        protected global::System.Web.UI.WebControls.TextBox txtprodID;
 
         /// <summary>
-        /// Control btnCrearProductora.
+        /// Control txtFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCrearProductora;
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
 
         /// <summary>
-        /// Control btnLeerNombre.
+        /// Control btnCrearNoticia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLeerNombre;
+        protected global::System.Web.UI.WebControls.Button btnCrearNoticia;
+
+        /// <summary>
+        /// Control btnLeerNoticia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLeerNoticia;
 
         /// <summary>
         /// Control btnLeerID.
@@ -87,22 +96,22 @@ namespace web
         protected global::System.Web.UI.WebControls.Button btnLeerID;
 
         /// <summary>
-        /// Control btnBorrarProductora.
+        /// Control btnBorrarNoticia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBorrarProductora;
+        protected global::System.Web.UI.WebControls.Button btnBorrarNoticia;
 
         /// <summary>
-        /// Control btnUpdateProductora.
+        /// Control btnUpdateNoticia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateProductora;
+        protected global::System.Web.UI.WebControls.Button btnUpdateNoticia;
 
         /// <summary>
         /// Control btnLeerTodas.

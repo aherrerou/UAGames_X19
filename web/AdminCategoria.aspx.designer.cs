@@ -24,6 +24,15 @@ namespace web
         protected global::System.Web.UI.WebControls.GridView categoriasTable;
 
         /// <summary>
+        /// Control Resultado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Resultado;
+
+        /// <summary>
         /// Control Nombre.
         /// </summary>
         /// <remarks>
@@ -49,14 +58,5 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button crearCategoria;
-
-        /// <summary>
-        /// Control Resultado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Resultado;
     }
 }

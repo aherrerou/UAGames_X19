@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="web.Site1" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+
 
 <!DOCTYPE html>
 
@@ -122,7 +123,7 @@
                         <h5 class="text-decoration-underline">Servicios</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="Catalogo.aspx" class="nav-link p-0 text-white">Catálogo</a></li>
-                            <li class="nav-item mb-2"><a href="Noticias.aspx" class="nav-link p-0 text-white">Noticias</a></li>
+                            <li class="nav-item mb-2"><a href="NoticiaWF.aspx" class="nav-link p-0 text-white">Noticias</a></li>
                             <li class="nav-item mb-2"><a href="Foro_Publico.aspx" class="nav-link p-0 text-white">Foro</a></li>
                         </ul>
                     </div>

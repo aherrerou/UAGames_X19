@@ -54,6 +54,33 @@ namespace web
 
         protected void clickRowUpdateCategorias(object sender, GridViewUpdateEventArgs e)
         {
+            GridViewRow row = categoriasTable.Rows[e.RowIndex];
+            int id = Convert.ToInt32(categoriasTable.DataKeys[e.RowIndex].Value);
+
+            string nombre = ((TextBox)row.Cells[1].Controls[0]).Text;
+            string descripcion = ((TextBox)row.Cells[2].Controls[0]).Text;
+
+            ENCategoria cat = new ENCategoria();
+            cat.id = id;
+            cat.nombre = nombre;
+            cat.descripcion = descripcion;
+
+            bool actualizado = cat.updateCategoria();
+
+
+
+            if (actualizado)
+            {
+                categoriasTable.EditIndex = -1;
+                FillCategoriasTable();
+                //Mensaje mostrando exito
+                Resultado.Text = ("Categoria actualizada correctamente.");
+            }
+            else
+            {
+                //Mensaje mostrando error
+                Resultado.Text = ("Error al actualizar la categoria.");
+            }
 
         }
 

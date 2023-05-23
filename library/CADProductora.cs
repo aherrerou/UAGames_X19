@@ -55,7 +55,6 @@ namespace library
 
             return leida;
         }
-
         public bool readProductoraNombre(ENProductora en)
         {
             bool leida = false;
@@ -92,138 +91,56 @@ namespace library
         }
 
 
-        public void createProductora(ENProductora en)
+
+        //Funciona
+        public bool createProductora(ENProductora en)
         {
+            bool creada = false;
+            SqlConnection conect = null;
+            string query = "INSERT INTO [Productora]" + "(nombre,descripcion,imagen,web)" + "VALUES (@nombre, @descripcion,@imagen,@web);";
             try
             {
-                con = new SqlConnection(datos);
-                con.Open();
-                string query = "INSERT INTO Productora (Nombre, Descripcion, Imagen, Web) VALUES (@Nombre, @Descripcion, @Imagen, @Web)";
-                SqlCommand consulta = new SqlCommand(query, con);
-                consulta.Parameters.AddWithValue("@Nombre", en.Nombre);
-                consulta.Parameters.AddWithValue("@Descripcion", en.Descripcion);
-                consulta.Parameters.AddWithValue("@Imagen", en.Imagen);
-                consulta.Parameters.AddWithValue("@Web", en.Web);
+                conect = new SqlConnection(datos);
+                conect.Open();
+               
+                SqlCommand consulta = new SqlCommand(query, conect);
+                consulta.Parameters.AddWithValue("@nombre", en.Nombre);
+                consulta.Parameters.AddWithValue("@descripcion", en.Descripcion);
+                consulta.Parameters.AddWithValue("@imagen", en.Imagen);
+                consulta.Parameters.AddWithValue("@web", en.Web);
                 consulta.ExecuteNonQuery();
+                creada = true;
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return creada;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al crear la productora en la base de datos: " + ex.Message);
+                creada = false;
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                
             }
             finally
             {
-                if (con != null)
-                    con.Close();
+                if (conect != null)
+                    conect.Close();
             }
+           
+            return creada;
         }
 
-        public bool readFirstProductora(ENProductora en)
-        {
-            try
-            {
-                con = new SqlConnection(datos);
-                con.Open();
-                string query = "SELECT TOP 1 * FROM Productora ORDER BY Id ASC";
-                SqlCommand consulta = new SqlCommand(query, con);
-                SqlDataReader search = consulta.ExecuteReader();
-                if (search.Read())
-                {
-                    en.Id = int.Parse(search["Id"].ToString());
-                    en.Nombre = search["Nombre"].ToString();
-                    en.Descripcion = search["Descripcion"].ToString();
-                    en.Imagen = search["Imagen"].ToString();
-                    en.Web = search["Web"].ToString();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la primera productora de la base de datos: " + ex.Message);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
+        
+        
 
 
-        public bool readNextProductora(ENProductora en)
-        {
-            try
-            {
-                con = new SqlConnection(datos);
-                con.Open();
-                string query = "SELECT TOP 1 * FROM Productora WHERE Id > @Id ORDER BY Id ASC";
-                SqlCommand consulta = new SqlCommand(query, con);
-                consulta.Parameters.AddWithValue("@Id", en.Id);
-                SqlDataReader search = consulta.ExecuteReader();
-                if (search.Read())
-                {
-                    en.Id = int.Parse(search["Id"].ToString());
-                    en.Nombre = search["Nombre"].ToString();
-                    en.Descripcion = search["Descripcion"].ToString();
-                    en.Imagen = search["Imagen"].ToString();
-                    en.Web = search["Web"].ToString();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la productora siguiente de la base de datos: " + ex.Message);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
+       
 
 
-        public bool readPrevProductora(ENProductora en)
-        {
-            try
-            {
-                con = new SqlConnection(datos);
-                con.Open();
-                string query = "SELECT TOP 1 * FROM Productora WHERE Id < @Id ORDER BY Id DESC";
-                SqlCommand consulta = new SqlCommand(query, con);
-                consulta.Parameters.AddWithValue("@Id", en.Id);
-                SqlDataReader search = consulta.ExecuteReader();
-                if (search.Read())
-                {
-                    en.Id = int.Parse(search["Id"].ToString());
-                    en.Nombre = search["Nombre"].ToString();
-                    en.Descripcion = search["Descripcion"].ToString();
-                    en.Imagen = search["Imagen"].ToString();
-                    en.Web = search["Web"].ToString();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la productora previa de la base de datos: " + ex.Message);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
+       
 
-
+        //FUnciona
 
         public bool updateProductora(ENProductora en)
         {
@@ -258,6 +175,7 @@ namespace library
 
 
         }
+        //Funciona
         public bool deleteProductora(ENProductora en)
         {
             bool del = false;
@@ -282,6 +200,68 @@ namespace library
             }
             return del;
         }
+        //FUnciona
+        public DataTable readProductorasNombre2(ENProductora en)
+        {
+            SqlConnection connection = null;
+            DataTable productoras = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(datos);
+                connection.Open();
+
+                string sentence = "SELECT nombre, id,imagen,web,descripcion FROM [Productora] where nombre='" +en.Nombre + "';";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(productoras);
+                
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return productoras;
+        }
+        public DataTable readProductorasId2(ENProductora en)
+        {
+            SqlConnection connection = null;
+            DataTable productoras = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(datos);
+                connection.Open();
+
+                string sentence = "SELECT nombre, id,imagen,web,descripcion FROM [Productora] where id='" + en.Id + "';";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(productoras);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return productoras;
+        }
+
 
         public DataTable readProductorasNombre()
         {
@@ -293,9 +273,40 @@ namespace library
                 connection = new SqlConnection(datos);
                 connection.Open();
 
-                string sentence = "SELECT nombre, id FROM [Productora];";
+                string sentence = "SELECT nombre, id,imagen,web,descripcion FROM [Productora];";
                 SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
                 adapter.Fill(productoras);
+
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Reading productoras operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return productoras;
+        }
+        //Lee y devuelve todas
+        public DataTable readProductoras()
+        {
+            SqlConnection connection = null;
+            DataTable productoras = new DataTable();
+
+            try
+            {
+                connection = new SqlConnection(datos);
+                connection.Open();
+
+                string sentence = "SELECT * FROM Productora";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
+                adapter.Fill(productoras);
+
 
             }
             catch (SqlException sqlex)

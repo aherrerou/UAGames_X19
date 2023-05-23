@@ -149,39 +149,52 @@ namespace library
             return categorias;
         }
 
-        public bool updateCategoria(ENCategoria categoria)
+        public bool updateCategoria(ENCategoria cat)
         {
-
+            bool actualizar = false;
             SqlConnection conect = null;
 
             try
             {
-                
+                String query = "UPDATE [Categoria] SET nombre = @nombre, descripcion = @descripcion WHERE id = @id;";
+
+                conect = new SqlConnection(conexionBBDD);
                 conect.Open();
-                string query = "update Categoria set nombre = " + categoria.id + ", descripcion = '"+ categoria.descripcion  + "'where id = '" + categoria.id + "';";
+
                 SqlCommand com = new SqlCommand(query, conect);
-                com.ExecuteReader();
+
+                com.Parameters.AddWithValue("@nombre", cat.nombre);
+                com.Parameters.AddWithValue("@descripcion", cat.descripcion);
+                com.Parameters.AddWithValue("@id", cat.id);
+
+                com.ExecuteNonQuery();
+
+
+                actualizar = true;
 
             }
 
             catch (SqlException sqlex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+                actualizar = false;
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                actualizar = false;
             }
 
             finally
             {
-                conect.Close();
+                if (conect != null)
+                {
+                    conect.Close();
+                }
             }
 
-            return true;
+            return actualizar;
         }
 
         public bool deleteCategoria(ENCategoria categoria)

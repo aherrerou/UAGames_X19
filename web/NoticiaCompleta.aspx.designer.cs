@@ -11,25 +11,16 @@ namespace web
 {
 
 
-    public partial class Compras
+    public partial class NoticiaCompleta
     {
 
         /// <summary>
-        /// Control GridView1.
+        /// Control ListView1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-
-        /// <summary>
-        /// Control UAGAMES.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource UAGAMES;
+        protected global::System.Web.UI.WebControls.ListView ListView1;
     }
 }
