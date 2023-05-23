@@ -81,6 +81,8 @@ namespace web
                     auxUser.readUsuario();
                     cesta.usuarioID.id = auxUser.id;
                     cesta.readCesta();
+
+
                     //Agregar elemento a la lista
                     cesta.addVideojuego(videojuego.Id);
                 }
