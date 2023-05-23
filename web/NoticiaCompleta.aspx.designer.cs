@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class NoticiaWF
+    public partial class NoticiaCompleta
     {
 
         /// <summary>
