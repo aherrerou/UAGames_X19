@@ -66,5 +66,15 @@ namespace web
             else
                 LResultado.Text = "Proceso de publicación realizado con éxito";
         }
+        protected void ChangePage(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            ENPublicacion en = new ENPublicacion();
+            DataSet d = new DataSet();
+            string tema = DTema.SelectedItem.Text;
+            d = en.listarClientesDPublico(tema);
+            GridView1.DataSource = d;
+            GridView1.DataBind();
+        }
     }
 }

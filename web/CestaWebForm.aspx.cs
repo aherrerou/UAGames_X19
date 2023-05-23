@@ -13,6 +13,8 @@ namespace web
 {
         public partial class CestaWebForm : System.Web.UI.Page
         {
+        // Aquí indicar el id de la base de datos por la que empezará, revisad que no haya saltos
+        public static int idCabecera = 1;
 
             DataTable data = new DataTable();
             protected void Page_Load(object sender, EventArgs e)
@@ -100,7 +102,42 @@ namespace web
 
             protected void ComprarClick(object sender, EventArgs e)
             {
+            if (Session["login_nick"] == null)
+            {
+                Response.Redirect("Inicia_Sesion.aspx");
+            }
+            else
+            {
+                ENUsuario usuario = new ENUsuario();
+                usuario.nick = Session["login_nick"].ToString();
+                usuario.readUsuario();
+                DateTime fecha = DateTime.Now;
+                double precioTotal = 0.00;
+                foreach (GridViewRow row in cestaTable.Rows)
+                {
+                    String precio = row.Cells[4].Text;
+                    precioTotal += Convert.ToDouble(precio);
+                };
+
+                ENCabecera_Compra compra = new ENCabecera_Compra(usuario, fecha, precioTotal);
+                compra.createCabecera_Compra();
+                // Falta que recorra todos los productos, actualmente sólo podemos hacer pedido de 1 producto y una unidad.
+                int cantidad = 1;
+                foreach (GridViewRow row in cestaTable.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        double importe = Convert.ToDouble(row.Cells[4].Text);
+                        ENVideojuego videojuego = new ENVideojuego();
+                        ENCesta cesta = new ENCesta();
+                        videojuego.Id = cesta.articulosCesta(usuario);
+                        ENLinea_Compra linea = new ENLinea_Compra(cantidad, importe, videojuego);
+                        linea.createLinea_Compra(CestaWebForm.idCabecera);
+                        CestaWebForm.idCabecera++;
+                    }
+                }
                 Response.Redirect("ThankYouPage.aspx");
+            }
             }
         }
 }

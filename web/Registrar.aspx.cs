@@ -24,10 +24,19 @@ namespace web
                 {
                     ENUsuario en = new ENUsuario(0, TNick.Text, TNombre.Text, TApellidos.Text, TEmail.Text, TPassword.Text, Convert.ToDateTime(TFecha.Text), TTelefono.Text, false);
                     bool result = en.createUsuario();
+                    en.readUsuario();
                     if (result == false)
                         LResultado.Text = "Error en la creación del usuario";
                     else
-                        LResultado.Text = "Proceso de creación realizado con éxito";
+                    {
+                        ENLista_Deseos lista = new ENLista_Deseos();
+                        lista.nombre = "Lista de " + en.nick;
+                        lista.descripcion = "Lista de deseos de " + en.nombre + " " + en.apellidos;
+                        lista.usuario = en;
+                        lista.createLista();
+                        Session["login_nick"] = en.nick;
+                        Response.Redirect("Inicio.aspx");
+                    }
                 }
             }
         }

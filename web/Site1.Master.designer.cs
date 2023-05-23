@@ -42,6 +42,15 @@ namespace web
         protected global::System.Web.UI.WebControls.Menu menu;
 
         /// <summary>
+        /// Control menuAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Menu menuAdmin;
+
+        /// <summary>
         /// Control MenuNoSesion.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BtnCart;
+
+        /// <summary>
+        /// Control BtnLista.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BtnLista;
 
         /// <summary>
         /// Control BtnSalir.

@@ -300,5 +300,28 @@ namespace library
 
             return controlador;
         }
+        public int articulosCesta(ENUsuario usuario)
+        {
+            int videojuegoID = 0;
+            using (SqlConnection conect = new SqlConnection(conexionBBDD))
+            {
+                conect.Open();
+                string query = "SELECT CESTACOMPRA.videojuegoID FROM USUARIO INNER JOIN CESTACOMPRA ON Usuario.id = CESTACOMPRA.usuarioID WHERE Usuario.id = @UsuarioID";
+                SqlCommand com = new SqlCommand(query, conect);
+                com.Parameters.AddWithValue("@UsuarioID", usuario.id);
+
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    videojuegoID = Convert.ToInt32(reader["videojuegoID"]);
+                }
+
+                reader.Close();
+                conect.Close();
+            }
+            return videojuegoID;
+        }
+
     }
 }

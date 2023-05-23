@@ -16,6 +16,8 @@ namespace web
         }
         protected void Leer(object sender, EventArgs e)
         {
+            RequiredNick.Enabled = true;
+            RequiredPassword.Enabled = true;
             if (Page.IsValid) { 
                 ENUsuario en = new ENUsuario(0, TNick.Text, "blank", "blank", "blank", TPassword.Text, System.DateTime.Now, "blank", false);
                 bool result = en.readUsuario();
@@ -32,6 +34,8 @@ namespace web
                     }
                 }
             }
+            RequiredNick.Enabled = false;
+            RequiredPassword.Enabled = false;
         }
     }
 }

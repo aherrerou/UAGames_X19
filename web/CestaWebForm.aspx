@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
  
-    <div class="container bg-light overflow-auto" style="min-height: 599px;">
+    <div class="container bg-light overflow-auto" style="min-height: 625px;">
         <div class="showGrid">
             <center>
                 <h2>Tu cesta</h2>
@@ -57,7 +57,7 @@
             <asp:Label ID="Resultado" runat="server" Text =" " />&nbsp;
             <div>
                 
-                    <asp:Button id="comprar" Text="Comprar" runat="server" OnClick="ComprarClick" NavigateUrl="Foro.aspx"/>
+                    <asp:Button id="comprar" CssClass="btn btn-primary" Text="Comprar" runat="server" OnClick="ComprarClick" NavigateUrl="Foro.aspx"/>
                 
             </div>
             </center>

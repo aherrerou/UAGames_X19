@@ -23,13 +23,17 @@ namespace library {
             this.videojuego = new ENVideojuego();
             this.cabecera = new ENCabecera_Compra();
         }
-        public bool createLinea_Compra()
+        public ENLinea_Compra(int cantidad, double importe, ENVideojuego videojuego)
         {
-            //Pruebas
-            //this.videojuego.id = 1;
-            //this.cabecera.id = 4;
-            //
-            return this.linea.createLinea(this);
+            this.cantidad = cantidad;
+            this.importe = importe;
+            this.videojuego = videojuego;
+
+        }
+        public bool createLinea_Compra(int idcabecera)
+        {
+            CADLinea_Compra linea = new CADLinea_Compra();
+            return linea.createLinea(this, idcabecera);
         }
         public bool deleteLinea_Compra()
         {

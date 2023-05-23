@@ -55,7 +55,7 @@ namespace library
         public bool readUsuario(ENUsuario usuario) //busca un usuario por su nick, que es único
         {
             bool sigue_while = true;
-            string query = "Select * from Usuario where nick = '" + usuario.nick + "'";
+            string query = "Select * from [Usuario] where nick = '" + usuario.nick + "';";
             try
             {
                 c = new SqlConnection(conexionBBDD);

@@ -18,7 +18,6 @@ namespace library
         public CADCategoria()
         {
             conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
-            
         }
 
         public bool createCategoria(ENCategoria categoria)
@@ -299,7 +298,7 @@ namespace library
                 if (dr.Read())
                 {
                     en.id = Int32.Parse(dr["id"].ToString());
-                    en.descripcion = dr["descripcion"].ToString();
+                    en.descripcion = dr["descripcion"].ToString();  
                     leida = true;
                 }
 
