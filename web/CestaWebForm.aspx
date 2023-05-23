@@ -24,6 +24,7 @@
                     <asp:BoundField DataField="videojuegoID" HeaderText="UsuarioID" ReadOnly="True" SortExpression="UsuarioID" />
                     <asp:BoundField DataField="titulo" HeaderText="Titulo" ReadOnly="True" SortExpression="Titulo" />
                     <asp:BoundField DataField="fecha" HeaderText="Fecha" ReadOnly="True" SortExpression="Fecha" />
+                    <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ReadOnly="True" SortExpression="Cantidad" />
                     <asp:BoundField DataField="precio" HeaderText="Precio" ReadOnly="True" SortExpression="Precio" />
 
 

@@ -12,6 +12,7 @@ namespace library
         private ENUsuario usuario;
         private ENVideojuego videojuego;
         private DateTime fecha_interna;
+        private int cantidad_interna;
 
         public ENUsuario usuarioID
         {
@@ -34,19 +35,28 @@ namespace library
             set { fecha_interna = value; }
         }
 
+        public int cantidad
+        {
+
+            get { return cantidad_interna; }
+            set { cantidad_interna = value; }
+        }
+
         // Constructor
         public ENCesta()
         {
             videojuegoID = new ENVideojuego();
             usuarioID = new ENUsuario();
             fecha = DateTime.UtcNow;
+            cantidad = 1;
         }
 
-        public ENCesta(ENUsuario usu, ENVideojuego videojuego, DateTime Fecha)
+        public ENCesta(ENUsuario usu, ENVideojuego videojuego, DateTime Fecha, int cant)
         {
             usuarioID = usu;
             videojuegoID = videojuego;
             fecha = Fecha;
+            cantidad = cant;
         }
 
         // Métodos

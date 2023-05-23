@@ -32,8 +32,8 @@ namespace library
                 usuario.readUsuario(ces.usuarioID);
 
 
-                String sentence = "INSERT INTO [CestaCompra] (usuarioID,videojuegoID,fecha) " +
-                    "VALUES (" + ces.usuarioID.id + ", " + videojuegoID + ", '" + ces.fecha.ToString("yyyy/MM/dd") + " ');";
+                String sentence = "INSERT INTO [CestaCompra] (usuarioID,videojuegoID,fecha,cantidad) " +
+                    "VALUES (" + ces.usuarioID.id + ", " + videojuegoID + ", '" + ces.fecha.ToString("yyyy/MM/dd")+ "'," + ces.cantidad + ");";
 
                 connection = new SqlConnection(conexionBBDD);
                 connection.Open();
@@ -67,7 +67,7 @@ namespace library
         {
             bool crear = false;
             SqlConnection conect = null;
-            string query = "INSERT INTO [Cesta]" + "(usuarioID,videojuegoID,fecha)" + "VALUES (@usuarioID, @videojuegoID,@fecha);";
+            string query = "INSERT INTO [CestaCompra]" + "(usuarioID,videojuegoID,fecha,cantidad)" + "VALUES (@usuarioID, @videojuegoID,@fecha,@cantidad);";
 
             try
             {
@@ -78,6 +78,7 @@ namespace library
                 com.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
                 com.Parameters.AddWithValue("@videojuegoID", ces.videojuegoID.Id);
                 com.Parameters.AddWithValue("@fecha", ces.fecha);
+                com.Parameters.AddWithValue("@cantidad", ces.cantidad);
 
                 com.ExecuteNonQuery();
                 crear = true;
@@ -111,7 +112,7 @@ namespace library
         {
             bool controlador = false;
             SqlConnection conect = null;
-            string query = "SELECT * FROM [Cesta] WHERE usuarioID = @usuarioID";
+            string query = "SELECT * FROM [CestaCompra] WHERE usuarioID = @usuarioID";
 
             SqlDataReader dr = null;
 
@@ -121,7 +122,7 @@ namespace library
                 conect.Open();
 
                 SqlCommand com = new SqlCommand(query, conect);
-                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID);
+                com.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
 
                 dr = com.ExecuteReader();
 
@@ -134,9 +135,12 @@ namespace library
                     vid.Id = Int32.Parse(dr["viedeojuegoID"].ToString());
 
                     ces.fecha = DateTime.Parse(dr["fecha"].ToString());
+                    ces.cantidad = Int32.Parse(dr["cantidad"].ToString());
+
 
                     controlador = true;
-                }             
+                }
+                dr.Close();
             }
 
             catch (SqlException sqlex)
@@ -153,7 +157,6 @@ namespace library
 
             finally
             {
-                if (dr != null) dr.Close();
                 if (conect != null) conect.Close();
             }
 
@@ -173,7 +176,7 @@ namespace library
                 ENUsuario usuaurio = new ENUsuario();
 
 
-                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, v.precio FROM Usuario u " +
+                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, c.cantidad ,v.precio FROM Usuario u " +
                "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
                "INNER JOIN Videojuego v ON c.videojuegoID = v.id " +
                "WHERE u.id ='" + cesta.usuarioID.id + "'";
@@ -206,7 +209,7 @@ namespace library
             try
             {
                 conect.Open();
-                string query = "update Cesta set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
+                string query = "update CestaCompra set" + "videojuegoID = '" + videojuego.Id + "' where usuarioID = '" + usuario.id + "';";
                 SqlCommand com = new SqlCommand(query, conect);
 
                 com.ExecuteReader();
