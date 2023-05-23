@@ -31,15 +31,40 @@ namespace library
                 CADUsuario usuario = new CADUsuario();
                 usuario.readUsuario(ces.usuarioID);
 
-
-                String sentence = "INSERT INTO [CestaCompra] (usuarioID,videojuegoID,fecha,cantidad) " +
-                    "VALUES (" + ces.usuarioID.id + ", " + videojuegoID + ", '" + ces.fecha.ToString("yyyy/MM/dd")+ "'," + ces.cantidad + ");";
-
                 connection = new SqlConnection(conexionBBDD);
                 connection.Open();
 
-                SqlCommand com = new SqlCommand(sentence, connection);
-                com.ExecuteNonQuery();
+                string selectQuery = "SELECT COUNT(*) FROM [CestaCompra] WHERE usuarioID = @usuarioID AND videojuegoID = @videojuegoID;";
+                SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+                selectCommand.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                selectCommand.Parameters.AddWithValue("@videojuegoID", videojuegoID);
+                int count = (int)selectCommand.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    // El videojuego ya está en la cesta, incrementar la cantidad
+                    string updateQuery = "UPDATE [CestaCompra] SET cantidad = cantidad + @cantidad WHERE usuarioID = @usuarioID AND videojuegoID = @videojuegoID;";
+                    SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                    updateCommand.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                    updateCommand.Parameters.AddWithValue("@videojuegoID", videojuegoID);
+                    updateCommand.Parameters.AddWithValue("@cantidad", ces.cantidad);
+                    updateCommand.ExecuteNonQuery();
+                }
+
+
+                else
+                {
+                    // El videojuego no está en la cesta, insertarlo
+                    string insertQuery = "INSERT INTO [CestaCompra] (usuarioID, videojuegoID, fecha, cantidad) VALUES (@usuarioID, @videojuegoID, @fecha, @cantidad);";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                    insertCommand.Parameters.AddWithValue("@usuarioID", ces.usuarioID.id);
+                    insertCommand.Parameters.AddWithValue("@videojuegoID", videojuegoID);
+                    insertCommand.Parameters.AddWithValue("@fecha", ces.fecha.ToString("yyyy/MM/dd"));
+                    insertCommand.Parameters.AddWithValue("@cantidad", ces.cantidad);
+                    insertCommand.ExecuteNonQuery();
+                }
+
+
                 añadir = true;
             }
             catch (SqlException e)
@@ -176,10 +201,11 @@ namespace library
                 ENUsuario usuaurio = new ENUsuario();
 
 
-                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, c.cantidad ,v.precio FROM Usuario u " +
+                string query = "SELECT c.usuarioID, c.videojuegoID, v.titulo, c.fecha, c.cantidad ,SUM(v.precio*c.cantidad) as total FROM Usuario u " +
                "INNER JOIN CestaCompra c ON u.id = c.usuarioID " +
                "INNER JOIN Videojuego v ON c.videojuegoID = v.id " +
-               "WHERE u.id ='" + cesta.usuarioID.id + "'";
+               "WHERE u.id ='" + cesta.usuarioID.id + "'" +
+               "GROUP BY c.usuarioID, c.videojuegoID, v.titulo, c.fecha, c.cantidad;";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conect);
                 adapter.Fill(cestas);

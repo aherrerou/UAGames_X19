@@ -32,7 +32,7 @@ namespace web
                     // Recorre los elementos del GridView y suma el precio de cada uno
                     foreach (GridViewRow row in cestaTable.Rows)
                     {
-                        precioTotal += Convert.ToDecimal(row.Cells[4].Text);
+                        precioTotal += Convert.ToDecimal(row.Cells[5].Text);
                     }
 
                     // Muestra el precio total en un Label
@@ -55,10 +55,9 @@ namespace web
                 ENUsuario usuario = new ENUsuario();
                 usuario.nick = (Session["login_nick"]).ToString();
                 usuario.readUsuario();
-
                 ENCesta cesta = new ENCesta();
                 cesta.usuarioID.id = usuario.id;
-
+                
                 data = cesta.readCestas();
                 cestaTable.DataSource = data;
                 cestaTable.DataBind();               

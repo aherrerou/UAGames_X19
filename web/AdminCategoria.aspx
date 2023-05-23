@@ -40,7 +40,9 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-            </div> 
+
+            </div>
+            <asp:Label ID="Resultado" runat="server" Text =" " />&nbsp;    
             <br />
 
             <h2>Crear Categoria</h2>  
@@ -53,7 +55,7 @@
                     <asp:Button id="crearCategoria" Text="Crear" runat="server" OnClick="crearCategoriaClick"/>
                  </div>
                  
-                <asp:Label ID="Resultado" runat="server" Text =" " />&nbsp;
+                
 
             </div>
         </center>

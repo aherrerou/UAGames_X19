@@ -25,7 +25,7 @@
                     <asp:BoundField DataField="titulo" HeaderText="Titulo" ReadOnly="True" SortExpression="Titulo" />
                     <asp:BoundField DataField="fecha" HeaderText="Fecha" ReadOnly="True" SortExpression="Fecha" />
                     <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ReadOnly="True" SortExpression="Cantidad" />
-                    <asp:BoundField DataField="precio" HeaderText="Precio" ReadOnly="True" SortExpression="Precio" />
+                    <asp:BoundField DataField="total" HeaderText="Total" ReadOnly="True" SortExpression="Total" />
 
 
                     <asp:CommandField HeaderText=" " ButtonType="Image" CancelImageUrl="~/assets/imagenes/iconos/cancel.png" EditImageUrl="~/assets/imagenes/iconos/edit.png"
