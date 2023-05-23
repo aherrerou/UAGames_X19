@@ -358,7 +358,7 @@ namespace library
         {
             DataSet bdvirtual = new DataSet();
 
-            string query = "select v.titulo, v.fecha_lanzamiento from Videojuego as v join ListaDeseosVideojuego as dv on v.id=dv.videojuegoID join ListaDeseos as d on dv.listaDeseosID=d.id where d.usuarioID = " + lista.usuario.id;
+            string query = "select v.titulo as Título, v.fecha_lanzamiento as Lanzamiento from Videojuego as v join ListaDeseosVideojuego as dv on v.id=dv.videojuegoID join ListaDeseos as d on dv.listaDeseosID=d.id where d.usuarioID = " + lista.usuario.id;
             SqlConnection c = new SqlConnection(conexionBBDD);
             SqlDataAdapter da = new SqlDataAdapter(query, c);
             da.Fill(bdvirtual, "Videojuego");
