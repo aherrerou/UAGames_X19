@@ -56,9 +56,10 @@ namespace library
         public bool deleteReview(ENReview review)
         {
             bool result = true;
-           
+
             //Borramos la review
-            if (result) { 
+            if (result)
+            {
                 try
                 {
                     c.Open();
@@ -121,11 +122,11 @@ namespace library
             try
             {
                 c.Open();
-                string query = "SELECT r.* , v.Imagen as imagen , v.nombre as nombrejuego, u.nombre as nombreUsuario"
-                    +" FROM Review r , videojuego v , usuario u " 
-                    + "where v.Id = r.videojuegoID and r.usuarioID = u.id " +
-                    "and (@videojuegoID is null or r.videojuegoID = @videojuegoID) " +
-                    "and (@usuarioID is null or r.usuarioID = @usuarioID);";
+                string query = "SELECT r.* , v.Titulo as nombrejuego, u.nombre as usuario" +
+                    " FROM Review r , videojuego v , usuario u " +
+                    "where v.Id = r.videojuegoID and r.usuarioID = u.id " +
+                    "and (@videojuegoID = 0 or r.videojuegoID = @videojuegoID) " +
+                    "and (@usuarioID = 0 or r.usuarioID = @usuarioID);";
                 SqlCommand com1 = new SqlCommand(query, c);
                 com1.Parameters.AddWithValue("@videojuegoID", review.videojuego.Id);
                 com1.Parameters.AddWithValue("@usuarioID", review.usuario.id);
@@ -150,7 +151,7 @@ namespace library
         public bool updateReview(ENReview review)
         {
             bool result = true;
-           
+
             try
             {
                 c.Open();
@@ -207,7 +208,7 @@ namespace library
                     review.puntuacion = Convert.ToInt32(dr["puntuacion"].ToString());
 
                     //Lectura del videojuego
-                    ENVideojuego v= new ENVideojuego();
+                    ENVideojuego v = new ENVideojuego();
                     v.Id = Convert.ToInt32(dr["videojuegoID"].ToString());
                     v.readVideojuego();
 
@@ -238,16 +239,18 @@ namespace library
             return leido;
         }
 
-        public DataTable listarReviews(ENReview review)
+        public DataTable misReviews(ENReview review)
         {
             DataTable dataTable = new DataTable();
             try
             {
                 c.Open();
-                string query = "SELECT r.* , v.Imagen as imagen , v.Titulo as nombrejuego, u.nombre as nombreUsuario" +
+                string query = "SELECT r.* , v.Imagen as imagen , v.Titulo as nombrejuego, u.nombre as usuario" +
                     " FROM Review r , videojuego v , usuario u " +
-                    "where v.Id = r.videojuegoID and r.usuarioID = u.id;";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, c);
+                    "where v.Id = r.videojuegoID and r.usuarioID = u.id and r.usuarioID = @usuarioID;";
+                SqlCommand com1 = new SqlCommand(query, c);
+                com1.Parameters.AddWithValue("@usuarioID", review.usuario.id);
+                SqlDataAdapter adapter = new SqlDataAdapter(com1);
                 adapter.Fill(dataTable);
             }
             catch (SqlException ex)
@@ -263,39 +266,6 @@ namespace library
                 c.Close();
             }
             return dataTable;
-        }
-
-        public DataTable readReviews(int videojuego)
-        {
-            SqlConnection connection = null;
-            DataTable videojuegos = new DataTable();
-
-            try
-            {
-                connection = new SqlConnection(conexionBBDD);
-                connection.Open();
-
-                string sentence = "SELECT r.id, r.puntuacion, r.comentario, r.fecha, " +
-                    "u.nick AS usuario FROM [Review] r " +
-                    "JOIN [Usuario] u ON r.usuarioID = u.id " +
-                    "WHERE r.videojuegoID = '" + videojuego + "';";
-                SqlDataAdapter adapter = new SqlDataAdapter(sentence, connection);
-                adapter.Fill(videojuegos);
-
-            }
-            catch (SqlException sqlex)
-            {
-                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", sqlex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Reading videojuegos operation has failed.Error: {0}", ex.Message);
-            }
-            finally
-            {
-                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
-            }
-            return videojuegos;
         }
     }
 }

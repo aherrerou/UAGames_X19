@@ -31,7 +31,7 @@ namespace library
             this.review = new CADReview();
         }
 
-        public ENReview(DateTime fecha , int puntuacion , string comentario , ENVideojuego videojuego , ENUsuario usuario)
+        public ENReview(DateTime fecha, int puntuacion, string comentario, ENVideojuego videojuego, ENUsuario usuario)
         {
             this.usuario = usuario;
             this.videojuego = videojuego;
@@ -58,9 +58,9 @@ namespace library
             return this.review.readReview(this);
         }
 
-        public DataTable listarReviews()
+        public DataTable misReviews()
         {
-            return this.review.listarReviews(this);
+            return this.review.misReviews(this);
         }
 
         public bool comprobarUsuarioReview()
