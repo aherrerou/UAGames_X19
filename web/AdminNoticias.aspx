@@ -76,16 +76,13 @@
             resize: vertical;
         }
         input[type=submit] {
-            background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
         }
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
+
     </style>
     <div class="container bg-light overflow-auto list-container" style="min-height:300px;">
 
@@ -117,15 +114,15 @@
                 <label for="txtFecha">Fecha de publicación:</label>
                 <asp:TextBox ID="txtFecha" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
-            <div>
-              <asp:Button ID="btnCrearNoticia" runat="server" Text="CrearNoticia" OnClick="onCrear" />
-                 <asp:Button ID="btnLeerNoticia" runat="server" Text="Leer Noticia por titulo" OnClick="onLeerTitulo" />
-                <asp:Button ID="btnLeerID" runat="server" Text="Leer Noticia por ID" OnClick="onLeerId" />
-                 <asp:Button ID="btnBorrarNoticia" runat="server" Text="Borrar Noticia" OnClick="onBorrar" />
-                <asp:Button ID="btnUpdateNoticia" runat="server" Text="Actualizar Noticia" OnClick="onUpdate" />
+<div>
+    <asp:Button ID="btnCrearNoticia" runat="server" Text="Crear Noticia" OnClick="onCrear" style="background-color: green;" />
+    <asp:Button ID="btnLeerNoticia" runat="server" Text="Leer Noticia por título" OnClick="onLeerTitulo" style="background-color: green;" />
+    <asp:Button ID="btnLeerID" runat="server" Text="Leer Noticia por ID" OnClick="onLeerId" style="background-color: green;" />
+    <asp:Button ID="btnBorrarNoticia" runat="server" Text="Borrar Noticia" OnClick="onBorrar" style="background-color: green;" />
+    <asp:Button ID="btnUpdateNoticia" runat="server" Text="Actualizar Noticia" OnClick="onUpdate" style="background-color: green;" />
+    <asp:Button ID="btnLeerTodas" runat="server" Text="Mostrar todas las noticias" OnClick="onLeerTodas" style="background-color: green;" />
+</div>
 
-                 <asp:Button ID="btnLeerTodas" runat="server" Text="Mostrar todas las noticias" OnClick="onLeerTodas" />
-            </div>
         </div>
     </form>
     <br />
@@ -178,7 +175,6 @@
     }
 
     input[type=submit] {
-        background-color: #4CAF50;
         color: white;
         padding: 10px 20px;
         border: none;
@@ -186,10 +182,6 @@
         cursor: pointer;
         margin-right: 10px;
         margin-bottom: 10px;
-    }
-
-    input[type=submit]:hover {
-        background-color: #45a049;
     }
 
     .list {

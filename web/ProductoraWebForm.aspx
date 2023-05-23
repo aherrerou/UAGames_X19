@@ -39,7 +39,6 @@
     }
 
     input[type=submit] {
-        background-color: #4CAF50;
         color: white;
         padding: 10px 20px;
         border: none;
@@ -49,9 +48,6 @@
         margin-bottom: 10px;
     }
 
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
 
     .container {
         background-color: #f2f2f2;
@@ -118,14 +114,15 @@
                 <label for="txtWebn">Web:</label>
                 <asp:TextBox ID="txtWeb" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
-            <div>
-                <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="onCrear" />
-                <asp:Button ID="btnLeerNombre" runat="server" Text="Leer Productora por nombre" OnClick="onLeerNombre" />
-                <asp:Button ID="btnLeerID" runat="server" Text="Leer Productora por ID" OnClick="onLeerId" />
-                <asp:Button ID="btnBorrarProductora" runat="server" Text="Borrar Productora" OnClick="onBorrar" />
-                <asp:Button ID="btnUpdateProductora" runat="server" Text="Actualizar Productora" OnClick="onUpdate" />
-                <asp:Button ID="btnLeerTodas" runat="server" Text="Mostrar todas las productoras" OnClick="onLeerTodas" />
-            </div>
+<div>
+    <asp:Button ID="btnCrearProductora" runat="server" Text="Crear Productora" OnClick="onCrear" style="background-color: green;" />
+    <asp:Button ID="btnLeerNombre" runat="server" Text="Leer Productora por nombre" OnClick="onLeerNombre" style="background-color: green;" />
+    <asp:Button ID="btnLeerID" runat="server" Text="Leer Productora por ID" OnClick="onLeerId" style="background-color: green;" />
+    <asp:Button ID="btnBorrarProductora" runat="server" Text="Borrar Productora" OnClick="onBorrar" style="background-color: green;" />
+    <asp:Button ID="btnUpdateProductora" runat="server" Text="Actualizar Productora" OnClick="onUpdate" style="background-color: green;" />
+    <asp:Button ID="btnLeerTodas" runat="server" Text="Mostrar todas las productoras" OnClick="onLeerTodas" style="background-color: green;" />
+</div>
+
         </div>
 
         <div class="container bg-light overflow-auto list-container" style="min-height:599px;">

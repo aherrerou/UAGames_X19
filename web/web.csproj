@@ -73,6 +73,7 @@
   <ItemGroup>
     <Content Include="AdminCategoria.aspx" />
     <Content Include="AdminForos.aspx" />
+    <Content Include="AdminNoticias.aspx" />
     <Content Include="AdminOfertas.aspx" />
     <Content Include="AdminUsuarios.aspx" />
     <Content Include="AdminVideojuegos.aspx" />
@@ -101,6 +102,7 @@
     <Content Include="Foro_Publico.aspx" />
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
+    <Content Include="NoticiaCompleta.aspx" />
     <Content Include="NoticiaWF.aspx" />
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />
@@ -131,6 +133,13 @@
     </Compile>
     <Compile Include="AdminForos.aspx.designer.cs">
       <DependentUpon>AdminForos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminNoticias.aspx.cs">
+      <DependentUpon>AdminNoticias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminNoticias.aspx.designer.cs">
+      <DependentUpon>AdminNoticias.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminOfertas.aspx.cs">
       <DependentUpon>AdminOfertas.aspx</DependentUpon>
@@ -194,6 +203,13 @@
     </Compile>
     <Compile Include="Lista_Deseos.aspx.designer.cs">
       <DependentUpon>Lista_Deseos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticiaCompleta.aspx.cs">
+      <DependentUpon>NoticiaCompleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticiaCompleta.aspx.designer.cs">
+      <DependentUpon>NoticiaCompleta.aspx</DependentUpon>
     </Compile>
     <Compile Include="NoticiaWF.aspx.cs">
       <DependentUpon>NoticiaWF.aspx</DependentUpon>
