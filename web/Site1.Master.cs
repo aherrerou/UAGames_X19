@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using library;
 
 namespace web
 {
@@ -11,7 +12,7 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["nick"] == null)
+            if (Session["login_nick"] == null)
             {
                 MenuNoSesion.Visible = true;
                 MenuSesion.Visible = false;
@@ -20,6 +21,14 @@ namespace web
             {
                 MenuNoSesion.Visible = false;
                 MenuSesion.Visible = true;
+                ENUsuario usuario = new ENUsuario();
+                usuario.nick = Session["login_nick"].ToString();
+                usuario.readUsuario();
+                if (usuario.admin)
+                {
+                    //Mostrar menu admin
+                    menuAdmin.Visible = true;
+                }
             }
         }
 
@@ -35,12 +44,17 @@ namespace web
 
         protected void clickCart(object sender, EventArgs e)
         {
-            Response.Redirect("Registrar.aspx");
+            Response.Redirect("CestaWebForm.aspx");
+        }
+        protected void clickLista(object sender, EventArgs e)
+        {
+            Response.Redirect("Lista_Deseos.aspx");
         }
 
         protected void clickLogOut(object sender, EventArgs e)
         {
-            Response.Redirect("Registrar.aspx");
+            Session["login_nick"] = null;
+            Response.Redirect("Inicio.aspx");
         }
     }
 }

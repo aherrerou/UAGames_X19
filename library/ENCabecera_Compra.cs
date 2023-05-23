@@ -21,9 +21,18 @@ namespace library
             this.fecha = DateTime.Now;
             this.cabecera = new CADCabecera_Compra();
         }
+        public ENCabecera_Compra(ENUsuario usuario, DateTime fecha, double total)
+        {
+            this.usuario = usuario;
+            this.fecha = fecha;
+            this.totalCompra = total;
+        }
+
+        // Revisar todo esto y cambiarlo por crear un CAD antes de insertar
         public bool createCabecera_Compra()
         {
-            return this.cabecera.createCabecera(this, usuario);
+            CADCabecera_Compra cabecera = new CADCabecera_Compra();
+            return cabecera.createCabecera(this);
         }
         public bool deleteCabecera_Compra()
         {

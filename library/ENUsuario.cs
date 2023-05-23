@@ -10,7 +10,8 @@ namespace library
     public class ENUsuario
     {
         private int id_interno;
-        private string nick_interno, nombre_interno, apell_interno, email_interno, passw_interno, telef_interno, rol_interno;
+        private bool admin_interno;
+        private string nick_interno, nombre_interno, apell_interno, email_interno, passw_interno, telef_interno;
         private DateTime fecha_interno;
 
         public int id
@@ -54,10 +55,10 @@ namespace library
             get { return telef_interno; }
             set { telef_interno = value; }
         }
-        public string rol
+        public bool admin
         {
-            get { return rol_interno; }
-            set { rol_interno = value; }
+            get { return admin_interno; }
+            set { admin_interno = value; }
         }
         public ENUsuario()
         {
@@ -69,9 +70,9 @@ namespace library
             password = "blank";
             fecha_nac = DateTime.Now;
             telef = "blank";
-            rol = "blank";
+            admin = false;
         }
-        public ENUsuario(int id,string nick, string nombre, string apellidos, string email, string password, DateTime fecha_nac, string telef, string rol)
+        public ENUsuario(int id,string nick, string nombre, string apellidos, string email, string password, DateTime fecha_nac, string telef, bool admin)
         {
             this.id = id;
             this.nick = nick;
@@ -81,7 +82,7 @@ namespace library
             this.password = password;
             this.fecha_nac = fecha_nac;
             this.telef = telef;
-            this.rol = rol;
+            this.admin = admin;
         }
 
         public bool createUsuario()

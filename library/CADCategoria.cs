@@ -11,20 +11,20 @@ namespace library
 {
     class CADCategoria
     {
-        private SqlConnection conect;
+        
         private string conexionBBDD;
 
 
         public CADCategoria()
         {
             conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
-            conect = null;
         }
 
         public bool createCategoria(ENCategoria categoria)
         {
 
             bool crear = false;
+            SqlConnection conect = null;
             string query = "INSERT INTO [Categoria]" + "(nombre,descripcion)" + "VALUES (@nombre, @descripcion);";
             try
             {
@@ -67,6 +67,7 @@ namespace library
         public bool readCategoria(ENCategoria categoria)
         {
             string query = "select * from Categoria where id = " + categoria.id + ";";
+            SqlConnection conect = null;
             bool controlador = true;
             try
             {
@@ -114,66 +115,128 @@ namespace library
             return true;
         }
 
-        public bool updateCategoria(ENCategoria categoria)
+        public DataTable readCategorias()
         {
+            SqlConnection conect = null;
+            DataTable categorias = new DataTable();
+
             try
             {
-                this.conect.Open();
-                string query = "update Categoria set nombre = " + categoria.id + ", descripcion = '"+ categoria.descripcion  + "'where id = '" + categoria.id + "';";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+
+                string sentence = "SELECT * from Categoria;";
+                SqlDataAdapter adapter = new SqlDataAdapter(sentence, conect);
+                adapter.Fill(categorias);
+
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                Console.WriteLine("Reading ofertas operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Reading ofertas operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+
+                if (conect != null) conect.Close(); // Se asegura de cerrar la conexión.
+            }
+            return categorias;
+        }
+
+        public bool updateCategoria(ENCategoria cat)
+        {
+            bool actualizar = false;
+            SqlConnection conect = null;
+
+            try
+            {
+                String query = "UPDATE [Categoria] SET nombre = @nombre, descripcion = @descripcion WHERE id = @id;";
+
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+
                 SqlCommand com = new SqlCommand(query, conect);
-                com.ExecuteReader();
+
+                com.Parameters.AddWithValue("@nombre", cat.nombre);
+                com.Parameters.AddWithValue("@descripcion", cat.descripcion);
+                com.Parameters.AddWithValue("@id", cat.id);
+
+                com.ExecuteNonQuery();
+
+
+                actualizar = true;
 
             }
 
             catch (SqlException sqlex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+                actualizar = false;
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                actualizar = false;
             }
 
             finally
             {
-                this.conect.Close();
+                if (conect != null)
+                {
+                    conect.Close();
+                }
             }
 
-            return true;
+            return actualizar;
         }
 
         public bool deleteCategoria(ENCategoria categoria)
         {
+            bool controlador = false;
+            SqlConnection conect = null;
+            string query = "delete from Categoria where id = @id;";
+
             try
             {
-                this.conect.Open();
-                string query = "delete from Categoria where id = " + categoria.id + ";";
+                conect = new SqlConnection(conexionBBDD);
+                conect.Open();
+                
+
+                
                 SqlCommand com = new SqlCommand(query, conect);
+                com.Parameters.AddWithValue("@id", categoria.id);
                 com.ExecuteReader();
 
+                controlador = true;
             }
 
             catch (SqlException sqlex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
-                return false;
+                
             }
 
             catch (Exception ex)
             {
+                controlador = false;
                 Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
-                return false;
+                
             }
 
             finally
             {
-                this.conect.Close();
+                conect.Close();
             }
 
-            return true;
+            return controlador ;
         }
 
         /*public DataSet listas()

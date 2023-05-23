@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
 
 namespace library
 {
@@ -287,6 +288,56 @@ namespace library
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
                 dr.Close();
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (c != null)
+                    c.Close();
+            }
+            return true;
+        }
+        public DataSet readAllTema(string foro)
+        {
+            DataSet data = new DataSet();
+            c = new SqlConnection(conexionBBDD);
+            string query = "Select titulo from Tema join Foro as f on foroID = f.id where f.nombre = '" + foro + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, c);
+            da.Fill(data, "Tema");
+            return data;
+        }
+        public bool readTemaTitulo(ENTema tema) //selecciona las id asociadas con un tema por su título
+        {
+            bool sigue_while = true;
+            string query = "Select * from Tema where titulo = '" + tema.titulo + "'";
+            try
+            {
+                c = new SqlConnection(conexionBBDD);
+                c.Open();
+                SqlCommand com = new SqlCommand(query, c);
+                SqlDataReader dr = com.ExecuteReader();
+                while (dr.Read() && sigue_while == true)
+                {
+                    if (dr["titulo"].ToString() == tema.titulo)
+                    {
+                        sigue_while = false;
+                        tema.id = int.Parse(dr["id"].ToString());
+                        tema.foro.id = int.Parse(dr["foroID"].ToString());
+                    }
+                }
+                if (sigue_while == true)
+                {
+                    throw new Exception("No se ha encontrado el tema con el título indicado");
+                }
             }
             catch (SqlException sqlex)
             {

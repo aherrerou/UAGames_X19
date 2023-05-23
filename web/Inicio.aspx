@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div class="container bg-light overflow-auto" style="min-height: 599px;">
+    <div class="container bg-light overflow-auto" style="min-height: 625px;">
         <h1 class="text-primary">UA Games </h1>
 
         <div id="carouselExampleIndicators" class="carousel slide text-primary bg-dark text-center m-auto" data-ride="carousel" style="max-height: 500px; max-width: 1000px;">
