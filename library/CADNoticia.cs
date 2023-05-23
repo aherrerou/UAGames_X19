@@ -23,20 +23,15 @@ namespace library
         {
             bool creada = false;
             SqlConnection conect = null;
-            string query = "INSERT INTO [Noticia] " +
-                "(titulo, contenido, fecha_public, imagen, productoraID) " +
-                "VALUES (@titulo, @contenido, @fecha_public, @imagen, @productoraID);"; 
             try
             {
                 conect = new SqlConnection(cadenaConexion);
                 conect.Open();
-               
+                string fechaFormatoCorrecto = en.FechaPublicacion.ToString("yyyy-MM-dd");
+                string query = "INSERT INTO [Noticia] " +
+                "(titulo, contenido, fecha_public, imagen, productoraID) " +
+                "VALUES ('"+en.Titulo+"', '"+en.Contenido+"','" + fechaFormatoCorrecto +"','"+en.Imagen+"',"+en.ProductoraID+");";
                 SqlCommand consulta = new SqlCommand(query, conect);
-                consulta.Parameters.AddWithValue("@titulo", en.Titulo);
-                consulta.Parameters.AddWithValue("@fecha_public", en.FechaPublicacion.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
-                consulta.Parameters.AddWithValue("@contenido", en.Contenido);
-                consulta.Parameters.AddWithValue("@imagen", en.Imagen);
-                consulta.Parameters.AddWithValue("@productoraID", en.ProductoraID);
                 consulta.ExecuteNonQuery();
                 creada = true;
             }
