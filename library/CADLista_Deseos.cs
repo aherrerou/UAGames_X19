@@ -434,5 +434,47 @@ namespace library
             }
             return true;
         }
+        public bool deleteListaPorUsu(ENLista_Deseos lista) //elimina la lista con la id de usuario indicada
+        {
+            string query_comprueba = "Select * from ListaDeseos";
+            string query = "Delete from ListaDeseos where usuarioID = " + lista.usuario.id;
+            bool sigue_while = true;
+            try
+            {
+                c = new SqlConnection(conexionBBDD);
+                c.Open();
+                SqlCommand comprueba = new SqlCommand(query_comprueba, c);
+                SqlDataReader dr = comprueba.ExecuteReader();
+                while (dr.Read() && sigue_while == true)
+                {
+                    if ((int)dr["usuarioID"] == lista.usuario.id)
+                    {
+                        sigue_while = false;
+                    }
+                }
+                if (sigue_while == true)
+                    throw new Exception("No se ha encontrado una lista con la id de usuario indicada");
+                dr.Close();
+                SqlCommand com = new SqlCommand(query, c);
+                com.ExecuteNonQuery();
+                dr.Close();
+            }
+            catch (SqlException sqlex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", sqlex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (c != null)
+                    c.Close();
+            }
+            return true;
+        }
     }
 }

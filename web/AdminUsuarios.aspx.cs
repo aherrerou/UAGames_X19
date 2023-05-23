@@ -185,9 +185,13 @@ namespace web
             if (Page.IsValid)
             {
                 ENUsuario en = new ENUsuario(0, TNick.Text, "blank", "blank", "blank", "blank", System.DateTime.Now, "blank", false);
+                ENLista_Deseos lista = new ENLista_Deseos();
+                en.readUsuario();
+                lista.usuario = en;
+                lista.deleteListaPorUsu();
                 bool result = en.deleteUsuario();
                 if (result == false)
-                    LResultado.Text = "Error en el borrado del usuario";
+                    LResultado.Text = "Error en el borrado del usuario, ¿hay un juego en la lista de deseos o una publicación a su nombre?";
                 else
                     LResultado.Text = "Proceso de borrado realizado con éxito";
             }

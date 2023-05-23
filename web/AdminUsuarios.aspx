@@ -52,6 +52,7 @@
             <asp:Button ID="BCrear_F" runat="server" Text="Crear" OnClick="Crear"/>
             <asp:Button ID="BActualizar_F" runat="server" Text="Actualizar" OnClick="Actualizar"/>
             <asp:Button ID="BBorrar_F" runat="server" Text="Borrar" OnClick="Borrar"/>
+            <br />
             <asp:Label ID="LResultado" runat="server" Text =" " />&nbsp;
             <br />
             <br />

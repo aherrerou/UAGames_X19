@@ -309,7 +309,7 @@ namespace library
         public bool deleteUsuario(ENUsuario usuario) //elimina el usuario con el nick indicado
         {
             string query_comprueba = "Select * from Usuario";
-            string query = "Delete from Usuario where nick = " + usuario.nick;
+            string query = "Delete from Usuario where nick = " + "'" + usuario.nick + "'";
             bool sigue_while = true;
             try
             {

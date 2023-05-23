@@ -123,5 +123,12 @@ namespace library
             result = c.addVideojuegoLista(this, videojuego);
             return result;
         }
+        public bool deleteListaPorUsu()
+        {
+            bool result = true;
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.deleteListaPorUsu(this);
+            return result;
+        }
     }
 }
