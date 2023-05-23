@@ -1,86 +1,105 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="NoticiaWF.aspx.cs" Inherits="web.NoticiaWF" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <div class="container bg-light overflow-auto" style="min-height:599px;">
-        <asp:ListView ID="ListView1" runat="server">
-            <ItemTemplate>
-                <div class="list">
-                    <div class="list-img">
-                        <img src='<%#Eval("imagen") %>'  />
-                    </div>
-                    <div class="list-content">
-                        <h1><%#Eval("titulo") %></h1>
-                        <p><%#Eval("fecha_public") %></p>
-                        <div class="list-button">
-                            <a href='<%#"NoticiaCompleta.aspx?id=" + Eval("id") %>' class="noticia-enlace" onmouseover="enlargeLink(this)" onmouseout="resetLink(this)">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:ListView>
-    </div>
-<style>
+    <div class="container bg-light overflow-auto list-container" style="min-height:300px;">
+      <asp:ListView ID="ListView1" runat="server" OnItemDataBound="ListView1_ItemDataBound">
+    <ItemTemplate>
+        <div class="list" runat="server" id="divItem" style="margin-bottom: 10px;">
+            <div class="list-img" style="height: 100%;">
+                <img src='<%#Eval("imagen") %>' alt="Imagen de la noticia" style="width: 150px; height: 100%; object-fit: cover;" />
+            </div>
+            <div class="list-content" style="position: absolute; top: 0; left: 150px; padding: 20px; background-color: rgba(255, 255, 255, 0.8); text-align: left;">
+                <h1 style="font-size: 22px; font-weight: 700; margin-bottom: 10px; color: #333;"><%#Eval("titulo") %></h1>
+                <p class="list-date" style="font-size: 14px; margin-bottom: 10px; color: #888;"><%#Eval("fecha_public") %></p>
+                <p class="list-author" style="font-size: 14px; margin-bottom: 10px; color: #888;">Autor: <%#Eval("nombre") %></p>
+                <a href='<%#"NoticiaCompleta.aspx?id=" + Eval("id") %>' class="noticia-enlace" >Leer más</a>
+            </div>
+        </div>
+        
+    </ItemTemplate>
+         
+</asp:ListView> </div>
+   <style>
     .list-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: 20px;
+        justify-content: flex-start;
+        margin-bottom: 0px;
     }
 
     .list {
-        width: calc(50% - 10px);
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: calc(50% - 20px);
+        height: 175px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
         display: flex;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
     }
 
     .list-img {
-        margin-right: 10px;
-        width: 200px;
+        width: 150px;
+        height: 50%;
+        background-color: #f5f5f5;
     }
 
     .list-img img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
     }
 
     .list-content {
+        position: absolute;
+        top: 0;
+        left: 150px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
         text-align: left;
     }
 
     .list-content h1 {
-        font-size: 24px;
-        font-weight: bold;
+        font-size: 22px;
+        font-weight: 700;
         margin-bottom: 10px;
+        color: #333;
     }
 
-    .list-content p {
+    .list-date {
         font-size: 14px;
         margin-bottom: 10px;
+        color: #888;
+    }
+
+    .list-author {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #888;
     }
 
     .list-button {
-        margin-top: 10px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
     }
 
     .noticia-enlace {
-        font-size: 18px;
-        font-weight: bold;
-        color: #0080FF;
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #0080FF;
+        color: #fff;
         text-decoration: none;
-    }
-</style>
-<script>
-    function enlargeLink(link) {
-        link.style.transform = "scale(1.1)";
+        border-radius: 4px;
+        transition: background-color 0.3s;
     }
 
-    function resetLink(link) {
-        link.style.transform = "scale(1)";
+    .noticia-enlace:hover {
+        background-color: #0065CC;
     }
-</script>
+</style>
+
 </asp:Content>

@@ -102,6 +102,55 @@
         </asp:ListView>
     </main>
     <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        input[type=text],
+        textarea {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 3px;
+            background-color: #eaeaea;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            padding-top: 20px;
+        }
+
         .list {
             display: flex;
             flex-direction: column;

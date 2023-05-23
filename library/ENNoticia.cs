@@ -66,7 +66,7 @@ namespace library
             this.Imagen = img;
             this.id = id;
             this.titulo = titulo;
-            this.fecha_public = fecha_public;
+            this.fecha_public = DateTime.UtcNow;
             this.contenido = contenido;
             this.productoraID = productora;
         }

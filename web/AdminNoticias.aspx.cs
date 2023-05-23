@@ -24,6 +24,8 @@ namespace web
                 noti.Imagen = txtImg.Text;
                 noti.Titulo = txtTitulo.Text;
                 noti.Contenido = txtContenido.Text;
+
+                noti.ProductoraID = int.Parse(txtprodID.Text);
                 
 
                 if (noti.createNoticia())

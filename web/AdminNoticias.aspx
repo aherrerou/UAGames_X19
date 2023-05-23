@@ -9,6 +9,48 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Crear Productora</title>
     <style>
+        .list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .list-content {
+            text-align: center;
+        }
+
+        .list-content h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .list-content p.date {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .list-content p.content {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+    </style>
+    <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -45,7 +87,8 @@
             background-color: #45a049;
         }
     </style>
-<main>
+    <div class="container bg-light overflow-auto list-container" style="min-height:300px;">
+
    
     <form id="form1">
         <div class="form-container">
@@ -67,6 +110,10 @@
                 <asp:TextBox ID="txtContenido" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
              <div>
+                  <div>
+                <label for="txtprodID">ID de la productora:</label>
+                <asp:TextBox ID="txtprodID" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
+            </div>
                 <label for="txtFecha">Fecha de publicación:</label>
                 <asp:TextBox ID="txtFecha" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
             </div>
@@ -85,54 +132,100 @@
             <asp:Label ID="PResultado" runat="server" Text =" " />&nbsp;
             <br />
     <asp:ListView ID="ListView1" runat="server">
-            <ItemTemplate>
-                <div class="list">
-                    <div class="list-img">
-                        <img src="<%#Eval("imagen") %>"  />
-                    </div>
-                    <div class="list-content">
-                        <h1><%#Eval("titulo") %></h1>
-                        <h1><%#Eval("fecha_public") %></h1>
-                        <p><%#Eval("contenido") %></p>
-                      
-                    </div>
+        <ItemTemplate>
+            <div class="list">
+                <div class="list-img">
+                    <img src='<%#Eval("imagen") %>' />
                 </div>
-            </ItemTemplate>
-        </asp:ListView>
-    </main>
+                <div class="list-content">
+                    <h1><%#Eval("titulo") %></h1>
+                    <p class="date"><%#Eval("fecha_public") %></p>
+                    <p class="content"><%#Eval("contenido") %></p>
+                </div>
+            </div>
+        </ItemTemplate>
+       
+    </asp:ListView>
+         </div>
     <style>
-        .list {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+    }
 
-        .list-img {
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
+    .form-container {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
 
-        .list-img img {
-            max-width: 100%;
-            height: auto;
-        }
+    label {
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 10px;
+    }
 
-        .list-content {
-            text-align: left;
-        }
+    input[type=text],
+    textarea {
+        padding: 10px;
+        width: 100%;
+        border: none;
+        border-radius: 3px;
+        background-color: #eaeaea;
+        margin-bottom: 20px;
+        resize: vertical;
+    }
 
-        .list-button {
-            margin-top: 10px;
-        }
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
 
-        .noticia-enlace {
-            font-size: 18px;
-            font-weight: bold;
-            color: #0080FF;
-            text-decoration: none;
-        }
-    </style>
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .list-img {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .list-img img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .list-content {
+        text-align: left;
+    }
+
+    .list-button {
+        margin-top: 10px;
+    }
+
+    .noticia-enlace {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0080FF;
+        text-decoration: none;
+    }
+</style>
+
+
 
 </html>
 
