@@ -42,25 +42,25 @@ namespace web
         protected global::System.Web.UI.WebControls.Menu menu;
 
         /// <summary>
-        /// Control menuAdmin.
+        /// menuAdmin control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Menu menuAdmin;
 
         /// <summary>
-        /// Control MenuNoSesion.
+        /// MenuNoSesion control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label MenuNoSesion;
 
         /// <summary>
-        /// Control BtnIniciarSesion.
+        /// BtnIniciarSesion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -78,43 +78,43 @@ namespace web
         protected global::System.Web.UI.WebControls.Button BtnRegistrarse;
 
         /// <summary>
-        /// Control MenuSesion.
+        /// MenuSesion control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label MenuSesion;
 
         /// <summary>
-        /// Control BtnCart.
+        /// BtnCart control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BtnCart;
 
         /// <summary>
-        /// Control BtnLista.
+        /// BtnLista control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BtnLista;
 
         /// <summary>
-        /// Control BtnSalir.
+        /// BtnSalir control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BtnSalir;
 
         /// <summary>
-        /// Control main.
+        /// main control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

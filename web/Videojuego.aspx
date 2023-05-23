@@ -49,46 +49,52 @@
             <div class="mt-3 mx-5">
                 <asp:ListView ID="ofertaDisplay" runat="server">
                     <EmptyDataTemplate>
-                <span></span>
-            </EmptyDataTemplate>
+                        <span></span>
+                    </EmptyDataTemplate>
                     <LayoutTemplate>
-                <div>
-                    <table runat="server">
-                        <tr runat="server" id="groupPlaceholder">
-                        </tr>
-                    </table>
-                </div>
-            </LayoutTemplate>
+                        <div>
+                            <table runat="server">
+                                <tr runat="server" id="groupPlaceholder">
+                                </tr>
+                            </table>
+                        </div>
+                    </LayoutTemplate>
                     <GroupTemplate>
-                <tr runat="server" id="ofertarow" class="mx-4">
-                    <td runat="server" id="itemPlaceholder"></td>
-                </tr>
-            </GroupTemplate>
-            <ItemTemplate>
-                <td class="mx-4">
-                    <div class="card bg-primary text-white mx-3 my-2 border-0">
-                        <div class="row">
-                            <div class="card-body mt-3">
-                                <h1 class="card-title"><%# Eval("nombre") %></h1>
-                                    <h3>Descuento: <%# Eval("descuento") %>%</h3>
-                                    <h3>Desde: <%# Eval("fecha_inicio") %></h3>
-                                    <h3>Hasta: <%# Eval("fecha_fin") %></h3>
+                        <tr runat="server" id="ofertarow" class="mx-4">
+                            <td runat="server" id="itemPlaceholder"></td>
+                        </tr>
+                    </GroupTemplate>
+                    <ItemTemplate>
+                        <td class="mx-4">
+                            <div class="card bg-primary text-white mx-3 my-2 border-0">
+                                <div class="row">
+                                    <div class="card-body mt-3">
+                                        <h1 class="card-title"><%# Eval("nombre") %></h1>
+                                        <h3>Descuento: <%# Eval("descuento") %>%</h3>
+                                        <h3>Desde: <%# Eval("fecha_inicio") %></h3>
+                                        <h3>Hasta: <%# Eval("fecha_fin") %></h3>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="card bg-primary text-white mx-3 my-2 border-0">
-                        <h1 class="card-title">Precio oferta: <%# Eval("nuevoPrecio") %> €</h1>
-                        </div>
-                </td>
-            </ItemTemplate>
-                    </asp:ListView>
+                            <br />
+                            <div class="card bg-primary text-white mx-3 my-2 border-0">
+                                <h1 class="card-title">Precio oferta: <%# Eval("nuevoPrecio") %> €</h1>
+                            </div>
+                        </td>
+                    </ItemTemplate>
+                </asp:ListView>
             </div>
         </div>
-
+        <div>
+            <br />
+            <asp:TextBox ID="comentarioReview" runat="server" Visible="true" placeholder="Comentario..." CssClass="mb-2"></asp:TextBox>
+            <asp:TextBox ID="notaReview" runat="server" Visible="true" placeholder="Nota..." type="number" min="0" MaxLength="10" CssClass="mb-2"></asp:TextBox>
+            <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Añadir reseña" runat="server" Visible="true" OnClick="añadirReview_click" />
+            <asp:Button CssClass="btn btn-primary" ID="crearReview" Text="Crear nueva reseña" runat="server" Visible="true" OnClick="crearReview_click" CommandArgument='<%# Eval("id") %>'/>
+        </div>
         <!--REVIEWS-->
         <div class="row d-flex flex-row mt-5">
-           <h1>Valoraciones</h1>
+            <h1>Valoraciones</h1>
         </div>
         <asp:ListView ID="listViewReviews" runat="server">
             <EmptyDataTemplate>
@@ -102,16 +108,16 @@
                     </table>
                     <div class="text-left">
                         <asp:DataPager runat="server" ID="DataPager" PageSize="8" HorizontalAlign="Center" CssClass="text-center text-primary">
-                        <Fields>
-                            <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-primary"
-                                PreviousPageText=" < " FirstPageText=" << " />
-                            <asp:NumericPagerField />
-                            <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="True" ShowPreviousPageButton="False" ButtonCssClass="btn btn-primary"
-                                NextPageText=" > " LastPageText=" >> " />
-                        </Fields>
-                    </asp:DataPager>
+                            <Fields>
+                                <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-primary"
+                                    PreviousPageText=" < " FirstPageText=" << " />
+                                <asp:NumericPagerField />
+                                <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="True" ShowPreviousPageButton="False" ButtonCssClass="btn btn-primary"
+                                    NextPageText=" > " LastPageText=" >> " />
+                            </Fields>
+                        </asp:DataPager>
                     </div>
-                    
+
                 </div>
             </LayoutTemplate>
             <GroupTemplate>
@@ -130,8 +136,10 @@
                                     <h4><%# Eval("usuario") %>  </h4>
                                 </div>
                                 <div class="col-md-4">
-                                   <h2> <ajaxToolkit:Rating ID="ratingAvg" runat="server" CurrentRating='<%# Eval("puntuacion") %>' MaxRating="5" 
-                     EmptyStarCssClass="emptyRatingStar" FilledStarCssClass="filledRatingStar" StarCssClass="emptyRatingStar" WaitingStarCssClass="emptyRatingStar" ReadOnly="true"/></h3>
+                                    <h2>
+                                        <ajaxToolkit:Rating ID="ratingAvg" runat="server" CurrentRating='<%# Eval("puntuacion") %>' MaxRating="5"
+                                            EmptyStarCssClass="emptyRatingStar" FilledStarCssClass="filledRatingStar" StarCssClass="emptyRatingStar" WaitingStarCssClass="emptyRatingStar" ReadOnly="true" />
+                                    </h3>
                                     
                                 </div>
                                 <div class="col-md-4">
@@ -158,5 +166,6 @@
                 <br />
             </ItemTemplate>
         </asp:ListView>
+
     </div>
 </asp:Content>

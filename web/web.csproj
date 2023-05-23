@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />

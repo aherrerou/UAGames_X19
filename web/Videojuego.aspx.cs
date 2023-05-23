@@ -35,6 +35,7 @@ namespace web
 
                 }
             }
+            comprobarCamposReview();
         }
 
         protected void clickAddList(object sender, EventArgs e)
@@ -110,6 +111,39 @@ namespace web
                 //Actualizar precio
             }
            
+        }
+
+        protected void crearReview_click(object sender, EventArgs e)
+        {
+            ENUsuario u = new ENUsuario();
+            ENReview review = new ENReview();
+            u.readUsuario();
+            review.usuario = u;
+            review.videojuego.Id = Convert.ToInt32(((Button)sender).CommandArgument);
+            review.comentario = comentarioReview.Text.ToString();
+            review.puntuacion = Convert.ToInt32(notaReview.Text.ToString());
+        }
+
+        protected void añadirReview_click(object sender, EventArgs e)
+        {
+            ENUsuario u = new ENUsuario();
+            if (Session["login_nick"] != null)
+            {
+                comentarioReview.Visible = true;
+                notaReview.Visible = true;
+            }
+
+            ENReview review = new ENReview();
+            review.usuario = u;
+        }
+
+        protected void comprobarCamposReview()
+        {
+            ENUsuario u = new ENUsuario();
+            if (Session["login_nick"] != null)
+            {
+                añadirReview.Visible = true;
+            }
         }
 
         protected void EliminarComentario(Object sender, EventArgs e)

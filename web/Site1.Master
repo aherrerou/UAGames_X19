@@ -59,6 +59,7 @@
                                         <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx"  />
                                         <asp:MenuItem Text="Foros" NavigateUrl="AdminForos.aspx" />
                                          <asp:MenuItem Text="Top 10" NavigateUrl="Top10Compras.aspx" />
+                                        <asp:MenuItem Text="Top 10" NavigateUrl="Top10Compras.aspx" />
                                     </asp:MenuItem>
                                 </Items>
                                 <LevelMenuItemStyles>
