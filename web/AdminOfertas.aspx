@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <div class="container bg-light overflow-auto" style="min-height: 599px;">
+    <div class="container bg-light overflow-auto" style="min-height: 625px;">
         <div class="row">
             <div class="col-md-2">
                 <h2 class="text-primary">Ofertas</h2>
