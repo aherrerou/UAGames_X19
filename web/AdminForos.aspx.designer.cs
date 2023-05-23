@@ -11,7 +11,7 @@ namespace web
 {
 
 
-    public partial class Foro
+    public partial class AdminForos
     {
 
         /// <summary>
@@ -339,13 +339,22 @@ namespace web
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredPubliId;
 
         /// <summary>
-        /// Control RequiredPubliText.
+        /// Control RequiredPubliTexto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredPubliText;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredPubliTexto;
+
+        /// <summary>
+        /// Control RequiredUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredUsuario;
 
         /// <summary>
         /// Control GridView1.

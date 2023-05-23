@@ -18,7 +18,6 @@ namespace library
         public CADCategoria()
         {
             conexionBBDD = ConfigurationManager.ConnectionStrings["miconexion"].ToString();
-            
         }
 
         public bool createCategoria(ENCategoria categoria)
@@ -264,6 +263,49 @@ namespace library
                 if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
             }
             return categorias;
+        }
+
+        public bool readCategoriaNombre(ENCategoria en)
+        {
+
+            bool leida = false;
+            SqlConnection connection = null;
+            SqlDataReader dr = null;
+            try
+            {
+                connection = new SqlConnection(conexionBBDD);
+                connection.Open();
+                string sentence = "SELECT * FROM [Categoria] WHERE nombre = @nombre";
+                SqlCommand com = new SqlCommand(sentence, connection);
+                com.Parameters.AddWithValue("@nombre", en.nombre);
+                //Se obtiene cursor
+                dr = com.ExecuteReader();
+
+                //Se lee primer elemento
+                if (dr.Read())
+                {
+                    en.id = Int32.Parse(dr["id"].ToString());
+                    en.descripcion = dr["descripcion"].ToString();  
+                    leida = true;
+                }
+
+            }
+            catch (SqlException sqlex)
+            {
+                leida = false;
+                Console.WriteLine("Reading categoria operation has failed.Error: {0}", sqlex.Message);
+            }
+            catch (Exception ex)
+            {
+                leida = false;
+                Console.WriteLine("Reading categoria operation has failed.Error: {0}", ex.Message);
+            }
+            finally
+            {
+                if (dr != null) dr.Close();
+                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+            }
+            return leida;
         }
     }
 }

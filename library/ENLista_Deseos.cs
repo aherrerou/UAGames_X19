@@ -60,6 +60,13 @@ namespace library
             result = c.readLista(this);
             return result;
         }
+        public bool readListaPorUsu()
+        {
+            bool result = true;
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.readListaPorUsu(this);
+            return result;
+        }
         public bool readFirstLista()
         {
             bool result = true;
@@ -95,18 +102,25 @@ namespace library
             result = c.deleteLista(this);
             return result;
         }
-        public DataSet listarClientesDAdmin()
+        public DataSet listarVjLista()
         {
             DataSet result = new DataSet();
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.listarClientesDAdmin();
+            result = c.listarVjLista(this);
             return result;
         }
-        public DataSet listarClientesDUsu()
+        public bool deleteVjLista(ENVideojuego vj)
         {
-            DataSet result = new DataSet();
+            bool result = false;
             CADLista_Deseos c = new CADLista_Deseos();
-            result = c.listarClientesDUsu(this);
+            result = c.deleteVjLista(vj);
+            return result;
+        }
+        public bool addVideojuegoLista(int videojuego)
+        {
+            bool result = true;
+            CADLista_Deseos c = new CADLista_Deseos();
+            result = c.addVideojuegoLista(this, videojuego);
             return result;
         }
     }
