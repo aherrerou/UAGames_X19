@@ -48,7 +48,7 @@
                                 <h3><%# Eval("nombrejuego") %></h3>
                             </a>
                             <a>
-                                <h4><%# Eval("nombreUsuario") %></h4>
+                                <h4><%# Eval("usuario") %></h4>
                             </a>
 
                         </div>

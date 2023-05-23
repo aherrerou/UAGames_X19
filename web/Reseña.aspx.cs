@@ -18,7 +18,8 @@ namespace web
             if (!Page.IsPostBack)
             {
                 ENReview en = new ENReview();
-                data = en.listarReviews();
+                en.usuario.id = 1;
+                data = en.misReviews();
                 ReviewListView.DataSource = data;
                 ReviewListView.DataBind();
             }
