@@ -19,7 +19,7 @@ namespace web
             }
             else
             {
-                MenuNoSesion.Visible = false;s
+                MenuNoSesion.Visible = false;
                 MenuSesion.Visible = true;
                 ENUsuario usuario = new ENUsuario();
                 usuario.nick = Session["login_nick"].ToString();

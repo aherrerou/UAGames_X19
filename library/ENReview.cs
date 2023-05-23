@@ -58,9 +58,9 @@ namespace library
             return this.review.readReview(this);
         }
 
-        public DataTable misReviews()
+        public DataTable listarReviews()
         {
-            return this.review.misReviews(this);
+            return this.review.listarReviews(this);
         }
 
         public bool comprobarUsuarioReview()

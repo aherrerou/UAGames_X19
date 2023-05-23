@@ -32,10 +32,10 @@ namespace web
                     precioLabel.Text = videojuego.Precio.ToString();
                     fillReviews(videojuego.Id);
                     fillOferta(videojuego.Id);
-                    comprobarCamposReview();
+
                 }
             }
-            
+            comprobarCamposReview();
         }
 
         protected void clickAddList(object sender, EventArgs e)
@@ -115,78 +115,35 @@ namespace web
 
         protected void crearReview_click(object sender, EventArgs e)
         {
-            //if (Session["login_nick"] == null)
-            //{
-            //    Response.Redirect("Inicia_Sesion.aspx");
-            //}
-            //else
-            //{
-                ENUsuario u = new ENUsuario();
-            u.id = 1;
-                ENReview review = new ENReview();
-                u.readUsuario();
-                review.usuario = u;
-                review.videojuego.Id = Convert.ToInt32(Request.QueryString["id"]);
-                review.comentario = comentarioReview.Text.ToString();
-                review.puntuacion = Convert.ToInt32(notaReview.Text.ToString());
-                review.createReview();
-
-                fillReviews(review.videojuego.Id);
-            //Mostramos campos necesarios
-                comentarioReview.Visible = false;
-                notaReview.Visible = false;
-                cancelar.Visible = false;
-                crearReview.Visible = false;
-                añadirReview.Visible = true;
-
-            
-            //}
+            ENUsuario u = new ENUsuario();
+            ENReview review = new ENReview();
+            u.readUsuario();
+            review.usuario = u;
+            review.videojuego.Id = Convert.ToInt32(((Button)sender).CommandArgument);
+            review.comentario = comentarioReview.Text.ToString();
+            review.puntuacion = Convert.ToInt32(notaReview.Text.ToString());
         }
 
         protected void añadirReview_click(object sender, EventArgs e)
         {
-            //if (Session["login_nick"] != null)
-            //{
-                añadirReview.Visible = false;
+            ENUsuario u = new ENUsuario();
+            if (Session["login_nick"] != null)
+            {
                 comentarioReview.Visible = true;
                 notaReview.Visible = true;
-                crearReview.Visible = true;
-                cancelar.Visible = true;
-            //}
+            }
+
+            ENReview review = new ENReview();
+            review.usuario = u;
         }
 
         protected void comprobarCamposReview()
         {
-            //if (Session["login_nick"] != null)
-            //{
+            ENUsuario u = new ENUsuario();
+            if (Session["login_nick"] != null)
+            {
                 añadirReview.Visible = true;
-            //}
-            //else
-            //{
-            //    añadirReview.Visible = false;
-            //}
-        }
-        
-        protected void cancelarReview_click(object sender, EventArgs e)
-        {
-            //if (Session["login_nick"] != null)
-            //{
-                añadirReview.Visible = true;
-            //}
-            //else
-            //{
-            //    añadirReview.Visible = false;
-            //}
-
-            //Ocultamos campos
-            comentarioReview.Visible = false;
-            notaReview.Visible = false;
-            cancelar.Visible = false;
-            crearReview.Visible = false;
-
-            //Dejamos los Textbox por defecto
-            notaReview.Text = null;
-            comentarioReview.Text = null;
+            }
         }
 
         protected void EliminarComentario(Object sender, EventArgs e)

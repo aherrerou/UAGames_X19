@@ -39,26 +39,12 @@
                     <div class="offcanvas-body p-4 pt-0 p-lg-0 bg-primary">
                         <hr class="d-lg-none text-white-50 bg-primary">
                         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav ms-md-auto text-white bg-primary">
-                            <asp:Menu ID="menu" runat="server" Orientation="Horizontal" Visible="false">
+                            <asp:Menu ID="menu" runat="server" Orientation="Horizontal">
                                 <StaticMenuItemStyle HorizontalPadding="20"/>
                                 <Items>
                                     <asp:MenuItem Text="Catalogo" NavigateUrl="Catalogo.aspx" />
                                     <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
                                     <asp:MenuItem Text="Foro" NavigateUrl="Foro_Publico.aspx" />
-                                </Items>
-                                <LevelMenuItemStyles>
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white fs-5 bg-primary" />
-                                    <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white bg-primary fs-6" />
-                                </LevelMenuItemStyles>
-                            </asp:Menu>
-                            <asp:Menu ID="menuConSesion" runat="server" Orientation="Horizontal">
-                                <StaticMenuItemStyle HorizontalPadding="20"/>
-                                <Items>
-                                    <asp:MenuItem Text="Catalogo" NavigateUrl="Catalogo.aspx" />
-                                    <asp:MenuItem Text="Noticias" NavigateUrl="NoticiaWF.aspx" />
-                                    <asp:MenuItem Text="Foro" NavigateUrl="Foro_Publico.aspx" />
-                                    <asp:MenuItem Text="Mis Reseñas" NavigateUrl="Reseña.aspx" />
-                                    <asp:MenuItem Text="Mis Reservas" NavigateUrl="Reserva.aspx" />
                                 </Items>
                                 <LevelMenuItemStyles>
                                     <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white fs-5 bg-primary" />
@@ -73,7 +59,6 @@
                                         <asp:MenuItem Text="Ofertas" NavigateUrl="AdminOfertas.aspx" />
                                         <asp:MenuItem Text="Usuarios" NavigateUrl="AdminUsuarios.aspx"  />
                                         <asp:MenuItem Text="Foros" NavigateUrl="AdminForos.aspx" />
-                                        <asp:MenuItem Text="Mis reseñas" NavigateUrl="Reseña.aspx" />
                                          <asp:MenuItem Text="Top 10" NavigateUrl="Top10Compras.aspx" />
                                         <asp:MenuItem Text="Top 10" NavigateUrl="Top10Compras.aspx" />
                                     </asp:MenuItem>
@@ -83,7 +68,6 @@
                                     <asp:MenuItemStyle CssClass="nav-link py-2 px-0 px-lg-2 link-primary text-white bg-primary fs-6" />
                                 </LevelMenuItemStyles>
                             </asp:Menu>
-
                         </ul>
 
                         <ul class="navbar-nav flex-row flex-wrap ms-md-auto bg-primary">

@@ -87,11 +87,10 @@
         </div>
         <div>
             <br />
-            <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2"></asp:TextBox>
-            <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="10" CssClass="mb-2"></asp:TextBox>
-            <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Nueva reseña" runat="server" Visible="true" OnClick="añadirReview_click" />
-            <asp:Button CssClass="btn btn-primary" ID="crearReview" Text="Crear" runat="server" Visible="false" OnClick="crearReview_click" OnClientClick="return confirmacion();"/>
-            <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="false" OnClick="cancelarReview_click"/>
+            <asp:TextBox ID="comentarioReview" runat="server" Visible="true" placeholder="Comentario..." CssClass="mb-2"></asp:TextBox>
+            <asp:TextBox ID="notaReview" runat="server" Visible="true" placeholder="Nota..." type="number" min="0" MaxLength="10" CssClass="mb-2"></asp:TextBox>
+            <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Añadir reseña" runat="server" Visible="true" OnClick="añadirReview_click" />
+            <asp:Button CssClass="btn btn-primary" ID="crearReview" Text="Crear nueva reseña" runat="server" Visible="true" OnClick="crearReview_click" CommandArgument='<%# Eval("id") %>'/>
         </div>
         <!--REVIEWS-->
         <div class="row d-flex flex-row mt-5">
