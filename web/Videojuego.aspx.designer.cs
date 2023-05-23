@@ -123,15 +123,6 @@ namespace web
         protected global::System.Web.UI.WebControls.ListView ofertaDisplay;
 
         /// <summary>
-        /// comentarioReview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox comentarioReview;
-
-        /// <summary>
         /// notaReview control.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,15 @@ namespace web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox notaReview;
+
+        /// <summary>
+        /// comentarioReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox comentarioReview;
 
         /// <summary>
         /// añadirReview control.

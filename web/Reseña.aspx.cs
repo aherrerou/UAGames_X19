@@ -17,72 +17,81 @@ namespace web
         {
             if (!Page.IsPostBack)
             {
+
+
+
                 ENReview en = new ENReview();
-                en.usuario.id = 1;
-                data = en.misReviews();
-                ReviewListView.DataSource = data;
-                ReviewListView.DataBind();
-            }
-        }
-        protected void crearReviewClick(object sender, EventArgs e)
-        {
-            ENVideojuego v = new ENVideojuego();
-            ENUsuario u = new ENUsuario();
-            u.id = 1;
-
-            v.Titulo = nombreVideojuego.Text.ToString();
-
-            if (v.readVideojuego())
-            {
-                ENReview review = new ENReview(DateTime.Now, Convert.ToInt32(puntuacion), comentario.ToString(), v, u);
-                if (review.comprobarUsuarioReview())
+                en.id = Convert.ToInt32(Request.QueryString["id"]);
+                if (en.readReview())
                 {
-                    review.createReview();
+                    //Si el usuario es igual que el del inicio de sesión , entonces muestra los botones de edicion y eliminar
+                    //if (Session["login_nick"].ToString() == en.usuario.nick.ToString())
+                    //{
+                    //    userText.Visible = true;
+                    //    Filtrar.Visible = true;
+                    //    Eliminar.Visible = true;
+                    //}
+                    videojuegoImagen.ImageUrl = en.videojuego.Imagen;
+                    tituloLabel.Text = en.videojuego.Titulo + " - ";
+                    fechaLabel.Text = en.fecha.ToString("dd/MM/yyyy");
+                    Puntuacion.CurrentRating = Convert.ToInt32(en.puntuacion);
+                    UsuarioLabel.Text = en.usuario.nombre.ToString();
+                    comentarioLabel.Text = en.comentario.ToString();
                 }
 
             }
         }
 
-        protected void deleteReview_Click(object sender, EventArgs e)
+        public void Volver_click(object sender, EventArgs e)
         {
-            ENReview review = new ENReview();
-            review.id = Convert.ToInt32(((Button)sender).CommandArgument);
-            if (review.comprobarUsuarioReview())
-            {
-                review.deleteReview();
-            }
+            //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
+            ENReview en = new ENReview();
+            en.id = Convert.ToInt32(Request.QueryString["id"]);
+            en.readReview();
+            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            Response.Redirect(url);
         }
 
-        protected void editarReview_Click(object sender, EventArgs e)
+        public void Editar_click(object sender, EventArgs e)
         {
-            ENReview review = new ENReview();
-            review.id = Convert.ToInt32(((Button)sender).CommandArgument);
-            if (review.comprobarUsuarioReview())
-            {
-                review.updateReview();
-            }
+            //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
+            ENReview en = new ENReview();
+            notaReview.Visible = true;
+            comentarioReview.Visible = true;
+
+
         }
 
-        protected void filtrarReview_Click(object sender, EventArgs e)
+        public void Eliminar_click(object sender, EventArgs e)
         {
-            ENReview review = new ENReview();
-
-            review.filtrarReview();
+            //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
+            ENReview en = new ENReview();
+            en.id = Convert.ToInt32(Request.QueryString["id"]);
+            en.deleteReview();
+            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            Response.Redirect(url);
         }
 
-        protected void misReviews_Click(object sender, EventArgs e)
+        public void Confirmar_click(object sender, EventArgs e)
         {
-            ENUsuario u = new ENUsuario();
-            if (Session["login_nick"] != null)
-            {
+            //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
+            ENReview en = new ENReview();
+            en.id = Convert.ToInt32(Request.QueryString["id"]);
+            en.comentario = comentarioReview.Text;
+            en.puntuacion = Convert.ToInt32(notaReview.Text);
+            en.updateReview();
+            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            Response.Redirect(url);
+        }
 
-                u.nick = Session["login_nick"].ToString();
-                u.readUsuario();
-            }
-
-            ENReview review = new ENReview();
-            review.usuario = u;
-            review.filtrarReview();
+        public void Cancelar_click(object sender, EventArgs e)
+        {
+            //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
+            ENReview en = new ENReview();
+            en.id = Convert.ToInt32(Request.QueryString["id"]);
+            en.deleteReview();
+            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            Response.Redirect(url);
         }
     }
 }

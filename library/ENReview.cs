@@ -72,6 +72,11 @@ namespace library
         {
             return this.review.filtrarReview(this);
         }
+
+        public DataTable mostrarReview()
+        {
+            return this.review.mostrarReview(this);
+        }
     }
 
 }

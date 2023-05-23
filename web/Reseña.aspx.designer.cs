@@ -15,57 +15,129 @@ namespace web
     {
 
         /// <summary>
-        /// misReviews control.
+        /// asm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button misReviews;
+        protected global::System.Web.UI.ScriptManager asm;
 
         /// <summary>
-        /// ReviewListView control.
+        /// volver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ReviewListView;
+        protected global::System.Web.UI.WebControls.Button volver;
 
         /// <summary>
-        /// nombreVideojuego control.
+        /// videojuegoImagen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nombreVideojuego;
+        protected global::System.Web.UI.WebControls.Image videojuegoImagen;
 
         /// <summary>
-        /// puntuacion control.
+        /// tituloLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox puntuacion;
+        protected global::System.Web.UI.WebControls.Label tituloLabel;
 
         /// <summary>
-        /// comentario control.
+        /// UsuarioLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox comentario;
+        protected global::System.Web.UI.WebControls.Label UsuarioLabel;
 
         /// <summary>
-        /// crearReview control.
+        /// fechaLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button crearReview;
+        protected global::System.Web.UI.WebControls.Label fechaLabel;
+
+        /// <summary>
+        /// comentarioLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label comentarioLabel;
+
+        /// <summary>
+        /// Puntuacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating Puntuacion;
+
+        /// <summary>
+        /// Editar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Editar;
+
+        /// <summary>
+        /// Eliminar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Eliminar;
+
+        /// <summary>
+        /// notaReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notaReview;
+
+        /// <summary>
+        /// comentarioReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox comentarioReview;
+
+        /// <summary>
+        /// confirmar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button confirmar;
+
+        /// <summary>
+        /// cancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cancelar;
     }
 }

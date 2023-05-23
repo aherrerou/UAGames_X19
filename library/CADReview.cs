@@ -184,17 +184,12 @@ namespace library
         public bool readReview(ENReview review)
         {
             bool leido = false;
-            SqlConnection connection = null;
-            SqlConnection conProductora = null;
-            SqlConnection conCategoria = null;
             SqlDataReader dr = null;
             try
             {
-                connection.Open();
-                conProductora.Open();
-                conCategoria.Open();
-                string query = "SELECT * FROM Review WHERE id = @id";
-                SqlCommand com = new SqlCommand(query, connection);
+                c.Open();
+                string query = "SELECT r.* , u.nick as nick FROM Review r , Usuario u WHERE r.id = @id";
+                SqlCommand com = new SqlCommand(query, c);
                 com.Parameters.AddWithValue("@id", review.id);
                 //Se obtiene cursor
                 dr = com.ExecuteReader();
@@ -210,12 +205,15 @@ namespace library
                     //Lectura del videojuego
                     ENVideojuego v = new ENVideojuego();
                     v.Id = Convert.ToInt32(dr["videojuegoID"].ToString());
-                    v.readVideojuego();
+                    v.readVideojuegoId();
 
                     //Lectura del usuario
                     ENUsuario u = new ENUsuario();
-                    u.id = Convert.ToInt32(dr["usuarioID"].ToString());
+                    u.nick = dr["nick"].ToString();
                     u.readUsuario();
+
+                    review.videojuego = v;
+                    review.usuario = u;
 
                     leido = true;
                 }
@@ -234,7 +232,7 @@ namespace library
             finally
             {
                 if (dr != null) dr.Close();
-                if (connection != null) connection.Close(); // Se asegura de cerrar la conexión.
+                if (c != null) c.Close(); // Se asegura de cerrar la conexión.
             }
             return leido;
         }
@@ -250,6 +248,35 @@ namespace library
                     "where v.Id = r.videojuegoID and r.usuarioID = u.id and r.usuarioID = @usuarioID;";
                 SqlCommand com1 = new SqlCommand(query, c);
                 com1.Parameters.AddWithValue("@usuarioID", review.usuario.id);
+                SqlDataAdapter adapter = new SqlDataAdapter(com1);
+                adapter.Fill(dataTable);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+            }
+            finally
+            {
+                c.Close();
+            }
+            return dataTable;
+        }
+
+        public DataTable mostrarReview(ENReview review)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                c.Open();
+                string query = "SELECT r.* , v.Imagen as imagen , v.Titulo as nombrejuego, u.nombre as usuario" +
+                    " FROM Review r , videojuego v , usuario u " +
+                    "where v.Id = r.videojuegoID and r.usuarioID = u.id and r.id = @id;";
+                SqlCommand com1 = new SqlCommand(query, c);
+                com1.Parameters.AddWithValue("@id", review.id);
                 SqlDataAdapter adapter = new SqlDataAdapter(com1);
                 adapter.Fill(dataTable);
             }

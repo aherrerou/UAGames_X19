@@ -86,12 +86,12 @@
             </div>
         </div>
         <div>
-            <br />
-            <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2"></asp:TextBox>
-            <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="10" CssClass="mb-2"></asp:TextBox>
+            <br /> 
+            <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="5" CssClass="mb-2 align-top"></asp:TextBox>
+            <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2 align-top" Style="width: 600px; height: 50px;"></asp:TextBox>
             <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Nueva reseña" runat="server" Visible="true" OnClick="añadirReview_click" />
-            <asp:Button CssClass="btn btn-primary" ID="crearReview" Text="Crear" runat="server" Visible="false" OnClick="crearReview_click" OnClientClick="return confirmacion();"/>
-            <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="false" OnClick="cancelarReview_click"/>
+            <asp:Button CssClass="btn btn-primary" ID="crearReview" Text="Crear" runat="server" Visible="false" OnClick="crearReview_click" />
+            <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="false" OnClick="cancelarReview_click" />
         </div>
         <!--REVIEWS-->
         <div class="row d-flex flex-row mt-5">
@@ -108,7 +108,7 @@
                         </tr>
                     </table>
                     <div class="text-left">
-                        <asp:DataPager runat="server" ID="DataPager" PageSize="8" HorizontalAlign="Center" CssClass="text-center text-primary">
+                        <asp:DataPager runat="server" ID="DataPager" PageSize="3" HorizontalAlign="Center" CssClass="text-center text-primary">
                             <Fields>
                                 <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-primary"
                                     PreviousPageText=" < " FirstPageText=" << " />
@@ -128,24 +128,26 @@
                 </tr>
             </GroupTemplate>
             <ItemTemplate>
-                <div class="row">
-                    <div class="card col-md-8">
-
-                        <div class="card-body">
+                <div class="row fa-align-center">
+                    <div class="card col-md-8 border-3">
+                        <div class="card-body align-content-center">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <h4><%# Eval("usuario") %>  </h4>
+                                <div class="col-md-3" style="font-weight: bold; font-size: xx-large;" >
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#$"Reseña.aspx?id={Eval("id")}" %>'>
+                                    <%# Eval("usuario") %>
+                                         </asp:HyperLink>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" style="font-weight: bold; font-size: xx-large;">
                                     <h2>
                                         <ajaxToolkit:Rating ID="ratingAvg" runat="server" CurrentRating='<%# Eval("puntuacion") %>' MaxRating="5"
                                             EmptyStarCssClass="emptyRatingStar" FilledStarCssClass="filledRatingStar" StarCssClass="emptyRatingStar" WaitingStarCssClass="emptyRatingStar" ReadOnly="true" />
-                                    </h3>
+                                    </h2>
                                     
                                 </div>
-                                <div class="col-md-4">
-                                    <%# Eval("fecha") %>
+                                <div class="col-md-3">
+                                   <%# Convert.ToDateTime(Eval("fecha")).ToString("dd/MM/yyyy") %>
                                 </div>
+                                
                             </div>
                             <div class="row">
 
