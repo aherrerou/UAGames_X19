@@ -115,7 +115,7 @@ namespace web
                 double precioTotal = 0.00;
                 foreach (GridViewRow row in cestaTable.Rows)
                 {
-                    String precio = row.Cells[4].Text;
+                    String precio = row.Cells[5].Text;
                     precioTotal += Convert.ToDouble(precio);
                 };
 

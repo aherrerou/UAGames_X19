@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminCategoria.aspx" />
     <Content Include="AdminForos.aspx" />
     <Content Include="AdminOfertas.aspx" />
     <Content Include="AdminUsuarios.aspx" />
@@ -95,7 +96,6 @@
     <Content Include="assets\imagenes\videojuegos\Fortnite.jpg" />
     <Content Include="assets\imagenes\videojuegos\GTAV.jpg" />
     <Content Include="Catalogo.aspx" />
-    <Content Include="CategoriaWebForm.aspx" />
     <Content Include="CestaWebForm.aspx" />
     <Content Include="Compras.aspx" />
     <Content Include="Foro_Publico.aspx" />
@@ -118,6 +118,13 @@
     <Content Include="Contacto.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminCategoria.aspx.cs">
+      <DependentUpon>AdminCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminCategoria.aspx.designer.cs">
+      <DependentUpon>AdminCategoria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminForos.aspx.cs">
       <DependentUpon>AdminForos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -153,13 +160,6 @@
     <Compile Include="Catalogo.aspx.designer.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CategoriaWebForm.aspx.cs">
-      <DependentUpon>CategoriaWebForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CategoriaWebForm.aspx.designer.cs">
-      <DependentUpon>CategoriaWebForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CestaWebForm.aspx.cs">
       <DependentUpon>CestaWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="Foro_Publico.aspx.cs">
       <DependentUpon>Foro_Publico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Foro_Publico.aspx.designer.cs">
       <DependentUpon>Foro_Publico.aspx</DependentUpon>
