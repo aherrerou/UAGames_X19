@@ -78,11 +78,13 @@ namespace web
                     ENCesta cesta = new ENCesta();
                     ENUsuario auxUser = new ENUsuario();
                     auxUser.nick = Session["login_nick"].ToString();
-                    cesta.usuarioID = auxUser;
+                    auxUser.readUsuario();
+                    cesta.usuarioID.id = auxUser.id;
                     cesta.readCesta();
                     //Agregar elemento a la lista
                     cesta.addVideojuego(videojuego.Id);
                 }
+
             }
         }
 
