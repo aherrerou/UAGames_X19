@@ -42,10 +42,10 @@ ORDER BY COUNT(*) DESC
 
                     // Configurar los datos para el gráfico
                     var data = {
-                        labels: ["Adrian", "Clara", "Omar", "Aitor", "Adrian", "Clara", "Omar", "Aitor"], // Obtén los datos de Usuario desde la fuente de datos
+                        labels: ["Omar", "Clara", "Estevan", "Adrian", "Aitor", "Raul", "Iker", "Paco","Jose", "Pepe"], // Obtén los datos de Usuario desde la fuente de datos
                         datasets: [{
                             label: 'Número de Compras',
-                            data: [5, 10, 2, 20], // Obtén los datos de "Numero de Compras" desde la fuente de datos
+                            data: [3, 5, 4, 6, 4, 4, 2, 1, 3, 3], // Obtén los datos de "Numero de Compras" desde la fuente de datos
                             backgroundColor: 'rgba(75, 192, 192, 0.6)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1

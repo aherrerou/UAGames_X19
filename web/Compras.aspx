@@ -9,7 +9,7 @@
                 <br />
                 <br />
 
-                <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="Número de pedido" DataSourceID="UAGAMES" GridLines="Vertical">
+                <asp:GridView ID="GridView1" runat="server" CssClass="grid" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="Número de pedido" DataSourceID="UAGAMES" GridLines="Vertical" AllowPaging="True">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
                 <asp:BoundField DataField="Usuario" HeaderText="Usuario" SortExpression="Usuario" />
