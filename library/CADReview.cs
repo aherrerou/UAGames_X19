@@ -188,7 +188,7 @@ namespace library
             try
             {
                 c.Open();
-                string query = "SELECT r.* , u.nick as nick FROM Review r , Usuario u WHERE r.id = @id";
+                string query = "SELECT r.* , u.nick as nick FROM Review r , Usuario u WHERE r.usuarioID=u.id and r.id = @id";
                 SqlCommand com = new SqlCommand(query, c);
                 com.Parameters.AddWithValue("@id", review.id);
                 //Se obtiene cursor

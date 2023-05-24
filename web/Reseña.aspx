@@ -53,8 +53,8 @@
         </div>
         <div class="mt-8 text-right">
             <br />
-            <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="5" CssClass="mb-2" Style="width: 150px;"></asp:TextBox>
-            <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2" Style="width: 300px;"></asp:TextBox>
+            <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="5" value="0" CssClass="mb-2" Style="width: 150px;"></asp:TextBox>
+            <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." value="" CssClass="mb-2" Style="width: 300px;"></asp:TextBox>
             <asp:Button CssClass="btn btn-primary" ID="confirmar" Text="Confirmar" runat="server" Visible="false" OnClick="Confirmar_click" />
             <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="false" OnClick="Cancelar_click" />
             

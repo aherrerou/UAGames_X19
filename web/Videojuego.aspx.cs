@@ -118,19 +118,19 @@ namespace web
         protected void crearReview_click(object sender, EventArgs e)
         {
             ENUsuario u = new ENUsuario();
-            u.id = 1;
+            u.nick = Session["login_nick"].ToString();
             ENReview review = new ENReview();
             u.readUsuario();
             review.usuario = u;
             review.videojuego.Id = Convert.ToInt32(Request.QueryString["id"]);
             review.comentario = comentarioReview.Text.ToString();
-            review.puntuacion = Convert.ToInt32(notaReview.Text.ToString());
+            review.puntuacion = Convert.ToInt32(notaReview.Text) > 5 ? 5 : Convert.ToInt32(notaReview.Text);
             review.createReview();
 
             fillReviews(review.videojuego.Id);
             //Mostramos campos necesarios
-            añadirReview.Visible = true;
-            filtrarReview.Visible = true;
+            string url = "Videojuego.aspx?id=" + review.videojuego.Id;
+            Response.Redirect(url);
         }
 
         protected void añadirReview_click(object sender, EventArgs e)

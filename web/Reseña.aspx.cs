@@ -22,11 +22,16 @@ namespace web
                 if (en.readReview())
                 {
                     //Si el usuario es igual que el del inicio de sesión , entonces muestra los botones de edicion y eliminar
-                    //if (Session["login_nick"].ToString() == en.usuario.nick.ToString())
-                    //{
-                        Editar.Visible = true;
-                        Eliminar.Visible = true;
-                    //}
+                    if (Session["login_nick"] != null)
+                    {
+                        if (Session["login_nick"].ToString() == en.usuario.nick.ToString())
+                        {
+                            Editar.Visible = true;
+                            Eliminar.Visible = true;
+                        }
+                    }
+                    
+                    
                     videojuegoImagen.ImageUrl = en.videojuego.Imagen;
                     tituloLabel.Text = en.videojuego.Titulo + " - ";
                     fechaLabel.Text = en.fecha.ToString("dd/MM/yyyy");
