@@ -54,7 +54,7 @@
             <br />
             <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="5" CssClass="mb-2" Style="width: 150px;"></asp:TextBox>
             <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2" Style="width: 300px;"></asp:TextBox>
-            <asp:Button CssClass="btn btn-primary" ID="confirmar" Text="Crear" runat="server" Visible="true" OnClick="Confirmar_click" />
+            <asp:Button CssClass="btn btn-primary" ID="confirmar" Text="Confirmar" runat="server" Visible="true" OnClick="Confirmar_click" />
             <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="true" OnClick="Cancelar_click" />
             
         </div>

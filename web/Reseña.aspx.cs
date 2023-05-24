@@ -17,9 +17,6 @@ namespace web
         {
             if (!Page.IsPostBack)
             {
-
-
-
                 ENReview en = new ENReview();
                 en.id = Convert.ToInt32(Request.QueryString["id"]);
                 if (en.readReview())
@@ -65,10 +62,17 @@ namespace web
         public void Eliminar_click(object sender, EventArgs e)
         {
             //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
+            int idVideojuego;
             ENReview en = new ENReview();
-            en.id = Convert.ToInt32(Request.QueryString["id"]);
+            int idReseña = Convert.ToInt32(Request.QueryString["id"]);
+            //Cargamos datos de la review
+            en.id = idReseña;
+            en.readReview();
+            //Guardamos id del videojuego
+            idVideojuego = en.videojuego.Id;
+            //Borramos y volvemos con el id guardado anteriormente
             en.deleteReview();
-            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            string url = "Videojuego.aspx?id=" + idVideojuego;
             Response.Redirect(url);
         }
 
@@ -77,10 +81,13 @@ namespace web
             //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
             ENReview en = new ENReview();
             en.id = Convert.ToInt32(Request.QueryString["id"]);
+            en.readReview();
+
+            //Updateamos lo necesarios
             en.comentario = comentarioReview.Text;
             en.puntuacion = Convert.ToInt32(notaReview.Text);
             en.updateReview();
-            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            string url = "Reseña.aspx?id=" + en.id;
             Response.Redirect(url);
         }
 

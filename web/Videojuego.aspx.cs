@@ -94,6 +94,8 @@ namespace web
         {
             ENReview review = new ENReview();
             review.videojuego.Id = videojuego;
+            review.usuario.nick = nombreUsuario.Text.ToString();
+            review.usuario.readUsuario();
             listViewReviews.DataSource = review.filtrarReview();
 
             listViewReviews.DataBind();
@@ -133,12 +135,8 @@ namespace web
 
             fillReviews(review.videojuego.Id);
             //Mostramos campos necesarios
-            comentarioReview.Visible = false;
-            notaReview.Visible = false;
-            cancelar.Visible = false;
-            crearReview.Visible = false;
             añadirReview.Visible = true;
-
+            filtrarReview.Visible = true;
 
             //}
         }
@@ -147,7 +145,7 @@ namespace web
         {
             //if (Session["login_nick"] != null)
             //{
-            añadirReview.Visible = false;
+            ocultarCampos();
             comentarioReview.Visible = true;
             notaReview.Visible = true;
             crearReview.Visible = true;
@@ -169,20 +167,19 @@ namespace web
 
         protected void cancelarReview_click(object sender, EventArgs e)
         {
+            //Ocultamos campos
+            ocultarCampos();
+
             //if (Session["login_nick"] != null)
             //{
             añadirReview.Visible = true;
+            filtrarReview.Visible = true;
+            nombreUsuario.Visible = true;
             //}
             //else
             //{
             //    añadirReview.Visible = false;
             //}
-
-            //Ocultamos campos
-            comentarioReview.Visible = false;
-            notaReview.Visible = false;
-            cancelar.Visible = false;
-            crearReview.Visible = false;
 
             //Dejamos los Textbox por defecto
             notaReview.Text = null;
@@ -196,6 +193,21 @@ namespace web
             ENReview review = new ENReview();
             review.deleteReview(reviewEmail);
             Response.Redirect(Request.Url.AbsoluteUri);*/
+        }
+
+        protected void filtrarReview_click(Object sender, EventArgs e)
+        {
+        }
+
+        private void ocultarCampos()
+        {
+            comentarioReview.Visible = false;
+            notaReview.Visible = false;
+            cancelar.Visible = false;
+            crearReview.Visible = false;
+            añadirReview.Visible = false;
+            filtrarReview.Visible = false;
+            nombreUsuario.Visible = false;
         }
     }
 }
