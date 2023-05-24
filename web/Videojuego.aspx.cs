@@ -117,12 +117,6 @@ namespace web
 
         protected void crearReview_click(object sender, EventArgs e)
         {
-            //if (Session["login_nick"] == null)
-            //{
-            //    Response.Redirect("Inicia_Sesion.aspx");
-            //}
-            //else
-            //{
             ENUsuario u = new ENUsuario();
             u.id = 1;
             ENReview review = new ENReview();
@@ -137,32 +131,34 @@ namespace web
             //Mostramos campos necesarios
             añadirReview.Visible = true;
             filtrarReview.Visible = true;
-
-            //}
         }
 
         protected void añadirReview_click(object sender, EventArgs e)
         {
-            //if (Session["login_nick"] != null)
-            //{
-            ocultarCampos();
-            comentarioReview.Visible = true;
-            notaReview.Visible = true;
-            crearReview.Visible = true;
-            cancelar.Visible = true;
-            //}
+            if (Session["login_nick"] == null)
+            {
+                Response.Redirect("Inicia_Sesion.aspx");
+            }
+            else
+            {
+                ocultarCampos();
+                comentarioReview.Visible = true;
+                notaReview.Visible = true;
+                crearReview.Visible = true;
+                cancelar.Visible = true;
+            }
         }
 
         protected void comprobarCamposReview()
         {
-            //if (Session["login_nick"] != null)
-            //{
-            añadirReview.Visible = true;
-            //}
-            //else
-            //{
-            //    añadirReview.Visible = false;
-            //}
+            if (Session["login_nick"] != null)
+            {
+                añadirReview.Visible = true;
+            }
+            else
+            {
+                añadirReview.Visible = false;
+            }
         }
 
         protected void cancelarReview_click(object sender, EventArgs e)
@@ -170,16 +166,9 @@ namespace web
             //Ocultamos campos
             ocultarCampos();
 
-            //if (Session["login_nick"] != null)
-            //{
             añadirReview.Visible = true;
             filtrarReview.Visible = true;
             nombreUsuario.Visible = true;
-            //}
-            //else
-            //{
-            //    añadirReview.Visible = false;
-            //}
 
             //Dejamos los Textbox por defecto
             notaReview.Text = null;
@@ -197,6 +186,7 @@ namespace web
 
         protected void filtrarReview_click(Object sender, EventArgs e)
         {
+            //Simplemente llama al click y hace el PageLoad con los nuevos datos
         }
 
         private void ocultarCampos()

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,9 +24,8 @@ namespace web
                     //Si el usuario es igual que el del inicio de sesión , entonces muestra los botones de edicion y eliminar
                     //if (Session["login_nick"].ToString() == en.usuario.nick.ToString())
                     //{
-                    //    userText.Visible = true;
-                    //    Filtrar.Visible = true;
-                    //    Eliminar.Visible = true;
+                        Editar.Visible = true;
+                        Eliminar.Visible = true;
                     //}
                     videojuegoImagen.ImageUrl = en.videojuego.Imagen;
                     tituloLabel.Text = en.videojuego.Titulo + " - ";
@@ -51,12 +50,10 @@ namespace web
 
         public void Editar_click(object sender, EventArgs e)
         {
-            //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
-            ENReview en = new ENReview();
             notaReview.Visible = true;
             comentarioReview.Visible = true;
-
-
+            cancelar.Visible = true;
+            confirmar.Visible = true;
         }
 
         public void Eliminar_click(object sender, EventArgs e)
@@ -82,10 +79,9 @@ namespace web
             ENReview en = new ENReview();
             en.id = Convert.ToInt32(Request.QueryString["id"]);
             en.readReview();
-
+            en.puntuacion = Convert.ToInt32(notaReview.Text) > 5 ? 5 : Convert.ToInt32(notaReview.Text);
             //Updateamos lo necesarios
             en.comentario = comentarioReview.Text;
-            en.puntuacion = Convert.ToInt32(notaReview.Text);
             en.updateReview();
             string url = "Reseña.aspx?id=" + en.id;
             Response.Redirect(url);
@@ -96,8 +92,7 @@ namespace web
             //Cargamos los datos de la review para volver al videojuego en el que nos encontrabamos
             ENReview en = new ENReview();
             en.id = Convert.ToInt32(Request.QueryString["id"]);
-            en.deleteReview();
-            string url = "Videojuego.aspx?id=" + en.videojuego.Id;
+            string url = "Reseña.aspx?id=" + en.id;
             Response.Redirect(url);
         }
     }

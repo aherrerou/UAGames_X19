@@ -89,11 +89,11 @@
             <br />
             <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="5" CssClass="mb-2 align-top"></asp:TextBox>
             <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2 align-top" Style="width: 600px; height: 50px;"></asp:TextBox>
-            <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Nueva reseña" runat="server" Visible="true" OnClick="añadirReview_click" />
+            <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Nueva reseña" runat="server" Visible="false" OnClick="añadirReview_click" />
             <asp:Button CssClass="btn btn-primary" ID="crearReview" Text="Crear" runat="server" Visible="false" OnClick="crearReview_click" />
             <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="false" OnClick="cancelarReview_click" />
-            <asp:Button CssClass="btn btn-primary" ID="filtrarReview" Text="Filtrar reseña" runat="server" Visible="true" OnClick="filtrarReview_click" />
-            <asp:TextBox ID="nombreUsuario" runat="server" Visible="true" placeholder="Usuario..." CssClass="mb-2 align-top"></asp:TextBox>
+            <asp:Button CssClass="btn btn-primary" ID="filtrarReview" Text="Filtrar reseña" runat="server" OnClick="filtrarReview_click" />
+            <asp:TextBox ID="nombreUsuario" runat="server" placeholder="Usuario..." CssClass="mb-2 align-top"></asp:TextBox>
         </div>
         <!--REVIEWS-->
         <div class="row d-flex flex-row mt-5">

@@ -102,7 +102,6 @@
     <Content Include="Inicia_Sesion.aspx" />
     <Content Include="Lista_Deseos.aspx" />
     <Content Include="NoticiaCompleta.aspx" />
-    <Content Include="misReseñas.aspx" />
     <Content Include="NoticiaWF.aspx" />
     <Content Include="PreguntasFrec.aspx" />
     <Content Include="Privacidad.aspx" />

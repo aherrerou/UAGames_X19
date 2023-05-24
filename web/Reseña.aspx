@@ -41,10 +41,11 @@
                 </div>
                 <!--BOTONES-->
             </div>
-            <div class="mt-6 mx-5 d-flex">
+            <div class="mt-6 mx-5 d-flex flex-row img-fluid">
                 <div class="mt-8 align-top">
-                    <asp:Button CssClass="btn btn-primary" ID="Editar" Text="Editar" runat="server" OnClick="Editar_click" Visible="true" />
-                    <asp:Button CssClass="btn btn-primary" ID="Eliminar" Text="Eliminar" runat="server" OnClick="Eliminar_click" Visible="true" />
+                    <asp:ImageButton ID="Editar" runat="server" ImageUrl="assets/imagenes/iconos/edit.png" OnClick="Editar_click" Visible="true" />
+                    <asp:ImageButton ID="Eliminar" runat="server" ImageUrl="assets/imagenes/iconos/trash.png" OnClick="Eliminar_click" Visible="true" />
+
 
                 </div>
             </div>
@@ -54,8 +55,8 @@
             <br />
             <asp:TextBox ID="notaReview" runat="server" Visible="false" placeholder="Nota..." type="number" min="0" MaxLength="5" CssClass="mb-2" Style="width: 150px;"></asp:TextBox>
             <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-2" Style="width: 300px;"></asp:TextBox>
-            <asp:Button CssClass="btn btn-primary" ID="confirmar" Text="Confirmar" runat="server" Visible="true" OnClick="Confirmar_click" />
-            <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="true" OnClick="Cancelar_click" />
+            <asp:Button CssClass="btn btn-primary" ID="confirmar" Text="Confirmar" runat="server" Visible="false" OnClick="Confirmar_click" />
+            <asp:Button CssClass="btn btn-primary" ID="cancelar" Text="Cancelar" runat="server" Visible="false" OnClick="Cancelar_click" />
             
         </div>
 </asp:Content>
