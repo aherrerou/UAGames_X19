@@ -27,14 +27,6 @@ main {
     justify-content: center;
 }
 
-div .textbox-container {
-    display: flex;
-}
-
-.textbox-container .textbox-aspnet {
-    margin-right: 10px;
-}
-
     main .listaVideojuegos {
         width: 100%;
         display: flex;
@@ -75,13 +67,6 @@ main .card {
         border-radius: 10px;
     }
 
-
-    .main .card .imagen-reseña {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
         main .card .card-body {
             flex: 1 1 auto;
             padding: 1rem;
