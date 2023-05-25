@@ -9,7 +9,7 @@
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <h1>Registrar nuevo usuario</h1>
             Nick:&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TNick" runat="server" CausesValidation="True"></asp:TextBox>
+            <asp:TextBox ID="TNick" runat="server" CausesValidation="True"></asp:TextBox> 
             <asp:RequiredFieldValidator ID="RequiredNick" ControlToValidate="TNick" runat="server" ErrorMessage="* Introduce el Nick"></asp:RequiredFieldValidator>
             <br />
             Nombre:&nbsp;&nbsp;&nbsp;&nbsp;
