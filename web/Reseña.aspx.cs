@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using library;
@@ -37,6 +38,8 @@ namespace web
 
             }
         }
+
+        
 
         public void Volver_click(object sender, EventArgs e)
         {

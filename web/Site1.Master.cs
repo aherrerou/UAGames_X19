@@ -29,6 +29,11 @@ namespace web
                     //Mostrar menu admin
                     menuAdmin.Visible = true;
                 }
+                else
+                {
+                    menuUsuario.Visible = true;
+                    menu.Visible = false;
+                }
             }
         }
 

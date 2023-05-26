@@ -34,6 +34,8 @@ namespace web
                     fillReviews(videojuego.Id);
                     fillOferta(videojuego.Id);
                     comprobarSesionReview();
+
+                    reservas.Visible = videojuego.FechaLanzamiento > DateTime.Now ? true : false;
                 }
             }
         }
@@ -131,7 +133,7 @@ namespace web
         }
 
         //Funcion con la cual se visualizan los campos correspondientes para la inserción de una review
-        protected void añadirReview_click(object sender, EventArgs e)
+        protected void añadirReview_Click(object sender, EventArgs e)
         {
             //Inicio de sesion comprobado antes
             textoPuntuacion.Visible = true;
@@ -140,14 +142,22 @@ namespace web
             crearReview.Visible = true;
             cancelar.Visible = true;
             añadirReview.Visible = false;
+            reservas.Visible = false;
         }
 
         protected void comprobarSesionReview()
         {
             if (Session["login_nick"] != null)
+            {
                 añadirReview.Visible = true;
-            else       
+                reservas.Style["display"] = "block";
+            }
+            else
+            {
                 añadirReview.Visible = false;
+                reservas.Style["display"] = "none";
+            }
+
         }
 
         protected void cancelarReview_click(object sender, EventArgs e)
@@ -165,6 +175,28 @@ namespace web
         {
             string url = "Videojuego.aspx?id=" + id;
             Response.Redirect(url);
+        }
+        protected void ReservarVideojuego_Click(object sender, EventArgs e)
+        {
+            ENReserva reserva = new ENReserva();
+
+            //Datos usuario
+            reserva.usuario.nick = Session["login_nick"].ToString();
+            reserva.usuario.readUsuario();
+
+            //Datos Videojuego
+            reserva.videojuego.Id = Convert.ToInt32(Request.QueryString["id"]);
+            reserva.videojuego.readVideojuegoId();
+            //Codigo a revisar
+            //if (reserva.existeReserva())
+            //{
+            //    reservaCreadaValidator.Visible = true;        
+            //}
+            //else
+            //{
+                reserva.createReserva();
+            //}
+            
         }
     }
 }
