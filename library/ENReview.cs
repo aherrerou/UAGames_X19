@@ -4,6 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace library
@@ -13,7 +14,7 @@ namespace library
     public class ENReview
     {
         public ENUsuario usuario { get; set; }
-        public ENVideojuego videoJuego { get; set; }
+        public ENVideojuego videojuego { get; set; }
         public int id { get; set; }
         public DateTime fecha { get; set; }
         public string comentario { get; set; }
@@ -23,16 +24,26 @@ namespace library
         public ENReview()
         {
             this.usuario = new ENUsuario();
-            this.videoJuego = new ENVideojuego();
+            this.videojuego = new ENVideojuego();
             this.fecha = DateTime.Now;
             this.puntuacion = 0;
             this.comentario = "";
             this.review = new CADReview();
         }
 
+        public ENReview(DateTime fecha, int puntuacion, string comentario, ENVideojuego videojuego, ENUsuario usuario)
+        {
+            this.usuario = usuario;
+            this.videojuego = videojuego;
+            this.fecha = fecha;
+            this.puntuacion = puntuacion;
+            this.comentario = comentario;
+            this.review = new CADReview();
+        }
+
         public bool createReview()
         {
-            return this.review.createReview(this, usuario , videoJuego);
+            return this.review.createReview(this);
         }
         public bool deleteReview()
         {
@@ -47,10 +58,19 @@ namespace library
             return this.review.readReview(this);
         }
 
-        public DataTable readReviews(int videojuego)
+        public DataTable misReviews()
         {
-            CADReview cad = new CADReview();
-            return cad.readReviews(videojuego);
+            return this.review.misReviews(this);
+        }
+
+        public DataTable filtrarReview(string ordenColumna)
+        {
+            return this.review.filtrarReview(this, ordenColumna);
+        }
+
+        public DataTable mostrarReview()
+        {
+            return this.review.mostrarReview(this);
         }
     }
 

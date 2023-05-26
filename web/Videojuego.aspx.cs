@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Internal;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -32,7 +33,7 @@ namespace web
                     precioLabel.Text = videojuego.Precio.ToString();
                     fillReviews(videojuego.Id);
                     fillOferta(videojuego.Id);
-
+                    comprobarSesionReview();
                 }
             }
         }
@@ -59,7 +60,6 @@ namespace web
                     //Agregar elemento a la lista
                     lista.addVideojuegoLista(videojuego.Id);
                 }
-
             }
         }
 
@@ -92,7 +92,10 @@ namespace web
         protected void fillReviews(int videojuego)
         {
             ENReview review = new ENReview();
-            listViewReviews.DataSource = review.readReviews(videojuego);
+            review.videojuego.Id = videojuego;
+
+            string columnaOrden = ordenar.SelectedValue.ToString();
+            listViewReviews.DataSource = review.filtrarReview(columnaOrden);
             listViewReviews.DataBind();
         }
 
@@ -102,21 +105,66 @@ namespace web
             ofertaDisplay.DataSource = oferta.readOferta(videojuego);
             ofertaDisplay.DataBind();
             //Comprobar si contenido en oferta
-            if(ofertaDisplay.Items.Count > 0)
+            if (ofertaDisplay.Items.Count > 0)
             {
                 precioLabel.Style.Add("text-decoration", "line-through");
                 //Actualizar precio
             }
-           
         }
 
-        protected void EliminarComentario(Object sender, EventArgs e)
+        protected void crearReview_click(object sender, EventArgs e)
         {
-            /*//Button btn = (Button)sender;
-            string reviewEmail = ((LinkButton)sender).CommandArgument.ToString();
             ENReview review = new ENReview();
-            review.deleteReview(reviewEmail);
-            Response.Redirect(Request.Url.AbsoluteUri);*/
+
+            //Lectura del usuario de la sesion
+            review.usuario.nick = Session["login_nick"].ToString();
+            review.usuario.readUsuario();
+
+            //Id de la sesion
+            review.videojuego.Id = Convert.ToInt32(Request.QueryString["id"]);
+            review.comentario = comentarioReview.Text.ToString();
+            review.puntuacion = Convert.ToInt32(puntuacionReview.SelectedValue);
+            review.createReview();
+
+            fillReviews(review.videojuego.Id);
+            recargarPagina(Convert.ToInt32(Request.QueryString["id"]));
+        }
+
+        //Funcion con la cual se visualizan los campos correspondientes para la inserción de una review
+        protected void añadirReview_click(object sender, EventArgs e)
+        {
+            //Inicio de sesion comprobado antes
+            textoPuntuacion.Visible = true;
+            comentarioReview.Visible = true;
+            puntuacionReview.Visible = true;
+            crearReview.Visible = true;
+            cancelar.Visible = true;
+            añadirReview.Visible = false;
+        }
+
+        protected void comprobarSesionReview()
+        {
+            if (Session["login_nick"] != null)
+                añadirReview.Visible = true;
+            else       
+                añadirReview.Visible = false;
+        }
+
+        protected void cancelarReview_click(object sender, EventArgs e)
+        {
+            recargarPagina(Convert.ToInt32(Request.QueryString["id"]));
+        }
+
+        protected void filtrarReview_click(Object sender, EventArgs e)
+        {
+            //Como en la llamada principal llama por defecto al filtrar Reviews , no hace nada 
+        }
+
+        //Función privada para recargar la pagina de videojuego
+        private void recargarPagina(int id)
+        {
+            string url = "Videojuego.aspx?id=" + id;
+            Response.Redirect(url);
         }
     }
 }
