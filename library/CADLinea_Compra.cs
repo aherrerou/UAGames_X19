@@ -18,13 +18,14 @@ namespace library
             c = new SqlConnection(conexionBBDD);
         }
 
-        public bool createLinea(ENLinea_Compra linea)
+        public bool createLinea(ENLinea_Compra linea, int idcabecera)
         {
             bool result = true;
             try
             {
                 this.c.Open();
-                string query = "INSERT INTO LineasCompra (importe, videojuegoID, cantidad, compraID) VALUES (" + linea.importe + ","+ linea.videojuego.Id + ","+linea.cantidad+"," + linea.cabecera.id+ ");";
+                string importe = linea.importe.ToString().Replace(",", ".");
+                string query = "INSERT INTO LineasCompra (importe, videojuegoID, cantidad, compraID) VALUES (" + importe + ","+ linea.videojuego.Id + ","+linea.cantidad+"," + idcabecera+ ");";
                 SqlCommand com = new SqlCommand(query, c);
                 com.ExecuteNonQuery();
             }

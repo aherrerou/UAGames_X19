@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
-         <div class="contacto">
+    
+        <div class="container bg-light overflow-auto text-center" style="min-height: 599px;">
     <h3>Datos de contacto</h3>
     <address>
         UAGames<br />
@@ -21,6 +21,5 @@
     </address>
 
     </div>
-    </main>
 
 </asp:Content>

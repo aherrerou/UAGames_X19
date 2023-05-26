@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <main>
-        <div class="sobreNosotros">
+    
+         <div class="container bg-light overflow-auto" style="min-height: 599px;">
             <h3 style="text-align:center;">¡Bienvenido/a a nuestra sección de preguntas frecuentes! Aquí encontrarás algunas de las preguntas más comunes que recibimos de nuestros usuarios en relación a UAGames.</h3>
             <br />
             <h4>¿Cómo funciona UAGames?</h4>
@@ -23,7 +23,7 @@
             <p>Si tienes algún problema con tu compra, no dudes en ponerte en contacto con nuestro equipo de soporte. Estaremos encantados de ayudarte en lo que necesites.</p>
             <br />
             <p>Esperamos que esta sección de preguntas frecuentes te haya resultado útil. Si tienes alguna otra pregunta, no dudes en ponerte en contacto con nosotros a través de nuestro <a href="#">formulario de contacto</a>.</p>
-            <div class="cierre">
+            <div class="bg-primary text-white text-center">
                 <p>
                     Gracias por elegir UAGames como su plataforma de compra de videojuegos en línea.
                     <br />
@@ -31,5 +31,4 @@
                 </p>
             </div>
         </div>
-    </main>
 </asp:Content>

@@ -65,6 +65,12 @@ namespace library
             return res;
         }
 
+        public DataTable readCategorias()
+        {
+            CADCategoria categoria = new CADCategoria();
+            return categoria.readCategorias();
+        }
+
         public bool updateCategoria()
         {
             CADCategoria categoria = new CADCategoria();
@@ -86,6 +92,8 @@ namespace library
             CADCategoria categoria = new CADCategoria();
             return categoria.readCategoriasNombre();
         }
+
+
 
         /*public DataSet listas()
         {
