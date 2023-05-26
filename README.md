@@ -1,4 +1,56 @@
 # UAGames
+<h2>Enlace a la presentación</h2>
+https://docs.google.com/presentation/d/1yALEiFhZ1zSRcaQ4vdonpG43UTgqGZGg3rYDXciYMAQ/edit?usp=share_link
+<h2>Observaciones</h2>
+No hemos subido la BBDD porque no es compatible la versión que tenemos instalada con la que hay en el aula por lo que da problemas. En su lugar hemos incorporado ficheros SQL con el esquemaBBDD.sql y inserts.sql para que puedas crearla y probar la aplicación
+<h2>Participación</h2>
+	Adrián	Aitor	Clara	Iker	Omar	Rául
+Esquema BBDD	X	X	X	X	X	X
+SQL BBDD	X		X			
+EN/CAD Cabecera_Compra	X					
+EN/CAD Categoria			X	X		X
+EN/CAD Cesta				X		
+EN/CAD Foro		X				
+EN/CAD Linea_Compra	X					
+EN/CAD Lista_Deseos		X				
+EN/CAD Noticia						X
+EN/CAD Oferta			X			
+EN/CAD Productora			X	X		X
+EN/CAD Publicacion		X				
+EN/CAD Reserva					X	
+EN/CAD Review					X	
+EN/CAD Tema		X				
+EN/CAD Usuario	X	X				
+EN/CAD Videojuegos			X			
+Página AdminOfertas			X			
+Página AdminVideojuegos			X			
+Página Catalogo			X	X		
+Página CatalogoPrueba			X			
+Página AdminCategoria				X		X
+Página CestaWebForm	X			X		
+Página Compras	X					
+Página Contacto			X			
+Página Foro_Publico		X				
+Página Inicia_Sesion		X				
+Página Inicio			X			
+Página Lista_Deseos		X				
+Página NoticiaWF						X
+Página PreguntasFrec			X			
+Página Privacidad			X			
+Página ProductoraWebForm				X		X
+Página Registrar		X				
+Página Reseña					X	
+Página Site1Master	X		X			
+Página SobreNosotros			X			
+Página Terminos			X			
+Página AdminUsuarios		X				
+Página Videojuego			X	X	X	
+Página Top10Compras	X					
+Página AdminForos		X				
+Página AdminNoticias				X		X
+Página NoticiaCompleta						X
+Página ThanksYouPage				X		
+Página de Reserva					X	
 
 <h2>Componentes del equipo</h2>
 <ul>
