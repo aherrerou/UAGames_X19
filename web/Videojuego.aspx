@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Videojuego.aspx.cs" Inherits="web.Videojuego" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Videojuego.aspx.cs" Inherits="web.Videojuego" EnableEventValidation="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
     <link rel="stylesheet" href="assets/css/Rating.css" />
 </asp:Content>
@@ -86,7 +86,7 @@
             </div>
         </div>
         <br />
-        <div >
+        <div>
             <div>
                 <asp:Literal ID="textoPuntuacion" Text="Puntuacion:" runat="server" Visible="false" />
             </div>
@@ -102,14 +102,48 @@
                 </asp:DropDownList>
 
                 <asp:TextBox ID="comentarioReview" runat="server" Visible="false" placeholder="Comentario..." CssClass="mb-1 px-2" Style="width: 600px; height: 30px;"></asp:TextBox>
-                <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Nueva reseña" runat="server" Visible="true" OnClick="añadirReview_click" />
-                <div>
-                    &nbsp&nbsp
+                <asp:Button CssClass="btn btn-primary" ID="añadirReview" Text="Nueva reseña" runat="server" Visible="true" OnClick="añadirReview_Click" />
+
+                <div class="container">
+                    <button id="reservas" runat="server" type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmacionPopup" style="display: none">Reservar</button>
+                    <div id="confirmacionPopup" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Confirmación de Reserva</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>¿Estás seguro de que deseas reservar este videojuego?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" onclick="reservarVideojuego()">Reservar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <asp:Button CssClass="btn btn-primary" ID="reservarButton" Text="Reservar" runat="server" OnClick="ReservarVideojuego_Click" Style="display: none;" />
+                </div>
+
+                <script>
+                    function reservarVideojuego() {
+                        // Lógica para realizar la reserva del videojuego
+
+                        // Cerrar el popup después de realizar la reserva
+                        $('#confirmacionPopup').modal('hide');
+                        document.getElementById('<%= reservarButton.ClientID %>').click();
+                    }
+                </script>
+            </div>
+
+            <div>
+                &nbsp&nbsp
                 <asp:ImageButton ID="crearReview" ImageUrl="assets/imagenes/iconos/check.png" runat="server" Visible="false" OnClick="crearReview_click" ValidationGroup="validationGroup" Width="50px" Height="50px" />
-                    <asp:ImageButton ID="cancelar" ImageUrl="assets/imagenes/iconos/cancel.png" runat="server" Visible="false" OnClick="cancelarReview_click" Width="50px" Height="50px" />
-                </div>        
+                <asp:ImageButton ID="cancelar" ImageUrl="assets/imagenes/iconos/cancel.png" runat="server" Visible="false" OnClick="cancelarReview_click" Width="50px" Height="50px" />
             </div>
             <asp:RequiredFieldValidator ID="comentarioReviewValidator" runat="server" ControlToValidate="comentarioReview" ErrorMessage="* El campo Comentario es obligatorio." ValidationGroup="validationGroup" />
+            <asp:RequiredFieldValidator ID="reservaCreadaValidator" runat="server" ControlToValidate="ordenar" ErrorMessage="Ya has realizado una reserva de este videojuego." Visible="false" />
         </div>
         <div>
             <asp:DropDownList ID="ordenar" AutoPostBack="false" runat="server" CssClass="mb-2  px-5">

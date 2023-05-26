@@ -159,6 +159,24 @@ namespace web
         protected global::System.Web.UI.WebControls.Button añadirReview;
 
         /// <summary>
+        /// Control reservas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton reservas;
+
+        /// <summary>
+        /// Control reservarButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button reservarButton;
+
+        /// <summary>
         /// Control crearReview.
         /// </summary>
         /// <remarks>
@@ -184,6 +202,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator comentarioReviewValidator;
+
+        /// <summary>
+        /// Control reservaCreadaValidator.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reservaCreadaValidator;
 
         /// <summary>
         /// Control ordenar.

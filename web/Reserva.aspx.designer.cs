@@ -11,124 +11,88 @@ namespace web
 {
 
 
-    public partial class Site1
+    public partial class Reserva
     {
 
         /// <summary>
-        /// Control head.
+        /// Control asm.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.ScriptManager asm;
 
         /// <summary>
-        /// Control form1.
+        /// Control reservaTable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.GridView reservaTable;
 
         /// <summary>
-        /// Control menu.
+        /// Control pagarReserva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menu;
+        protected global::System.Web.UI.WebControls.Button pagarReserva;
 
         /// <summary>
-        /// Control menuUsuario.
+        /// Control nombreJuego.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menuUsuario;
+        protected global::System.Web.UI.WebControls.TextBox nombreJuego;
 
         /// <summary>
-        /// Control menuAdmin.
+        /// Control pagar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menuAdmin;
+        protected global::System.Web.UI.WebControls.TextBox pagar;
 
         /// <summary>
-        /// Control MenuNoSesion.
+        /// Control confirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MenuNoSesion;
+        protected global::System.Web.UI.WebControls.ImageButton confirmar;
 
         /// <summary>
-        /// Control BtnIniciarSesion.
+        /// Control cancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnIniciarSesion;
+        protected global::System.Web.UI.WebControls.ImageButton cancelar;
 
         /// <summary>
-        /// Control BtnRegistrarse.
+        /// Control comentarioReviewValidator.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnRegistrarse;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator comentarioReviewValidator;
 
         /// <summary>
-        /// Control MenuSesion.
+        /// Control pagarValidator.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MenuSesion;
-
-        /// <summary>
-        /// Control BtnCart.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton BtnCart;
-
-        /// <summary>
-        /// Control BtnLista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton BtnLista;
-
-        /// <summary>
-        /// Control BtnSalir.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton BtnSalir;
-
-        /// <summary>
-        /// Control main.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder main;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator pagarValidator;
     }
 }

@@ -57,6 +57,11 @@ namespace library
             return this.reserva.readReserva(this);
         }
 
+        public bool existeReserva()
+        {
+            return this.reserva.existeReserva(this);
+        }
+
         public DataTable mostrarReservas()
         {
             return this.reserva.mostrarReservas(this);

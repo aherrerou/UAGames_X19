@@ -30,7 +30,7 @@ namespace library
                 string query = "INSERT INTO Reserva (fecha, fechaEntrega, pagado, usuarioID, videojuegoID) VALUES (@fecha, @fechaEntrega, @pagado, @usuarioID, @videojuegoID)";
                 SqlCommand com = new SqlCommand(query, c);
                 com.Parameters.AddWithValue("@fecha", reserva.fecha.ToString("yyyy-MM-dd"));
-                com.Parameters.AddWithValue("@fechaEntrega", reserva.fechaEntrega.ToString("yyyy-MM-dd"));
+                com.Parameters.AddWithValue("@fechaEntrega", reserva.videojuego.FechaLanzamiento.ToString("yyyy-MM-dd"));
                 com.Parameters.AddWithValue("@pagado", reserva.pagado);
                 com.Parameters.AddWithValue("@usuarioID", reserva.usuario.id);
                 com.Parameters.AddWithValue("@videojuegoID", reserva.videojuego.Id);
@@ -61,9 +61,39 @@ namespace library
             try
             {
                 c.Open();
-                string query = "DELETE FROM Reserva WHERE id = @id";
+                string query = "DELETE FROM Reserva WHERE videojuegoID = (select id from videojuego v where v.titulo = @titulo);";
                 SqlCommand com = new SqlCommand(query, c);
-                com.Parameters.AddWithValue("@id", reserva.id);
+                com.Parameters.AddWithValue("@titulo", reserva.videojuego.Titulo);
+                com.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                result = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                result = false;
+            }
+            finally
+            {
+                c.Close();
+            }
+            return result;
+        }
+
+        public bool existeReserva(ENReserva reserva)
+        {
+            bool result = true;
+
+            try
+            {
+                c.Open();
+                string query = "Select 1 from reserva r where r.videojuegoID = (select id from videojuego v where v.titulo = @titulo) and r.usuarioID = @usuarioID;";
+                SqlCommand com = new SqlCommand(query, c);
+                com.Parameters.AddWithValue("@titulo", reserva.videojuego.Titulo);
+                com.Parameters.AddWithValue("@usuarioID", reserva.usuario.id);
                 com.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -91,14 +121,10 @@ namespace library
             try
             {
                 c.Open();
-                string query = "UPDATE Reserva SET fecha = @fecha, fechaEntrega = @fechaEntrega, pagado = @pagado, usuarioID = @usuarioID, videojuegoID = @videojuegoID WHERE id = @id;";
+                string query = "UPDATE Reserva SET pagado = @pagado WHERE videojuegoID = (select id from videojuego v where v.titulo = @titulo);";
                 SqlCommand com = new SqlCommand(query, c);
-                com.Parameters.AddWithValue("@fecha", reserva.fecha.ToString("yyyy-MM-dd"));
-                com.Parameters.AddWithValue("@fechaEntrega", reserva.fechaEntrega.ToString("yyyy-MM-dd"));
+                com.Parameters.AddWithValue("@titulo", reserva.videojuego.Titulo);
                 com.Parameters.AddWithValue("@pagado", reserva.pagado);
-                com.Parameters.AddWithValue("@usuarioID", reserva.usuario.id);
-                com.Parameters.AddWithValue("@videojuegoID", reserva.videojuego.Id);
-                com.Parameters.AddWithValue("@id", reserva.id);
                 com.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -179,7 +205,7 @@ namespace library
             try
             {
                 c.Open();
-                string query = "SELECT r.* , v.Titulo as videojuego, u.nombre as usuario" +
+                string query = "SELECT r.* , v.titulo as videojuego, u.nombre as usuario" +
                     " FROM Reserva r , videojuego v , usuario u " +
                     "where v.Id = r.videojuegoID and r.usuarioID = u.id;";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, c);

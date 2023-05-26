@@ -108,6 +108,7 @@
     <Content Include="Privacidad.aspx" />
     <Content Include="ProductoraWebForm.aspx" />
     <Content Include="Registrar.aspx" />
+    <Content Include="Reserva.aspx" />
     <Content Include="Reseña.aspx" />
     <Content Include="SobreNosotros.aspx" />
     <Content Include="CatalogoPrueba.aspx" />
@@ -246,6 +247,13 @@
     </Compile>
     <Compile Include="Registrar.aspx.designer.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reserva.aspx.cs">
+      <DependentUpon>Reserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reserva.aspx.designer.cs">
+      <DependentUpon>Reserva.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reseña.aspx.cs">
       <DependentUpon>Reseña.aspx</DependentUpon>
