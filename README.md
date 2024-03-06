@@ -8,7 +8,7 @@ Enlace a la tabla de participación: https://docs.google.com/spreadsheets/d/1u15
 <h2>Componentes del equipo</h2>
 <ul>
 <li>Adrián Herrero Bernabéu -> Coordinador</li>
-<li>Clara González Sánchez 74386643C)</li>
+<li>Clara González Sánchez</li>
 <li>Aitor López Romero </li>
 <li>Omar Bouaouda Ruiz </li>
 <li>Raúl Lujan</li>
