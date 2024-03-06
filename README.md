@@ -7,12 +7,12 @@ No hemos subido la BBDD porque no es compatible la versión que tenemos instalad
 Enlace a la tabla de participación: https://docs.google.com/spreadsheets/d/1u15P4VUps-QGoGTiDK23zBhRfukUZdrc4FaOMZXZtq0/edit#gid=0
 <h2>Componentes del equipo</h2>
 <ul>
-<li>Adrián Herrero Bernabéu (aherrerou 48686160J) -> Coordinador</li>
-<li>Clara González Sánchez (CGonzo94UA 74386643C)</li>
-<li>Aitor López Romero (alr135 51773071W)</li>
-<li>Omar Bouaouda Ruiz (obr6-ua 48736098H)</li>
-<li>Raúl Lujan (rld8 50590584Z)</li>
-<li>Iker Sánchez Zaragoza (iszs1-ua 48825725Z)</li>
+<li>Adrián Herrero Bernabéu -> Coordinador</li>
+<li>Clara González Sánchez 74386643C)</li>
+<li>Aitor López Romero </li>
+<li>Omar Bouaouda Ruiz </li>
+<li>Raúl Lujan</li>
+<li>Iker Sánchez Zaragoza</li>
 </ul>
 
 
